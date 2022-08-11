@@ -121,7 +121,7 @@
 
 
 @push('script')
-
+{{-- 
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -142,5 +142,5 @@
             "ratingValue": "4.3"},
         "image" :"{{getImageUrl($gallery)}}",
          "priceRange": "₹1000"
-    }</script>
+    }</script> --}}
 @endpush

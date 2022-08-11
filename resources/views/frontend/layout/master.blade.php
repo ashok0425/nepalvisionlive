@@ -158,43 +158,16 @@ $setting = DB::table('websites')->first();
     @include('frontend.layout.footer')
 
 
-
-
-
-    <!-- GetButton.io widget -->
-    <script type="text/javascript">
-        (function() {
-            var options = {
-                facebook: "273833563619", // Facebook page ID
-                whatsapp: "+977", // WhatsApp number
-                call_to_action: "Message us", // Call to action
-                button_color: "#129BF4", // Color of button
-                position: "left", // Position may be 'right' or 'left'
-                order: "whatsapp,facebook", // Order of buttons
-            };
-            var proto = document.location.protocol,
-                host = "getbutton.io",
-                url = proto + "//static." + host;
-            var s = document.createElement('script');
-            s.type = 'text/javascript';
-            s.async = true;
-            s.src = url + '/widget-send-button/js/init.js';
-            s.onload = function() {
-                WhWidgetSendButton.init(host, proto, options);
-            };
-            var x = document.getElementsByTagName('script')[0];
-            x.parentNode.insertBefore(s, x);
-        })();
-    </script>
-    <!-- /GetButton.io widget -->
     {{-- script tags --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="{{ asset('frontend/app.js') }}">
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script  href="{{ asset('frontend/app.js') }}"> </script>
+
     <!--owl carousel-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
+    <script  src="{{ asset('frontend/jquery.lazy.min.js') }}"></script>
 
     {{-- toastr --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -239,13 +212,14 @@ $setting = DB::table('websites')->first();
     <!--End of Tawk.to Script-->
 
 
-
-
-
-
-
-
     <script>
+
+$(function() {
+        $('.lazy').Lazy();
+    });
+
+
+
         $('.destinations').owlCarousel({
             autoplay: true,
             autoplayTimeout: 6000,
@@ -364,6 +338,9 @@ $setting = DB::table('websites')->first();
                 }
             }
         });
+
+
+       
     </script>
     @stack('scripts')
 

@@ -1,5 +1,5 @@
 @php
-    $packages=DB::table('packages')->orderBy('id','desc')->where('status',1)->where('duration','!=',null)->where('activity','!=',null)->where('discounted_price',null)->get();
+    $packages=DB::table('packages')->orderBy('id','desc')->where('status',1)->where('banner','!=',null)->where('duration','!=',null)->where('activity','!=',null)->where('discounted_price',null)->limit(6)->get();
 @endphp
 <section class="tour-packages ">
     <div class="container">
@@ -14,9 +14,9 @@
                     <div class="img-container">
                        
                         @if ($package->banner==null)
-                        <img src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$package->name  }}" class="img-fluid w-100 w-100">
+                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$package->name  }}" class="img-fluid w-100 w-100 lazy">
                         @else 
-                        <img src="{{ asset($package->banner)}}" alt="{{$package->name  }}" class="img-fluid w-100">
+                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset($package->banner)}}" alt="{{$package->name  }}" class="img-fluid w-100 lazy">
                         @endif
                     </div>
                     <div class="img-desc">
