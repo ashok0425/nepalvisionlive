@@ -117,9 +117,9 @@
                 <div class="feedback-box text-center ">
                     <div>
                         @if ($testimonial->image!=null)
-                        <img src="{{ asset($testimonial->image) }}" alt="{{ $testimonial->name }}" class="user_img img-fluid lazy" >
+                        <img src="{{ asset($testimonial->image) }}" alt="{{ $testimonial->name }}" class="user_img img-fluid lazy" width="100px" height="100px">
                         @else    
-                        <img src="{{ asset('frontend/user.png') }}" alt="{{ $testimonial->name }}" class="user_no_img lazy" >
+                        <img src="{{ asset('frontend/user.webp') }}" alt="{{ $testimonial->name }}" class="user_no_img lazy" width="100px" height="100px">
                         
                         @endif
                     </div>

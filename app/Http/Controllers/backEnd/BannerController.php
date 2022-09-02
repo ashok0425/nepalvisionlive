@@ -33,10 +33,10 @@ class BannerController extends Controller
 
         if($file){
             // File::delete(__getAdmin()->profile_photo_path);
-            $fname=rand().'main_slider.'.$file->getClientOriginalExtension();
-            $main_sliders->image='upload/main_slider/'.$fname;
+            $fname=rand().'mainslider.'.$file->getClientOriginalExtension();
+            $main_sliders->image='upload/mainslider/'.$fname;
             // $path=Image::make($file)->resize(200,300);
-            $file->move(public_path().'/upload/main_slider/',$fname);
+            $file->move(public_path().'/upload/mainslider/',$fname);
                 }
         $main_sliders->title=$request->title;
         $main_sliders->details=$request->details;
@@ -77,10 +77,10 @@ class BannerController extends Controller
 
         if($file){
             // File::delete(__getAdmin()->profile_photo_path);
-            $fname=rand().'main_slider.'.$file->getClientOriginalExtension();
-            $main_sliders->image='upload/main_slider/'.$fname;
+            $fname=rand().'mainslider.'.$file->getClientOriginalExtension();
+            $main_sliders->image='upload/mainslider/'.$fname;
             // $path=Image::make($file)->resize(200,300);
-            $file->move(public_path().'/upload/main_slider/',$fname);
+            $file->move(public_path().'/upload/mainslider/',$fname);
                 }
         $main_sliders->title=$request->title;
         $main_sliders->details=$request->details;

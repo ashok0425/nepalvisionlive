@@ -16,9 +16,9 @@
                       
 
                         @if ($package->banner==null)
-                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$package->name  }}" class="img-fluid w-100 w-100 lazy">
+                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$package->name  }}" class="img-fluid w-100 w-100 lazy" width="200px" height="300px">
                         @else 
-                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset($package->banner)}}" alt="{{$package->name  }}" class="img-fluid w-100 lazy">
+                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset($package->banner)}}" alt="{{$package->name  }}" class="img-fluid w-100 lazy" width="200px" height="300px">
                         @endif
                         <div class="discount bg-success">
                             @php

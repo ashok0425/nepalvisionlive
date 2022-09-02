@@ -17,12 +17,12 @@ class PackageController extends Controller
 {
  public function destination($url) {
     $data = Destination::where('url',$url)->first();
-      $packages = Package::where('destination_id',$data->id)->where('status',1)->where('price','!=',0)->orderBy('id','desc')->paginate(12);
+      $packages = Package::where('destination_id',$data->id)->orderBy('order','desc')->where('status',1)->where('price','!=',0)->orderBy('id','desc')->paginate(12);
       return view('frontend.package',compact('packages','data'));
  }
 
  public function all() {
-     $packages = Package::where('status',1)->where('price','!=',0)->orderBy('id','desc')->paginate(20);
+     $packages = Package::where('status',1)->orderBy('order','desc')->where('price','!=',0)->orderBy('id','desc')->paginate(20);
      $data=Destination::find(8);
      return view('frontend.package',compact('packages','data'));
 }
@@ -31,7 +31,7 @@ class PackageController extends Controller
 
     $data = CategoryDestination::where('url',$url)->first();
 
-      $packages = Package::where('category_destination_id',$data->id)->where('status',1)->where('price','!=',0)->orderBy('id','desc')->paginate(12);
+      $packages = Package::where('category_destination_id',$data->id)->orderBy('order','desc')->where('status',1)->where('price','!=',0)->orderBy('id','desc')->paginate(12);
       return view('frontend.package',compact('packages','data'));
  }
 
@@ -40,7 +40,9 @@ public function show($url) {
       $reviews=DB::table('testimonials')->join('package_testimonial','package_testimonial.testimonial_id','testimonials.id')->where('testimonials.status',1)->where('package_testimonial.package_id',$package->id)->orderBy('testimonials.id','desc')->limit(20)->get();
       $features=DB::table('packages')->join('package_featured','packages.id','package_featured.featured_id')->where('package_featured.package_id',$package->id)->select('packages.*')->where('status',1)->get();
       $before=Destination::find($package->destination_id);
-
+      if(!$package){
+        abort(404);
+   }
       return view('frontend.package_detail',compact('package','reviews','features','before'));
 }
 
@@ -55,7 +57,6 @@ public function printpackage($id){
 public function Departure(Request $request){
      $package=Package::find($request->packageid);
       $departures=Departure::where('status',1)->orderBy('start_date')->where('package_id',$request->packageid)->whereYear('start_date', '=', $request->year)->whereMonth('start_date', '=', $request->month)->where('start_date', '>=', Carbon::today())->get();
-     
      return view('frontend.departure',compact('departures','package'));
 
 }

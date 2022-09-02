@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 d-none d-md-block">
                    
-                    <img src="{{ asset('frontend/assets/footer-img.png')}}" alt="logo" class="img-fluid">
+                    <img src="{{ asset('frontend/assets/footer-img.webp')}}" alt="logo" class="img-fluid" height="250px" width="250px">
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-title custom-text-primary">
@@ -20,12 +20,12 @@
                         @endphp
                       @foreach ($children as $child)
                       @if ($child->url!='our-affiliations')
-                      <li><a target="_blank"  href="{{ route('cms.detail',['page'=>1,'id'=>$child->url]) }}" class="text-decoration-none text-light">{{ $child->title }}</a></li>  
+                      <li><a  rel="noreferrer"  target="_blank"  href="{{ route('cms.detail',['page'=>1,'id'=>$child->url]) }}" class="text-decoration-none text-light">{{ $child->title }}</a></li>  
                       @endif
                         
                       @endforeach
 
-                      <li><a target="_blank"  href="{{ route('cms.page', ['page' => $term->url]) }}" class="text-decoration-none text-light">Term & Conditions</a></li>
+                      <li><a  rel="noreferrer"  target="_blank"  href="{{ route('cms.page', ['page' => $term->url]) }}" class="text-decoration-none text-light">Term & Conditions</a></li>
                     </ul>
                 </div>
 
@@ -38,7 +38,7 @@
                             $children=DB::table('cms')->where('parent_id',15)->limit(6)->where('status',1)->get();
                         @endphp
                       @foreach ($children as $child)
-                          <li><a target="_blank"  href="{{ route('cms.detail',['page'=>15,'id'=>$child->url]) }}" class="text-decoration-none text-light">{{ $child->title }}</a></li>
+                          <li><a  rel="noreferrer"  target="_blank"  href="{{ route('cms.detail',['page'=>15,'id'=>$child->url]) }}" class="text-decoration-none text-light">{{ $child->title }}</a></li>
                       @endforeach
                     </ul>
                 </div>
@@ -65,7 +65,7 @@
 
                         </li>
                         <li>
-                        Phone: <a target="_blank"  href="tel:977-1-4524762" class="text-white text-decoration-none">977-1-4524762</a>
+                        Phone: <a  rel="noreferrer"  target="_blank"  href="tel:977-1-4524762" class="text-white text-decoration-none">977-1-4524762</a>
 
                         </li>
                         <li>
@@ -76,14 +76,14 @@
                             Email:
                         </li>
                         <li>
-                            <a target="_blank"  href="mailto:info@nepalvisiontreks.com" class="text-white text-decoration-none">
+                            <a  rel="noreferrer"  target="_blank"  href="mailto:info@nepalvisiontreks.com" class="text-white text-decoration-none">
                                 info@nepalvisiontreks.com
                                 </a>
                             
 
                         </li>
                         <li>
-                            <a target="_blank"  href="mailto:sales@nepalvisiontreks.com
+                            <a  rel="noreferrer"  target="_blank"  href="mailto:sales@nepalvisiontreks.com
                             " class="text-white text-decoration-none">
                                 sales@nepalvisiontreks.com
 
@@ -104,7 +104,7 @@
 
                         </li>
                         <li>
-                            Phone:<a target="_blank"  href="tel:+1 202-368-6657" class="text-white text-decoration-none"> +1 202-368-6657</a>
+                            Phone:<a  rel="noreferrer"  target="_blank"  href="tel:+1 202-368-6657" class="text-white text-decoration-none"> +1 202-368-6657</a>
 
 
                         </li>
@@ -122,7 +122,7 @@
 
                         </li>
                         <li>
-                            <a target="_blank"  href="mailto:parashu@nepalvisiontreks.com" class="text-white text-decoration-none">
+                            <a  rel="noreferrer"  target="_blank"  href="mailto:parashu@nepalvisiontreks.com" class="text-white text-decoration-none">
                             parashu@nepalvisiontreks.com
                             </a>
 
@@ -144,7 +144,7 @@
                             Sydney, Australia
                         </li>
                         <li>
-                            Phone: <a target="_blank"  href="tel:+61 426 730 548" class="text-white text-decoration-none"> +61 426 730 548</a>
+                            Phone: <a  rel="noreferrer"  target="_blank"  href="tel:+61 426 730 548" class="text-white text-decoration-none"> +61 426 730 548</a>
                         </li>
                         <li>
                             Ashim Wagle
@@ -157,7 +157,7 @@
                             Email:
                         </li>
                         <li>
-                            <a target="_blank"  href="mailto:ashim@nepalvisiontreks.com" class="text-white text-decoration-none">
+                            <a  rel="noreferrer"  target="_blank"  href="mailto:ashim@nepalvisiontreks.com" class="text-white text-decoration-none">
                                 ashim@nepalvisiontreks.com
                             </a>
 
@@ -180,7 +180,7 @@
 @endphp
         <div class="bottom-footer d-flex justify-content-between flex-column flex-md-row">
             <p>Copyright  © {{ date('Y') }} NepalVisionTreks. All right Reserved</p>
-            <p>Follow Us : <a target="_blank"  href="{{ $website->facebook }}" class="text-white text-decoration-none"><img src="{{ asset('facebook.png') }}" alt="facebook" width="20" height="20"></a> | <a target="_blank"  href="{{ $website->instagram }}" class="text-white text-decoration-none"> <img src="{{ asset('insta.png') }}" alt="insta" width="20" height="20"> </a>  |<a target="_blank"  href="{{ $website->youtube }}" class="text-white text-decoration-none"><img src="{{ asset('trip.png') }}" alt="tripadvisior" width="40" height="40"> </a></p>
+            <p>Follow Us : <a  rel="noreferrer"  target="_blank"  href="{{ $website->facebook }}" class="text-white text-decoration-none"><img src="{{ asset('facebook.webp') }}" alt="facebook" width="20px" height="20px"></a> | <a  rel="noreferrer"  target="_blank"  href="{{ $website->instagram }}" class="text-white text-decoration-none"> <img src="{{ asset('insta.webp') }}" alt="insta" width="20px" height="20px"> </a>  |<a  rel="noreferrer"  target="_blank"  href="{{ $website->youtube }}" class="text-white text-decoration-none"><img src="{{ asset('trip.webp') }}" alt="tripadvisior" width="40px" height="40px"> </a></p>
         </div>
     </div>
 </footer>
@@ -188,7 +188,7 @@
 
 {{-- <div class="whatsapp-link d-md-none">
 	<span>
-		<a target="_blank"  href="https://api.whatsapp.com/send?phone=9779851189771"><i class="fab fa-whatsapp"></i></a>
+		<a  rel="noreferrer"  target="_blank"  href="https://api.whatsapp.com/send?phone=9779851189771"><i class="fab fa-whatsapp"></i></a>
 	</span>
 </div> --}}
 <style>

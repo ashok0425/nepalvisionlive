@@ -8573,7 +8573,7 @@ var LinkPopover_LinkPopover = /*#__PURE__*/function () {
         className: 'note-link-popover',
         callback: function callback($node) {
           var $content = $node.find('.popover-content,.note-popover-content');
-          $content.prepend('<span><a target="_blank"></a>&nbsp;</span>');
+          $content.prepend('<span><a  rel="noreferrer"  target="_blank"></a>&nbsp;</span>');
         }
       }).render().appendTo(this.options.container);
       var $content = this.$popover.find('.popover-content,.note-popover-content');
@@ -9195,7 +9195,7 @@ var HelpDialog_HelpDialog = /*#__PURE__*/function () {
     key: "initialize",
     value: function initialize() {
       var $container = this.options.dialogsInBody ? this.$body : this.options.container;
-      var body = ['<p class="text-center">', '<a href="http://summernote.org/" target="_blank">Summernote 0.8.18</a> · ', '<a href="https://github.com/summernote/summernote" target="_blank">Project</a> · ', '<a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a>', '</p>'].join('');
+      var body = ['<p class="text-center">', '<a href="http://summernote.org/"  rel="noreferrer"  target="_blank">Summernote 0.8.18</a> · ', '<a href="https://github.com/summernote/summernote"  rel="noreferrer"  target="_blank">Project</a> · ', '<a href="https://github.com/summernote/summernote/issues"  rel="noreferrer"  target="_blank">Issues</a>', '</p>'].join('');
       this.$dialog = this.ui.dialog({
         title: this.lang.options.help,
         fade: this.options.dialogsFade,

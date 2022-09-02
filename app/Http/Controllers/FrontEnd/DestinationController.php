@@ -17,7 +17,7 @@ class DestinationController extends Controller
 public function index($url) {
 	$data = Destination::where('url',$url)->first();
 	$categories = CategoryDestination::where('destination_id',$data->id)->where('status',1)->get();
-	$packages = Package::where('destination_id',$data->id)->where('status',1)->where('price','!=',0)->limit(8)->orderBy('id','desc')->get();
+	$packages = Package::where('destination_id',$data->id)->where('status',1)->orderBy('order','desc')->where('price','!=',0)->limit(8)->orderBy('id','desc')->get();
 
       return view('frontend.destination',compact('categories','packages','data'));
 }

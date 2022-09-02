@@ -5,7 +5,7 @@ $destinations = DB::table('destinations')
 
 $website = DB::table('websites')->first();
 @endphp
-@include('frontend.layout.mobile_menu',$destinations)
+@include('frontend.layout.mobile_menu', $destinations)
 <header id='header'>
     <div class="container d-none d-md-block py-1">
         <div class="row ">
@@ -14,18 +14,18 @@ $website = DB::table('websites')->first();
                 <div class="row">
                     <div class="col-md-2 ">
                         <a href="{{ route('/') }}">
-                            <img src="{{ asset($website->image) }}" alt="Logo" class="img-fluid  ">
+                            <img src="{{ asset($website->image) }}" alt="Logo" class="img-fluid  " width="220px" height="100px">
                         </a>
 
                     </div>
                     <div class="col-md-3">
-                        <p><a target="_blank" href="#" class="text-dark text-decoration-none">
+                        <p><a  rel="noreferrer"  target="_blank" href="#" class="text-dark text-decoration-none">
                                 {{ $website->phone }}
                             </a></p>
                     </div>
                     <div class="col-md-3">
                         <p>
-                        <p><a target="_blank" href="#" class="text-dark text-decoration-none">
+                        <p><a  rel="noreferrer"  target="_blank" href="#" class="text-dark text-decoration-none">
 
                                 {{ $website->email }}
                             </a>
@@ -57,82 +57,84 @@ $website = DB::table('websites')->first();
 
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
-                       
+
                         <div class="collapse navbar-collapse" id="navbarNavDropdown">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link text-md-white text-dark @if (PAGE == 'home') active    @endif"
+                                    <a class="nav-link text-md-white text-dark @if (PAGE == 'home') active @endif"
                                         aria-current="page" href="{{ route('/') }}">Home</a>
                                 </li>
 
                                 @foreach ($destinations as $destination)
 
-                                @if ($destination->id!=12)
-                                    
-                                    @php
-                                        $categories = DB::table('categories_destinations')
-                                            ->where('status', 1)
-                                            ->orderBy('order', 'asc')
-                                            ->where('destination_id', $destination->id)
-                                            ->get();
-                                    @endphp
+                                    @if ($destination->id != 12)
+                                        @php
+                                            $categories = DB::table('categories_destinations')
+                                                ->where('status', 1)
+                                                ->orderBy('order', 'asc')
+                                                ->where('destination_id', $destination->id)
+                                                ->get();
+                                        @endphp
 
-                                    <li class="nav-item dropdown ">
+                                        <li class="nav-item dropdown ">
 
-                                       <span class="d-flex align-items-center text-md-white ">
-                                        <a class="nav-link d-flex align-items-center text-md-white text-dark
+                                            <span class="d-flex align-items-center text-md-white ">
+                                                <a class="nav-link d-flex align-items-center text-md-white text-dark
                                         @if (PAGE == 'destination') active @endif"
-                                            href="{{ route('destination', ['url' => $destination->url]) }}"
-                                            aria-expanded="false">
-                                            {{ $destination->name }}
-
-                                            
-                                        </a>
-                                        @if (count($categories)>0)
-                                            <i class="fas fa-chevron-down"></i>
-                                            @endif
-                                       </span>
+                                                    href="{{ route('destination', ['url' => $destination->url]) }}"
+                                                    aria-expanded="false">
+                                                    {{ $destination->name }}
 
 
-                                        @if (count($categories) > 0)
-                                            <ul class="dropdown-menu first_drop" aria-h3ledby="navbarDropdownMenuLink">
-                                      @foreach ($categories as $category)
-                                      @php
-                                        $packages = DB::table('packages')
-                                            ->where('status', 1)
-                                            ->where('destination_id', $destination->id)
-                                            ->where('category_destination_id', $category->id)
-->limit(6)
-                                            ->get();
-@endphp
-          
-                                                    <li class="dropdown_menu"><a class="dropdown-item d-flex justify-content-between align-items-center 
+                                                </a>
+                                                @if (count($categories) > 0)
+                                                    <i class="fas fa-chevron-down"></i>
+                                                @endif
+                                            </span>
+
+
+                                            @if (count($categories) > 0)
+                                                <ul class="dropdown-menu first_drop"
+                                                    aria-h3ledby="navbarDropdownMenuLink">
+                                                    @foreach ($categories as $category)
+                                                        @php
+                                                            $packages = DB::table('packages')
+                                                                ->where('status', 1)
+                                                                ->orderBy('order', 'desc')
+                                                                ->where('destination_id', $destination->id)
+                                                                ->where('category_destination_id', $category->id)
+                                                                ->limit(12)
+                                                                ->get();
+                                                        @endphp
+
+                                                        <li class="dropdown_menu"><a
+                                                                class="dropdown-item d-flex justify-content-between align-items-center 
                                                         "
-                                                            href="{{ route('package.category', ['url' => $category->url]) }}">{{ $category->name }} 
-                                                            @if (count($packages)>0)
-                                                            <i class="fas fa-caret-right"></i>
+                                                                href="{{ route('package.category', ['url' => $category->url]) }}">{{ $category->name }}
+                                                                @if (count($packages) > 0)
+                                                                    <i class="fas fa-caret-right"></i>
+                                                                @endif
+
+                                                            </a>
+                                                            @if (count($packages) > 0)
+                                                                <ul class=" sub">
+                                                                    @foreach ($packages as $package)
+                                                                        <li><a class="dropdown-item"
+                                                                                href="{{ route('package.detail', ['url' => $package->url]) }}">{{ $package->name }}</a>
+                                                                        </li>
+                                                                    @endforeach
+
+
+                                                                </ul>
                                                             @endif
-                                                        
-                                                        </a>
-                                                        @if (count($packages)>0)
+                                                        </li>
+                                                    @endforeach
 
-                                                        <ul class=" sub">
-                                                            @foreach ($packages as $package)
-                                                            <li><a class="dropdown-item" href="{{route('package.detail',['url'=>$package->url])}}">{{$package->name}}</a>
-                                                            </li>
-                                                            @endforeach
-                                                          
-                                                          
-                                                        </ul>
-                                                        @endif
-                                                    </li>
-                                                @endforeach
+                                                </ul>
+                                            @endif
 
-                                            </ul>
-                                        @endif
-
-                                    </li>
-                                @endif
+                                        </li>
+                                    @endif
 
                                 @endforeach
 
@@ -156,7 +158,7 @@ $website = DB::table('websites')->first();
 
                         </div>
 
-               
+
                     </div>
                 </nav>
 
@@ -214,8 +216,9 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     @foreach ($quick_trips as $key => $quick_trip)
-                        <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}" id="cat-{{ $quick_trip->id }}"
-                            role="tabpanel" aria-labelledby="cat-{{ $quick_trip->id }}-tab">
+                        <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}"
+                            id="cat-{{ $quick_trip->id }}" role="tabpanel"
+                            aria-labelledby="cat-{{ $quick_trip->id }}-tab">
                             <table class="table table-bordered text-center">
                                 <thead>
                                     <tr>
@@ -233,9 +236,9 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
                                             <td><a
                                                     href="{{ route('package.detail', ['url' => $quickpackage->url]) }}">{{ $quickpackage->name }}</a>
                                             </td>
-                                            <td>{{ $quickpackage->duration }} days</td>
+                                            <td>{{ $quickpackage->duration }} </td>
                                             <td>US ${{ $quickpackage->price }} </td>
-                                            <td><a href="{{ route('booknow', ['package_id' => $quickpackage->id]) }}"
+                                            <td><a href="{{ route('booknow', ['url' => $quickpackage->url]) }}"
                                                     class="btn  btn-primary btn-sm">Book now</a>
                                                 {{-- <a class="btn btn-sample2 btn-sm" href="#">Join Group</a> --}}
                                             </td>
@@ -262,10 +265,10 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
                                     @foreach ($destination_not_nepa->packages()->where('status', 1)->orderBy('name')->get() as $quickpackage1)
                                         <tr>
                                             <td>{{ $quickpackage1->trip_id }}</td>
-                                            <td><a href="">{{ $quickpackage1->name }}</a></td>
+                                            <td><a href="{{ route('package.detail', ['url' => $quickpackage1->url]) }}">{{ $quickpackage1->name }}</a></td>
                                             <td>{{ $quickpackage1->duration }} days</td>
                                             <td>US ${{ $quickpackage1->price }} </td>
-                                            <td><a href="{{ route('booknow', ['package_id' => $quickpackage1->id]) }}"
+                                            <td><a href="{{ route('booknow', ['url' => $quickpackage1->url]) }}"
                                                     class="btn btn-primary btn-sm">Book now</a>
                                             </td>
                                         </tr>
@@ -280,18 +283,6 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @push('scripts')

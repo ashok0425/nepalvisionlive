@@ -61,7 +61,7 @@
                                 <td align="right" valign="top">
                                     <div align="left"><strong>IP Location :</strong></div>
                                 </td>
-                                <td align="left" valign="top">{{ $userIP }} <a href="http://www.ip-adress.com/ip_tracer/{{ $userIP }}" target="_blank">Check The Country Here</a> </td>
+                                <td align="left" valign="top">{{ $userIP }} <a href="http://www.ip-adress.com/ip_tracer/{{ $userIP }}"  rel="noreferrer"  target="_blank">Check The Country Here</a> </td>
                             </tr>
                             <tr>
                                 <td align="right" valign="top">

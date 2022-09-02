@@ -42,18 +42,18 @@ Contact
 
                         <div class="socials social">
                             <div class="icons">
-                              <a href="{{ $detail->facebook}}" target="_blank">
+                              <a href="{{ $detail->facebook}}"  rel="noreferrer"  target="_blank">
                                 <i class="fab fa-facebook"></i>
                               </a>
                             </div>
                             <div class="icons">
-                                <a href="{{ $detail->instagram}}" target="_blank" >
+                                <a href="{{ $detail->instagram}}"  rel="noreferrer"  target="_blank" >
                                     <i class="fab fa-instagram"></i>
                                 </a>
 
                             </div>
                             <div class="icons">
-                                <a href="{{ $detail->twitter}}" target="_blank" >
+                                <a href="{{ $detail->twitter}}"  rel="noreferrer"  target="_blank" >
 
                                 <i class="fab fa-twitter"></i>
                                 </a>
@@ -144,14 +144,13 @@ Contact
                             <div class="col-md-1 col-3 cont">
                                 <div class="custom-fs-18"><i class="fas fa-home "></i> </div>
                                 <div class="custom-fs-18"><i class="fas fa-phone-alt "></i> </div>
-                                <div class="custom-fs-18"><i class="fas fa-phone-alt "></i> </div>
                                 <div class="custom-fs-18"><i class="fas fa-envelope "></i> </div>
     
                                 
                             </div>
                             <div class="col-md-3 col-3 d-none d-md-block cont">
                                      <div class="custom-fs-18">...............................</div>
-                                     <div class="custom-fs-18">...............................</div>
+                                     
                                      <div class="custom-fs-18">...............................</div>
                                      <div class="custom-fs-18">...............................</div>
     
@@ -160,8 +159,8 @@ Contact
                             <div class="col-md-5 col-9 cont">
     
                                     <div class="custom-fs-18">{{ $detail->address2 }}</div>
-                                    <div class="custom-fs-18"><a href="tel:{{ $detail->phone }}" class="text-decoration-none text-dark">{{ $detail->phone }}</a></div>
-                                    <div class="custom-fs-18"><a href="tel:{{ $detail->email}}" class="text-decoration-none text-dark">{{ $detail->phone2 }}</a></div>
+                                  
+                                    <div class="custom-fs-18"><a href="tel:{{ $detail->phone2}}" class="text-decoration-none text-dark">{{ $detail->phone2 }}</a></div>
             
                                     <div class="custom-fs-18"><a href="mailto:{{ $detail->email3}}" class="text-decoration-none text-dark">{{ $detail->email2 }}</a></div>
                                 </div>

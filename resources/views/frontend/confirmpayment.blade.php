@@ -47,7 +47,7 @@
 
 					<input type="hidden" name="hashValue" value="{{ urlencode(strtoupper(hash_hmac('SHA256', '9103332474Invoice'.$invoiceNo .sprintf("%012d", $amount*100).'840Y','7SK8PW3EYMFIW5JMVNFORMF4MM0QNZ42', false))) }}" />
 					<div class="form-group mt-3">
-						<input type="checkbox" name="agree"  class="agree" checked="checked" value="I have agreed" required /> &nbsp; I have agreed <a href="#" target="_blank">terms & condition </a></div>
+						<input type="checkbox" name="agree"  class="agree" checked="checked" value="I have agreed" required /> &nbsp; I have agreed <a href="#"  rel="noreferrer"  target="_blank">terms & condition </a></div>
 					<div class="form-group text-center">
 						<button type="submit"  class="btn btn-success d-block px-5 w-100 mt-3 btn-block">Submit</button>
 					</div>

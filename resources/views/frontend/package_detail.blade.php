@@ -287,7 +287,7 @@ US ${{ $package->price }}
 
                             <div class="row">
                                 <div class="col-md-6 col-7 py-2">
-                                    <a class="btn btn-primary w-100" href="{{ route('booknow',['package_id'=>$package->id]) }}">Book Now</a>
+                                    <a class="btn btn-primary w-100" href="{{ route('booknow',['url'=>$package->url]) }}">Book Now</a>
                                 </div>
     
                                 <div class="col-md-6 col-5 py-2">

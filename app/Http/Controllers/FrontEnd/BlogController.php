@@ -23,7 +23,9 @@ public function show($url){
      $mores=Blog::where('post_status','publish')->inRandomOrder()->where('post_title','!=',null)->limit(5)->get();
        $next=Blog::where('post_status','publish')->inRandomOrder()->where('post_title','!=',null)->first();
        $prev=Blog::where('post_status','publish')->inRandomOrder()->where('post_title','!=',null)->first();
-
+if(!$blog){
+     abort(404);
+}
      return view('frontend.blog_detail',compact('blog','mores','next','prev'));
 }
 

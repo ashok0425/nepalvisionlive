@@ -20,7 +20,7 @@ width: 100%!important;
                     <a href="{{ route('blog.detail',['url'=>$blog->url]) }}">
                     <div class="img-container">
                         @if ($blog->guid!=null && file_exists($blog->guid))
-                        <img src="{{ asset($blog->guid)}}"  class="img-fluid w-100" alt="{{$blog->post_title}}" width="100%" height="100%">
+                        <img src="{{ asset($blog->guid)}}"  class="img-fluid w-100" alt="{{$blog->post_title}}" width="200px" height="200px">
                        
                         @else 
                         <img src="{{ asset('frontend/assets/recent-post.png')}}" alt="" class="img-fluid"  alt="{{$blog->post_title}}" width="100%" height="100%">
