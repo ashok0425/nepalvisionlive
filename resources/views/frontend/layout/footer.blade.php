@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 d-none d-md-block">
                    
-                    <img src="{{ asset('frontend/assets/footer-img.png')}}" alt="logo">
+                    <img src="{{ asset('frontend/assets/footer-img.png')}}" alt="logo" class="img-fluid">
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-title custom-text-primary">
@@ -16,10 +16,16 @@
                     <ul>
                         @php
                             $children=DB::table('cms')->where('parent_id',1)->where('status',1)->get();
+                            $term=DB::table('cms')->where('id',38)->first();
                         @endphp
                       @foreach ($children as $child)
-                          <li><a target="_blank"  href="{{ route('cms.detail',['page'=>1,'id'=>$child->url]) }}" class="text-decoration-none text-light">{{ $child->title }}</a></li>
+                      @if ($child->url!='our-affiliations')
+                      <li><a target="_blank"  href="{{ route('cms.detail',['page'=>1,'id'=>$child->url]) }}" class="text-decoration-none text-light">{{ $child->title }}</a></li>  
+                      @endif
+                        
                       @endforeach
+
+                      <li><a target="_blank"  href="{{ route('cms.page', ['page' => $term->url]) }}" class="text-decoration-none text-light">Term & Conditions</a></li>
                     </ul>
                 </div>
 
@@ -116,8 +122,8 @@
 
                         </li>
                         <li>
-                            <a target="_blank"  href="mailto:parashu@nepalvisiontreaks.com" class="text-white text-decoration-none">
-                            parashu@nepalvisiontreaks.com
+                            <a target="_blank"  href="mailto:parashu@nepalvisiontreks.com" class="text-white text-decoration-none">
+                            parashu@nepalvisiontreks.com
                             </a>
 
                         </li>
@@ -131,17 +137,17 @@
 
              <div class="col-md-3  text-left">
                 <div class="footer-title custom-text-primary">
-                    USA Branch Office
+                    Australia  Branch Office
                 </div>
                     <ul>
                         <li>
-                            Phone: <a target="_blank"  href="tel:+1-917-740-2934" class="text-white text-decoration-none"> +1-917-740-2934</a>
-
+                            Sydney, Australia
                         </li>
                         <li>
-                            Anjan Shrestha
-
-
+                            Phone: <a target="_blank"  href="tel:+61 426 730 548" class="text-white text-decoration-none"> +61 426 730 548</a>
+                        </li>
+                        <li>
+                            Ashim Wagle
                         </li>
                         <li>
                             Marketing Director
@@ -151,8 +157,8 @@
                             Email:
                         </li>
                         <li>
-                            <a target="_blank"  href="mailto:anjan@nepalvisiontreaks.com" class="text-white text-decoration-none">
-                            anjan@nepalvisiontreaks.com
+                            <a target="_blank"  href="mailto:ashim@nepalvisiontreks.com" class="text-white text-decoration-none">
+                                ashim@nepalvisiontreks.com
                             </a>
 
                         </li>
@@ -174,7 +180,7 @@
 @endphp
         <div class="bottom-footer d-flex justify-content-between flex-column flex-md-row">
             <p>Copyright  © {{ date('Y') }} NepalVisionTreks. All right Reserved</p>
-            <p>Follow Us : <a target="_blank"  href="{{ $website->facebook }}" class="text-white text-decoration-none"><img src="{{ asset('facebook.png') }}" alt="facebook" width="20"></a> | <a target="_blank"  href="{{ $website->instagram }}" class="text-white text-decoration-none"> <img src="{{ asset('insta.png') }}" alt="insta" width="20"> </a>  |<a target="_blank"  href="{{ $website->youtube }}" class="text-white text-decoration-none"><img src="{{ asset('trip.png') }}" alt="tripadvisior" width="40"> </a></p>
+            <p>Follow Us : <a target="_blank"  href="{{ $website->facebook }}" class="text-white text-decoration-none"><img src="{{ asset('facebook.png') }}" alt="facebook" width="20" height="20"></a> | <a target="_blank"  href="{{ $website->instagram }}" class="text-white text-decoration-none"> <img src="{{ asset('insta.png') }}" alt="insta" width="20" height="20"> </a>  |<a target="_blank"  href="{{ $website->youtube }}" class="text-white text-decoration-none"><img src="{{ asset('trip.png') }}" alt="tripadvisior" width="40" height="40"> </a></p>
         </div>
     </div>
 </footer>

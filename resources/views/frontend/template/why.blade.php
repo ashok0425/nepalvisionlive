@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12">
-                        <img src="{{ asset('frontend/assets/whychooseus.png')}}" alt="nepalvisiontreks" class="img-fluid">
+                        <img src="{{ asset('frontend/assets/whychooseus.webp')}}" alt="nepalvisiontreks" class="img-fluid" width="100%" height="100%">
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="right-artile mt-5">

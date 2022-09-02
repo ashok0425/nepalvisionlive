@@ -54,3 +54,6 @@
 
 
 	Route::post('subscribe/store','ContactController@subscribeStore')->name('subscribe.store');
+
+	Route::get('sitemap.xml','SiteMapController@siteMap');
+

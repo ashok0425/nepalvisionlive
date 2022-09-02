@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light  shadow d-block d-md-none">
     <div class="container-fluid">
  
-
-      <div class="d-flex d-md-none d-block py-2">
+<div class="d-md-none d-block w-100">
+      <div class="d-flex w-100 justify-content-between  py-2">
         <a href="{{ route('/') }}" class="">
             <img src="{{ asset($website->image) }}" alt="Logo" class="img-fluid   w-50">
         </a>
@@ -16,6 +16,7 @@
           </button>
       
     </div>
+  </div>
       <div class="collapse navbar-collapse" id="navbar-content">
         <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
             @foreach ($destinations as $destination)

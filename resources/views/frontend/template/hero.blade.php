@@ -42,98 +42,100 @@ color: #fff!important;
 
 @php
       // main hero image 
-      $banners=DB::table('main_slider')->where('status',1)->orderBy('id','desc')->where('type',1)->get();
+      $banners=DB::table('main_slider')->where('status',1)->orderBy('id','desc')->where('type',1)->first();
       $destinations=DB::table('destinations')->where('status',1)->get();
       $categories=DB::table('categories_destinations')->where('status',1)->where('destination_id',8)->orderBy('id','desc')->get();
 @endphp
-<div class="owl-carousel hero_carousel position-relative">
-@foreach ($banners as $banner)
-<div class="hero position-relative">
-    <img src="{{ $banner->image }}" alt="{{ $banner->title }}">
-    <h1 class="title hero-title custom-fs-28 text-white d-none d-md-block">
-        {{ $banner->title }}
-    </h1>
-    
-</div>
 
-@endforeach
-</div>
-
-
-        <div class="search-box position-absolute">
-            <form action="{{ route('search') }}" method="GET">
-
-    <div class="container">
-
-           
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 mt-4 mt-md-0">
-                        <h3 class='my-1 py-0 '>
-                            Destination
-                        </h3>
-                        <select name="destination" id="destination" required>
-                            <option value="">Choose Destination</option>
-                            @foreach ($destinations as $destination)
-                            <option value="{{ $destination->id }}" @if (Str::lower($destination->name)=='nepal')
-                                selected
-                            @endif>{{ $destination->name }}</option>
-                                
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-6 col-sm-12 mt-4 mt-md-0">
-                        <h3 class='my-1 py-0 '>
-                            Trip Type
-                        </h3>
-                        <select name="category" id="category" required>
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" @if ($loop->first)
-selected
-                            @endif>{{ $category->name }}</option>
-                                
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="row my-2">
-                    <div class="col-md-6 col-sm-12 ">
-                        <h3 class='my-1 py-0 '>
-                            Month
-                        </h3>
-                        <select name="month" id="month" >
-                            <option value="select month">Select Month</option>
-                            <option value="Jan" selected>January</option>
-                            <option value="Feb">February</option>
-                            <option value="Mar">March</option>
-                            <option value="Apr">April</option>
-                            <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
-                            <option value="August">August</option>
-                            <option value="Sep">September</option>
-                            <option value="Oct">October</option>
-                            <option value="Nov">November</option>
-                            <option value="Dec">December</option>
+<style>
+    main .hero {
+    background-image: url("{{asset($banners->image)}}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    color: #fff;
+}
+</style>
 
 
-                                
-                        </select>
-                    </div>
-                    <div class="col-md-6 col-sm-12 d-flex align-items-center">
-                        <button class="btn btn-primary ">
-                            Search
-                        </button>
-                    </div>
-                </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="search-box">
+                <h1 class="title mb-3 mt-3 mt-md-5 custom-fs-28 text-white ">
+                    {{$banners->title}}
+                </h1>
+                <form action="{{ route('search') }}" method="GET">
+
+                    <div class="container">
+                
+                           
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 mt-4 mt-md-0">
+                                        <h3 class='my-1 py-0 '>
+                                            Destination
+                                        </h3>
+                                        <select name="destination" id="destination" required>
+                                            <option value="">Choose Destination</option>
+                                            @foreach ($destinations as $destination)
+                                            <option value="{{ $destination->id }}" @if (Str::lower($destination->name)=='nepal')
+                                                selected
+                                            @endif>{{ $destination->name }}</option>
+                                                
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 mt-4 mt-md-0">
+                                        <h3 class='my-1 py-0 '>
+                                            Trip Type
+                                        </h3>
+                                        <select name="category" id="category" required>
+                                            @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}" @if ($loop->first)
+                selected
+                                            @endif>{{ $category->name }}</option>
+                                                
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row my-2">
+                                    <div class="col-md-6 col-sm-12 ">
+                                        <h3 class='my-1 py-0 '>
+                                            Month
+                                        </h3>
+                                        <select name="month" id="month" >
+                                            <option value="select month">Select Month</option>
+                                            <option value="Jan" selected>January</option>
+                                            <option value="Feb">February</option>
+                                            <option value="Mar">March</option>
+                                            <option value="Apr">April</option>
+                                            <option value="May">May</option>
+                                            <option value="June">June</option>
+                                            <option value="July">July</option>
+                                            <option value="August">August</option>
+                                            <option value="Sep">September</option>
+                                            <option value="Oct">October</option>
+                                            <option value="Nov">November</option>
+                                            <option value="Dec">December</option>
+                
+                
+                                                
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 d-flex align-items-center">
+                                        <button class="btn btn-primary ">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                        </div>
+                
+                    </form>
+            </div>
         </div>
-
-    </form>
-
-    </div>
-
-
-
-
+    </section>
 
 
 @push('scripts')

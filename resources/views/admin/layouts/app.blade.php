@@ -52,6 +52,7 @@
 
         <title>@yield('title')</title>
  
+       
 {{-- bootstrap --}}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <!-- Google Font:  -->
@@ -275,31 +276,8 @@
     }
 	</script>
 
-
-
-
-
-{{-- summernote --}}
-<script>
-    $(document).ready(function() {
-	$('#summernote').summernote();
-	$('#summernote1').summernote();
-	$('#summernote2').summernote();
-	$('#summernote3').summernote();
-	$('#summernote4').summernote();
-	$('#summernote5').summernote();
-	$('#summernote6').summernote();
-	$('#summernote7').summernote();
-	$('#summernote8').summernote();
-	$('#summernote10').summernote();
-	$('#summernote11').summernote();
-	$('#summernote12').summernote();
-	$('#summernote13').summernote();
-
-
-
-  });
-</script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/super-build/ckeditor.js"></script>
+<script src="{{asset('ckeditor.js')}}"></script>
 
 <script>
   $('#delete_row').click(function(e){

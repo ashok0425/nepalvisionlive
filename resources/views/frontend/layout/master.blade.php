@@ -142,6 +142,56 @@ $setting = DB::table('websites')->first();
 
         gtag('config', 'G-XHV2W2P49F');
     </script>
+
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org/", 
+      "@type": "Product", 
+      "name": "Everest Base Camp Helicopter Tour",
+      "image": "https://nepalvisiontreks.com/upload/package/thumbnail/1620672524Everest%20Base%20Camp%20Helicopter%20Tourpng",
+      "description": "Taking a helicopter tour over the Himalayas is a truly magnificent adventure, filled with awe-inspiring scenery and magnificent peaks. We will take you to the lap of the world's highest mountain.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Nepal Vision Treks"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://nepalvisiontreks.com/package-detail/everest-base-camp-helicopter-tour",
+        "priceCurrency": "USD",
+        "price": "2550",
+        "priceValidUntil": "2023-01-01",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "4",
+        "ratingCount": "1",
+        "reviewCount": "1"
+      },
+      "review": {
+        "@type": "Review",
+        "name": "Amazing Experience",
+        "reviewBody": "Never thought I would visit Everest Base Camp in my life but I finally did. Oh man, was it a roller coaster? Those cold storms and that snow. Purely heaven on earth!",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "4"
+        },
+        "datePublished": "2022-08-01",
+        "author": {"@type": "Person", "name": "Np"},
+        "publisher": {"@type": "Organization", "name": "Chris Hal"}
+      }
+    }
+    </script>
+
+
+
+
 </head>
 
 <body>
