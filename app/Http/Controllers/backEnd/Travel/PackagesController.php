@@ -114,20 +114,20 @@ class PackagesController extends Controller
                 $banner->move(public_path().'/upload/package/banner/',$fname);
             }
 
-            $roadmap=$request->file('cover');
-            if($roadmap){
-                $fname=rand().$request->name.$roadmap->getClientOriginalExtension();
+            $cover=$request->file('cover');
+            if($cover){
+                $fname=rand().$request->name.$cover->getClientOriginalExtension();
                 $package->thumbnail='upload/package/thumbnail/'.$fname;
-                $roadmap->move(public_path().'/upload/package/thumbnail/',$fname);
+                $cover->move(public_path().'/upload/package/thumbnail/',$fname);
             }
 
             
-            // $video=$request->file('video');
-            // if($video){
-            //     $fname=rand().$request->name.$video->getClientOriginalExtension();
-            //     $package->video='upload/package/video/'.$fname;
-            //     $video->move(public_path().'/upload/package/video/',$fname);
-            // }
+            $roadmap=$request->file('roadmap');
+            if($roadmap){
+                $fname=rand().$request->name.$roadmap->getClientOriginalExtension();
+                $package->routemap='upload/package/roadmap/'.$fname;
+                $roadmap->move(public_path().'/upload/package/roadmap/',$fname);
+            }
 
             $package->save();
            
@@ -265,23 +265,23 @@ class PackagesController extends Controller
                 $banner->move(public_path().'/upload/package/banner/',$fname);
             }
 
-            $roadmap=$request->file('cover');
-            if($roadmap){
+            $cover=$request->file('cover');
+            if($cover){
                 File::delete($package->thumbnail);
-                $fname=rand().$request->name.$roadmap->getClientOriginalExtension();
+                $fname=rand().$request->name.$cover->getClientOriginalExtension();
                 $package->thumbnail='upload/package/thumbnail/'.$fname;
-                $roadmap->move(public_path().'/upload/package/thumbnail/',$fname);
+                $cover->move(public_path().'/upload/package/thumbnail/',$fname);
             }
 
 
-            // $video=$request->file('video');
-            // if($video){
-            //     File::delete($package->video);
-            //     $fname=rand().$request->name.$video->getClientOriginalExtension();
-            //     $package->video='upload/package/video/'.$fname;
-            //     $video->move(public_path().'/upload/package/video/',$fname);
-            // }
-
+               
+            $roadmap=$request->file('roadmap');
+            if($roadmap){
+                File::delete($package->routemap);
+                $fname=rand().$request->name.$roadmap->getClientOriginalExtension();
+                $package->routemap='upload/package/roadmap/'.$fname;
+                $roadmap->move(public_path().'/upload/package/roadmap/',$fname);
+            }
 
             $package->save();
 

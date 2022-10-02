@@ -30,7 +30,9 @@
 .custom-fs-25{
   font-size: 25px!important;
 }
-
+img{
+  max-width: 100%!important;
+}
 .custom-fs-19{
   font-size: 19px!important;
 }
@@ -46,6 +48,9 @@
 }
 .btn-primary:hover {
   background: linear-gradient(103.86deg, rgb(42, 135, 183), #00c6ff);
+}
+.bg_secondary{
+  background:rgb(245, 250, 252) ;
 }
 
 .nav-active {
@@ -1070,13 +1075,13 @@ main .event-view .card-text {
   padding: 57px 0 57px 200px;
 }
 
-main .trip-desc .book-now {
+/* main .trip-desc .book-now {
   padding: 40px 45px;
   background-color: #fff;
   -webkit-box-shadow: 0px 5px 50px rgba(51, 50, 60, 0.1);
           box-shadow: 0px 5px 50px rgba(51, 50, 60, 0.1);
   border-radius: 10px;
-}
+} */
 
 main .trip-desc .book-now h2 {
   color:  rgb(42, 135, 183)!important;

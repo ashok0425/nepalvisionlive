@@ -1,5 +1,8 @@
 @php
-    $packages=DB::table('packages')->orderBy('id','desc')->where('status',1)->where('banner','!=',null)->where('duration','!=',null)->where('activity','!=',null)->where('discounted_price',null)->limit(6)->get();
+    $packages = Cache::remember('tour_packages', 604800, function()
+{
+    return DB::table('packages')->orderBy('id','desc')->where('status',1)->where('banner','!=',null)->where('duration','!=',null)->where('activity','!=',null)->where('discounted_price',null)->limit(6)->get();
+})
 @endphp
 <section class="tour-packages d-none d-md-block">
     <div class="container">
@@ -14,9 +17,9 @@
                     <div class="img-container">
                        
                         @if ($package->banner==null)
-                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$package->name  }}" class="img-fluid w-100 w-100 lazy" width="200px" height="300px">
+                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$package->name  }}" class="img-fluid w-100 w-100 lazy" width="200" height="300">
                         @else 
-                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset($package->banner)}}" alt="{{$package->name  }}" class="img-fluid w-100 lazy" width="200px" height="300px">
+                        <img src="{{ asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset($package->banner)}}" alt="{{$package->name  }}" class="img-fluid w-100 lazy" width="200" height="300">
                         @endif
                     </div>
                     <div class="img-desc">

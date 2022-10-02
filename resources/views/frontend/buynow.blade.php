@@ -2,6 +2,15 @@
 @php
     define('PAGE','destination')
 @endphp
+
+
+@section('title')
+Book Now | Nepal Vision Treks
+@endsection
+
+@section('keyword')
+Book Now | Nepal Vision Treks
+@endsection
 @section('content')
 <x-page-header title="Book Now" route=""  />
 

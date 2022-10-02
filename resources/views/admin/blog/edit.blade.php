@@ -89,9 +89,16 @@
             @method('PATCH')
             @csrf
             <div class="row">
-            <div class=" col-md-12">
-                <label class="form-label">Banner Title</label>
+            <div class=" col-md-6">
+                <label class="form-label">Blog Title</label>
              <input name="title"   class='form-control' maxlength="225" value=' {{ $blog->post_title }}' type='text' placeholder="Enter  Title">
+            </div>
+            <div class=" col-md-6">
+                <label class="form-label">
+                    <input type="checkbox" name="display_homepage" id="" value="1" @if ($blog->display_homepage==1)
+                        checked
+                    @endif> Display in Homepage
+                </label>
             </div>
             <div class=" col-md-12 my-2">
                 <label class="form-label">Detail</label>
@@ -124,6 +131,7 @@
             </div>
 
 
+          
             <div class=" col-md-6">
                 <label class="form-label"> Meta Keyword</label>
              <input name="keyword"   class='form-control' value=' {{ $blog->keyword }}' type='text' placeholder="Keyword">

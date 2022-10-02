@@ -24,7 +24,7 @@ public function show($url){
        $next=Blog::where('post_status','publish')->inRandomOrder()->where('post_title','!=',null)->first();
        $prev=Blog::where('post_status','publish')->inRandomOrder()->where('post_title','!=',null)->first();
 if(!$blog){
-     abort(404);
+     return redirect('/');
 }
      return view('frontend.blog_detail',compact('blog','mores','next','prev'));
 }

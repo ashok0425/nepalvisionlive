@@ -35,6 +35,9 @@ color: #fff!important;
 
 
 }
+.border_bottom{
+border-bottom: 2px solid rgb(99, 99, 99);
+}
 .about-trip .head .nav-link.active{
  color: rgb(42, 135, 183)!important;
 
@@ -67,242 +70,95 @@ color: #fff!important;
 </style>
 
 @section('content')
-@php
-    $packages_id=$package->id;
-    $arr = explode(' ', trim($package->name));
-        // return isset() ? $arr[0] : $string;
-@endphp
-@if ($package->thumbnail==null || empty($package->thumbnail))
-<x-page-header :title="$arr[0].' ' .$arr[1]" :route="route('package.detail',['url'=>$package->url])"  :beforeroute="route('destination',['id'=>$before->id,'url'=>$before->url])" :before="$before->name"/>
-    
-@else    
-<x-page-header :title="$arr[0].' ' .$arr[1]" :route="route('package.detail',['url'=>$package->url])"  :beforeroute="route('destination',['id'=>$before->id,'url'=>$before->url])" :before="$before->name" :img="asset($package->thumbnail)"/>
 
-@endif
- <div class="container-fluid px-0 mx-0">
-    <div class="card">
-        <div class="card-body py-1 my-0">
-            <div class="row">
-                <div class="@if ($package->video)col-md-7 offset-md-5 @else col-md-6 offset-md-6 @endif text-right">
-                    <div class="d-flex justify-content-center justify-content-md-center flex-md-row flex-column">
-
-@if ($package->video)
-<div class="my-1 mx-1">
-    <a href="#"class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#video"><i class="fa fa-play-circle"></i>  
-       &nbsp;
-        Video</a>
-</div>
-@endif
-                       
-                <div class="my-1 mx-1 ">
-                    <a href="#"class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#customize"><i class="fa fa-recycle"></i>  
-                       &nbsp;
-                        Customize</a>
-                </div>
-                <div class="my-1 mx-1">
-                    <a href="{{ route('print',$package->id) }}" class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center"><i class="fa fa-print"></i>  
-                       &nbsp;
-                        Print This</a>
-                </div>
-
-
-                <div class="my-1 mx-1">
-                    <a href="" class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center copy_link"><i class="fa fa-copy"></i>  
-                       &nbsp;
-                        Copy Link</a>
-                </div>
-                <div class="my-1 text-center mx-1">
-
-
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox_w1qq"></div>
-            
-                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60c809a3e6cdb001"></script>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>   
-</div>   
+ <div class="container- px-0 mx-0">
+ 
 
     
 <main>
    
     <section class="trip-desc my-3 my-md-0">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-md-4 my-1">
-                    <div class="book-now mx-0 mx-md-4">
-                            @if (!empty($package->duration))
-                                
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Duration</h2>
-                               <p class='my-0 py-0'>{{ $package->duration }} </p>
-                            </div>
-                            @endif
-                            
-                               
-                            @if (!empty($package->activity))
+ {{-- 1st col staart  --}}
 
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Trip Type</h2>
-                               <p class='my-0 py-0'>{{$package->activity }}</p>
-                            </div>
-                            @endif
-                            @if (!empty($package->difficulty))
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Difficuilty</h2>
-                               <p class='my-0 py-0'>
-                               {{$package->difficulty}}
-                                </p>
-                            </div>
-                            @endif
-
-                            @if (!empty($package->meals))
-
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Meal & Accommodation</h2>
-                               <p class='my-0 py-0'>              
-                                 {{$package->meals}}
-                                </p>
-                            </div>
-                            @endif
-
-                            @if (!empty($package->group_size))
-
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Group Size</h2>
-                               <p class='my-0 py-0'>                      
-                                        {{$package->group_size}}
-                                </p>
-                            </div>
-                            @endif
-
-                            @if (!empty($package->transport))
-
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Transport</h2>
-                               <p class='my-0 py-0'>                      
-                                        {{$package->transport}}
-                                </p>
-                            </div>
-                            @endif
-
-                            @if (!empty($package->arrival))
-
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Arrival On</h2>
-                               <p class='my-0 py-0'>                      
-                                        {{$package->arrival}}
-                                </p>
-                            </div>
-                            @endif
-
-
-                            @if (!empty($package->departure_from))
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Departure From</h2>
-                               <p class='my-0 py-0'>                      
-                                        {{$package->departure_from}}
-                                </p>
-                            </div>
-                            @endif
-
-
-                            @if (!empty($package->operation))
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Operation</h2>
-                               <p class='my-0 py-0'>                      
-                                        {{$package->operation}}
-                                </p>
-                            </div>
-                            @endif
-
-                            @if (!empty($package->route_detail))
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Route Detail</h2>
-                               <p class='my-0 py-0'>                      
-                                        {{$package->route_detail}}
-                                </p>
-                            </div>
-                            @endif
-
-
-                            @if (!empty($package->best_month))
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Best Month</h2>
-                               <p class='my-0 py-0'>                      
-                                        {{$package->best_month}}
-                                </p>
-                            </div>
-                            @endif
-
-                        
-
-                            <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Review</h2>
-                               <p class='my-0 py-0'>
-                                <div class="rating">
-                                    @for ($i=1;$i<=$package->rating;$i++)
-                                    <i class="fas fa-star text-warning"></i>
-                                    @endfor
-                                    @for ($i=1;$i<=5-$package->rating;$i++)
-                                
-                                        <i
-                                            class="fas fa-star text-gray"></i>
-                                            @endfor
-                                </div>
-                                </p>
-                            </div>
-
-                            @if (!empty($package->discounted_price))
-                                
-
-                            <div class="col-12 py-2">
-
-                                <h2 class='my-0 py-0'> Price</h2>
-                               <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
-                           US <span class="text-danger "><s>${{ $package->price }}</s> </span>
-                               
-                                 <span class="text-success">${{ $package->discounted_price }} </span> 
-                               </strong>
-                            </div>
-                            @else   
-                        <div class="col-12 py-2">
-
-                            <h2 class='my-0 py-0'>Price</h2>
-
-                             <span class="custom-text-primary">
-<strong class="text-dark custom-fs-25 custom-fw-700">
-
-US ${{ $package->price }}
-</strong>                                     
-                                Per Person</span>
-
-                        </div>
-                        @endif
-
-
-                            <div class="row">
-                                <div class="col-md-6 col-7 py-2">
-                                    <a class="btn btn-primary w-100" href="{{ route('booknow',['url'=>$package->url]) }}">Book Now</a>
-                                </div>
-    
-                                <div class="col-md-6 col-5 py-2">
-    
-                                <a href="#"class=" btn btn-primary w-100 text-decoration-none " data-bs-toggle="modal" data-bs-target="#enquery">  
-                                   
-                                    Enquire</a>
-                            </div>
-                            </div>
-                            
-                    </div>
-                </div>
                 <div class="col-md-8 my-1">
+
+
+                    @php
+                    $packages_id=$package->id;
+                    $arr =  trim($package->name);
+                        // return isset() ? $arr[0] : $string;
+                @endphp
+
+                {{-- banner section start  --}}
+             <div class="my-2">
+                <h1 class="custom-text-primary custom-fs-25 mb-2">{{ $package->name }}</h1>
+
+                <section class="hero2">
+                    @if (empty($img))
+                        
+                    <img data-src="{{ asset('frontend/assets/hero4.webp')}}" class="lazy" alt="cover image" width="2000" height="300">
+                        @else  
+                    <img data-src="{{ $package->thumbnail}}" alt="cover image" class="lazy" width="2000" height="300">
+            
+                    @endif
+                    
+                </section>
+             </div>
+
+                {{-- banner section End  --}}
+
                     <!-- RH: this is bootstrap 5 tabbed panel -->
 
+                    {{-- Enquiry form start --}}
+                    <div class="card  shadow-sm bg_secondary  sticky-div custom-bg-primary mx-md-4  py-0 d-block d-md-none mb-3" >
+                        <div class="card-header border-white">
+                          <p class="mb-0 text-white custom-fw-700">Give us chance to serve you. Enquire Now</p>
+                        </div>
+                        <div class="card-body py-1">
+                          <form action="{{ route('enquery.post') }}" method="post">
+                            {{ csrf_field() }}
+                            <input type="hidden"  value="{{ $package->id }}" name="booking">
+                            <input type="hidden"  value="1" name="no_participants">
+                            <input type="hidden"  value="1" name="agent">
+                            <input type="hidden"  value="{{date('d-m-Y')}}" name="expected_date">
+                    
+                    
+                            <div class="row">
+                              <div class="col-12 my-2">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Enter Full Name" name="name" required/>
+                                </div>
+                              </div>
+                              <div class="col-12 my-2">
+                                <div class="form-group">
+                                  <input type="email" class="form-control" placeholder="Enter Email Address" name="email" required/>
+                                </div>
+                              </div>
+                    
+                              <div class="col-12 my-2">
+                                <div class="form-group">
+                                  <input type="number" class="form-control" placeholder="Enter Phone Number" name="phone" required/>
+                                </div>
+                              </div>
+                              
+                              <div class="col-12 my-2">
+                                <div class="form-group">
+                                    <textarea name="comment" class="form-control" placeholder="Enter your message" id="message" required></textarea>
+                    
+                                </div>
+                              </div>
+                              <div class="col-12 mt-2">
+                                <div class="form-group mb-0 text-right">
+                                  <button type="submit" class="btn btn-light text-primary btn-sm">Enquire Now</button>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    {{-- Enquiry form end  --}}
   
                     <div class="about-trip">
                         <div class="head  ">
@@ -524,7 +380,7 @@ US ${{ $package->price }}
                                    @if (!empty($review->image))
                                    <img src="{{ asset($review->image) }}" alt="{{ $review->name }}" class="w-md-75 w-100 text-md-center img-fluid img-thumbnail">
                                        @else   
-                                   <img src="{{ asset('frontend/assets/footer-img.png') }}" alt="{{ $review->name }}" class="w-100 w-md-75 text-md-center img-thumbnail img-fluid">
+                                   <img src="{{ asset('frontend/assets/footer-img.webp') }}" alt="{{ $review->name }}" class="w-100 bg-gray w-md-75 text-md-center img-thumbnail img-fluid">
 
                                    @endif
                                    <p class="mt-1 text-center py-0  mb-1">
@@ -567,15 +423,390 @@ US ${{ $package->price }}
 
                         @endforeach
                         </div>
+
+                      </div>
+
+                      <div class="routemap my-2">
+                        @if (file_exists($package->routemap))
+                            <img src="{{asset($package->routemap)}}" alt="route map" class="img-fluid">
+                        @endif
                       </div>
                 </div>
+
+ {{-- 1st col end  --}}
+
+
+
+
+
+ {{-- 1st col staart  --}}
+
+
+                <div class="col-md-4 my-5 ">
+                    <div class="mt-1"></div>
+
+
+
+
+
+{{-- we accept section start --}}
+<div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2">
+  <div class="row">
+    <div class="col-md-8">
+  <h2 class="custom-fs-18">All inclusive cost</h2>
+  <h2 class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
+    {{$package->discounted_price?$package->discounted_price:$package->price}}</strong> <sub>per person</sub></h2>
+    <div>
+       
+    </div>
+    </div>
+
+    <div class="col-md-4">
+        
+    </div>
+    <div class="col-12 mt-3">
+        <p class="border_bottom text-center custom-fs-16  custom-fw-700 w-75 m-auto">We support online payment</p>
+
+        <p class="mt-2 mb-0 custom-fs-14">
+            <span><i class="fas fa-edit custom-text-primary"></i> This trip is fully customizable</span>
+        </p>
+        <p class="mt-1 mb-0 custom-fs-14">
+            <span><i class="fas fa-users custom-text-primary"></i> Have a large group ? We can help.</span>
+        </p>
+
+        <p class="mt-1 mb-0 custom-fs-14">
+            <span><i class="fas fa-tag custom-text-primary"></i> We can help you make it fit in your budget.</span>
+        </p>
+
+
+       
+
+        <p class="mt-1 mb-0 custom-fs-14">
+            <span><i class="fas fa-calendar custom-text-primary"></i> Yo can schedule your own departure dates.</span>
+        </p>
+
+
+
+        <div class="col-md-12 col-12 mt-3">
+            <a class="btn btn-primary w-100" href="{{ route('booknow',['url'=>$package->url]) }}">Book Now</a>
+        </div>
+    </div>
+  </div>
+ </div>
+
+{{-- we accept section end --}}
+
+
+
+
+
+
+                    {{-- Enquiry form start --}}
+<div class="card  shadow-sm bg_secondary  sticky-div custom-bg-primary mx-md-4  py-0 d-none d-md-block" >
+    <div class="card-header border-white">
+      <p class="mb-0 text-white custom-fw-700">Give us chance to serve you. Enquire Now</p>
+    </div>
+    <div class="card-body py-1">
+      <form action="{{ route('enquery.post') }}" method="post">
+        {{ csrf_field() }}
+        <input type="hidden"  value="{{ $package->id }}" name="booking">
+        <input type="hidden"  value="1" name="no_participants">
+        <input type="hidden"  value="1" name="agent">
+        <input type="hidden"  value="{{date('d-m-Y')}}" name="expected_date">
+
+
+        <div class="row">
+          <div class="col-12 my-2">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Enter Full Name" name="name" required/>
+            </div>
+          </div>
+          <div class="col-12 my-2">
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Enter Email Address" name="email" required/>
+            </div>
+          </div>
+
+          <div class="col-12 my-2">
+            <div class="form-group">
+              <input type="number" class="form-control" placeholder="Enter Phone Number" name="phone" required/>
+            </div>
+          </div>
+          
+          <div class="col-12 my-2">
+            <div class="form-group">
+                <textarea name="comment" class="form-control" placeholder="Enter your message" id="message" required></textarea>
+
+            </div>
+          </div>
+          <div class="col-12 mt-2">
+            <div class="form-group mb-0 text-right">
+              <button type="submit" class="btn btn-light text-primary btn-sm">Enquire Now</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{{-- Enquiry form end  --}}
+
+
+<div class="card  shadow-sm bg_secondary    my-2 mx-md-4">
+    <div class="card-body ">
+       
+                <div class="d-flex justify-content-around flex-md-row flex-column">
+
+{{-- @if ($package->video)
+<div class="my-1 mx-1">
+<a href="#"class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#video"><i class="fa fa-play-circle"></i>  
+   &nbsp;
+    Video</a>
+</div>
+@endif --}}
+                   
+            <div class="my-1 mx-1 ">
+                <a href="#"class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#customize">
+                    {{-- <i class="fa fa-recycle"></i>  
+                   &nbsp; --}}
+                    Customize</a>
+            </div>
+            <div class="my-1 mx-1">
+                <a href="{{ route('print',$package->id) }}" class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center">
+                    {{-- <i class="fa fa-print"></i>  
+                   &nbsp; --}}
+                    Print </a>
+            </div>
+
+
+            <div class="my-1 mx-1">
+                <a href="" class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center copy_link">
+                    {{-- <i class="fa fa-copy"></i>  
+                   &nbsp; --}}
+                    Copy Link</a>
+            </div>
+         
+        </div>
+    </div>
+  
+</div>  
+
+
+
+                    <div class="book-now mx-0 mx-md-4 card  shadow-sm bg_secondary  px-5 py-2">
+                            @if (!empty($package->duration))
+                                
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Duration</h2>
+                               <p class='my-0 py-0'>{{ $package->duration }} </p>
+                            </div>
+                            @endif
+                            
+                               
+                            @if (!empty($package->activity))
+
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Trip Type</h2>
+                               <p class='my-0 py-0'>{{$package->activity }}</p>
+                            </div>
+                            @endif
+                            @if (!empty($package->difficulty))
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Difficuilty</h2>
+                               <p class='my-0 py-0'>
+                               {{$package->difficulty}}
+                                </p>
+                            </div>
+                            @endif
+
+                            @if (!empty($package->meals))
+
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Meal & Accommodation</h2>
+                               <p class='my-0 py-0'>              
+                                 {{$package->meals}}
+                                </p>
+                            </div>
+                            @endif
+
+                            @if (!empty($package->group_size))
+
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Group Size</h2>
+                               <p class='my-0 py-0'>                      
+                                        {{$package->group_size}}
+                                </p>
+                            </div>
+                            @endif
+
+                            @if (!empty($package->transport))
+
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Transport</h2>
+                               <p class='my-0 py-0'>                      
+                                        {{$package->transport}}
+                                </p>
+                            </div>
+                            @endif
+
+                            @if (!empty($package->arrival))
+
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Arrival On</h2>
+                               <p class='my-0 py-0'>                      
+                                        {{$package->arrival}}
+                                </p>
+                            </div>
+                            @endif
+
+
+                            @if (!empty($package->departure_from))
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Departure From</h2>
+                               <p class='my-0 py-0'>                      
+                                        {{$package->departure_from}}
+                                </p>
+                            </div>
+                            @endif
+
+
+                            @if (!empty($package->operation))
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Operation</h2>
+                               <p class='my-0 py-0'>                      
+                                        {{$package->operation}}
+                                </p>
+                            </div>
+                            @endif
+
+                            @if (!empty($package->route_detail))
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Route Detail</h2>
+                               <p class='my-0 py-0'>                      
+                                        {{$package->route_detail}}
+                                </p>
+                            </div>
+                            @endif
+
+
+                            @if (!empty($package->best_month))
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Best Month</h2>
+                               <p class='my-0 py-0'>                      
+                                        {{$package->best_month}}
+                                </p>
+                            </div>
+                            @endif
+
+                        
+
+                            <div class="col-12 py-2">
+                                <h2 class='my-0 py-0'>Review</h2>
+                               <p class='my-0 py-0'>
+                                <div class="rating">
+                                    @for ($i=1;$i<=$package->rating;$i++)
+                                    <i class="fas fa-star text-warning"></i>
+                                    @endfor
+                                    @for ($i=1;$i<=5-$package->rating;$i++)
+                                
+                                        <i
+                                            class="fas fa-star text-gray"></i>
+                                            @endfor
+                                </div>
+                                </p>
+                            </div>
+
+                            @if (!empty($package->discounted_price))
+                                
+
+                            <div class="col-12 py-2">
+
+                                <h2 class='my-0 py-0'> Price</h2>
+                               <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
+                           US <span class="text-danger "><s>${{ $package->price }}</s> </span>
+                               
+                                 <span class="text-success">${{ $package->discounted_price }} </span> 
+                               </strong>
+                            </div>
+                            @else   
+                        <div class="col-12 py-2">
+
+                            <h2 class='my-0 py-0'>Price</h2>
+
+                             <span class="custom-text-primary">
+<strong class="text-dark custom-fs-25 custom-fw-700">
+
+US ${{ $package->price }}
+</strong>                                     
+                                Per Person</span>
+
+                        </div>
+                        @endif
+
+
+                            <div class="row">
+                                <div class="col-md-12 col-12 py-2">
+                                    <a class="btn btn-primary w-100" href="{{ route('booknow',['url'=>$package->url]) }}">Book Now</a>
+                                </div>
+    
+                                {{-- <div class="col-md-6 col-5 py-2">
+    
+                                <a href="#"class=" btn btn-primary w-100 text-decoration-none " data-bs-toggle="modal" data-bs-target="#enquery">  
+                                   
+                                    Enquire</a>
+                            </div> --}}
+                            </div>
+                            
+                    </div>
+
+
+{{-- we accept section start --}}
+                    <div class="my-2 mx-md-4 card">
+                       <h2 class="custom-bg-primary text-white custom-fs-19 py-2 px-2"> We Accept</h2>
+                       <div class="p-2">
+                        <img src="{{asset('weaccept.webp')}}" alt="we accept" class="img-fluid">
+                       </div>
+                    </div>
+
+{{-- we accept section end --}}
+
+
+{{--  Trip advesior start --}}
+
+                    <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3">
+                       
+                        <div class="">
+                         <img src="{{asset('trip.webp')}}" alt="we accept" class="img-fluid">
+                        </div>
+                        <div class="text">
+                            <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
+                                Speak to one of our travel consultants:
+                            </p>
+                            <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
+                                Call Us (24/7): <strong class="custom-text-primary">
+                                    +977-9802342080
+                                </strong>
+                            </p>
+                            <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
+WhatsApp (24/7): <strong class="custom-text-primary">
+    +977-9802342082
+</strong>
+
+                            </p>
+                            
+                        </div>
+                     </div>
+{{--  Trip advesior End --}}
+
+                </div>
+ {{-- 2nd col end  --}}
+              
             </div>
         </div>
     </section>
     @if (count($features)>0)
         
     <section class="packages">
-        <div class="container-fluid">
+        <div class="container">
             <div class="heading my-5">
                 <h2 class='my-0 py-0'>Featured Packages</h2>
             </div>
@@ -590,7 +821,7 @@ US ${{ $package->price }}
                         @if ($packaged->banner==null)
                         <img src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$packaged->name  }}" class="img-fluid w-100 w-100">
                         @else 
-                        <img src="{{ asset($packaged->banner)}}" alt="{{$packaged->name  }}" class="img-fluid w-100">
+                        <img data-src="{{ asset($packaged->banner)}}" alt="{{$packaged->name  }}" class="img-fluid w-100 lazy">
                         @endif
                     </div>
                     

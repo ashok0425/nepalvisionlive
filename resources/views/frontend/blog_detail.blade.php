@@ -20,6 +20,7 @@
 @php
     define('PAGE','blog')
 @endphp
+
 @section('content')
 
 <style>
@@ -49,11 +50,11 @@
 <section class="blog-container mt-5 pt-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <h3 >
+            <div class="col-md-8 ">
+                <h1 >
                     {!! $blog->post_title !!}
 
-                </h3>
+                </h1>
                 <br>
                 <br>
 

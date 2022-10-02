@@ -1,7 +1,9 @@
 <style>
     .recent-post img{
 height: 220px!important;
-width: 100%!important;
+min-width: 100%!important;
+max-width: 100%!important;
+
     }
 </style>
 <section class="recent-post ">
@@ -10,7 +12,11 @@ width: 100%!important;
             <h2>Recent Posts</h2>
         </div>
         @php
-            $blogs=DB::table('blogs')->orderBy('id','desc')->where('post_status','publish')->limit(3)->get();
+
+$blogs = Cache::remember('blogs', 604800, function()
+{
+            return DB::table('blogs')->orderBy('id','desc')->where('post_status','publish')->limit(3)->get();
+})
         @endphp
 
         <div class="row">
@@ -20,10 +26,10 @@ width: 100%!important;
                     <a href="{{ route('blog.detail',['url'=>$blog->url]) }}">
                     <div class="img-container">
                         @if ($blog->guid!=null && file_exists($blog->guid))
-                        <img src="{{ asset($blog->guid)}}"  class="img-fluid w-100" alt="{{$blog->post_title}}" width="200px" height="200px">
+                        <img data-src="{{ asset($blog->guid)}}"  class="img-fluid w-100 lazy" alt="{{$blog->post_title}}" width="200" height="200">
                        
                         @else 
-                        <img src="{{ asset('frontend/assets/recent-post.png')}}" alt="" class="img-fluid"  alt="{{$blog->post_title}}" width="100%" height="100%">
+                        <img src="{{ asset('frontend/assets/recent-post.png')}}" alt="{{$blog->post_title}}" class="img-fluid"  alt="{{$blog->post_title}}" width="100%" height="100%">
                         @endif
                         <div class="date">
                             <span>

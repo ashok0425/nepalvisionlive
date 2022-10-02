@@ -1,5 +1,16 @@
 
-
+@php
+$footer_image = Cache::remember('footer_image', 604800, function()
+{
+$data=[
+    'logo'=>asset('frontend/assets/footer-img.webp'),
+    'insta'=>asset('insta.webp'),
+    'facebook'=>asset('facebook.webp'),
+    'trip'=>asset('trip.webp'),
+];
+return $data;
+})
+@endphp
 <footer>
     {{-- https://www.figma.com/file/AooxbPw11smLpkqBr6iaYi/Nepal-Vision-T%26E?node-id=0%3A1 --}}
     <div class="container">
@@ -7,7 +18,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 d-none d-md-block">
                    
-                    <img src="{{ asset('frontend/assets/footer-img.webp')}}" alt="logo" class="img-fluid" height="250px" width="250px">
+                    <img src="{{ $footer_image['logo']}}" alt="logo" class="img-fluid" height="250" width="250">
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-title custom-text-primary">
@@ -55,7 +66,22 @@
                 </div>
             </div>
          <div class="row mt-1 mt-md-5">
-             <div class="col-md-3 offset-md-3  text-left">
+            <div class="col-md-3 col-sm-6">
+                <div class="footer-title custom-text-primary">
+                   Read Our Blogs
+                </div>
+                <ul>
+                    @php
+                        $blogs=DB::table('blogs')->where('display_homepage',1)->where('post_status','publish')->orderBy('ID','desc')->limit(6)->get();
+                    @endphp
+                  @foreach ($blogs as $blog)
+                  <li><a    href="{{ route('blog.detail',['url'=>$blog->url]) }}" class="text-decoration-none text-light">{{ $blog->post_title }}</a></li>  
+                    
+                  @endforeach
+
+                </ul>
+            </div>
+             <div class="col-md-3  text-left">
                 <div class="footer-title custom-text-primary">
                     Head office (Nepal)
                 </div>
@@ -180,7 +206,7 @@
 @endphp
         <div class="bottom-footer d-flex justify-content-between flex-column flex-md-row">
             <p>Copyright  © {{ date('Y') }} NepalVisionTreks. All right Reserved</p>
-            <p>Follow Us : <a  rel="noreferrer"  target="_blank"  href="{{ $website->facebook }}" class="text-white text-decoration-none"><img src="{{ asset('facebook.webp') }}" alt="facebook" width="20px" height="20px"></a> | <a  rel="noreferrer"  target="_blank"  href="{{ $website->instagram }}" class="text-white text-decoration-none"> <img src="{{ asset('insta.webp') }}" alt="insta" width="20px" height="20px"> </a>  |<a  rel="noreferrer"  target="_blank"  href="{{ $website->youtube }}" class="text-white text-decoration-none"><img src="{{ asset('trip.webp') }}" alt="tripadvisior" width="40px" height="40px"> </a></p>
+            <p>Follow Us : <a  rel="noreferrer"  target="_blank"  href="{{ $website->facebook }}" class="text-white text-decoration-none"><img src="{{ $footer_image['facebook'] }}" alt="facebook" width="20" height="20"></a> | <a  rel="noreferrer"  target="_blank"  href="{{ $website->instagram }}" class="text-white text-decoration-none"> <img src="{{ $footer_image['insta'] }}" alt="insta" width="20" height="20"> </a>  |<a  rel="noreferrer"  target="_blank"  href="{{ $website->youtube }}" class="text-white text-decoration-none"><img src="{{ $footer_image['trip'] }}" alt="tripadvisior" width="40" height="40"> </a></p>
         </div>
     </div>
 </footer>

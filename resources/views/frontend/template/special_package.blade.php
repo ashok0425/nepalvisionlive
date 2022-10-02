@@ -1,5 +1,9 @@
 @php
-    $packages=DB::table('packages')->orderBy('id','desc')->where('status',1)->where('duration','!=',null)->where('activity','!=',null)->where('discounted_price','!=',null)->limit(6)->get();
+
+    $packages = Cache::remember('packages', 604800, function()
+{
+    return  DB::table('packages')->orderBy('id','desc')->where('status',1)->where('duration','!=',null)->where('activity','!=',null)->where('discounted_price','!=',null)->limit(6)->get();
+});
 @endphp
 <section class="special-packages ">
     <div class="container-fluid">

@@ -2,9 +2,9 @@
     <section class="hero2">
         @if (empty($img))
             
-        <img src="{{ asset('frontend/assets/hero4.png')}}" alt="cover image">
+        <img data-src="{{ asset('frontend/assets/hero4.webp')}}" class="lazy" alt="cover image" width="2000" height="300">
             @else  
-        <img src="{{ $img }}" alt="cover image">
+        <img data-src="{{ $img }}" alt="cover image" class="lazy" width="2000" height="300">
 
         @endif
         <div class="container">

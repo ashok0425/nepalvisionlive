@@ -305,6 +305,18 @@
                                   <img src="{{ asset($package->thumbnail) }}" class="image-fluid" width="100">
 
                             </div>
+
+                            <div class="col-md-6">
+                                <label >Map Image</label>
+                                <div class="image-input">
+                                    <input type="file" accept="image/*" id="imageInput3" name="roadmap" >
+                                    <label for="imageInput3" class="image-button"><i class="far fa-image"></i> Choose image</label>
+                                    <img src="" class="image-preview3">
+    
+                                  </div>
+                                  <img src="{{ asset($package->routemap) }}" class="image-fluid" width="100">
+
+                            </div>
                         </div>
                         {{-- <div class="row">
                             <div class="col-md-12">

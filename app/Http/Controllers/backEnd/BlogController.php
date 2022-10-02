@@ -6,6 +6,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 
 use File;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -72,6 +73,7 @@ class BlogController extends Controller
 
             $blog['post_title']=$request->title;
             $blog['url']=$url;
+            $blog['display_homepage']=$request->display_homepage;
             $blog['meta_title']=$request->meta_title;
             $blog['meta_description']=$request->meta_description;
             $blog['keyword']=$request->keyword;
@@ -79,7 +81,7 @@ class BlogController extends Controller
             $blog['post_status']='publish';
             $blog['post_content']=$request->content;
            DB::table('blogs')->insert($blog);
-          
+          Cache::forget('blogs');
                 $notification=array(
                     'alert-type'=>'success',
                     'messege'=>'Blog  updated',
@@ -143,6 +145,7 @@ class BlogController extends Controller
                 $cover_image->move(public_path().'/upload/blog/',$fname);
             }
             $blog['post_title']=$request->title;
+            $blog['display_homepage']=$request->display_homepage;
             $blog['url']=$url;
             $blog['meta_title']=$request->meta_title;
             $blog['meta_description']=$request->meta_description;
@@ -150,6 +153,7 @@ class BlogController extends Controller
 
             $blog['post_content']=$request->content;
            DB::table('blogs')->where('ID',$id)->update($blog);
+           Cache::forget('blogs');
           
                 $notification=array(
                     'alert-type'=>'success',

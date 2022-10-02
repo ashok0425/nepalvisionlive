@@ -41,10 +41,21 @@ color: #fff!important;
 
 
 @php
-      // main hero image 
-      $banners=DB::table('main_slider')->where('status',1)->orderBy('id','desc')->where('type',1)->first();
-      $destinations=DB::table('destinations')->where('status',1)->get();
-      $categories=DB::table('categories_destinations')->where('status',1)->where('destination_id',8)->orderBy('id','desc')->get();
+$banners = Cache::remember('banners', 604800, function()
+{
+    return  DB::table('main_slider')->where('status',1)->orderBy('id','desc')->where('type',1)->first();
+});
+
+$destinations = Cache::remember('destinations', 604800, function()
+{
+    return  DB::table('destinations')->where('status',1)->get();
+});
+
+$categories = Cache::remember('categories', 604800, function()
+{
+    return  DB::table('categories_destinations')->where('status',1)->where('destination_id',8)->orderBy('id','desc')->get();
+});
+
 @endphp
 
 <style>

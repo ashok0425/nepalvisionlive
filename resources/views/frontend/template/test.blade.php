@@ -95,9 +95,9 @@ $destinations=DB::table('destinations')->orderBy('id','desc')->where('status',1)
                             <div class="img ">
                             
                                 @if ($destination->image==null)
-                                <img src="{{asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$destination->name  }}" class="img-fluid lazy w-100 w-100" width="200px" height="250px">
+                                <img src="{{asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$destination->name  }}" class="img-fluid lazy w-100 w-100" width="200" height="250">
                                 @else 
-                                <img src="{{asset('frontend/product_image_thumbnail_placeholder.webp')}}" alt="{{$destination->name  }}"  data-src="{{ asset($destination->image)}}" class="img-fluid lazy w-100" width="200px" height="250px">
+                                <img src="{{asset('frontend/product_image_thumbnail_placeholder.webp')}}" alt="{{$destination->name  }}"  data-src="{{ asset($destination->image)}}" class="img-fluid lazy w-100" width="200" height="250">
                                 @endif
                                
                                 <div class="places">

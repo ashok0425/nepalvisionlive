@@ -31,24 +31,7 @@ $setting = DB::table('websites')->first();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <!-- Owl Stylesheets -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
-    {{-- toastr --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
-    <!--Jquery Ui Css-->
-    <link rel="stylesheet" href="{{ asset('frontend/main.css') }}">
     <meta property="fb:app_id" content="160443599540603" />
     <meta property="og:url" content="@yield('url')" />
     <meta property="og:type" content="website" />
@@ -58,12 +41,12 @@ $setting = DB::table('websites')->first();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <meta name="author" content="{{$seo->meta_author}}"> --}}
     <meta name="keyword" content="@yield('keyword')">
     <meta name="description" content="@yield('descr')">
-
+    <link rel="canonical" href="{{url()->current()}}" />
     <link rel="shortcut  icon" href="@yield('fev')" type="image/icon type">
-
+    <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('frontend/main.css') }}">
     <title>@yield('title')</title>
     <style>
         .text-right{
@@ -130,67 +113,6 @@ $setting = DB::table('websites')->first();
     </style>
     @stack('style')
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHV2W2P49F"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-XHV2W2P49F');
-    </script>
-
-
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org/", 
-      "@type": "Product", 
-      "name": "Everest Base Camp Helicopter Tour",
-      "image": "https://nepalvisiontreks.com/upload/package/thumbnail/1620672524Everest%20Base%20Camp%20Helicopter%20Tourpng",
-      "description": "Taking a helicopter tour over the Himalayas is a truly magnificent adventure, filled with awe-inspiring scenery and magnificent peaks. We will take you to the lap of the world's highest mountain.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Nepal Vision Treks"
-      },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://nepalvisiontreks.com/package-detail/everest-base-camp-helicopter-tour",
-        "priceCurrency": "USD",
-        "price": "2550",
-        "priceValidUntil": "2023-01-01",
-        "availability": "https://schema.org/InStock",
-        "itemCondition": "https://schema.org/NewCondition"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "bestRating": "5",
-        "worstRating": "4",
-        "ratingCount": "1",
-        "reviewCount": "1"
-      },
-      "review": {
-        "@type": "Review",
-        "name": "Amazing Experience",
-        "reviewBody": "Never thought I would visit Everest Base Camp in my life but I finally did. Oh man, was it a roller coaster? Those cold storms and that snow. Purely heaven on earth!",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5",
-          "worstRating": "4"
-        },
-        "datePublished": "2022-08-01",
-        "author": {"@type": "Person", "name": "Np"},
-        "publisher": {"@type": "Organization", "name": "Chris Hal"}
-      }
-    }
-    </script>
-
-
-
 
 </head>
 
@@ -208,19 +130,92 @@ $setting = DB::table('websites')->first();
     @include('frontend.layout.footer')
 
 
+
+
+<link defer
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+<link defer href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+<link defer rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<!-- Owl Stylesheets -->
+<link defer rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+{{-- toastr --}}
+<link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
+
+<!-- Google tag (gtag.js) -->
+<script  src="https://www.googletagmanager.com/gtag/js?id=G-XHV2W2P49F"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-XHV2W2P49F');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/", 
+  "@type": "Product", 
+  "name": "Everest Base Camp Helicopter Tour",
+  "image": "https://nepalvisiontreks.com/upload/package/thumbnail/1620672524Everest%20Base%20Camp%20Helicopter%20Tourpng",
+  "description": "Taking a helicopter tour over the Himalayas is a truly magnificent adventure, filled with awe-inspiring scenery and magnificent peaks. We will take you to the lap of the world's highest mountain.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Nepal Vision Treks"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://nepalvisiontreks.com/package-detail/everest-base-camp-helicopter-tour",
+    "priceCurrency": "USD",
+    "price": "2550",
+    "priceValidUntil": "2023-01-01",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "4",
+    "ratingCount": "1",
+    "reviewCount": "1"
+  },
+  "review": {
+    "@type": "Review",
+    "name": "Amazing Experience",
+    "reviewBody": "Never thought I would visit Everest Base Camp in my life but I finally did. Oh man, was it a roller coaster? Those cold storms and that snow. Purely heaven on earth!",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "4"
+    },
+    "datePublished": "2022-08-01",
+    "author": {"@type": "Person", "name": "Np"},
+    "publisher": {"@type": "Organization", "name": "Chris Hal"}
+  }
+}
+</script>
     {{-- script tags --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Jquery-->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script  href="{{ asset('frontend/app.js') }}"> </script>
 
     <!--owl carousel-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
     <script  src="{{ asset('frontend/jquery.lazy.min.js') }}"></script>
 
     {{-- toastr --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     {{-- toastr --}}
     <script>
@@ -252,7 +247,7 @@ $setting = DB::table('websites')->first();
         (function() {
             var s1 = document.createElement("script"),
                 s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
+            s1. = true;
             s1.src = 'https://embed.tawk.to/62ade19e7b967b117995376a/1g5rjilk3';
             s1.charset = 'UTF-8';
             s1.setAttribute('crossorigin', '*');
@@ -263,7 +258,8 @@ $setting = DB::table('websites')->first();
 
 
     <script>
-
+$(document).ready(function(){
+    
 $(function() {
         $('.lazy').Lazy();
     });
@@ -389,6 +385,7 @@ $(function() {
             }
         });
 
+    })
 
        
     </script>

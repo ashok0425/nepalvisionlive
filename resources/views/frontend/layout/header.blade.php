@@ -14,7 +14,7 @@ $website = DB::table('websites')->first();
                 <div class="row">
                     <div class="col-md-2 ">
                         <a href="{{ route('/') }}">
-                            <img src="{{ asset($website->image) }}" alt="Logo" class="img-fluid  " width="220px" height="100px">
+                            <img src="{{ asset($website->image) }}" alt="Logo" class="img-fluid  " width="220" height="100">
                         </a>
 
                     </div>
