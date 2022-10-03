@@ -67,6 +67,18 @@ $categories = Cache::remember('categories', 604800, function()
     height: 80vh;
     color: #fff;
 }
+.thirty_year{
+    position: absolute;
+    top: 40%;
+    left: 10%;
+width: 250px;
+font-weight: 600;
+font-size: 23px;
+background: rgba(10, 92, 146, 0.4);
+padding:2.2rem 1.1rem;
+border-radius: 0px 25px 0px 0px;
+text-align: center
+}
 </style>
 
 
@@ -74,6 +86,13 @@ $categories = Cache::remember('categories', 604800, function()
     <section class="hero">
         <div class="container">
             <div class="search-box">
+                <div class="thirty_year d-none d-md-block">
+                    <div class="border_style">
+                       <p>
+                        CELEBRATING 30 <br> PLUS GLORIOUS <br> YEARS OF <br> SERVICES
+                       </p>
+                    </div>
+                </div>
                 <h1 class="title mb-3 mt-3 mt-md-5 custom-fs-28 text-white ">
                     {{$banners->title}}
                 </h1>

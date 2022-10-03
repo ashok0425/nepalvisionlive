@@ -36,6 +36,8 @@
            width: 45%!important;
 
        }
+
+   
    </style>
 <section class="blog-img my-5 py-3">
     <div class="container">

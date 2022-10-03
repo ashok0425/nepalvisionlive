@@ -109,7 +109,54 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                 {{-- banner section End  --}}
 
-                    <!-- RH: this is bootstrap 5 tabbed panel -->
+              
+{{-- we accept section start --}}
+<div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2 d-block d-md-none">
+  <div class="row">
+    <div class="col-md-8">
+  <h2 class="custom-fs-18">All inclusive cost</h2>
+  <h2 class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
+    {{$package->discounted_price?$package->discounted_price:$package->price}}</strong> <sub>per person</sub></h2>
+    <div>
+       
+    </div>
+    </div>
+
+    <div class="col-md-4">
+        
+    </div>
+    <div class="col-12 mt-3">
+        <p class="border_bottom text-center custom-fs-16  custom-fw-700 w-75 m-auto">We support online payment</p>
+
+        <p class="mt-2 mb-0 custom-fs-14">
+            <span><i class="fas fa-edit custom-text-primary"></i> This trip is fully customizable</span>
+        </p>
+        <p class="mt-1 mb-0 custom-fs-14">
+            <span><i class="fas fa-users custom-text-primary"></i> Have a large group ? We can help.</span>
+        </p>
+
+        <p class="mt-1 mb-0 custom-fs-14">
+            <span><i class="fas fa-tag custom-text-primary"></i> We can help you make it fit in your budget.</span>
+        </p>
+
+
+       
+
+        <p class="mt-1 mb-0 custom-fs-14">
+            <span><i class="fas fa-calendar custom-text-primary"></i> Yo can schedule your own departure dates.</span>
+        </p>
+
+
+
+        <div class="col-md-12 col-12 mt-3">
+            <a class="btn btn-success w-100" href="{{ route('booknow',['url'=>$package->url]) }}">Book Now</a>
+        </div>
+    </div>
+  </div>
+ </div>
+
+{{-- we accept section end --}}
+
 
                     {{-- Enquiry form start --}}
                     <div class="card  shadow-sm bg_secondary  sticky-div custom-bg-primary mx-md-4  py-0 d-block d-md-none mb-3" >
@@ -450,7 +497,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
 
 {{-- we accept section start --}}
-<div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2">
+<div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2 d-none d-md-block">
   <div class="row">
     <div class="col-md-8">
   <h2 class="custom-fs-18">All inclusive cost</h2>
@@ -488,7 +535,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
 
         <div class="col-md-12 col-12 mt-3">
-            <a class="btn btn-primary w-100" href="{{ route('booknow',['url'=>$package->url]) }}">Book Now</a>
+            <a class="btn btn-success w-100" href="{{ route('booknow',['url'=>$package->url]) }}">Book Now</a>
         </div>
     </div>
   </div>
@@ -775,7 +822,7 @@ US ${{ $package->price }}
                     <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3">
                        
                         <div class="">
-                         <img src="{{asset('trip.webp')}}" alt="we accept" class="img-fluid">
+                         <img src="{{asset('trip2.webp')}}" alt="Trip advisor" class="img-fluid">
                         </div>
                         <div class="text">
                             <p class="mt-2 mb-1 font-weight-400 custom-fs-16">

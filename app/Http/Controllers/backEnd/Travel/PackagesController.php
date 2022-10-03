@@ -184,8 +184,10 @@ class PackagesController extends Controller
         $featured_package = Package::where('status',1)->orderBy('name')->get();
         $package = Package::findOrFail($id);
         $destinations = Destination::orderBy('name')->get();
+        $places= CategoryPlace::orderBy('name')->get();
+
         $categories_destinations = CategoryDestination::orderBy('name')->get();
-        return view('admin.packages.edit',compact('featured_package','package','destinations','categories_destinations'));
+        return view('admin.packages.edit',compact('featured_package','package','destinations','categories_destinations','places'));
     }
 
     /**

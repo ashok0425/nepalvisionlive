@@ -35,7 +35,7 @@ class CategoriesPlacesController extends Controller
      */
     public function create()
     {
-        $destinations= CategoryDestination::all();
+        $destinations= Destination::all();
         return view('admin.place.create',compact('destinations'));
     }
 
@@ -60,7 +60,7 @@ class CategoriesPlacesController extends Controller
             $category->status = 1;
             $category->details = $request->details;
             $category->url = $request->url;
-            $category->category_destination_id = $request->destination;
+            $category->destination_id = $request->destination;
             $category->meta_title = $request->meta_title;
             $category->meta_keyword = $request->meta_keyword;
             $category->meta_description = $request->meta_description;
@@ -115,7 +115,7 @@ class CategoriesPlacesController extends Controller
     public function edit($id)
     {
         $data['category'] = CategoryPlace::findOrFail($id);
-        $data['destinations'] = CategoryDestination::all();
+        $data['destinations'] = Destination::all();
 
         return view('admin.place.edit', $data);
     }
@@ -142,7 +142,7 @@ class CategoriesPlacesController extends Controller
             $category->status = 1;
             $category->details = $request->details;
             $category->url = $request->url;
-            $category->category_destination_id = $request->destination;
+            $category->destination_id = $request->destination;
             $category->meta_title = $request->meta_title;
             $category->meta_keyword = $request->meta_keyword;
             $category->meta_description = $request->meta_description;

@@ -25,7 +25,7 @@
                 <select name="destination" id="" required class="form-control">
                     <option value="">--Select Destination--</option>
                     @foreach ($destinations as $destination)
-                    <option value="{{ $destination->id }}" @if ($destination->id ==$category->category_destination_id)
+                    <option value="{{ $destination->id }}" @if ($destination->id ==$category->destination_id)
                         selected
                     @endif>{{ $destination->name }}</option>
                         

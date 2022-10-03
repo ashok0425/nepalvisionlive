@@ -10,7 +10,7 @@
             <div >
               <h3 class="-title">Categories Region</h3>
             </div>
-    <div> <a class="btn btn-primary" href="{{ route('admin.categories-places.create') }}"><i class="fa fa-plus"></i> Add Categories</a></div>
+    <div> <a class="btn btn-primary" href="{{ route('admin.categories-places.create') }}"><i class="fa fa-plus"></i> Add Category Region</a></div>
 
           </div>
             <!-- /.-header -->

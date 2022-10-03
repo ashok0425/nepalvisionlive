@@ -140,6 +140,18 @@
                                         </select>
                                         </div>
 
+
+                                        <div class="form-group ">
+                                         
+                                            <label > Select Category Place</label>
+                                         <select name="category_place_id" id="destination_id" class="form-control" required>
+                                             <option value="">--select  destination--</option>
+                                            @foreach ($places as $place)
+                                             <option value="{{ $place->id }}">{{ $place->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        </div>
+
                                         <div class="form-group ">
                                          
                                             <label > Destination wise Category</label>
@@ -179,9 +191,9 @@
                                             <input type="number" name="discounted_price" class="form-control"  placeholder="Enter Discounted Price">
                                         </div>
                                         
-                                        <div class="form-group" id="region_display" style="display: none;">
-                                            {{-- {{ Form::label('category_place_id', 'Select Region(optional)') }} {{ Form::select('category_place_id', $places,null, ['class' => 'form-control', 'placeholder' => 'Select Region']) }} --}}
-    {{-- 
+                                        <div class="form-group" id="region_display" >
+                                            {{-- {{ Form::label('category_place_id', 'Select Region(optional)') }} {{ Form::select('category_place_id', $places,null, ['class' => 'form-control', 'placeholder' => 'Select Region']) }}
+    {{--  --}}
                                             <label >Price</label>
                                             <input type="number" name="price" class="form-control" required placeholder="Enter Price"> --}}
                                         </div>

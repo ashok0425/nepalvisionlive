@@ -142,6 +142,20 @@
                                         </select>
                                         </div>
 
+
+                                        <div class="form-group ">
+                                         
+                                            <label > Select Category Place</label>
+                                         <select name="category_place_id" id="destination_id" class="form-control" required>
+                                             <option value="">--select  destination--</option>
+                                            @foreach ($places as $place)
+                                             <option  @if ($place->id==$package->category_place_id)
+                                                selected
+                                            @endif value="{{ $place->id }}">{{ $place->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        </div>
+
                                         <div class="form-group ">
                                          
                                             <label > Destination wise Category</label>

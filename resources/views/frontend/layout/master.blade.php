@@ -110,6 +110,13 @@ $setting = DB::table('websites')->first();
         .eARkMz {
             display: none;
         }
+        * :not(i) {
+    font-family: "Rubik", sans-serif!important;
+}
+
+
+
+
     </style>
     @stack('style')
 

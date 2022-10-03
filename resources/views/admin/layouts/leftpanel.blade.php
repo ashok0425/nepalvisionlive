@@ -55,6 +55,31 @@ NepalVision
   </ul>
 </li>
 
+<li class="nav-item <?php  echo Request::segment(2)=='categories-places'?'menu-open':'' ?>">
+  <a href="#" class="nav-link <?php  echo Request::segment(2)=='categories-places'?'active':'' ?> ">
+    <i class="nav-icon fas fa-road"></i>
+    <p>
+      Category Places
+      <i class="fas fa-angle-left right"></i>
+
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <li class="nav-item">
+      <a href="{{route('admin.categories-places.index')}}" class="nav-link <?php  echo Request::segment(3)==''?'active':'' ?>">
+        <i class="far fa-circle nav-icon"></i>
+        <p>View Region</p>
+      </a>
+    </li>
+    <li class="nav-item ">
+      <a href="{{route('admin.categories-places.create')}}" class="nav-link <?php  echo Request::segment(3)=='create'?'active':'' ?>">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Add Region </p>
+      </a>
+    </li>
+  
+  </ul>
+</li>
 
 
 
@@ -87,32 +112,6 @@ NepalVision
 
 
 
-{{-- Travel Region 
-<li class="nav-item <?php  echo Request::segment(2)=='categories-places'?'menu-open':'' ?>">
-  <a href="#" class="nav-link <?php  echo Request::segment(2)=='categories-places'?'active':'' ?> ">
-    <i class="nav-icon fas fa-road"></i>
-    <p>
-      Travel Region
-      <i class="fas fa-angle-left right"></i>
-
-    </p>
-  </a>
-  <ul class="nav nav-treeview">
-    <li class="nav-item">
-      <a href="{{route('admin.categories-places.index')}}" class="nav-link <?php  echo Request::segment(3)==''?'active':'' ?>">
-        <i class="far fa-circle nav-icon"></i>
-        <p>View Region</p>
-      </a>
-    </li>
-    <li class="nav-item ">
-      <a href="{{route('admin.categories-places.create')}}" class="nav-link <?php  echo Request::segment(3)=='create'?'active':'' ?>">
-        <i class="far fa-circle nav-icon"></i>
-        <p>Add Region </p>
-      </a>
-    </li>
-  
-  </ul>
-</li> --}}
 
 
 {{-- Category Package  --}}

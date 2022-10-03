@@ -135,7 +135,7 @@ Book Now | Nepal Vision Treks
                                 <p class="text-justify">You should send your deposit to the Company or its Agent. Sometime if the trip is Company's Tailor Made, you should pay higher deposit or full payment at the time of booking. For various deposit policy except mentioned in this clause, Nepal Vision will fully guide at the time of booking. </p>
                                 <p class="text-justify"><strong>Payment Approach</strong><br><br>You can proceed the two way of payment for booking deposit. Simply, bank transfer and Credit/David Cards (Visa or MasterCard) are the common way of making booking. You should follow the information given in the booking form. </p>
                                 <p class="text-justify"><strong>(1) Payment by Credit Card (MasterCard or Visa Only) </strong><br>
-                                    Please complete the necessary details in the form Click hear to download the form (*.doc version)Fax (at 977 1 4423 296) or e-mail (scan it and send via e-mail) the filled form to Nepal Vision Treks. Your credit card will be charged by Himalayan Bank (Credit Card Division) on behalf of Nepal Vision Treks &amp; Expedition P. Ltd..
+                                     Your credit card will be charged by Himalayan Bank (Credit Card Division) on behalf of Nepal Vision Treks &amp; Expedition P. Ltd..
                                 </p>
                                 <p class="text-justify"><strong>(2) Payment via Wire/Bank Transfer</strong><br>
     
