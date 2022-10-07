@@ -747,8 +747,16 @@ header .top-header p {
   line-height: 35px;
   margin: 0.5em 1.8em;
 }
- .fab{
-     font-size: 2rem;
+ .fab_wrapper{
+     font-size: 1rem;
+     background: #ec8805;
+     width: 35px;
+     height: 35px;
+display: flex;
+align-items: center;
+justify-content: center;
+     border-radius: 50%;
+     text-decoration: none;
 }
 
 header .bottom-header img{

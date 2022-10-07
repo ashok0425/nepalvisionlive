@@ -69,7 +69,7 @@ $categories = Cache::remember('categories', 604800, function()
 }
 .thirty_year{
     position: absolute;
-    top: 40%;
+    top: 37%;
     left: 10%;
 width: 250px;
 font-weight: 600;

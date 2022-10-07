@@ -69,10 +69,10 @@ $website = DB::table('websites')->first();
 
                                     @if ($destination->id != 12)
                                         @php
-                                            $categories = DB::table('categories_places')
+                                            $categories = DB::table('categories_destinations')
                                                 ->where('status', 1)
-                                                ->orderBy('id', 'asc')
-                                                ->where('category_destination_id', $destination->id)
+                                                ->orderBy('order', 'asc')
+                                                ->where('destination_id', $destination->id)
                                                 ->get();
                                         @endphp
 

@@ -68,7 +68,7 @@ NepalVision
     <li class="nav-item">
       <a href="{{route('admin.categories-places.index')}}" class="nav-link <?php  echo Request::segment(3)==''?'active':'' ?>">
         <i class="far fa-circle nav-icon"></i>
-        <p>View Region</p>
+        <p>View All</p>
       </a>
     </li>
     <li class="nav-item ">

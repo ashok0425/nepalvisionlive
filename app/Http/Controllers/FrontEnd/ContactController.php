@@ -29,8 +29,8 @@ class ContactController extends Controller
 
       public function Store(Request $request)
       {
-            $request->validate([
-                  'name' => 'required',
+           $request->validate([
+                  'fname' => 'required',
                   'email' => 'required|email',
                   'comment' => 'required',
 
@@ -39,8 +39,10 @@ class ContactController extends Controller
             try {
                   //code...
                   $contact = new Contact;
-                  $contact->name = $request->name;
+                  $contact->name = $request->fname.' '.$request->lname;
                   $contact->email = $request->email;
+                  $contact->phone = $request->phone;
+
                   $contact->comment = $request->comment;
                   $contact->save();
 
@@ -51,7 +53,7 @@ class ContactController extends Controller
                   // $country = $ipdata['country']['name'];
                   // $long = $ipdata['location']['latitude'];
                   // $lat = $ipdata['location']['longitude'];
-                  $agent = DB::connection('mysql2')->table('users')->where('id', $request->agent)->first()->name;
+                  $agent = DB::connection('mysql2')->table('users')->first()->name;
                   $data = [
                         'name' => $request->name,
                         'myemail' => $request->email,

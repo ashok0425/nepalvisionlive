@@ -96,11 +96,10 @@ border-bottom: 2px solid rgb(99, 99, 99);
                 <h1 class="custom-text-primary custom-fs-25 mb-2">{{ $package->name }}</h1>
 
                 <section class="hero2">
-                    @if (empty($img))
-                        
+                    @if (empty($package->thumbnail))
                     <img data-src="{{ asset('frontend/assets/hero4.webp')}}" class="lazy" alt="cover image" width="2000" height="300">
                         @else  
-                    <img data-src="{{ $package->thumbnail}}" alt="cover image" class="lazy" width="2000" height="300">
+                    <img data-src="{{ asset($package->thumbnail)}}" alt="cover image" class="lazy" width="2000" height="300">
             
                     @endif
                     
@@ -123,27 +122,29 @@ border-bottom: 2px solid rgb(99, 99, 99);
     </div>
 
     <div class="col-md-4">
+      <img src="{{asset('best_price.png')}}" alt="Bes price" class="img-fluid">
         
     </div>
     <div class="col-12 mt-3">
         <p class="border_bottom text-center custom-fs-16  custom-fw-700 w-75 m-auto">We support online payment</p>
-
+        
+       
         <p class="mt-2 mb-0 custom-fs-14">
-            <span><i class="fas fa-edit custom-text-primary"></i> This trip is fully customizable</span>
+            <span><i class="fas fa-edit custom-text-primary"></i> Customize this trip as per your need.</span>
         </p>
         <p class="mt-1 mb-0 custom-fs-14">
-            <span><i class="fas fa-users custom-text-primary"></i> Have a large group ? We can help.</span>
+            <span><i class="fas fa-users custom-text-primary"></i> Big groups are adjusted accordingly.</span>
         </p>
 
         <p class="mt-1 mb-0 custom-fs-14">
-            <span><i class="fas fa-tag custom-text-primary"></i> We can help you make it fit in your budget.</span>
+            <span><i class="fas fa-tag custom-text-primary"></i> Adjust your budget depending on your need.</span>
         </p>
 
 
        
 
         <p class="mt-1 mb-0 custom-fs-14">
-            <span><i class="fas fa-calendar custom-text-primary"></i> Yo can schedule your own departure dates.</span>
+            <span><i class="fas fa-calendar custom-text-primary"></i> Flexible departure dates for the trips.</span>
         </p>
 
 
@@ -158,54 +159,55 @@ border-bottom: 2px solid rgb(99, 99, 99);
 {{-- we accept section end --}}
 
 
+                   
                     {{-- Enquiry form start --}}
-                    <div class="card  shadow-sm bg_secondary  sticky-div custom-bg-primary mx-md-4  py-0 d-block d-md-none mb-3" >
-                        <div class="card-header border-white">
-                          <p class="mb-0 text-white custom-fw-700">Give us chance to serve you. Enquire Now</p>
-                        </div>
-                        <div class="card-body py-1">
-                          <form action="{{ route('enquery.post') }}" method="post">
-                            {{ csrf_field() }}
-                            <input type="hidden"  value="{{ $package->id }}" name="booking">
-                            <input type="hidden"  value="1" name="no_participants">
-                            <input type="hidden"  value="1" name="agent">
-                            <input type="hidden"  value="{{date('d-m-Y')}}" name="expected_date">
-                    
-                    
-                            <div class="row">
-                              <div class="col-12 my-2">
-                                <div class="form-group">
-                                  <input type="text" class="form-control" placeholder="Enter Full Name" name="name" required/>
-                                </div>
-                              </div>
-                              <div class="col-12 my-2">
-                                <div class="form-group">
-                                  <input type="email" class="form-control" placeholder="Enter Email Address" name="email" required/>
-                                </div>
-                              </div>
-                    
-                              <div class="col-12 my-2">
-                                <div class="form-group">
-                                  <input type="number" class="form-control" placeholder="Enter Phone Number" name="phone" required/>
-                                </div>
-                              </div>
-                              
-                              <div class="col-12 my-2">
-                                <div class="form-group">
-                                    <textarea name="comment" class="form-control" placeholder="Enter your message" id="message" required></textarea>
-                    
-                                </div>
-                              </div>
-                              <div class="col-12 mt-2">
-                                <div class="form-group mb-0 text-right">
-                                  <button type="submit" class="btn btn-light text-primary btn-sm">Enquire Now</button>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    {{-- Enquiry form end  --}}
+<div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-block d-md-none" >
+  <div class="card-header border-white custom-bg-primary">
+    <p class="mb-0 text-white custom-fw-500 ">Give us chance to serve you.give us the chance to serve you.Send us your queries or requests:</p>
+  </div>
+  <div class="card-body py-1">
+    <form action="{{ route('enquery.post') }}" method="post">
+      {{ csrf_field() }}
+      <input type="hidden"  value="{{ $package->id }}" name="booking">
+      <input type="hidden"  value="1" name="no_participants">
+      <input type="hidden"  value="1" name="agent">
+      <input type="hidden"  value="{{date('d-m-Y')}}" name="expected_date">
+
+
+      <div class="row">
+        <div class="col-12 my-2">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Full Name" name="name" required/>
+          </div>
+        </div>
+        <div class="col-12 my-2">
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Enter Email Address" name="email" required/>
+          </div>
+        </div>
+
+        <div class="col-12 my-2">
+          <div class="form-group">
+            <input type="number" class="form-control" placeholder="Enter Phone Number" name="phone" required/>
+          </div>
+        </div>
+        
+        <div class="col-12 my-2">
+          <div class="form-group">
+              <textarea name="comment" class="form-control" placeholder="Enter your message" id="message" required></textarea>
+
+          </div>
+        </div>
+        <div class="col-12 mt-2">
+          <div class="form-group mb-0 text-right">
+            <button type="submit" class="btn btn-primary  btn-sm">Enquire Now</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{{-- Enquiry form end  --}}
   
                     <div class="about-trip">
                         <div class="head  ">
@@ -509,22 +511,21 @@ border-bottom: 2px solid rgb(99, 99, 99);
     </div>
 
     <div class="col-md-4">
-        
+        <img src="{{asset('best_price.png')}}" alt="Bes price" class="img-fluid">
     </div>
     <div class="col-12 mt-3">
         <p class="border_bottom text-center custom-fs-16  custom-fw-700 w-75 m-auto">We support online payment</p>
 
         <p class="mt-2 mb-0 custom-fs-14">
-            <span><i class="fas fa-edit custom-text-primary"></i> This trip is fully customizable</span>
-        </p>
-        <p class="mt-1 mb-0 custom-fs-14">
-            <span><i class="fas fa-users custom-text-primary"></i> Have a large group ? We can help.</span>
-        </p>
+          <span><i class="fas fa-edit custom-text-primary"></i> Customize this trip as per your need.</span>
+      </p>
+      <p class="mt-1 mb-0 custom-fs-14">
+          <span><i class="fas fa-users custom-text-primary"></i> Big groups are adjusted accordingly.</span>
+      </p>
 
-        <p class="mt-1 mb-0 custom-fs-14">
-            <span><i class="fas fa-tag custom-text-primary"></i> We can help you make it fit in your budget.</span>
-        </p>
-
+      <p class="mt-1 mb-0 custom-fs-14">
+          <span><i class="fas fa-tag custom-text-primary"></i> Adjust your budget depending on your need.</span>
+      </p>
 
        
 
@@ -549,9 +550,9 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
 
                     {{-- Enquiry form start --}}
-<div class="card  shadow-sm bg_secondary  sticky-div custom-bg-primary mx-md-4  py-0 d-none d-md-block" >
-    <div class="card-header border-white">
-      <p class="mb-0 text-white custom-fw-700">Give us chance to serve you. Enquire Now</p>
+<div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-none d-md-block" >
+    <div class="card-header border-white custom-bg-primary">
+      <p class="mb-0 text-white custom-fw-500 ">Give us chance to serve you.give us the chance to serve you.Send us your queries or requests:</p>
     </div>
     <div class="card-body py-1">
       <form action="{{ route('enquery.post') }}" method="post">
@@ -588,7 +589,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
           </div>
           <div class="col-12 mt-2">
             <div class="form-group mb-0 text-right">
-              <button type="submit" class="btn btn-light text-primary btn-sm">Enquire Now</button>
+              <button type="submit" class="btn btn-primary  btn-sm">Enquire Now</button>
             </div>
           </div>
         </div>

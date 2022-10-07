@@ -25,6 +25,19 @@ Contact
   margin-bottom: 6px;
        
    }
+   .input.form-control{
+    border-radius: 0px!important;
+    border:1px solid rgb(148, 146, 146)!important;
+    outline: none;
+   }
+   .input.form-control:focus{
+    outline: none;
+    box-shadow: none;
+
+   }
+   label{
+    color: gray;
+   }
 </style>
 @php
     define('PAGE','contact')
@@ -33,210 +46,228 @@ Contact
 <x-page-header title="Contact" :route="route('contactus')"  :img="asset('Contact.jpg')"/>
 <main>
   
-    <section class="contact-form">
-        <div class="container-fluid">
-            <div class="form-container row">
-                <div class="col-lg-6">
-                    <div class="contact-container">
+    <section class="my-0 py-0">
+        <div class="container my-0 py-0">
 
+            <div class="row my-0 py-0">
+                <div class="col-md-7">
+                    <div class="social-media text-center mt-2">
+                        <p class="mb-1">Follow us on social media</p>
 
-                        <div class="socials social">
-                            <div class="icons">
-                              <a href="{{ $detail->facebook}}"  rel="noreferrer"  target="_blank">
-                                <i class="fab fa-facebook"></i>
-                              </a>
-                            </div>
-                            <div class="icons">
-                                <a href="{{ $detail->instagram}}"  rel="noreferrer"  target="_blank" >
-                                    <i class="fab fa-instagram"></i>
-                                </a>
+                    <div class=" d-flex justify-content-center">
+                          <a href="{{ $detail->facebook}}"  rel="noreferrer"  target="_blank" class="mx-2 fab_wrapper">
+                            <i class="fab fa-facebook text-dark"></i>
+                          </a>
+                            <a href="{{ $detail->instagram}}"  rel="noreferrer"  target="_blank"  class="mx-2 fab_wrapper">
+                                <i class="fab fa-instagram text-dark"></i>
+                            </a>
 
-                            </div>
-                            <div class="icons">
-                                <a href="{{ $detail->twitter}}"  rel="noreferrer"  target="_blank" >
+                            <a href="{{ $detail->twitter}}"  rel="noreferrer"  target="_blank" class="mx-2 fab_wrapper" >
 
-                                <i class="fab fa-twitter"></i>
-                                </a>
-                            </div>
-                            <p class="follow">Follow Us</p>
-                        </div>
-                        <form action="{{ route('contactus.store') }}" method="POST">
+                            <i class="fab fa-twitter text-dark"></i>
+                            </a>
+                    </div>
+                    </div>
+                    <div class="contact-container mt-4">
+
+<div class="card shadow-sm border-0 ">
+<div class="card-body">
+{{-- <h3 class="subscribe__title custom-text-primary  text-center">Let's have a Talk</h3> --}}
+                        
+                        <form action="{{ route('contactus.store') }}" method="POST" class=" pt-2">
                             @csrf
-                            <h1>Let's have a Talk</h1>
                             <div class="row">
-                                <div class="col-12">
-                                    <label for="name">Your Name*</label>
-                                    <input type="text" name="name" id="name" class="input" required
-                                        placeholder="Your name" />
-                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="name">First name<span class="text-danger">*</span></label>
+                                    <input type="text" name="fname" id="name" class="input form-control" required
+                                        placeholder="Enter your first name" />
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="email">Email*</label>
-                                    <input type="email" name="email" id="name" class="input" required
-                                        placeholder="Enter Your Email" />
+
+                            <div class="col-md-6 mb-3">
+                                <label for="name">Last name<span class="text-danger">*</span></label>
+                                <input type="text" name="lname" id="name" class="input form-control" 
+                                    placeholder="Enter your last name" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="name">Phone<span class="text-danger">*</span></label>
+                            <input type="text" name="phone" id="name" class="input form-control" required
+                                placeholder="Enter your phone number" />
+                    </div>
+                            <div class="col-md-6 mb-3">
+                                    <label for="email">Email<span class="text-danger">*</span></label>
+                                    <input type="email" name="email" id="name" class="input form-control" required
+                                        placeholder="Enter your Email"  />
                                 </div>
-                            </div>
                          
-                            <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-12 mb-3">
                                     <label for="email">Message*</label>
-                                    <textarea placeholder="Your Message" name="comment"></textarea>
+                                    <textarea placeholder="Your Message" name="comment" class="form-control input"></textarea>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-4 offset-md-8">
                                     <button class="btn btn-primary w-100">
                                         Send Message
                                     </button>
                                 </div>
-                            </div>
                            
 
                         </form>
-                    </div>
-                </div>
-                <div class="col-lg-6 ">
-                    <div class="map">
-                        <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class=" custom-text-primary custom-fs-25 custom-fw-700">
-                                Head office (Nepal)
-                            </div>
-                        </div>
-                        <div class="col-md-1 col-3 cont">
-                            <div class="custom-fs-18"><i class="fas fa-home "></i> </div>
-                            <div class="custom-fs-18"><i class="fas fa-phone-alt "></i> </div>
-                            <div class="custom-fs-18"><i class="fas fa-envelope "></i> </div>
-                            <div class="custom-fs-18"><i class="fas fa-envelope "></i> </div>
+</div>
 
-                            
-                        </div>
-                        <div class="col-md-3 col-3 d-none d-md-block cont">
-                                 <div class="custom-fs-18">...............................</div>
-                                 <div class="custom-fs-18">...............................</div>
-                                 <div class="custom-fs-18">...............................</div>
-                                 <div class="custom-fs-18">...............................</div>
-
-                                 
-                        </div>
-                        <div class="col-md-5 col-9 cont">
-
-                                <div class="custom-fs-18">{{ $detail->address }}</div>
-                                <div class="custom-fs-18"><a href="tel:{{ $detail->phone }}" class="text-decoration-none text-dark">{{ $detail->phone }}</a></div>
-                                <div class="custom-fs-18"><a href="mailto:{{ $detail->email}}" class="text-decoration-none text-dark">{{ $detail->email }}</a></div>
-        
-                                <div class="custom-fs-18"><a href="mailto:{{ $detail->email3}}" class="text-decoration-none text-dark">{{ $detail->email3 }}</a></div>
-                            </div>
-        
-                        </div>
-
-
-
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class=" custom-text-primary custom-fs-25 custom-fw-700">
-                                    Branch Office(USA)
-                                </div>
-                            </div>
-                            <div class="col-md-1 col-3 cont">
-                                <div class="custom-fs-18"><i class="fas fa-home "></i> </div>
-                                <div class="custom-fs-18"><i class="fas fa-phone-alt "></i> </div>
-                                <div class="custom-fs-18"><i class="fas fa-envelope "></i> </div>
-    
-                                
-                            </div>
-                            <div class="col-md-3 col-3 d-none d-md-block cont">
-                                     <div class="custom-fs-18">...............................</div>
-                                     
-                                     <div class="custom-fs-18">...............................</div>
-                                     <div class="custom-fs-18">...............................</div>
-    
-                                     
-                            </div>
-                            <div class="col-md-5 col-9 cont">
-    
-                                    <div class="custom-fs-18">{{ $detail->address2 }}</div>
-                                  
-                                    <div class="custom-fs-18"><a href="tel:{{ $detail->phone2}}" class="text-decoration-none text-dark">{{ $detail->phone2 }}</a></div>
-            
-                                    <div class="custom-fs-18"><a href="mailto:{{ $detail->email3}}" class="text-decoration-none text-dark">{{ $detail->email2 }}</a></div>
-                                </div>
-            
-                            </div>
-
-
-                            
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class=" custom-text-primary custom-fs-25 custom-fw-700">
-                                    Talk to an Expert
-                                </div>
-                            </div>
-                            <div class="col-md-1 col-3 cont">
-                                <div class="custom-fs-18"><i class="fas fa-home "></i> </div>
-                                <div class="custom-fs-18"><i class="fas fa-phone-alt "></i> </div>    
-                                
-                            </div>
-                            <div class="col-md-3 col-3 d-none d-md-block cont">
-                                     <div class="custom-fs-18">...............................</div>
-                                     <div class="custom-fs-18">...............................</div>
-    
-                                     
-                            </div>
-                            <div class="col-md-5 col-9 cont">
-    
-                                    <div class="custom-fs-18"><a href="tel:{{ $detail->phone }}" class="text-decoration-none text-dark">{{ $detail->expert_phone1 }}</a></div>
-                                    <div class="custom-fs-18"><a href="tel:{{ $detail->expert_phone2}}" class="text-decoration-none text-dark">{{ $detail->expert_phone2 }}</a></div>
-            
-                                </div>
-            
-                            </div>
-
-
-                    </div>
-{{-- 
-                        <div class="col-md-12">
-                            <div class=" custom-text-primary custom-fs-25 custom-fw-700">
-                                Branch Office(USA)
-                            </div>
-                            <ul>
-                                <li class="custom-fs-18"> {{ $detail->address2 }}</li>
-                                <li class="custom-fs-18"><a href="tel:{{ $detail->phone2}}" class="text-decoration-none text-dark">{{ $detail->phone2 }}</a></li>
-        
-                                <li class="custom-fs-18"><a href="mailto:{{ $detail->email2}}" class="text-decoration-none text-dark">{{ $detail->email2 }}</a></li>
-        
-                            </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class=" custom-text-primary custom-fs-25 custom-fw-700">
-                                Talk to an Expert
-                            </div>
-                            <ul>
-                                <li class="custom-fs-18"><a href="tel:{{ $detail->expert_phone1 }}" class="text-decoration-none text-dark">{{ $detail->expert_phone1 }}</a></li>
-                                <li class="custom-fs-18"><a href="tel:{{ $detail->expert_phone2}}" class="text-decoration-none text-dark">{{ $detail->expert_phone2 }}</a></li>
-        
-        
-                            </ul>
-                        </div> --}}
-                    </div>
+</div>
 
                     </div>
                 </div>
-                
             </div>
-        </div>
-    </section>
-    <section class="info my-5">
-        <div class="container">
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0405213358467!2d85.31063831423583!3d27.716035131718705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fd2e54a635%3A0xfa1e397a6cabee52!2sNepal%20Vision%20Treks%20%26%20Expedition%20Pvt%20Ltd!5e0!3m2!1sen!2snp!4v1644722965719!5m2!1sen!2snp" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+
+                <div class="col-md-4 offset-md-1">
+
+<div class="card border-0 shadow-sm pb-4">
+    <div class="card-body py-2 py-md-5">
+        <h2 class="subscribe__title custom-text-primary  text-center mb-3">Contact us</h2>
+
+        <div class="custom-bg-primary mx-4 mb-4 p-3">
+            <div class="d-flex align-items-center justify-content-center">
+                <div>
+                    <div class="custom-fs-28 text-white"><i class="fas fa-phone-alt "></i> </div>
+                    
+                </div>
            
+                <div class="mx-2">
+        
+                        <div class="custom-fs-16 text-white"><a href="tel:{{ $detail->expert_phone1 }}" class="text-decoration-none text-white">{{ $detail->expert_phone1 }}</a></div>
+                        <div class="custom-fs-16 "><a href="tel:{{ $detail->expert_phone2}}" class="text-decoration-none text-white">{{ $detail->expert_phone2 }}</a></div>
+        
+                    </div>
+        
+                </div>
         </div>
+
+        <div class="custom-bg-primary mx-4 mb-4 p-3">
+            <div class="d-flex align-items-center justify-content-center">
+                <div>
+                    <div class="custom-fs-28 text-white"><i class="fas fa-envelope "></i> </div>
+                    
+                </div>
+           
+                <div class="mx-2">
+        
+                        <div class="custom-fs-16 text-white"><a href="mailto:{{ $detail->email }}" class="text-decoration-none text-white">{{ $detail->email }}</a></div>
+                        <div class="custom-fs-16 "><a href="mailto:{{ $detail->email3}}" class="text-decoration-none text-white">{{ $detail->email3 }}</a></div>
+        
+                    </div>
+        
+                </div>
+        </div>
+
+
+        <div class="custom-bg-primary mx-4 mb-4 p-3">
+            <div class="d-flex align-items-center justify-content-center">
+                <div>
+                    <div class="custom-fs-28 text-white"><i class="fas fa-map-marker-alt"></i></div>
+                    
+                </div>
+           
+                <div class="mx-2">
+        
+                        <div class="custom-fs-16 text-white"><a  class="text-decoration-none text-white">{{ $detail->address }}</a></div>
+                      
+        
+                    </div>
+        
+                </div>
+        </div>
+     
+    </div>
+    </div>
+</div>  
+        </div>       
+        </div>
+
+
+        {{-- map section  start  --}}
+        <section class="container mt-0 pt-0">
+            <div class="card border-0 shadow-sm ">
+                <div class="map mt-5">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0405213358467!2d85.31063831423583!3d27.716035131718705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fd2e54a635%3A0xfa1e397a6cabee52!2sNepal%20Vision%20Treks%20%26%20Expedition%20Pvt%20Ltd!5e0!3m2!1sen!2snp!4v1644722965719!5m2!1sen!2snp" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+               
+            </div>
+        </section>
+        {{-- map section end  --}}
+
+
+        {{-- usa branch office section  --}}
+
+        <div class="card border-0 shadow-sm mt-2">
+            <div class="card-body py-3">
+                <h2 class="subscribe__title custom-text-primary  text-center mb-3">USA Branch Office</h2>
+        
+                <div class="row">
+                    <div class="col-md-3 ">
+
+                   
+                <div class="custom-bg-primary  mb-4 p-3 py-4">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div>
+                            <div class="custom-fs-22 text-white"><i class="fas fa-phone-alt "></i> </div>
+                            
+                        </div>
+                   
+                        <div class="mx-2">
+                
+                                <div class="custom-fs-16 "><a href="tel:{{ $detail->phone2}}" class="text-decoration-none text-white">{{ $detail->phone2 }}</a></div>
+                
+                            </div>
+                
+                        </div>
+                </div>
+         </div>
+         <div class="col-md-4 offset-md-1">
+
+                <div class="custom-bg-primary  mb-4 p-3 py-4 mx-md-5 mx-0">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div>
+                            <div class="custom-fs-22 text-white"><i class="fas fa-envelope "></i> </div>
+                            
+                        </div>
+                   
+                        <div class="mx-2">
+                
+                                <div class="custom-fs-16 "><a href="mailto:{{ $detail->email2}}" class="text-decoration-none text-white">{{ $detail->email2 }}</a></div>
+                
+                            </div>
+                
+                        </div>
+                </div>
+            </div>
+        
+                <div class="col-md-3 offset-md-1">
+        
+                <div class="custom-bg-primary mb-4 p-3 py-4">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div>
+                            <div class="custom-fs-22 text-white"><i class="fas fa-map-marker-alt"></i></div>
+                            
+                        </div>
+                   
+                        <div class="mx-2">
+                
+                                <div class="custom-fs-16 text-white"><a  class="text-decoration-none text-white">{{ $detail->address2 }}</a></div>
+                              
+                
+                            </div>
+                
+                        </div>
+                </div>
+            </div>
+
+            </div>
+             
+            </div>
+            </div>
+
+
+
     </section>
 </main>
 

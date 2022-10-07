@@ -30,7 +30,6 @@ Book Now | Nepal Vision Treks
                                 <div class="form-group row my-3">
                                     <div for="tripName" class="col-md-4  custom-text-primary custom-fs-18 custom-fw-500">Trip Name<span class="text-danger">*</span>: </div>
                                     <div class="col-md-8">
-                                        
                                         @if(isset($package))
                                            <input type="hidden" value="{{ $package->id }}" name="booking">
                                            <div class="form-control">{{ $package->name }}</div>
