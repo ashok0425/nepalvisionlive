@@ -27,15 +27,18 @@ public function getIndex() {
 
 
 public function Page($page) {
-      $data = Cms::where('status', 1)->where('main_or_sub',1)->where('url',$page)->orderBy('position')->with('child')->first();
+  
+      $data = Cms::where('status', 1)->where('url',$page)->orderBy('position')->with('child')->first();
       return view('frontend.page',compact('data'));
 }
 
 public function PageDetail($page,$url=null) {
+      
       if (!isset($url)) {
             $data = Cms::where('status', 1)->where('url',$page)->first();
 
       }else{
+        
             $data = Cms::where('status', 1)->where('parent_id',$page)->where('url',$url)->first();
              $page=Cms::where('id',$page)->value('url');
       }

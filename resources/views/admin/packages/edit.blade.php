@@ -146,7 +146,7 @@
                                         <div class="form-group ">
                                          
                                             <label > Select Category Place</label>
-                                         <select name="category_place_id" id="destination_id" class="form-control" required>
+                                         <select name="category_place_id" id="destination_id" class="form-control" >
                                              <option value="">--select  destination--</option>
                                             @foreach ($places as $place)
                                              <option  @if ($place->id==$package->category_place_id)

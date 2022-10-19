@@ -120,7 +120,19 @@ $setting = DB::table('websites')->first();
     </style>
     @stack('style')
 
-
+    {{-- Please replace tag manager code with following --}}
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WB2LZGJ');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB2LZGJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 </head>
 
 <body>
@@ -170,22 +182,14 @@ $setting = DB::table('websites')->first();
 {
   "@context": "https://schema.org/", 
   "@type": "Product", 
-  "name": "Everest Base Camp Helicopter Tour",
-  "image": "https://nepalvisiontreks.com/upload/package/thumbnail/1620672524Everest%20Base%20Camp%20Helicopter%20Tourpng",
-  "description": "Taking a helicopter tour over the Himalayas is a truly magnificent adventure, filled with awe-inspiring scenery and magnificent peaks. We will take you to the lap of the world's highest mountain.",
+  "name": "Nepal Vision Treks",
+  "image": " {{ asset($setting->image) }}",
+  "description": " {{ $setting->descr }}",
   "brand": {
     "@type": "Brand",
     "name": "Nepal Vision Treks"
   },
-  "offers": {
-    "@type": "Offer",
-    "url": "https://nepalvisiontreks.com/package-detail/everest-base-camp-helicopter-tour",
-    "priceCurrency": "USD",
-    "price": "2550",
-    "priceValidUntil": "2023-01-01",
-    "availability": "https://schema.org/InStock",
-    "itemCondition": "https://schema.org/NewCondition"
-  },
+  
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5",
@@ -197,7 +201,7 @@ $setting = DB::table('websites')->first();
   "review": {
     "@type": "Review",
     "name": "Amazing Experience",
-    "reviewBody": "Never thought I would visit Everest Base Camp in my life but I finally did. Oh man, was it a roller coaster? Those cold storms and that snow. Purely heaven on earth!",
+    "reviewBody": "The moment our guides met us at the airport, we knew we made the right choice in choosing Nepal Visions. Everything that happened after that reinforced that Nepal Visions was the best choice, from our first meeting with Chet to the departure dinner at the end. As you can see by this photo above, we became a family. Our guides Kashar and Giri helped us realize a lifelong dream of trekking in the shadow of Mt. Everest. Their expertise in trekking kept us all very healthy so we could enjoy every step. At Nepal Visions – you are treated like family! Albert Lepore EBC Trek - 20 Days: April - May, 2012 7868 S. Hill Drive Littleton, USA Email - al.lepore@aeroastro.com",
     "reviewRating": {
       "@type": "Rating",
       "ratingValue": "5",
@@ -206,7 +210,7 @@ $setting = DB::table('websites')->first();
     },
     "datePublished": "2022-08-01",
     "author": {"@type": "Person", "name": "Np"},
-    "publisher": {"@type": "Organization", "name": "Chris Hal"}
+    "publisher": {"@type": "Organization", "name": "Albert Lepore"}
   }
 }
 </script>
@@ -271,6 +275,29 @@ $(function() {
         $('.lazy').Lazy();
     });
 
+
+    $('.quick_trips_carousel').owlCarousel({
+            autoplay: false,
+            autoplayTimeout: 2000,
+            loop: true,
+            dots: false,
+            // navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            margin: 0,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        });
 
 
         $('.destinations').owlCarousel({

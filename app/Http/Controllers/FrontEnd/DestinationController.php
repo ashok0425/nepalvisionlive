@@ -15,7 +15,10 @@ class DestinationController extends Controller
 {
 
 public function index($url) {
-	$data = Destination::where('url',$url)->first();
+	$data = Destination::where('url',$url)->orwhere('id',$url)->first();
+	if(!$data){
+	    abort(404);
+	}
 	$categories = CategoryDestination::where('destination_id',$data->id)->where('status',1)->get();
 	$packages = Package::where('destination_id',$data->id)->where('status',1)->orderBy('order','desc')->where('price','!=',0)->limit(8)->orderBy('id','desc')->get();
 
@@ -39,7 +42,7 @@ public function search(Request $request) {
   if(isset($request->destination)&&!empty($request->destination)){
     $query.=" AND `destination_id`=$request->destination ";
   }
-  $query="SELECT * FROM  `packages` WHERE `status`=1  ";
+  
   if(isset($request->category)&&!empty($request->category)){
     $query.=" AND `category_destination_id`=$request->category ";
 }

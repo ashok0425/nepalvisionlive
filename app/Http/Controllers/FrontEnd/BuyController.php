@@ -14,16 +14,17 @@ use Illuminate\Support\Facades\Mail;
 class BuyController extends Controller
 {
 
-      public function index($url = null, $date = null)
+    public function index($url = null, $date = null)
       {
             $packages = Package::orderBy('id', 'desc')->get();
             $package = null;
             $agents = DB::connection('mysql2')->table('users')->where('email_verified_at', '!=', null)->get();
             if ($url != null) {
-                  $package = Package::where('url',$url)->first();
+                  $package = Package::where('url',$url)->orwhere('id',$url)->first();
             }
             return view('frontend.buynow', compact('package', 'date', 'packages', 'agents'));
       }
+
 
 
 

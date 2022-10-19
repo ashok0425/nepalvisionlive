@@ -1,13 +1,13 @@
 @php
-    $packages = Cache::remember('tour_packages', 604800, function()
+    $packages = Cache::remember('top_packages', 604800, function()
 {
-    return DB::table('packages')->where('category_destination_id',13)->where('status',1)->where('banner','!=',null)->where('duration','!=',null)->where('activity','!=',null)->where('discounted_price',null)->inRandomOrder()->limit(6)->get();
-})
+    return DB::table('packages')->orderBy('rating','desc')->where('status',1)->where('banner','!=',null)->where('duration','!=',null)->where('rating','!=',null)->where('activity','!=',null)->limit(6)->get();
+});
 @endphp
 <section class="tour-packages d-none d-md-block">
     <div class="container">
         <div class="heading mt-5">
-            <h2>Expedition Packages</h2>
+            <h2>Top Rated Packages</h2>
         </div>
         <div class="owl-carousel allpackages ">
             @foreach ($packages as $package)

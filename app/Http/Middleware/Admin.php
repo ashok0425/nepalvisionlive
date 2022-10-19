@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-class Isvendor
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class Isvendor
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->Isvendor==1){
+        if(Auth::guard('admin')->check()){
             return $next($request);
         }else{
-            return redirect()->route('login');
+            return redirect()->route('admin.login');
         }
     
     }

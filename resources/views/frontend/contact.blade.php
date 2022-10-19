@@ -47,28 +47,40 @@ Contact
 <main>
   
     <section class="my-0 py-0">
+        {{-- social media lins icon setcion start  --}}
+        <div class="card mb-4">
+            <div class="card-body pb-5">
+            <div class="col-md-4 offset-md-4">
+                <div class="social-media text-center mt-2">
+
+                    <h2 class="subscribe__title custom-text-primary   mb-3">Follow us on social media</h2>
+
+                <div class=" d-flex justify-content-center">
+                      <a href="{{ $detail->facebook}}"  rel="noreferrer"  target="_blank" class="mx-2 fab_wrapper">
+                        <i class="fab fa-facebook text-white"></i>
+                      </a>
+                        <a href="{{ $detail->instagram}}"  rel="noreferrer"  target="_blank"  class="mx-2 fab_wrapper">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+
+                        <a href="{{ $detail->twitter}}"  rel="noreferrer"  target="_blank" class="mx-2 fab_wrapper" >
+
+                        <i class="fab fa-twitter text-white"></i>
+                        </a>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {{-- social media lins icon setcion End  --}}
+
         <div class="container my-0 py-0">
-
             <div class="row my-0 py-0">
+                {{-- contact form section  start--}}
                 <div class="col-md-7">
-                    <div class="social-media text-center mt-2">
-                        <p class="mb-1">Follow us on social media</p>
-
-                    <div class=" d-flex justify-content-center">
-                          <a href="{{ $detail->facebook}}"  rel="noreferrer"  target="_blank" class="mx-2 fab_wrapper">
-                            <i class="fab fa-facebook text-dark"></i>
-                          </a>
-                            <a href="{{ $detail->instagram}}"  rel="noreferrer"  target="_blank"  class="mx-2 fab_wrapper">
-                                <i class="fab fa-instagram text-dark"></i>
-                            </a>
-
-                            <a href="{{ $detail->twitter}}"  rel="noreferrer"  target="_blank" class="mx-2 fab_wrapper" >
-
-                            <i class="fab fa-twitter text-dark"></i>
-                            </a>
-                    </div>
-                    </div>
-                    <div class="contact-container mt-4">
+                   
+                    <div class="contact-container ">
+                        <h2 class="subscribe__title custom-text-primary   mb-3">Contact Form</h2>
 
 <div class="card shadow-sm border-0 ">
 <div class="card-body">
@@ -117,13 +129,15 @@ Contact
 
                     </div>
                 </div>
+                {{-- contact form section  End--}}
             </div>
 
+            {{-- contact Info section  start--}}
                 <div class="col-md-4 offset-md-1">
+                    <h2 class="subscribe__title custom-text-primary   mb-3">Contact us</h2>
 
 <div class="card border-0 shadow-sm pb-4">
-    <div class="card-body py-2 py-md-5">
-        <h2 class="subscribe__title custom-text-primary  text-center mb-3">Contact us</h2>
+    <div class="card-body py-2 py-md-4">
 
         <div class="custom-bg-primary mx-4 mb-4 p-3">
             <div class="d-flex align-items-center justify-content-center">
@@ -180,12 +194,14 @@ Contact
     </div>
     </div>
 </div>  
+            {{-- contact Info section  End--}}
+
         </div>       
         </div>
 
 
         {{-- map section  start  --}}
-        <section class="container mt-0 pt-0">
+        <section class=" mt-0 pt-0">
             <div class="card border-0 shadow-sm ">
                 <div class="map mt-5">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.0405213358467!2d85.31063831423583!3d27.716035131718705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fd2e54a635%3A0xfa1e397a6cabee52!2sNepal%20Vision%20Treks%20%26%20Expedition%20Pvt%20Ltd!5e0!3m2!1sen!2snp!4v1644722965719!5m2!1sen!2snp" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>

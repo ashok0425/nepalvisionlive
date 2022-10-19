@@ -11,6 +11,8 @@
 {{-- adventure section  --}}
 @include('frontend.template.adventure')
 
+{{-- top rated package section  --}}
+@include('frontend.template.top_package')
 {{-- why choose section  --}}
 @include('frontend.template.why')
 

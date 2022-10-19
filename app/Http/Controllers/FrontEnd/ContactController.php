@@ -36,7 +36,7 @@ class ContactController extends Controller
 
 
             ]);
-            try {
+            // try {
                   //code...
                   $contact = new Contact;
                   $contact->name = $request->fname.' '.$request->lname;
@@ -86,13 +86,13 @@ class ContactController extends Controller
                         'messege' => 'Query placed sucessfully.',
 
                   );
-            } catch (\Throwable $th) {
-                  $notification = array(
-                        'alert-type' => 'error',
-                        'messege' => 'Failed to place query. Try again.',
+            // } catch (\Throwable $th) {
+            //       $notification = array(
+            //             'alert-type' => 'error',
+            //             'messege' => 'Failed to place query. Try again.',
 
-                  );
-            }
+            //       );
+            // }
             return redirect()->back()->with($notification);
       }
 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brocade</title>
+    <style>
+       * {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    color: aliceblue;
+    background: url("https://cutt.ly/kX2TCgw") no-repeat center;
+    background-size: cover;
+}
+
+.main {
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+}
+
+.item {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-family: 'Silkscreen', cursive;
+}
+
+.item .count_down {
+    font-size: 40px;
+    font-family: 'Permanent Marker', cursive;
+
+}
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">We Are Almost Ready for Launch</h1>
+        <div class="main">
+            <div class="item">
+                <h4 class="count_down">0</h4>
+                <h4>Days</h4>
+            </div>
+            <div class="item">
+                <h4 class="count_down">0</h4>
+                <h4>Hours</h4>
+            </div>
+            <div class="item">
+                <h4 class="count_down">0</h4>
+                <h4>Minutes</h4>
+            </div>
+            <div class="item">
+                <h4 class="count_down">0</h4>
+                <h4>Seconds</h4>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+    let endDateElm = "15 April 2023 12:01 am"
+    let countDownItem = Array.from(document.querySelectorAll('.count_down'))
+
+    function countDown() {
+        let endDate = new Date(endDateElm);
+        let newDate = new Date();
+        let dateDiff = (endDate - newDate) / 1000
+        if (dateDiff > 0) {
+            let day = Math.floor(dateDiff / 3600 / 24)
+            let hour = Math.floor(dateDiff / 3600) % 24
+            let min = Math.floor(dateDiff / 60) % 60
+            let sec = Math.floor(dateDiff % 60)
+            countDownItem[0].textContent = day
+            countDownItem[1].textContent = hour
+            countDownItem[2].textContent = min
+            countDownItem[3].textContent = sec
+        } else {
+            clearInterval(stop)
+        }
+    }
+    let stop = setInterval(() => {
+        countDown();
+    }, 1000);
+
+
+    </script>
+</body>
+</html>

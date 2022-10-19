@@ -5,6 +5,18 @@ $destinations = DB::table('destinations')
 
 $website = DB::table('websites')->first();
 @endphp
+<style>
+    .quick_trips_carousel .owl-prev{
+        top: 0%!important;
+        left: -1%!important;
+    }
+
+    .quick_trips_carousel .owl-next{
+        top: 0%!important;
+        right: -1%!important;
+    }
+</style>
+
 @include('frontend.layout.mobile_menu', $destinations)
 <header id='header'>
     <div class="container d-none d-md-block py-1">
@@ -19,8 +31,8 @@ $website = DB::table('websites')->first();
 
                     </div>
                     <div class="col-md-3">
-                        <p><a  rel="noreferrer"  target="_blank" href="#" class="text-dark text-decoration-none">
-                                {{ $website->phone }}
+                        <p><a  rel="noreferrer"  target="_blank" href="#" class="text-dark text-decoration-none d-flex align-items-center">
+                            <i class="fab fa-whatsapp custom-fs-25 text-success"></i>&nbsp;{{  $website->phone }}
                             </a></p>
                     </div>
                     <div class="col-md-3">
@@ -76,6 +88,16 @@ $website = DB::table('websites')->first();
                                                 ->get();
                                         @endphp
 
+
+@php
+$places = DB::table('categories_places')
+    ->where('status', 1)
+    ->orderBy('id', 'asc')
+    ->where('destination_id', $destination->id)
+    ->get();
+@endphp
+
+
                                         <li class="nav-item dropdown ">
 
                                             <span class="d-flex align-items-center text-md-white ">
@@ -96,6 +118,48 @@ $website = DB::table('websites')->first();
                                             @if (count($categories) > 0)
                                                 <ul class="dropdown-menu first_drop"
                                                     aria-h3ledby="navbarDropdownMenuLink">
+
+
+
+ @foreach ($places as $place)
+                                                        @php
+                                                            $packages = DB::table('packages')
+                                                                ->where('status', 1)
+                                                                ->orderBy('order', 'desc')
+                                                                ->where('destination_id', $destination->id)
+                                                                ->where('category_place_id', $place->id)
+                                                                ->limit(12)
+                                                                ->get();
+                                                        @endphp
+
+                                                        <li class="dropdown_menu"><a
+                                                                class="dropdown-item d-flex justify-content-between align-items-center 
+                                                        "
+                                                                href="{{ route('package.place', ['url' => $place->url]) }}">{{ $place->name }}
+                                                                @if (count($packages) > 0)
+                                                                    <i class="fas fa-caret-right"></i>
+                                                                @endif
+
+                                                            </a>
+                                                            @if (count($packages) > 0)
+                                                                <ul class=" sub">
+                                                                    @foreach ($packages as $package)
+                                                                        <li><a class="dropdown-item"
+                                                                                href="{{ route('package.detail', ['url' => $package->url]) }}">{{ $package->name }}</a>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                                @endif
+                                                            </li>
+                                                        @endforeach
+
+
+
+
+
+
+
+
                                                     @foreach ($categories as $category)
                                                         @php
                                                             $packages = DB::table('packages')
@@ -171,11 +235,16 @@ $website = DB::table('websites')->first();
 
 @php
 use App\Models\CategoryDestination;
+use App\Models\CategoryPlace;
+
 use App\Models\Destination;
 
 $quick_trips = CategoryDestination::where('quick_trips', 1)
     ->where('status', 1)
     ->orderBy('order')
+    ->get();
+    
+$categories_place = CategoryPlace::where('status', 1)
     ->get();
 $destination_not_nepal = Destination::whereIn('id', [10, 11])
     ->where('status', 1)
@@ -195,15 +264,49 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
                 </a>
             </div>
             <div class="modal-body">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    @foreach ($quick_trips as $key => $quick_trip)
+                <ul class="nav nav-tabs quick_trips_carousel owl-carousel px-5" id="myTab" role="tablist">
+
+    
+                    @foreach ($categories_place as $key => $quick_trip)
                         <li class="nav-item">
-                            <a class="nav-link {{ $key == 0 ? 'active' : '' }}" id="cat-{{ $quick_trip->id }}-tab"
-                                data-bs-toggle="tab" href="#cat-{{ $quick_trip->id }}" role="tab"
-                                aria-controls="cat-{{ $quick_trip->id }}"
-                                aria-selected="true">{{ $quick_trip->name }}</a>
+                            <a class="nav-link {{ $key == 0 ? 'active' : '' }}" id="place-{{ $quick_trip->id }}-tab"
+                                data-bs-toggle="tab" href="#place-{{ $quick_trip->id }}" role="tab"
+                                aria-controls="place-{{ $quick_trip->id }}"
+                                aria-selected="true">
+                            @php
+                                $ex=explode(' ',$quick_trip->name )
+                            @endphp
+                                  {{ $ex[0]}}
+                                  @if(isset($ex[2]))
+                                  {{$ex[2]}}
+                                  @elseif(isset($ex[1])) 
+                                  {{$ex[1]}}
+          
+                                  @endif
+                        </a>
                         </li>
                     @endforeach
+
+
+                    @foreach ($quick_trips as $key => $quick_trip)
+                        <li class="nav-item">
+                            <a class="nav-link" id="cat-{{ $quick_trip->id }}-tab"
+                                data-bs-toggle="tab" href="#cat-{{ $quick_trip->id }}" role="tab"
+                                aria-controls="cat-{{ $quick_trip->id }}"
+                                aria-selected="true">  @php
+                                $ex=explode(' ',$quick_trip->name )
+                            @endphp
+                         {{ $ex[0]}}
+                         @if(isset($ex[2]))
+                         {{$ex[2]}}
+                         @elseif(isset($ex[1])) 
+                         {{$ex[1]}}
+ 
+                         @endif
+                        </a>
+                        </li>
+                    @endforeach
+                    
                     @foreach ($destination_not_nepal as $key => $destination_not_nepa)
                         <li class="nav-item">
                             <a class="nav-link" id="dest-{{ $destination_not_nepa->id }}-tab" data-bs-toggle="tab"
@@ -214,9 +317,45 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
                     @endforeach
 
                 </ul>
+
                 <div class="tab-content" id="myTabContent">
+                    @foreach ($categories_place as $key => $quick_trip)
+                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}"
+                        id="place-{{ $quick_trip->id }}" role="tabpanel"
+                        aria-labelledby="place-{{ $quick_trip->id }}-tab">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Trip Id</th>
+                                    <th scope="col">Trip Name</th>
+                                    <th scope="col">Trip Length</th>
+                                    <th scope="col">Trip Cost</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($quick_trip->packages()->where('status', 1)->orderBy('name')->get() as $quickpackage)
+                                    <tr>
+                                        <td>{{ $quickpackage->trip_id }}</td>
+                                        <td><a
+                                                href="{{ route('package.detail', ['url' => $quickpackage->url]) }}">{{ $quickpackage->name }}</a>
+                                        </td>
+                                        <td>{{ $quickpackage->duration }} </td>
+                                        <td>US ${{ $quickpackage->price }} </td>
+                                        <td><a href="{{ route('booknow', ['url' => $quickpackage->url]) }}"
+                                                class="btn  btn-primary btn-sm">Book now</a>
+                                            {{-- <a class="btn btn-sample2 btn-sm" href="#">Join Group</a> --}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endforeach
+
+
                     @foreach ($quick_trips as $key => $quick_trip)
-                        <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}"
+                        <div class="tab-pane fade {{ $key == 0 ? '' : '' }}"
                             id="cat-{{ $quick_trip->id }}" role="tabpanel"
                             aria-labelledby="cat-{{ $quick_trip->id }}-tab">
                             <table class="table table-bordered text-center">
@@ -293,5 +432,13 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
             $('.dropdown-menu').removeClass('main')
 
         }
+
+        $('.quick_trips_carousel .nav-link').click(function(){
+            let link=$('.quick_trips_carousel .nav-link');
+link.each((index,element) => {
+element.classList.remove('active')
+});
+            $(this).addClass('active')
+        })
     </script>
 @endpush

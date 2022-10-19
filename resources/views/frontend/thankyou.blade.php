@@ -24,10 +24,15 @@
                     <span class="d-block">We will get back to you as soon as possibe</span>
                     <p class="mb-0">If you have any queries feel free to contact us at </p>
                     <p class="mail">sales@nepalvisiontreks.com / 977-1-4424762 / +977-9851189771</p>
+
+                    <a href="{{route('/')}}" class="btn btn-primary">⬅ Return to home</a>
+                    <a href="{{route('package.all')}}" class="btn btn-primary">Explore more ➡</a>
+
             </div>
 
         </div>
 
+        @include('frontend.template.top_package')
     </div>
 
 </section>

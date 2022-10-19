@@ -44,7 +44,7 @@
                     <br>
                     
 
-                    <a href="{{ route('cms.page',['page'=>$page])}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
+                    <a href="{{ route('/')}}" class="btn btn-primary btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
                 </div>
             </div>
            

@@ -1,3 +1,16 @@
+<style>
+  .dropend{
+    height: 35px!important;
+  }
+  
+</style>
+@if (Request()->segment(1)=='')
+    <style>
+      .dropend:nth-child(4){
+    margin-bottom: 22px!important;
+  }
+    </style>
+@endif
 <nav class="navbar navbar-expand-lg navbar-light bg-light  shadow d-block d-md-none">
     <div class="container-fluid">
  

@@ -144,8 +144,8 @@ border-bottom: 2px solid rgb(99, 99, 99);
        
 
         <p class="mt-1 mb-0 custom-fs-14">
-            <span><i class="fas fa-calendar custom-text-primary"></i> Flexible departure dates for the trips.</span>
-        </p>
+          <span><i class="fas fa-calendar custom-text-primary"></i> You can schedule your own departure dates.</span>
+      </p>
 
 
 
@@ -163,7 +163,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                     {{-- Enquiry form start --}}
 <div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-block d-md-none" >
   <div class="card-header border-white custom-bg-primary">
-    <p class="mb-0 text-white custom-fw-500 ">Give us chance to serve you.give us the chance to serve you.Send us your queries or requests:</p>
+    <p class="mb-0 text-white custom-fw-500 ">Send us your queries or requests:</p>
   </div>
   <div class="card-body py-1">
     <form action="{{ route('enquery.post') }}" method="post">
@@ -530,7 +530,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
        
 
         <p class="mt-1 mb-0 custom-fs-14">
-            <span><i class="fas fa-calendar custom-text-primary"></i> Yo can schedule your own departure dates.</span>
+            <span><i class="fas fa-calendar custom-text-primary"></i> You can schedule your own departure dates.</span>
         </p>
 
 
@@ -552,7 +552,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                     {{-- Enquiry form start --}}
 <div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-none d-md-block" >
     <div class="card-header border-white custom-bg-primary">
-      <p class="mb-0 text-white custom-fw-500 ">Give us chance to serve you.give us the chance to serve you.Send us your queries or requests:</p>
+      <p class="mb-0 text-white custom-fw-500 ">Send us your queries or requests:</p>
     </div>
     <div class="card-body py-1">
       <form action="{{ route('enquery.post') }}" method="post">
@@ -1521,6 +1521,53 @@ WhatsApp (24/7): <strong class="custom-text-primary">
 @endsection
 
 @push('scripts')
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/", 
+    "@type": "Product", 
+    "name": "Nepal Vision Treks",
+    "image": " {{ asset($package->image) }}",
+    "description": " {{ $package->descr }}",
+    "brand": {
+      "@type": "Brand",
+      "name": "{{$package->name}}"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "{{url()->current()}}",
+      "priceCurrency": "USD",
+      "price": "{{$package->discounted_price?$package->discounted_price:$package->price}}",
+      "priceValidUntil": "{{today()->addDay(45)}}",
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "4",
+      "ratingCount": "8",
+      "reviewCount": "12"
+    },
+    "review": {
+      "@type": "Review",
+      "name": "Amazing Experience",
+      "reviewBody": "The moment our guides met us at the airport, we knew we made the right choice in choosing Nepal Visions. Everything that happened after that reinforced that Nepal Visions was the best choice, from our first meeting with Chet to the departure dinner at the end. As you can see by this photo above, we became a family. Our guides Kashar and Giri helped us realize a lifelong dream of trekking in the shadow of Mt. Everest. Their expertise in trekking kept us all very healthy so we could enjoy every step. At Nepal Visions – you are treated like family! Albert Lepore EBC Trek - 20 Days: April - May, 2012 7868 S. Hill Drive Littleton, USA Email - al.lepore@aeroastro.com",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "4"
+      },
+      "datePublished": "{{today()->subDay(10)}}",
+      "author": {"@type": "Person", "name": "Np"},
+      "publisher": {"@type": "Organization", "name": "Albert Lepore"}
+    }
+  }
+  </script>
+
+
 <script type="text/javascript"
 src="https://www.viralpatel.net/demo/jquery/jquery.shorten.1.0.js"></script>
 
