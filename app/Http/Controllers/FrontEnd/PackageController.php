@@ -29,8 +29,7 @@ class PackageController extends Controller
 }
 
  public function category($url) {
-
-    $data = CategoryDestination::where('url',$url)->where('id',$url)->first();
+  $data = CategoryDestination::where('url',$url)->where('id',$url)->first();
 if(!$data){
     abort(404);
 }

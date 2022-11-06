@@ -8,6 +8,7 @@ use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Invoice;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -161,18 +162,119 @@ class BuyController extends Controller
 
       public function Confirmation(Request $request)
       {
-            $invoice = Invoice::find(1);
-            $data['invoiceNo'] = $invoice->content;
-            $data['productName'] = $request->productName;
-            $data['name'] = $request->name;
-            $data['email'] = $request->email;
-            $amount = $request->amount;
-            $data['amount'] = 104 / 100 * $amount;
-            $invoice1 = ($invoice->content) + 1;
+            $now = Carbon::now();
+        $orderNo = 'werewtr12323';
+        $request = [
+            "apiRequest" => [
+                "requestMessageID" =>'132323',
+                "requestDateTime" => $now->utc()->format('Y-m-d\TH:i:s.v\Z'),
+                "language" => "en-US",
+            ],
+            "officeId" => "DEMOOFFICE",
+            "orderNo" => $orderNo,
+            "productDescription" => "desc for '$orderNo'",
+            "paymentType" => "CC",
+            "paymentCategory" => "ECOM",
+            "creditCardDetails" => [
+                "cardNumber" => "4706860000002325",
+                "cardExpiryMMYY" => "1225",
+                "cvvCode" => "761",
+                "payerName" => "Demo Sample"
+            ],
+            "storeCardDetails" => [
+                "storeCardFlag" => "N",
+                "storedCardUniqueID" => "{{guid}}"
+            ],
+            "installmentPaymentDetails" => [
+                "ippFlag" => "N",
+                "installmentPeriod" => 0,
+                "interestType" => null
+            ],
+            "mcpFlag" => "N",
+            "request3dsFlag" => "N",
+            "transactionAmount" => [
+                "amountText" => "000000100000",
+                "currencyCode" => "THB",
+                "decimalPlaces" => 2,
+                "amount" => 1000
+            ],
+            "notificationURLs" => [
+                "confirmationURL" => "http://example-confirmation.com",
+                "failedURL" => "http://example-failed.com",
+                "cancellationURL" => "http://example-cancellation.com",
+                "backendURL" => "http://example-backend.com"
+            ],
+            "deviceDetails" => [
+                "browserIp" => "1.0.0.1",
+                "browser" => "Postman Browser",
+                "browserUserAgent" => "PostmanRuntime/7.26.8 - not from header",
+                "mobileDeviceFlag" => "N"
+            ],
+            "purchaseItems" => [
+                [
+                    "purchaseItemType" => "ticket",
+                    "referenceNo" => "2322460376026",
+                    "purchaseItemDescription" => "Bundled insurance",
+                    "purchaseItemPrice" => [
+                        "amountText" => "000000100000",
+                        "currencyCode" => "THB",
+                        "decimalPlaces" => 2,
+                        "amount" => 1000
+                    ],
+                    "subMerchantID" => "string",
+                    "passengerSeqNo" => 1
+                ]
+            ],
+            "customFieldList" => [
+                [
+                    "fieldName" => "TestField",
+                    "fieldValue" => "This is test"
+                ]
+            ]
+        ];
 
-            $invoice->update(['content' => $invoice1]);
-            // dd($data);
-            return view('frontend.confirmpayment', $data);
+        $stringRequest = json_encode($request);
+
+        //third-party http client https://github.com/guzzle/guzzle
+        $url = 'api/1.0/Payment/NonUi';
+         $header = [
+                'Accept' => 'application/json',
+                'apiKey' => 'e6c5e2756e2e41878c852bce8d208632',
+                'Content-Type' => 'application/json; charset=utf-8'
+         ];
+        
+
+  
+$post_data = json_encode($request);
+  
+// Prepare new cURL resource
+$crl = curl_init('https://example.com/api/user');
+curl_setopt($crl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($crl, CURLINFO_HEADER_OUT, true);
+curl_setopt($crl, CURLOPT_POST, true);
+curl_setopt($crl, CURLOPT_POSTFIELDS, $post_data);
+  
+// Set HTTP Header for POST request 
+curl_setopt($crl, CURLOPT_HTTPHEADER, $header);
+  
+// Submit the POST request
+$result = curl_exec($crl);
+  
+// handle curl error
+if ($result === false) {
+    // throw new Exception('Curl error: ' . curl_error($crl));
+    //print_r('Curl error: ' . curl_error($crl));
+    $result_noti = 0; die();
+} else {
+
+    $result_noti = 1; die();
+}
+// Close cURL session handle
+curl_close($crl);
+
+        dd($result);
+
+
       }
 
 

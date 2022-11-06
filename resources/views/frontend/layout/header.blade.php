@@ -49,7 +49,7 @@ $website = DB::table('websites')->first();
                 </div>
             </div>
             <div class="col-md-2 text-right">
-                <a class="btn btn-primary btn-xs mt-1 " href="#" data-bs-toggle="modal"
+                <a class="btn btn-primary btn-xs mt-1 click_to_get_quick_trip" href="#" data-bs-toggle="modal"
                     data-bs-target="#quickTrip">
                     Quick Trip
                 </a>
@@ -253,172 +253,11 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
 @endphp
 
 
-<div class="modal fade quick-trip-modal" id="quickTrip" tabindex="-1" role="dialog" aria-labelledby="quickTripLabel"
+<div class="modal fade " id="quickTrip" tabindex="-1" role="dialog" aria-labelledby="quickTripLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="quickTripLabel">Quick Trip</h5>
-                <a class="close text-dark text-decoration-none" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-times fa-2x"></i></span>
-                </a>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs quick_trips_carousel owl-carousel px-5" id="myTab" role="tablist">
-
-    
-                    @foreach ($categories_place as $key => $quick_trip)
-                        <li class="nav-item">
-                            <a class="nav-link {{ $key == 0 ? 'active' : '' }}" id="place-{{ $quick_trip->id }}-tab"
-                                data-bs-toggle="tab" href="#place-{{ $quick_trip->id }}" role="tab"
-                                aria-controls="place-{{ $quick_trip->id }}"
-                                aria-selected="true">
-                            @php
-                                $ex=explode(' ',$quick_trip->name )
-                            @endphp
-                                  {{ $ex[0]}}
-                                  @if(isset($ex[2]))
-                                  {{$ex[2]}}
-                                  @elseif(isset($ex[1])) 
-                                  {{$ex[1]}}
-          
-                                  @endif
-                        </a>
-                        </li>
-                    @endforeach
-
-
-                    @foreach ($quick_trips as $key => $quick_trip)
-                        <li class="nav-item">
-                            <a class="nav-link" id="cat-{{ $quick_trip->id }}-tab"
-                                data-bs-toggle="tab" href="#cat-{{ $quick_trip->id }}" role="tab"
-                                aria-controls="cat-{{ $quick_trip->id }}"
-                                aria-selected="true">  @php
-                                $ex=explode(' ',$quick_trip->name )
-                            @endphp
-                         {{ $ex[0]}}
-                         @if(isset($ex[2]))
-                         {{$ex[2]}}
-                         @elseif(isset($ex[1])) 
-                         {{$ex[1]}}
- 
-                         @endif
-                        </a>
-                        </li>
-                    @endforeach
-                    
-                    @foreach ($destination_not_nepal as $key => $destination_not_nepa)
-                        <li class="nav-item">
-                            <a class="nav-link" id="dest-{{ $destination_not_nepa->id }}-tab" data-bs-toggle="tab"
-                                href="#dest-{{ $destination_not_nepa->id }}" role="tab"
-                                aria-controls="dest-{{ $destination_not_nepa->id }}"
-                                aria-selected="true">{{ $destination_not_nepa->name }}</a>
-                        </li>
-                    @endforeach
-
-                </ul>
-
-                <div class="tab-content" id="myTabContent">
-                    @foreach ($categories_place as $key => $quick_trip)
-                    <div class="tab-pane fade {{ $key == 0 ? 'show active' : '' }}"
-                        id="place-{{ $quick_trip->id }}" role="tabpanel"
-                        aria-labelledby="place-{{ $quick_trip->id }}-tab">
-                        <table class="table table-bordered text-center">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Trip Id</th>
-                                    <th scope="col">Trip Name</th>
-                                    <th scope="col">Trip Length</th>
-                                    <th scope="col">Trip Cost</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($quick_trip->packages()->where('status', 1)->orderBy('name')->get() as $quickpackage)
-                                    <tr>
-                                        <td>{{ $quickpackage->trip_id }}</td>
-                                        <td><a
-                                                href="{{ route('package.detail', ['url' => $quickpackage->url]) }}">{{ $quickpackage->name }}</a>
-                                        </td>
-                                        <td>{{ $quickpackage->duration }} </td>
-                                        <td>US ${{ $quickpackage->price }} </td>
-                                        <td><a href="{{ route('booknow', ['url' => $quickpackage->url]) }}"
-                                                class="btn  btn-primary btn-sm">Book now</a>
-                                            {{-- <a class="btn btn-sample2 btn-sm" href="#">Join Group</a> --}}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endforeach
-
-
-                    @foreach ($quick_trips as $key => $quick_trip)
-                        <div class="tab-pane fade {{ $key == 0 ? '' : '' }}"
-                            id="cat-{{ $quick_trip->id }}" role="tabpanel"
-                            aria-labelledby="cat-{{ $quick_trip->id }}-tab">
-                            <table class="table table-bordered text-center">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Trip Id</th>
-                                        <th scope="col">Trip Name</th>
-                                        <th scope="col">Trip Length</th>
-                                        <th scope="col">Trip Cost</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($quick_trip->packages()->where('status', 1)->orderBy('name')->get() as $quickpackage)
-                                        <tr>
-                                            <td>{{ $quickpackage->trip_id }}</td>
-                                            <td><a
-                                                    href="{{ route('package.detail', ['url' => $quickpackage->url]) }}">{{ $quickpackage->name }}</a>
-                                            </td>
-                                            <td>{{ $quickpackage->duration }} </td>
-                                            <td>US ${{ $quickpackage->price }} </td>
-                                            <td><a href="{{ route('booknow', ['url' => $quickpackage->url]) }}"
-                                                    class="btn  btn-primary btn-sm">Book now</a>
-                                                {{-- <a class="btn btn-sample2 btn-sm" href="#">Join Group</a> --}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @endforeach
-                    @foreach ($destination_not_nepal as $key => $destination_not_nepa)
-                        <div class="tab-pane fade" id="dest-{{ $destination_not_nepa->id }}" role="tabpanel"
-                            aria-labelledby="dest-{{ $destination_not_nepa->id }}-tab">
-                            <table class="table table-bordered text-center">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Trip Id</th>
-                                        <th scope="col">Trip Name</th>
-                                        <th scope="col">Trip Length</th>
-                                        <th scope="col">Trip Cost</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($destination_not_nepa->packages()->where('status', 1)->orderBy('name')->get() as $quickpackage1)
-                                        <tr>
-                                            <td>{{ $quickpackage1->trip_id }}</td>
-                                            <td><a href="{{ route('package.detail', ['url' => $quickpackage1->url]) }}">{{ $quickpackage1->name }}</a></td>
-                                            <td>{{ $quickpackage1->duration }} days</td>
-                                            <td>US ${{ $quickpackage1->price }} </td>
-                                            <td><a href="{{ route('booknow', ['url' => $quickpackage1->url]) }}"
-                                                    class="btn btn-primary btn-sm">Book now</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @endforeach
-
-                </div>
-            </div>
+    <div class="modal-dialog modal-xl " role="document">
+        <div class="modal-content quick-trip-modal">
+            
         </div>
     </div>
 </div>
@@ -440,5 +279,16 @@ element.classList.remove('active')
 });
             $(this).addClass('active')
         })
+
+        $('.click_to_get_quick_trip').click(function(){
+            $.ajax({
+                url:'{{url('load-quick-trip')}}',
+                success:function(res){
+                  $('.quick-trip-modal').html(res)
+                }
+            })
+        })
     </script>
+
+    
 @endpush

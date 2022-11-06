@@ -57,5 +57,19 @@
 
 	Route::post('subscribe/store','ContactController@subscribeStore')->name('subscribe.store');
 
-	Route::get('sitemap.xml','SiteMapController@siteMap');
+// 	Route::get('sitemap.xml','SiteMapController@siteMap');
+	
+		Route::get('itinerary/{id?}/{d?}',function(){
+		    return redirect('https://nepalvisiontreks.com/package-category/trekking');
+		});
+
+		Route::get('load-quick-trip',function(){
+		   return view('frontend.template.quick_trip');
+		});
+		
+
+		Route::get('blog/{assa}',function(){
+		    return redirect()->route('blog');
+		});
+
 

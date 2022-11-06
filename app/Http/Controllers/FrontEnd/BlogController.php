@@ -19,7 +19,10 @@ public function index(){
 
          
 public function show($url){
-     $blog=Blog::orderBy('ID','desc')->where('post_status','publish')->where('url',$url)->first();
+     $blog=Blog::orderBy('ID','desc')->where('post_status','publish')->orwhere('ID',$url)->where('url',$url)->first();
+     if (!$blog) {
+        return redirect('/blogs');
+     }
      $mores=Blog::where('post_status','publish')->inRandomOrder()->where('post_title','!=',null)->limit(5)->get();
        $next=Blog::where('post_status','publish')->inRandomOrder()->where('post_title','!=',null)->first();
        $prev=Blog::where('post_status','publish')->inRandomOrder()->where('post_title','!=',null)->first();

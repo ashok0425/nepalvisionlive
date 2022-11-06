@@ -35,6 +35,7 @@ color: #fff!important;
 
 
 }
+
 .border_bottom{
 border-bottom: 2px solid rgb(99, 99, 99);
 }
@@ -113,9 +114,9 @@ border-bottom: 2px solid rgb(99, 99, 99);
 <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2 d-block d-md-none">
   <div class="row">
     <div class="col-md-8">
-  <h2 class="custom-fs-18">All inclusive cost</h2>
-  <h2 class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
-    {{$package->discounted_price?$package->discounted_price:$package->price}}</strong> <sub>per person</sub></h2>
+  <strong class="custom-fs-18">All inclusive cost</strong>
+  <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
+    {{$package->discounted_price?$package->discounted_price:$package->price}}</strong> <sub>per person</sub></strong>
     <div>
        
     </div>
@@ -169,6 +170,8 @@ border-bottom: 2px solid rgb(99, 99, 99);
     <form action="{{ route('enquery.post') }}" method="post">
       {{ csrf_field() }}
       <input type="hidden"  value="{{ $package->id }}" name="booking">
+      <input type="hidden"  value="{{ $package->name }}" name="package_name">
+
       <input type="hidden"  value="1" name="no_participants">
       <input type="hidden"  value="1" name="agent">
       <input type="hidden"  value="{{date('d-m-Y')}}" name="expected_date">
@@ -213,19 +216,32 @@ border-bottom: 2px solid rgb(99, 99, 99);
                         <div class="head  ">
                                 <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
                                     <li class="nav-item " role="presentation">
-                                      <a class="nav-link active " id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><i class="fas fa-binoculars"></i> Overview</a>
+                                      <a class="nav-link active " id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"> Overview 
+
+                                        <i class="fas fa-binoculars"></i>
+                                      </a>
                                     </li>
                                     <li class="nav-item " role="presentation">
-                                      <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><i class="fas fa-map-marker"></i> Itinerary</a>
+                                      <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"> Itinerary
+
+                                        <i class="fas fa-map-marker"></i>
+                                      </a>
                                     </li>
 
                                     <li class="nav-item " role="presentation">
-                                        <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab" href="#dateprice" role="tab" aria-controls="dateprice" aria-selected="false"><i class="fas fa-calendar"></i> Departure Date</a>
+                                        <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab" href="#dateprice" role="tab" aria-controls="dateprice" aria-selected="false">
+                                          
+                                          Departure Date
+                                          <i class="fas fa-calendar"></i> 
+                                        </a>
                                       </li>
 
                                      @if (!empty($package->faq))
                                     <li class="nav-item " role="presentation">
-                                      <a class="nav-link  font-weight-700 " id="faq-tab" data-bs-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false"><i class="fas fa-question"></i> Faq</a>
+                                      <a class="nav-link  font-weight-700 " id="faq-tab" data-bs-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false">
+                                      Faq
+                                      <i class="fas fa-question"></i>
+                                    </a>
                                     </li>
                                     @endif
 
@@ -233,30 +249,28 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                                     @if (!empty($package->useful_info))
                                     <li class="nav-item " role="presentation">
-                                      <a class="nav-link  font-weight-700 " id="useful-tab" data-bs-toggle="tab" href="#useful" role="tab" aria-controls="useful" aria-selected="false"><i class="fas fa-info-circle"></i> Useful Info</a>
+                                      <a class="nav-link  font-weight-700 " id="useful-tab" data-bs-toggle="tab" href="#useful" role="tab" aria-controls="useful" aria-selected="false">
+                                         Useful Info
+                                         <i class="fas fa-info-circle"></i>
+                                        </a>
                                     </li>
                                     @endif
 
                                     
                                     @if (!empty($package->equiment))
                                     <li class="nav-item " role="presentation">
-                                      <a class="nav-link  font-weight-700 " id="equiment-tab" data-bs-toggle="tab" href="#equiment" role="tab" aria-controls="equiment" aria-selected="false"><i class="fab fa-wrench"></i>Equiment</a>
+                                      <a class="nav-link  font-weight-700 " id="equiment-tab" data-bs-toggle="tab" href="#equiment" role="tab" aria-controls="equiment" aria-selected="false">Equiment
+
+                                        <i class="fab fa-wrench"></i>
+                                      </a>
                                     </li>
                                     @endif
                                    
                                     <li class="nav-item " role="presentation">
-                                        <a class="nav-link  font-weight-700 " id="review-tab" data-bs-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false"> <i class="fas fa-comment"></i> Review</a>
+                                        <a class="nav-link  font-weight-700 " id="review-tab" data-bs-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false"> Review
+                                          <i class="fas fa-comment"></i>
+                                        </a>
                                       </li>
-
-
-
-
-
-
-
-
-
-
 
                                   </ul>
                         </div>
@@ -296,7 +310,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                         <div class="tab-pane fade card-body" id="datePrice" role="tabpanel" aria-labelledby="datePrice-tab">
 
-                            <h2 class="mt-2">Departure dates for {{ $package->name }}</h2>
+                            <strong class="mt-2">Departure dates for {{ $package->name }}</strong>
 
                             <p>We provide a series of fixed departure trek, tour and expeditions in Nepal, Bhutan, Tibet and India. If you are single and wishing to be with a group, you can join our fixed departure schedule. If the schedule dates are not convenient for you, contact us & let us know; we are more than happy to customize our trips to suit your needs. If any individuals or group doesn’t want to join with our other group, we can operate as per your wish and requirement. We are ground operator of these Himalayan destination and able to arrange your trip as per your interested date and choice.</p>
 
@@ -411,8 +425,8 @@ border-bottom: 2px solid rgb(99, 99, 99);
                         <div class="tab-pane card-body fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <h2 class="custom-text-primary custom-fs-20">Traveller's Reviews
-                                </h2>
+                                <strong class="custom-text-primary custom-fs-20">Traveller's Reviews
+                                </strong>
                             </div>
                                 <div class="col-md-3 offset-md-3 text-right">
 
@@ -502,9 +516,9 @@ border-bottom: 2px solid rgb(99, 99, 99);
 <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2 d-none d-md-block">
   <div class="row">
     <div class="col-md-8">
-  <h2 class="custom-fs-18">All inclusive cost</h2>
-  <h2 class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
-    {{$package->discounted_price?$package->discounted_price:$package->price}}</strong> <sub>per person</sub></h2>
+  <strong class="custom-fs-18">All inclusive cost</strong>
+  <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
+    {{$package->discounted_price?$package->discounted_price:$package->price}}</strong> <sub>per person</sub></strong>
     <div>
        
     </div>
@@ -558,6 +572,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
       <form action="{{ route('enquery.post') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden"  value="{{ $package->id }}" name="booking">
+        <input type="hidden"  value="{{ $package->name }}" name="package_name">
         <input type="hidden"  value="1" name="no_participants">
         <input type="hidden"  value="1" name="agent">
         <input type="hidden"  value="{{date('d-m-Y')}}" name="expected_date">
@@ -613,13 +628,12 @@ border-bottom: 2px solid rgb(99, 99, 99);
 @endif --}}
                    
             <div class="my-1 mx-1 ">
-                <a href="#"class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#customize">
-                    {{-- <i class="fa fa-recycle"></i>  
-                   &nbsp; --}}
+                <a href="#"class=" btn btn-primary  text-decoration-none text-light  d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#customize">
+                
                     Customize</a>
             </div>
             <div class="my-1 mx-1">
-                <a href="{{ route('print',$package->id) }}" class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center">
+                <a href="{{ route('print',$package->id) }}" class=" btn btn-primary   text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center">
                     {{-- <i class="fa fa-print"></i>  
                    &nbsp; --}}
                     Print </a>
@@ -627,10 +641,10 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
 
             <div class="my-1 mx-1">
-                <a href="" class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center copy_link">
+                <a href="" class=" btn btn-primary   text-decoration-none text-light  d-flex align-items-center justify-content-center copy_link">
                     {{-- <i class="fa fa-copy"></i>  
                    &nbsp; --}}
-                    Copy Link</a>
+                    Copy </a>
             </div>
          
         </div>
@@ -644,7 +658,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                             @if (!empty($package->duration))
                                 
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Duration</h2>
+                                <strong class='my-0 py-0'>Duration</strong>
                                <p class='my-0 py-0'>{{ $package->duration }} </p>
                             </div>
                             @endif
@@ -653,13 +667,13 @@ border-bottom: 2px solid rgb(99, 99, 99);
                             @if (!empty($package->activity))
 
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Trip Type</h2>
+                                <strong class='my-0 py-0'>Trip Type</strong>
                                <p class='my-0 py-0'>{{$package->activity }}</p>
                             </div>
                             @endif
                             @if (!empty($package->difficulty))
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Difficuilty</h2>
+                                <strong class='my-0 py-0'>Difficuilty</strong>
                                <p class='my-0 py-0'>
                                {{$package->difficulty}}
                                 </p>
@@ -669,7 +683,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                             @if (!empty($package->meals))
 
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Meal & Accommodation</h2>
+                                <strong class='my-0 py-0'>Meal & Accommodation</strong>
                                <p class='my-0 py-0'>              
                                  {{$package->meals}}
                                 </p>
@@ -679,7 +693,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                             @if (!empty($package->group_size))
 
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Group Size</h2>
+                                <strong class='my-0 py-0'>Group Size</strong>
                                <p class='my-0 py-0'>                      
                                         {{$package->group_size}}
                                 </p>
@@ -689,7 +703,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                             @if (!empty($package->transport))
 
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Transport</h2>
+                                <strong class='my-0 py-0'>Transport</strong>
                                <p class='my-0 py-0'>                      
                                         {{$package->transport}}
                                 </p>
@@ -699,7 +713,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                             @if (!empty($package->arrival))
 
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Arrival On</h2>
+                                <strong class='my-0 py-0'>Arrival On</strong>
                                <p class='my-0 py-0'>                      
                                         {{$package->arrival}}
                                 </p>
@@ -709,7 +723,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                             @if (!empty($package->departure_from))
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Departure From</h2>
+                                <strong class='my-0 py-0'>Departure From</strong>
                                <p class='my-0 py-0'>                      
                                         {{$package->departure_from}}
                                 </p>
@@ -719,7 +733,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                             @if (!empty($package->operation))
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Operation</h2>
+                                <strong class='my-0 py-0'>Operation</strong>
                                <p class='my-0 py-0'>                      
                                         {{$package->operation}}
                                 </p>
@@ -728,7 +742,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                             @if (!empty($package->route_detail))
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Route Detail</h2>
+                                <strong class='my-0 py-0'>Route Detail</strong>
                                <p class='my-0 py-0'>                      
                                         {{$package->route_detail}}
                                 </p>
@@ -738,7 +752,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                             @if (!empty($package->best_month))
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Best Month</h2>
+                                <strong class='my-0 py-0'>Best Month</strong>
                                <p class='my-0 py-0'>                      
                                         {{$package->best_month}}
                                 </p>
@@ -748,7 +762,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                         
 
                             <div class="col-12 py-2">
-                                <h2 class='my-0 py-0'>Review</h2>
+                                <strong class='my-0 py-0'>Review</strong>
                                <p class='my-0 py-0'>
                                 <div class="rating">
                                     @for ($i=1;$i<=$package->rating;$i++)
@@ -768,7 +782,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                             <div class="col-12 py-2">
 
-                                <h2 class='my-0 py-0'> Price</h2>
+                                <strong class='my-0 py-0'> Price</strong>
                                <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
                            US <span class="text-danger "><s>${{ $package->price }}</s> </span>
                                
@@ -778,7 +792,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                             @else   
                         <div class="col-12 py-2">
 
-                            <h2 class='my-0 py-0'>Price</h2>
+                            <strong class='my-0 py-0'>Price</strong>
 
                              <span class="custom-text-primary">
 <strong class="text-dark custom-fs-25 custom-fw-700">
@@ -809,7 +823,7 @@ US ${{ $package->price }}
 
 {{-- we accept section start --}}
                     <div class="my-2 mx-md-4 card">
-                       <h2 class="custom-bg-primary text-white custom-fs-19 py-2 px-2"> We Accept</h2>
+                       <strong class="custom-bg-primary text-white custom-fs-19 py-2 px-2"> We Accept</strong>
                        <div class="p-2">
                         <img src="{{asset('weaccept.webp')}}" alt="we accept" class="img-fluid">
                        </div>
@@ -856,7 +870,7 @@ WhatsApp (24/7): <strong class="custom-text-primary">
     <section class="packages">
         <div class="container">
             <div class="heading my-5">
-                <h2 class='my-0 py-0'>Featured Packages</h2>
+                <h2 class='my-0 py-0 custom-fs-22'>Featured Packages</h2>
             </div>
             <div class="row">
                 @foreach ($features as $packaged)

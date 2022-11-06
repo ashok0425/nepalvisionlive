@@ -42,7 +42,6 @@ class ContactController extends Controller
                   $contact->name = $request->fname.' '.$request->lname;
                   $contact->email = $request->email;
                   $contact->phone = $request->phone;
-
                   $contact->comment = $request->comment;
                   $contact->save();
 
@@ -116,10 +115,10 @@ class ContactController extends Controller
             // $long = $ipdata['location']['latitude'];
             // $lat = $ipdata['location']['longitude'];
             $booking = Booking::create([
-                  'package' => $request->booking,
-                  'date'       => $request->expected_date,
+                  'package' => $request->package_name,
+                  'date'   => $request->expected_date,
                   'source' => $request->source,
-                  'name' => $request->name,
+                  'name'  => $request->name,
                   'agent' => $request->agent,
                   'email' => $request->email,
                   'phone' => $request->phone,
@@ -127,11 +126,7 @@ class ContactController extends Controller
                   'type' => 'enquiry',
                   'no_traveller' => $request->no_participants,
                   'country' => $request->country,
-                  'expected_date' => $request->expected_date,
-                  // 'longitude' => $long,
-                  // 'latitude' => $lat,
-                  // 'actual_country' => $country,
-                  // 'actual_place' => $city,
+                  'expected_date' => $request->expected_date
             ]);
             $agent = DB::connection('mysql2')->table('users')->where('id', $request->agent)->first()->name;
             $data = [
