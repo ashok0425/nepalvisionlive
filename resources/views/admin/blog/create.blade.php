@@ -128,9 +128,24 @@
 
             <div class=" col-md-12">
                 <label class="form-label"> Meta Description</label>
-             <textarea name="meta_description" id="" class="form-control" rows="2" placeholder="Meta Description">
-                {{old('meta_description')}}
-             </textarea>
+           
+             <input type="text" name="meta_description" class="form-control" value="{{old('meta_description')}}">
+            </div>
+
+            <div class=" col-md-6">
+                <label class="form-label">Mobile Meta Keyword</label>
+             <input name="mobile_keyword"   class='form-control' value=' {{ old('mobile_keyword') }}' type='text' placeholder="Mobile Keyword">
+            </div>
+
+            <div class=" col-md-6">
+                <label class="form-label">Mobile Meta Title</label>
+             <input name="mobile_title"   class='form-control' value=' {{ old('meta_title') }}' type='text' placeholder="Mobile Meta  Title">
+            </div>
+
+            <div class=" col-md-12">
+                <label class="form-label">Mobile Meta Description</label>
+           
+             <input type="text" name="mobile_description" class="form-control" value="{{old('mobile_description')}}">
             </div>
            
             <button type="submit" class="btn btn-primary btn-block mt-2">Save</button>

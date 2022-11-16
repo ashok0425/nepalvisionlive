@@ -1,6 +1,7 @@
 @extends('frontend.layout.master')
 @php
-    define('PAGE','destination')
+    define('PAGE','destination');
+    $num=rand(1,7);
 @endphp
 
 
@@ -12,7 +13,7 @@ Book Now | Nepal Vision Treks
 Book Now | Nepal Vision Treks
 @endsection
 @section('content')
-<x-page-header title="Book Now" route=""  />
+<x-page-header title="Book Now" route=""  :img="getimageUrl('banners/'.$num.'.webp')"/>
 
 <section class="booking mt-4">
     <div class="container">

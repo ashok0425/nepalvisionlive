@@ -30,7 +30,7 @@
                   @foreach($blogs as $blog)
                     <tr id="{{ $blog->id }}">
                         <td>
-                            <img src="{{ asset($blog->guid) }}" width="80">
+                            <img src="{{ getimageUrl($blog->guid) }}" width="80">
                         </td>
                         <td>{{ $blog->post_title }}</td>
                         <td>{!! Str::limit(strip_tags($blog->post_content), 100, '...') !!}</td>

@@ -13,7 +13,8 @@
 {{Request::url()}}
 @endsection
 @php
-    define('PAGE','about')
+    define('PAGE','about');
+    $num=rand(1,7);
 @endphp
 <style>
     .articel2 .row{
@@ -25,7 +26,7 @@
      }
 </style>
 @section('content')
-<x-page-header :title="$data->title" :route="route('cms.detail',['page'=>$page])"  :img="asset('about.jpg')"/>
+<x-page-header :title="$data->title" :route="route('cms.detail',['page'=>$page])" :img="getimageUrl('banners/'.$num.'.webp')"/>
 
     <section class="articel2 ">
         <div class="container">

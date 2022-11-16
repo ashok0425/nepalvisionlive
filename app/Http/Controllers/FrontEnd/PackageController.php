@@ -29,7 +29,7 @@ class PackageController extends Controller
 }
 
  public function category($url) {
-  $data = CategoryDestination::where('url',$url)->where('id',$url)->first();
+  $data = CategoryDestination::where('url',$url)->orwhere('id',$url)->first();
 if(!$data){
     abort(404);
 }
@@ -179,7 +179,7 @@ foreach($packages as $package){
          $data.=" <img src='". asset('frontend/assets/tour-1.png')."' alt='' class='img-fluid w-100 w-100'>";
         }
         else {
-         $data.="<img src='". asset($package->banner)."' alt='".$package->name."' class='img-fluid w-100'>";
+         $data.="<img src='". getimageUrl($package->banner)."' alt='".$package->name."' class='img-fluid w-100'>";
          }
            
          $data.=" </div>

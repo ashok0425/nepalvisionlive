@@ -14,15 +14,16 @@
 {{Request::url()}}
 @endsection
 @php
-    define('PAGE','about')
+    define('PAGE','about');
+    $num=rand(1,7);
 @endphp
 @section('content')
-<x-page-header :title="$data->title" :route="route('cms.detail',['page'=>$data->url])"  :img="asset('about.jpg') "/>
+<x-page-header :title="$data->title" :route="route('cms.detail',['page'=>$data->url])"  :img="getimageUrl('banners/'.$num.'.webp')"/>
     <section class="articel2">
         <div class="container">
             <div class="row my-5">
                 <div class="col-lg-6">
-                    <img src="{{ asset($data->image)}}" class="img-fluid" alt="{{ $data->title }}" >
+                    <img src="{{ getimageUrl($data->image)}}" class="img-fluid" alt="{{ $data->title }}" >
                  </div>
                 <div class="col-lg-6">
                     <div class="right-artile ps-lg-4">
@@ -64,7 +65,7 @@
               @else 
               order-1
 
-                @endif"> <img src="{{ asset($child->image)}}" class="img-fluid" alt="" srcset=""></div>
+                @endif"> <img src="{{ getimageUrl($child->image)}}" class="img-fluid" alt="" srcset=""></div>
         </div>
           @endforeach
             

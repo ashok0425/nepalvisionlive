@@ -52,6 +52,9 @@ class SettingController extends Controller
                 $web->title=$request->title;
                 $web->keyword=$request->keyword;
                 $web->descr=$request->descr;
+                $web->mobile_title=$request->mobile_title;
+                $web->mobile_keyword=$request->mobile_keyword;
+                $web->mobile_description=$request->mobile_description;
                 $web->email=$request->email;
                 $web->phone=$request->phone;
                 $web->address=$request->address;

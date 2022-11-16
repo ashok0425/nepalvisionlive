@@ -53,7 +53,7 @@
             <div class="form-group col-md-6">
                 <label >Select Image</label>
            <input type="file" class="form-control" name="file" >
-           <img src="{{ asset($testimonial->image) }}" alt="{{ $testimonial->name }}"  width="100">
+           <img src="{{ getimageUrl($testimonial->image) }}" alt="{{ $testimonial->name }}"  width="100">
             </div>
 
             <div class="form-group col-md-6">

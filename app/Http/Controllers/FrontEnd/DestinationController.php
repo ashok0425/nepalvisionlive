@@ -109,7 +109,7 @@ $data='';
             $data.=" <img src='". asset('frontend/assets/tour-1.png')."' alt='' class='img-fluid w-100 w-100'>";
            }
            else {
-            $data.="<img src='". asset($package->banner)."' alt='".$package->name."' class='img-fluid w-100'>";
+            $data.="<img src='". getimageUrl($package->banner)."' alt='".$package->name."' class='img-fluid w-100'>";
             }
               
             $data.=" </div>

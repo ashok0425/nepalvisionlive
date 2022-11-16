@@ -302,6 +302,12 @@
                                   </div>
 
                             </div>
+
+                            <div class="col-md-6">
+                                <label >Map Title</label>
+                             <input type="text" name="map_title" id="" class="form-control" value="{{old('map_title')}}">
+
+                            </div>
                         </div>
                         {{-- <div class="row">
                             <div class="col-md-12">
@@ -406,24 +412,43 @@
                         </div>
                 </div>
                 <div role="tabcard" class="tab-pane" id="seo">
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="form-group col-md-6">
                        
                         <label >Meta Title</label>
                         <input type="text" name="page_title"  class="form-control">
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group  col-md-6">
                         <label >Meta Keyword</label>
-                        <input type="text" name="meta_keywords"  class="form-control">
+                        <input type="text" name="meta_keywords"  class="form-control" >
                     </div>
-                    <div class="form-group">
-                        <label >Author</label>
-                        <input type="text" name="met_author"  class="form-control">
+                    <div class="form-group  col-md-6">
+                        <label >Meta Author</label>
+                        <input type="text" name="meta_author"  class="form-control" >
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group col-12 ">
                         <label >Meta Description</label>
-
-                        <textarea name="meta_description"  cols="30" rows="5" class="form-control" ></textarea>
+                        <input type="text"  name="meta_description" class="form-control">
                     </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                       
+                        <label >Mobile Meta Title</label>
+                        <input type="text" name="mobile_meta_title"  class="form-control" >
+                    </div>
+                    <div class="form-group  col-md-6">
+                        <label >Mobile Meta Keyword</label>
+                        <input type="text" name="mobile_meta_keyword"  class="form-control" >
+                    </div>
+                   
+                    <div class="form-group col-md-12">
+                        <label >Mobile Meta Description</label>
+                        <input type="text"  name="mobile_meta_description" class="form-control">
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

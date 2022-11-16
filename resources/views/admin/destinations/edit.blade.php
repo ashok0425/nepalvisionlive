@@ -22,8 +22,8 @@
             <div class="form-group col-md-6">
                 <label >Select Image</label>
            <input type="file" class="form-control" name="file" placeholder="Destination Image">
-           <a href="{{ asset($destination->image) }}" download="destination"  rel="noreferrer"  target="_blank">
-           <img src="{{ asset($destination->image) }}" alt="{{ asset($destination->name) }}" width="100">
+           <a href="{{ getimageUrl($destination->image) }}" download="destination"  rel="noreferrer"  target="_blank">
+           <img src="{{ getimageUrl($destination->image) }}" alt="{{ getimageUrl($destination->name) }}" width="100">
 
            </a>
             </div>

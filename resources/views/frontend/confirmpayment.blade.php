@@ -1,6 +1,7 @@
 @extends('frontend.layout.master') 
 @php
-    define('PAGE','destination')
+    define('PAGE','destination');
+	$num=rand(1,7);
 @endphp
 @section('content')
 <section class="pay">

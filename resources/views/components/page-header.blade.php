@@ -1,5 +1,6 @@
 <div>
     <section class="hero2">
+        
         @if (empty($img))
             
         <img data-src="{{ asset('frontend/assets/hero4.webp')}}" class="lazy" alt="cover image" width="2000" height="300">

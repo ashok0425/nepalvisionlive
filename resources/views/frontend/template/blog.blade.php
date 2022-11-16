@@ -25,8 +25,8 @@ $blogs = Cache::remember('blogs', 604800, function()
                 <div class="post-card-1 card">
                     <a href="{{ route('blog.detail',['url'=>$blog->url]) }}">
                     <div class="img-container">
-                        @if ($blog->guid!=null && file_exists($blog->guid))
-                        <img data-src="{{ asset($blog->guid)}}"  class="img-fluid w-100 lazy" alt="{{$blog->post_title}}" width="200" height="200">
+                        @if ($blog->guid!=null)
+                        <img data-src="{{ getimageUrl($blog->guid)}}"  class="img-fluid w-100 lazy" alt="{{$blog->post_title}}" width="200" height="200">
                        
                         @else 
                         <img src="{{ asset('frontend/assets/recent-post.png')}}" alt="{{$blog->post_title}}" class="img-fluid"  alt="{{$blog->post_title}}" width="100%" height="100%">

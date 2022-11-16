@@ -305,7 +305,7 @@
                                     <img src="" class="image-preview1">
     
                                   </div>
-                                  <img src="{{ asset($package->banner) }}" class="image-fluid" width="100">
+                                  <img src="{{ getimageUrl($package->banner) }}" class="image-fluid" width="100">
 
                             </div>
                             <div class="col-md-6">
@@ -316,7 +316,7 @@
                                     <img src="" class="image-preview2">
     
                                   </div>
-                                  <img src="{{ asset($package->thumbnail) }}" class="image-fluid" width="100">
+                                  <img src="{{ getimageUrl($package->thumbnail) }}" class="image-fluid" width="100">
 
                             </div>
 
@@ -328,7 +328,13 @@
                                     <img src="" class="image-preview3">
     
                                   </div>
-                                  <img src="{{ asset($package->routemap) }}" class="image-fluid" width="100">
+                                  <img src="{{ getimageUrl($package->routemap) }}" class="image-fluid" width="100">
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <label >Map Title</label>
+                             <input type="text" name="map_title" id="" class="form-control" value="{{$package->map_title}}">
 
                             </div>
                         </div>
@@ -465,26 +471,43 @@
                 </div>
                 </div>
                 <div role="tabcard" class="tab-pane" id="seo">
-                    <div class="form-group">
+                    <div class="row">
+                    <div class="form-group col-md-6">
                        
                         <label >Meta Title</label>
                         <input type="text" name="page_title"  class="form-control" value="{{ $package->page_title }} ">
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group  col-md-6">
                         <label >Meta Keyword</label>
                         <input type="text" name="meta_keywords"  class="form-control" value="{{ $package->meta_keywords }} ">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group  col-md-6">
                         <label >Meta Author</label>
                         <input type="text" name="meta_author"  class="form-control" value="{{ $package->meta_author }} ">
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group col-12 ">
                         <label >Meta Description</label>
-
-                        <textarea name="meta_description"  cols="30" rows="5" class="form-control" >
-                            {{ $package->meta_description }} 
-                        </textarea>
+                        <input type="text"  value="{{ $package->meta_description }}" name="meta_description" class="form-control">
                     </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                       
+                        <label >Mobile Meta Title</label>
+                        <input type="text" name="mobile_meta_title"  class="form-control" value="{{ $package->mobile_meta_title }} ">
+                    </div>
+                    <div class="form-group  col-md-6">
+                        <label >Mobile Meta Keyword</label>
+                        <input type="text" name="mobile_meta_keyword"  class="form-control" value="{{ $package->mobile_meta_keyword }} ">
+                    </div>
+                   
+                    <div class="form-group col-md-12">
+                        <label >Mobile Meta Description</label>
+                        <input type="text"  value="{{ $package->mobile_meta_description }}" name="mobile_meta_description" class="form-control">
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

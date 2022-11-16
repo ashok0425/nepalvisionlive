@@ -17,7 +17,8 @@ Blog
 
 
 @php
-    define('PAGE','blog')
+    define('PAGE','blog');
+    $num=rand(1,7);
 @endphp
 @section('content')
 <style>
@@ -27,7 +28,7 @@ width: 100%!important;
 
     }
 </style>
-<x-page-header title="Blog" :route="route('blog')"    :img="asset('blog.jpg')"/>
+<x-page-header title="Blog" :route="route('blog')"    :img="getimageUrl('banners/'.$num.'.webp')"/>
 
             <div class="container mt-4">
                 <div class="event-header">
@@ -65,11 +66,11 @@ width: 100%!important;
                 <div class="post-card-1 card">
                     <a href="{{ route('blog.detail',['url'=>$blog->url]) }}">
                     <div class="img-container">
-                        @if ($blog->guid!=null && file_exists($blog->guid))
-                        <img src="{{ asset($blog->guid)}}"  class="img-fluid w-100" alt="{{$blog->post_title  }}">
+                        @if ($blog->guid!=null)
+                        <img src="{{ getimageUrl($blog->guid)}}"  class="img-fluid w-100" alt="{{$blog->post_title  }}">
                        
                         @else 
-                        <img src="{{ asset('frontend/assets/recent-post.png')}}" alt="{{$blog->post_title  }}" class="img-fluid"  >
+                        <img src="{{ getimageUrl('frontend/assets/recent-post.png')}}" alt="{{$blog->post_title  }}" class="img-fluid"  >
                         @endif
                         <div class="date">
                             <span>

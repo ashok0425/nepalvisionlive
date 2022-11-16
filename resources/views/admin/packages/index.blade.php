@@ -29,7 +29,7 @@
                   @foreach($packages as $package)
                     <tr id="{{ $package->id }}">
                         <td>
-                          <a href="{{ asset($package->banner) }}"  rel="noreferrer"  target="_blank" rel="noopener noreferrer">  <img src="{{ asset($package->banner) }}" width="80"></a>
+                          <a href="{{ getimageUrl($package->banner) }}"  rel="noreferrer"  target="_blank" rel="noopener noreferrer">  <img src="{{ getimageUrl($package->banner) }}" width="80"></a>
                         </td>
                         <td>{{ $package->name }}</td>
                         <td>{!! Str::limit(strip_tags($package->overview),140, '...') !!}</td>

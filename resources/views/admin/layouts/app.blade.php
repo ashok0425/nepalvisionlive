@@ -16,13 +16,13 @@
 {{ $setting->title }}
 @endsection
 @section('img')
-{{ asset($setting->image) }}
+{{ getimageUrl($setting->image) }}
 @endsection
 @section('url')
 {{Request::url()}}
 @endsection
 @section('fev')
-{{ asset($setting->fev) }} --}}
+{{ getimageUrl($setting->fev) }} --}}
 
 {{-- @endsection --}}
 <!DOCTYPE HTML>
@@ -277,7 +277,7 @@
 	</script>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/super-build/ckeditor.js"></script>
-<script src="{{asset('ckeditor.js')}}"></script>
+<script src="{{getimageUrl('ckeditor.js')}}"></script>
 
 <script>
   $('#delete_row').click(function(e){

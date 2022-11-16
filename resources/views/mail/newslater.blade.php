@@ -11,7 +11,7 @@
        <br>
 <a href="{{ route('/') }}">
 
-       <img src="{{ asset($page->subscribe_image) }}" alt="">
+       <img src="{{ getimageUrl($page->subscribe_image) }}" alt="">
 </a>
 
 @endsection

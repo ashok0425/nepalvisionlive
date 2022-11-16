@@ -27,6 +27,10 @@
 	Route::any('pay/payment', 'BuyController@getPayment')->name('payment-from-bank');
 	Route::any('pay/payment-response', 'BuyController@getPayment')->name('payment-from-bank-reponse');
 	Route::any('pay-thankyou', 'BuyController@thanku')->name('pay.thanku');
+	Route::any('failed', function(){
+		return "Payment failed";
+	});
+
 
 	Route::get('package/print/{package}','PackageController@printpackage')->name('print');
 

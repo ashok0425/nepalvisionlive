@@ -29,7 +29,7 @@
                   @foreach($categories as $category)
                     <tr id="{{ $category->id }}">
                         <td>
-                            <img src="{{ asset($category->image) }}" width="80">
+                            <img src="{{ getimageUrl($category->image) }}" width="80">
                         </td>
                         <td>{{ $category->name }}</td>
                         <td>{!! Str::limit(strip_tags($category->details), 50, '...') !!}</td>

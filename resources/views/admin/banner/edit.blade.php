@@ -117,7 +117,7 @@
                         <label for="imageInput1" class="image-button"><i class="far fa-image"></i> Choose image</label>
                         <img src="" class="image-preview1">
                   </div>
-                  <img src="{{ asset($banner->image) }}" alt="" width="100">
+                  <img src="{{ getimageUrl($banner->image) }}" alt="" width="100">
             </div>
 
             <div class=" col-md-12">

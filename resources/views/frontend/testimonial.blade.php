@@ -23,9 +23,9 @@
                     <div class="col-md-4">
                        <div class="img card-body ">
                            @if (!empty($review->image))
-                           <img src="{{ asset($review->image) }}" alt="{{ $review->name }}" class="w-75 text-md-center img-thumbnail">
+                           <img src="{{ getimageUrl($review->image) }}" alt="{{ $review->name }}" class="w-75 text-md-center img-thumbnail">
                                @else   
-                           <img src="{{ asset('frontend/assets/footer-img.png') }}" alt="{{ $review->name }}" class=" w-75 text-md-center img-thumbnail">
+                           <img src=" {{ asset('frontend/assets/footer-img.webp') }}" alt="{{ $review->name }}" class=" w-75 text-md-center img-thumbnail">
 
    
                       @endif

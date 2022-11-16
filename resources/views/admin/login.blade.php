@@ -170,7 +170,7 @@ $logo=DB::table('websites')->first();
 			<x-errormsg/>
 			@csrf
 			<header>
-				<img src="{{ asset($logo->image) }}">
+				<img src="{{ getimageUrl($logo->image) }}">
 			</header>
 
 			<div class="inputs">

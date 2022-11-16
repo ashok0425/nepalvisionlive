@@ -21,3 +21,14 @@ $vat_amount=($vat*$total)/100;
 $totalsum=$vat_amount+$total+$shipping;
 return $totalsum;
 }
+
+
+function getimageUrl($path){
+
+    if (env('APP_ENV')=='local') {
+      return  asset($path);
+    }else{
+      return  asset('public/'.$path);
+       
+    }
+}

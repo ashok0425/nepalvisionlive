@@ -7,7 +7,7 @@
         font-size: 19px;
     }
     .bg_img{
-        background:url("{{asset('alp.webp')}}");
+        background:url("{{getimageUrl('alp.webp')}}");
         background-size:cover;
         background-repeat:no-repeat;
         padding: 4rem 1.2rem;
@@ -97,7 +97,7 @@ $destinations=DB::table('destinations')->orderBy('id','desc')->where('status',1)
                                 @if ($destination->image==null)
                                 <img src="{{asset('frontend/product_image_thumbnail_placeholder.webp')}}" data-src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$destination->name  }}" class="img-fluid lazy w-100 w-100" width="200" height="250">
                                 @else 
-                                <img src="{{asset('frontend/product_image_thumbnail_placeholder.webp')}}" alt="{{$destination->name  }}"  data-src="{{ asset($destination->image)}}" class="img-fluid lazy w-100" width="200" height="250">
+                                <img src="{{asset('frontend/product_image_thumbnail_placeholder.webp')}}" alt="{{$destination->name  }}"  data-src="{{ getimageUrl($destination->image)}}" class="img-fluid lazy w-100" width="200" height="250">
                                 @endif
                                
                                 <div class="places">

@@ -111,9 +111,9 @@ a:hover.print{background:#fd7c27;}
 
 .termsMenu a{display:block;float:right;padding:5px 8px 5px 30px;text-decoration:none;color:#ffffff;margin-right:5px;}
 
-.termsMenu a.printlink{background:#f5901a url(../images/print.png) 5px 1px no-repeat}
+/* .termsMenu a.printlink{background:#f5901a url(../images/print.png) 5px 1px no-repeat} */
 
-.termsMenu a.pdflink{background:#f5901a url(../images/pdf.png) 5px 3px no-repeat}
+/* .termsMenu a.pdflink{background:#f5901a url(../images/pdf.png) 5px 3px no-repeat} */
 
 .termsnconditions{padding:0 25px 0 20px;}
 

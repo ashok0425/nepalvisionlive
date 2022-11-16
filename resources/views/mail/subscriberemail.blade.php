@@ -7,7 +7,7 @@
 <br>
 <a href="{{ route('/') }}">
     @if (!empty($email->image))
- <img src="{{ asset($email->image)}}" alt="subscriber image">
+ <img src="{{ getimageUrl($email->image)}}" alt="subscriber image">
         
     @endif
 </a>

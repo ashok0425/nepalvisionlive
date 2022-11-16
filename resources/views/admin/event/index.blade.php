@@ -31,7 +31,7 @@
                   @foreach($events as $event)
                     <tr id="{{ $event->id }}">
                         <td>
-                            <img src="{{ asset($event->image) }}" width="80">
+                            <img src="{{ getimageUrl($event->image) }}" width="80">
                         </td>
                         <td>{{ $event->title }}</td>
                         <td>{!! Str::limit(strip_tags($event->content), 100, '...') !!}</td>

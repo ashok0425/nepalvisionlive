@@ -12,7 +12,7 @@
        <br>
 <a href="{{ route('/') }}">
 
-       <img src="{{ asset($page->contact_image) }}" alt="">
+       <img src="{{ getimageUrl($page->contact_image) }}" alt="">
 
 </a>
 @endsection

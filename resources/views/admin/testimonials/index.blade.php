@@ -29,7 +29,7 @@
                   @foreach($testimonials as $testimonial)
                     <tr id="{{ $testimonial->id }}">
                         <td>
-                            <img src="{{ asset($testimonial->image) }}" width="80">
+                            <img src="{{ getimageUrl($testimonial->image) }}" width="80">
                         </td>
                         <td>{{ $testimonial->name }}</td>
                         <td>{!! Str::limit(strip_tags($testimonial->content), 50, '...') !!}</td>

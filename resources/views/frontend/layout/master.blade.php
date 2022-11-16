@@ -1,8 +1,19 @@
 @php
 $setting = DB::table('websites')->first();
+     $agent = new \Jenssegers\Agent\Agent;
 
 @endphp
-
+@if ($agent->isMobile())
+@section('title')
+    {{ $setting->mobile_title }}
+@endsection
+@section('descr')
+    {{ $setting->mobile_description }}
+@endsection
+@section('keyword')
+    {{ $setting->mobile_keyword }}
+@endsection
+@else
 @section('title')
     {{ $setting->title }}
 @endsection
@@ -12,17 +23,15 @@ $setting = DB::table('websites')->first();
 @section('keyword')
     {{ $setting->title }}
 @endsection
-@section('title')
-    {{ $setting->title }}
-@endsection
+@endif
 @section('img')
-    {{ asset($setting->image) }}
+    {{ getimageUrl($setting->image) }}
 @endsection
 @section('url')
     {{ Request::url() }}
 @endsection
 @section('fev')
-    {{ asset($setting->fev) }}
+    {{ getimageUrl($setting->fev) }}
 @endsection
 
 <!doctype html>
@@ -120,16 +129,16 @@ $setting = DB::table('websites')->first();
     </style>
     @stack('style')
 
-    {{-- Please replace tag manager code with following --}}
+    <!--{{-- Please replace tag manager code with following --}}-->
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WB2LZGJ');</script>
-    <!-- End Google Tag Manager -->
+     <!--End Google Tag Manager -->
     
-    <!-- Google Tag Manager (noscript) -->
+     <!--Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB2LZGJ"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -164,26 +173,26 @@ $setting = DB::table('websites')->first();
 {{-- toastr --}}
 <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/62aeabb6b0d10b6f3e781366/1g5t4tgjc';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 
-
-<!-- Google tag (gtag.js) -->
-<script  src="https://www.googletagmanager.com/gtag/js?id=G-XHV2W2P49F"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'G-XHV2W2P49F');
-</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org/", 
   "@type": "Product", 
   "name": "Nepal Vision Treks",
-  "image": " {{ asset($setting->image) }}",
+  "image": " {{ getimageUrl($setting->image) }}",
   "description": " {{ $setting->descr }}",
   "brand": {
     "@type": "Brand",
@@ -250,22 +259,6 @@ $setting = DB::table('websites')->first();
     </script>
 
 
-    <!--tab collapse-->
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {},
-            Tawk_LoadStart = new Date();
-        (function() {
-            var s1 = document.createElement("script"),
-                s0 = document.getElementsByTagName("script")[0];
-            s1. = true;
-            s1.src = 'https://embed.tawk.to/62ade19e7b967b117995376a/1g5rjilk3';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
 
 
     <script>

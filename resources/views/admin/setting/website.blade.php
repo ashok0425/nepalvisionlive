@@ -34,7 +34,24 @@
                 </div>
             </div>
 
-
+            <div class="col-md-6">
+              <div class="mb-3">
+                  <label class="form-label font-weight-bold">Mobile Meta Title</label>
+                  <input type="text" name="mobile_title" class="form-control" placeholder="Meta title" value="{{$website->mobile_title}}" >
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="mb-3">
+                  <label class="form-label font-weight-bold">Mobile Meta Keyword</label>
+                  <input type="keyword" name="mobile_keyword" class="form-control" placeholder="Meta Keyword" value="{{$website->mobile_keyword}}" >
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="mb-3">
+                  <label class="form-label font-weight-bold">Mobile Meta Description</label>
+                  <input type="text" name="mobile_description" class="form-control" placeholder="Meta Description" value="{{$website->mobile_description}}" >
+              </div>
+          </div>
 
          
           
@@ -54,7 +71,7 @@
                     <input name="file" type="file" class="file-upload-field" value="">
                   </div>
                   <br>
-                  <img src="{{ asset($website->image) }}" width="70" alt="">
+                  <img src="{{ getimageUrl($website->image) }}" width="70" alt="">
             </div>
             </div>
           
@@ -67,7 +84,7 @@
                         <input name="fev" type="file" class="file-upload-field" value="">
                       </div>
                       <br>
-                      <img src="{{ asset($website->fev) }}" width="70" alt="">
+                      <img src="{{ getimageUrl($website->fev) }}" width="70" alt="">
                 </div>
                 </div>
         

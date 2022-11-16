@@ -3,10 +3,10 @@
 $footer_image = Cache::remember('footer_image', 604800, function()
 {
 $data=[
-    'logo'=>asset('frontend/assets/footer-img.webp'),
-    'insta'=>asset('insta.webp'),
-    'facebook'=>asset('facebook.webp'),
-    'trip'=>asset('trip.webp'),
+    'logo'=>getImageUrl('assets/footer-img.webp'),
+    'insta'=>getImageUrl('insta.webp'),
+    'facebook'=>getImageUrl('facebook.webp'),
+    'trip'=>getImageUrl('trip.webp'),
 ];
 return $data;
 })
@@ -212,11 +212,11 @@ return $data;
 </footer>
 
 
-{{-- <div class="whatsapp-link d-md-none">
+ <div class="whatsapp-link ">
 	<span>
-		<a  rel="noreferrer"  target="_blank"  href="https://api.whatsapp.com/send?phone=9779851189771"><i class="fab fa-whatsapp"></i></a>
+		<a  rel="noreferrer"  target="_blank"  href="https://api.whatsapp.com/send?phone=9779802342080"><i class="fab fa-whatsapp"></i></a>
 	</span>
-</div> --}}
+</div> 
 <style>
 	.whatsapp-link{
 		position:fixed;

@@ -14,29 +14,13 @@ Destination
 {{Request::url()}}
 @endsection
 @php
-    define('PAGE','destination')
+    define('PAGE','destination');
+    $num=rand(1,7);
 @endphp
 @section('content')
 <main>
-    @if ($data->name=='Bhutan')
-    <x-page-header :title="$data->name" :route="route('destination',['id'=>$data->id,'url'=>$data->url])"  :img="asset('Destination_Bhutan.jpg')"/>
-    @endif
+    <x-page-header :title="$data->name" :route="route('destination',['id'=>$data->id,'url'=>$data->url])" :img="getimageUrl('banners/'.$num.'.webp')" />
     
-    @if ($data->name=='India')
-    <x-page-header :title="$data->name" :route="route('destination',['id'=>$data->id,'url'=>$data->url])"  :img="asset('Destination_India.jpg')"/>
-        @endif
-
-    @if ($data->name=='Luxury Trips')
-    <x-page-header :title="$data->name" :route="route('destination',['id'=>$data->id,'url'=>$data->url])"  :img="asset('Destination_LuxuryTrip.jpg')"/>
-    @endif
-
-    @if ($data->name=='Tibet')
-    <x-page-header :title="$data->name" :route="route('destination',['id'=>$data->id,'url'=>$data->url])"  :img="asset('Destination_Tibet.jpg')"/>
-      @endif
-
-      @if ($data->name=='Nepal')
-    <x-page-header :title="$data->name" :route="route('destination',['id'=>$data->id,'url'=>$data->url])"  />
-      @endif
 
 
 
@@ -64,9 +48,9 @@ Destination
                         <div class="img ">
                         
                             @if ($destination->image==null)
-                            <img src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$destination->name  }}" class="img-fluid w-100 w-100">
+                            <img src="{{ getimageUrl('frontend/getimageUrls/tour-1.png')}}" alt="{{$destination->name  }}" class="img-fluid w-100 w-100">
                             @else 
-                            <img src="{{ asset($destination->image)}}" alt="{{$destination->name  }}" class="img-fluid w-100">
+                            <img src="{{ getimageUrl($destination->image)}}" alt="{{$destination->name  }}" class="img-fluid w-100">
                             @endif
                            
                             <div class="places">
@@ -101,57 +85,8 @@ Destination
             <div class="row">
                     @foreach ($packages as $package)
                     <div class="col-lg-3 col-sm-6 ">
-                        <a href="{{ route('package.detail',['url'=>$package->url]) }}" class="text-decoration-none">
-
-                            <div class="card-style-2 ">
-                                <div class="img-container">
-                              
-                        @if ($package->banner==null)
-                        <img src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$package->name  }}" class="img-fluid w-100 w-100">
-                        @else 
-                        <img src="{{ asset($package->banner)}}" alt="{{$package->name  }}" class="img-fluid w-100">
-                        @endif
-                                </div>
-                                <div class="img-desc">
-                                    <div class="about-img row">
-                                        <div class="col-12">
-                                           <p class="px-0 mx-0">
-                                            @if (!empty($package->duration))
-                                            {{ $package->duration }} |
-                                            @endif
-                                            @if (!empty($package->activity))
-                                          {{ Str::limit($package->activity,38) }}
-                                                
-                                            @endif
-                                               </p> 
-            
-                                    </div>
-                                    <div class="col-6 ">
-            
-                                        <div class="rating">
-                                            @for ($i=1;$i<=$package->rating;$i++)
-                                            <i class="fas fa-star text-warning"></i>
-                                            @endfor
-                                            @for ($i=1;$i<=5-$package->rating;$i++)
-                                            <i class="far fa-star text-gray"></i>
-                                            @endfor
-                                         
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                    <span class="custom-fs-18 custom-fw-600 custom-text-primary">
-                                        $USD {{ $package->price }}
-            
-                                    </span>
-                                    </div>
-                                    </div>
-                                    <div class="title mt-1 custom-fs-18">
-                                        {{ $package->name }}
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                     </a>
+            @include('frontend.template.card1',['package'=>$package])
+                      
                         </div>
                     @endforeach
                     <div class="my-2 py-4"></div>

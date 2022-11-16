@@ -29,7 +29,7 @@
                   @foreach($destinations as $destination)
                     <tr id="{{ $destination->id }}">
                         <td>
-                            <img src="{{ asset($destination->image) }}" width="80">
+                            <img src="{{ getimageUrl($destination->image) }}" width="80">
                         </td>
                         <td>{{ $destination->name }}</td>
                         <td>{!! Str::limit(strip_tags($destination->details), 50, '...') !!}</td>

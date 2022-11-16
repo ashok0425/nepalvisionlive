@@ -40,10 +40,11 @@ Contact
    }
 </style>
 @php
-    define('PAGE','contact')
+    define('PAGE','contact');
+    $num=rand(1,7);
 @endphp
 @section('content')
-<x-page-header title="Contact" :route="route('contactus')"  :img="asset('Contact.jpg')"/>
+<x-page-header title="Contact" :route="route('contactus')"  :img="getimageUrl('banners/'.$num.'.webp')"/>
 <main>
   
     <section class="my-0 py-0">

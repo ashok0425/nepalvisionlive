@@ -106,6 +106,10 @@ class PackagesController extends Controller
             $package->meta_author = $request->meta_author;
             $package->meta_description = $request->meta_description;
             $package->video = $request->video;
+            $package->mobile_meta_keyword = $request->mobile_meta_keyword;
+            $package->mobile_meta_title = $request->mobile_meta_title;
+            $package->mobile_meta_description = $request->mobile_meta_description;
+            $package->map_title = $request->map_title;
 
             $banner=$request->file('thumbnail');
             if($banner){
@@ -256,6 +260,10 @@ class PackagesController extends Controller
             $package->meta_author = $request->meta_author;
             $package->meta_description = $request->meta_description;
             $package->video = $request->video;
+            $package->mobile_meta_keyword = $request->mobile_meta_keyword;
+            $package->mobile_meta_title = $request->mobile_meta_title;
+            $package->mobile_meta_description = $request->mobile_meta_description;
+            $package->map_title = $request->map_title;
 
 
            

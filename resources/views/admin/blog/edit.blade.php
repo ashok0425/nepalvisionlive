@@ -113,7 +113,7 @@
                         <label for="imageInput1" class="image-button"><i class="far fa-image"></i> Choose image</label>
                         <img src="" class="image-preview1">
                   </div>
-                  <img src="{{ asset($blog->guid) }}" alt="" width="100">
+                  <img src="{{ getimageUrl($blog->guid) }}" alt="" width="100">
             </div>
 
 
@@ -126,7 +126,7 @@
                         <label for="imageInput2" class="image-button"><i class="far fa-image"></i> Choose image</label>
                         <img src="" class="image-preview2">
                   </div>
-                  <img src="{{ asset($blog->cover_image) }}" alt="" width="100">
+                  <img src="{{ getimageUrl($blog->cover_image) }}" alt="" width="100">
 
             </div>
 
@@ -144,11 +144,25 @@
 
             <div class=" col-md-12">
                 <label class="form-label"> Meta Description</label>
-             <textarea name="meta_description" id="" class="form-control" rows="2" placeholder="Meta Description">
-                {{$blog->meta_description}}
-             </textarea>
-            </div>
            
+             <input type="text" name="meta_description" class="form-control" value="{{$blog->meta_description}}">
+            </div>
+
+            <div class=" col-md-6">
+                <label class="form-label">Mobile Meta Keyword</label>
+             <input name="mobile_keyword"   class='form-control' value=' {{ $blog->mobile_keyword }}' type='text' placeholder="Mobile Keyword">
+            </div>
+
+            <div class=" col-md-6">
+                <label class="form-label">Mobile Meta Title</label>
+             <input name="mobile_title"   class='form-control' value=' {{$blog->mobile_title }}' type='text' placeholder="Mobile Meta  Title">
+            </div>
+
+            <div class=" col-md-12">
+                <label class="form-label">Mobile Meta Description</label>
+           
+             <input type="text" name="mobile_description" class="form-control" value="{{$blog->mobile_description}}">
+            </div>
             <button type="submit" class="btn btn-primary btn-block mt-2">Save</button>
         </div>
         </form>

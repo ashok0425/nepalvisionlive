@@ -31,7 +31,7 @@
                   @foreach($banners as $banner)
                     <tr id="{{ $banner->id }}">
                         <td>
-                            <img src="{{ asset($banner->image) }}" width="80">
+                            <img src="{{ getimageUrl($banner->image) }}" width="80">
                         </td>
                         <td>{{ $banner->title }}</td>
                         <td>{!! Str::limit(strip_tags($banner->details), 50, '...') !!}</td>

@@ -1,6 +1,19 @@
 @extends('frontend.layout.master')
 
-
+@php
+     $agent = new \Jenssegers\Agent\Agent;
+@endphp
+@if ($agent->isMobile())
+@section('title')
+{{ $blog->mobile_title }}
+@endsection
+@section('descr')
+{{ $blog->mobile_description }}
+@endsection
+@section('keyword')
+{{ $blog->mobile_keyword }}
+@endsection
+@else
 @section('title')
 {{ $blog->meta_title }}
 @endsection
@@ -11,8 +24,9 @@
 {{ $blog->keywords }}
 @endsection
 
+@endif
 @section('img')
-{{ asset($blog->guid) }}
+{{ getimageUrl($blog->guid) }}
 @endsection
 @section('url')
 {{Request::url()}}
@@ -37,71 +51,63 @@
 
        }
 
-   
+   .blog-container{
+      position:relative;
+      top:-150px;
+   }
+   .bot-nav .container{
+       border:0px;
+       padding:0px;
+   }
+   .line_height{
+       line-height:50px!important;
+       font-size:27px!important;
+   }
    </style>
 <section class="blog-img my-5 py-3">
     <div class="container">
-        @if ($blog->cover_image!=null && file_exists($blog->cover_image))
-        <img src="{{ asset($blog->cover_image)}}"  class="img-fluid w-100" alt="{{$blog->post_title}}">
+        @if ($blog->cover_image!=null)
+        <img src="{{ getimageUrl($blog->cover_image)}}"  class="img-fluid w-100" alt="{{$blog->post_title}}">
        
         @else 
         <img src="{{ asset('frontend/assets/recent-post.png')}}" alt="{{$blog->post_title}}" class="img-fluid w-100"  >
         @endif
     </div>
 </section>
-<section class="blog-container mt-5 pt-3">
+<section class="blog-container mt-5 pt-3 ">
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 ">
-                <h1 >
+        <div class="row ">
+            <div class="col-md-10 offset-md-1 card border-0 shadow-sm">
+            <div class="px-md-5  ">
+            
+                   <div class="d-flex pt-5 justify-content-between align-items-center">
+                <h1 class="custom-text-primary line_height">
                     {!! $blog->post_title !!}
+                  
 
                 </h1>
+                            <div class="date fw-600 text-right d-none d-md-none">
+                            <span>
+                            {{ carbon\carbon::parse($blog->post_date)->format('d') }}
+                        </span>                        
+                             {{ carbon\carbon::parse($blog->post_date)->format('M Y') }}
+</div>
+                </div>
+                    
                 <br>
                 <br>
 
                <div class="blog_content_image">
                 {!! $blog->post_content !!}
                </div>
+               <br/>
+               <br/>
             </div>
-            <div class="col-md-4">
-                <aside>
-                  
-                   
-                    <div class="recent-blogs-wrapper">
-                        <h4>More Blogs</h4>
-                        @foreach ($mores as $more)
-                            
-                        <div class="recent-blog mb-3">
-                            <a href="{{ route('blog.detail',['url'=>$more->url]) }}">
-
-                                <div class="row">
-                                    <div class="col-5">
-                                        @if ($more->guid!=null && file_exists($more->guid))
-                        <img src="{{ asset($more->guid)}}"  class="img-fluid w-100" alt="{{$more->post_title}}">
-                       
-                        @else 
-                        <img src="{{ asset('frontend/assets/recent-post.png')}}" alt="{{$more->post_title}}" class="img-fluid"  >
-                        @endif
-                                    </div>
-                                    <div class="col-7">
-                                        <p>{{ $more->post_title }}</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        @endforeach
-                       
-                    </div>
-                  
-                </aside>
             </div>
-        </div>
-    </div>
-</section>
-<div class="bot-nav">
-    <div class="container">
-        <div class="row">
+            
+            <div class="bot-nav my-4">
+    <div class="container  ">
+        <div class="row px-md-5 px-2 mx-md-5 mx-2">
             <div class="col-md-9">
                 <a href="{{ route('blog') }}"><i class="fas fa-long-arrow-alt-left"></i> Back to Blogs</a>
             </div>
@@ -119,6 +125,55 @@
         </div>
     </div>
 </div>
+            
+            
+            
+            
+            <div class=" mt-3 ">
+             
+                                          <h2 class="text-center">Related Blogs</h4>
+                   
+                    <div class="row ">
+
+                        @foreach ($mores as $blog)
+                            
+                        <div class="col-md-3 col-sm-12  my-2">
+                <div class="post-card-1 card">
+                    <a href="{{ route('blog.detail',['url'=>$blog->url]) }}">
+                    <div class="img-container">
+                        @if ($blog->guid!=null)
+                        <img src="{{ getimageUrl($blog->guid)}}"  class="img-fluid w-100" alt="{{$blog->post_title  }}">
+                       
+                        @else 
+                        <img src="{{ getimageUrl('frontend/assets/recent-post.png')}}" alt="{{$blog->post_title  }}" class="img-fluid"  >
+                        @endif
+                        <div class="date">
+                            <span>
+                            {{ carbon\carbon::parse($blog->post_date)->format('d') }}
+                        </span>                        
+                             {{ carbon\carbon::parse($blog->post_date)->format('M Y') }}
+
+                        </div>
+                    </div>
+                    <div class="px-2">
+
+                    <div class="img-desc">
+                        <h2 class="custom-fs-18 text-dark custom-fw-700">{{ Str::limit($blog->post_title,35) }}</h2>
+                    </div>
+                </div>
+                    </a>
+                </div>
+            </div>
+            
+                        @endforeach
+                       
+                    </div>
+             
+            </div>
+        </div>
+    </div>
+</section>
+
 @endsection
 
 

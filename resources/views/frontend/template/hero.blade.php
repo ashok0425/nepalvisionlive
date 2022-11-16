@@ -86,7 +86,7 @@ $categories = Cache::remember('categories', 604800, function()
 
     }
     main .hero {
-        background-image: url("{{asset($banners->image)}}");
+        background-image: url("{{getimageUrl($banners->image)}}");
         background-color: rgba(2, 9, 12,.4);
         background-position: center;
         background-repeat: no-repeat;

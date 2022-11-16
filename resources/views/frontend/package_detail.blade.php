@@ -1,4 +1,24 @@
+@php
+     $agent = new \Jenssegers\Agent\Agent;
+@endphp
+@if ($agent->isMobile())
 
+
+@section('title')
+{{ $package->mobile_meta_title }}
+@endsection
+@section('descr')
+{{ $package->mobile_meta_description }}
+@endsection
+@section('keyword')
+{{ $package->mobile_meta_keyword }}
+@endsection
+
+
+
+
+@else 
+    
  @section('title')
  {{ $package->page_title }}
  @endsection
@@ -8,16 +28,14 @@
  @section('keyword')
  {{ $package->meta_keywords }}
  @endsection
- 
+
+ @endif
  @section('img')
- {{ asset($package->thumbnail) }}
+ {{ getimageUrl($package->thumbnail) }}
  @endsection
  @section('url')
  {{Request::url()}}
  @endsection
-
-
-
 
 @extends('frontend.layout.master')
 @php
@@ -100,7 +118,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                     @if (empty($package->thumbnail))
                     <img data-src="{{ asset('frontend/assets/hero4.webp')}}" class="lazy" alt="cover image" width="2000" height="300">
                         @else  
-                    <img data-src="{{ asset($package->thumbnail)}}" alt="cover image" class="lazy" width="2000" height="300">
+                    <img data-src="{{ getimageUrl($package->thumbnail)}}" alt="cover image" class="lazy" width="2000" height="300">
             
                     @endif
                     
@@ -441,7 +459,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                             <div class="col-md-4">
                                <div class="img card-body ">
                                    @if (!empty($review->image))
-                                   <img src="{{ asset($review->image) }}" alt="{{ $review->name }}" class="w-md-75 w-100 text-md-center img-fluid img-thumbnail">
+                                   <img src="{{ getimageUrl($review->image) }}" alt="{{ $review->name }}" class="w-md-75 w-100 text-md-center img-fluid img-thumbnail">
                                        @else   
                                    <img src="{{ asset('frontend/assets/footer-img.webp') }}" alt="{{ $review->name }}" class="w-100 bg-gray w-md-75 text-md-center img-thumbnail img-fluid">
 
@@ -491,7 +509,8 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                       <div class="routemap my-2">
                         @if (file_exists($package->routemap))
-                            <img src="{{asset($package->routemap)}}" alt="route map" class="img-fluid">
+                        <h3>{{$package->map_title}}</h3>
+                            <img src="{{getimageUrl($package->routemap)}}" alt="{{$package->map_title}}" class="img-fluid">
                         @endif
                       </div>
                 </div>
@@ -876,58 +895,8 @@ WhatsApp (24/7): <strong class="custom-text-primary">
                 @foreach ($features as $packaged)
                 <div class="col-md-3 col-sm-4">
            
-                <div class="card-style-2 ">
-                    <a href="{{ route('package.detail',['url'=>$package->url]) }}" class="text-decoration-none">
-                    <div class="img-container">
-                       
-                        @if ($packaged->banner==null)
-                        <img src="{{ asset('frontend/assets/tour-1.png')}}" alt="{{$packaged->name  }}" class="img-fluid w-100 w-100">
-                        @else 
-                        <img data-src="{{ asset($packaged->banner)}}" alt="{{$packaged->name  }}" class="img-fluid w-100 lazy">
-                        @endif
-                    </div>
-                    
-                    <div class="img-desc">
-                        <div class="about-img row">
-                            <div class="col-12">
-                               <p class="px-0 mx-0">
-                                @if (!empty($packaged->duration))
-                                {{ $packaged->duration }} |
-                                @endif
-                                @if (!empty($packaged->activity))
-                              {{ Str::limit($packaged->activity,38) }}
-                                    
-                                @endif
-                                   </p> 
+                  @include('frontend.template.card1',['package'=>$package])
 
-                        </div>
-                        <div class="col-6 ">
-
-                            <div class="rating">
-                                @for ($i=1;$i<=$packaged->rating;$i++)
-                                <i class="fas fa-star text-warning"></i>
-                                @endfor
-                                @for ($i=1;$i<=5-$packaged->rating;$i++)
-                                <i class="far fa-star text-gray"></i>
-                                @endfor
-                             
-                            </div>
-                        </div>
-                        <div class="col-6">
-                        <span class="custom-fs-18 custom-fw-600 custom-text-primary">
-                            US ${{ $packaged->price }}
-
-                        </span>
-                        </div>
-                        </div>
-                        <div class="title mt-1 custom-fs-18">
-                            {{ $packaged->name }}
-                        </div>
-                        
-                    </div>
-                </a>
-
-                </div>
             </div>
             @endforeach
               
@@ -1541,7 +1510,7 @@ WhatsApp (24/7): <strong class="custom-text-primary">
     "@context": "https://schema.org/", 
     "@type": "Product", 
     "name": "Nepal Vision Treks",
-    "image": " {{ asset($package->image) }}",
+    "image": " {{ getimageUrl($package->image) }}",
     "description": " {{ $package->descr }}",
     "brand": {
       "@type": "Brand",

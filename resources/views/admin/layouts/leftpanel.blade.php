@@ -3,7 +3,7 @@
  
     <!-- Brand Logo -->
     <a href="{{ route('/') }}" class="brand-link">
-      {{-- <img src="{{asset($logo)}}" alt="Baratodeal Logo" class="" width="200"> --}}
+      {{-- <img src="{{getimageUrl($logo)}}" alt="Baratodeal Logo" class="" width="200"> --}}
 NepalVision
     </a>
 

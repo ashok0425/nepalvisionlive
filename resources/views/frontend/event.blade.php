@@ -22,10 +22,11 @@ Activity
     }
 </style>
 @php
-    define('PAGE','event')
+    define('PAGE','event');
+    $num=rand(1,7);
 @endphp
 @section('content')
-<x-page-header title="Event" :route="route('events')"  :img="asset('Activity.jpg')"/>
+<x-page-header title="Event" :route="route('events')"  :img="getimageUrl('banners/'.$num.'.webp')"/>
 
 <section class="events">
     <div class="container">
@@ -39,7 +40,7 @@ Activity
                         <div class="card">
                             <div class="img-wrapper">
                                 @if ($event->image!==null)
-                                <img src="{{ asset($event->image)}}" class="card-img-top" alt="{{ $event->title }}">
+                                <img src="{{ getimageUrl($event->image)}}" class="card-img-top" alt="{{ $event->title }}">
                                     
                                 @else    
                                 <img src="{{ asset('frontend/assets/event1.png')}}" class="card-img-top" alt="{{ $event->title }}">

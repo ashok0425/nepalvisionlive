@@ -31,7 +31,7 @@
       <p>
           <br>
         @if ($email->image!=null)
-        <img src="{{ asset($email->image) }}" alt="Email Image" width="200" height="200" class="img-fluid">
+        <img src="{{ getimageUrl($email->image) }}" alt="Email Image" width="200" height="200" class="img-fluid">
     @else  
     <div class="text-danger">
         No Attachment

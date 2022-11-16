@@ -1,13 +1,13 @@
 <style>
   .dropend{
-    height: 35px!important;
+    /*height: 35px!important;*/
   }
   
 </style>
 @if (Request()->segment(1)=='')
     <style>
       .dropend:nth-child(4){
-    margin-bottom: 22px!important;
+    /*margin-bottom: 22px!important;*/
   }
     </style>
 @endif
@@ -17,7 +17,7 @@
 <div class="d-md-none d-block w-100">
       <div class="d-flex w-100 justify-content-between  py-2">
         <a href="{{ route('/') }}" class="">
-            <img src="{{ asset($website->image) }}" alt="Logo" class="img-fluid   w-50">
+            <img src="{{ getimageUrl($website->image) }}" alt="Logo" class="img-fluid   w-50">
         </a>
   
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
@@ -44,7 +44,7 @@
                         ->get();
                 @endphp
               <li class="dropend">
-                    <i class="fas fa-caret"></i>
+             
                 <a href="{{ route('destination', ['url' => $destination->url]) }}" class="dropdown-item " data-bs-toggle="dropdown" data-bs-auto-close="outside">{{$destination->name}} <i class="fas fa-chevron-right"></i></a>
 
                     @if (count($categories)>0)
