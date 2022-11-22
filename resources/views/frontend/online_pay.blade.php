@@ -14,7 +14,7 @@
                 </div>
 			<div class="card">
                 <div class="card-body">
-                    <form action="{{ route('booking.confirmation') }}" method="post">
+                    <form action="https://payment.sandpos.com" method="post">
                         {!! csrf_field() !!}
                         <div class="row">
                             
@@ -48,7 +48,7 @@
                                             </div>
                                 </div>
                                 <div class="form-group ">
-                                            <button type="submit" class="btn btn-success d-block btn-block form-control">Next</button>
+                                            <button type="submit" class="btn btn-success d-block btn-block form-control">Pay now</button>
                                         </div>
                     </div>
 

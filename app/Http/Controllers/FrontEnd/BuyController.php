@@ -322,10 +322,10 @@ curl_close($crl);
                         // $message->replyTo($details['email'], $details['fullname']);
 
                   });
-                  return redirect()->route('frontend.thanks')->with(['status_message' => 'Thanks for payment', 'alert_type' => 'danger']);
+                  return redirect()->route('pay.thankuthanks')->with(['status_message' => 'Thanks for payment', 'alert_type' => 'danger']);
             }
             // return "done";
-            return redirect()->route('frontend.thanks')->with(['status_message' => 'Sorry! Your Payment could not be processed', 'alert_type' => $this->alert_type]);
+            return redirect()->route('failed')->with(['status_message' => 'Sorry! Your Payment could not be processed', 'alert_type' => $this->alert_type]);
             // return view('frontend.home.thanks',$data);
       }
 

@@ -116,7 +116,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                 <section class="hero2">
                     @if (empty($package->thumbnail))
-                    <img data-src="{{ asset('frontend/assets/hero4.webp')}}" class="lazy" alt="cover image" width="2000" height="300">
+                    <img data-src="{{ getimageUrl('frontend/getimageUrls/hero4.webp')}}" class="lazy" alt="cover image" width="2000" height="300">
                         @else  
                     <img data-src="{{ getimageUrl($package->thumbnail)}}" alt="cover image" class="lazy" width="2000" height="300">
             
@@ -141,7 +141,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
     </div>
 
     <div class="col-md-4">
-      <img src="{{asset('best_price.png')}}" alt="Bes price" class="img-fluid">
+      <img src="{{getImageurl('best_price.png')}}" alt="Bes price" class="img-fluid">
         
     </div>
     <div class="col-12 mt-3">
@@ -461,7 +461,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                                    @if (!empty($review->image))
                                    <img src="{{ getimageUrl($review->image) }}" alt="{{ $review->name }}" class="w-md-75 w-100 text-md-center img-fluid img-thumbnail">
                                        @else   
-                                   <img src="{{ asset('frontend/assets/footer-img.webp') }}" alt="{{ $review->name }}" class="w-100 bg-gray w-md-75 text-md-center img-thumbnail img-fluid">
+                                   <img src="{{ getimageUrl('frontend/getimageUrls/footer-img.webp') }}" alt="{{ $review->name }}" class="w-100 bg-gray w-md-75 text-md-center img-thumbnail img-fluid">
 
                                    @endif
                                    <p class="mt-1 text-center py-0  mb-1">
@@ -544,7 +544,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
     </div>
 
     <div class="col-md-4">
-        <img src="{{asset('best_price.png')}}" alt="Bes price" class="img-fluid">
+        <img src="{{getimageUrl('best_price.png')}}" alt="Bes price" class="img-fluid">
     </div>
     <div class="col-12 mt-3">
         <p class="border_bottom text-center custom-fs-16  custom-fw-700 w-75 m-auto">We support online payment</p>
@@ -844,7 +844,7 @@ US ${{ $package->price }}
                     <div class="my-2 mx-md-4 card">
                        <strong class="custom-bg-primary text-white custom-fs-19 py-2 px-2"> We Accept</strong>
                        <div class="p-2">
-                        <img src="{{asset('weaccept.webp')}}" alt="we accept" class="img-fluid">
+                        <img src="{{getimageUrl('weaccept.webp')}}" alt="we accept" class="img-fluid">
                        </div>
                     </div>
 
@@ -856,7 +856,7 @@ US ${{ $package->price }}
                     <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3">
                        
                         <div class="">
-                         <img src="{{asset('trip2.webp')}}" alt="Trip advisor" class="img-fluid">
+                         <img src="{{getimageUrl('trip2.webp')}}" alt="Trip advisor" class="img-fluid">
                         </div>
                         <div class="text">
                             <p class="mt-2 mb-1 font-weight-400 custom-fs-16">

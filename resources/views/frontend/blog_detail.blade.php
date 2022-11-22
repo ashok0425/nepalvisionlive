@@ -46,10 +46,10 @@
    height: 320px!important;
 
        }
-       .blog_content_image img{
-           width: 45%!important;
+       /*.blog_content_image img{*/
+       /*    width: 45%!important;*/
 
-       }
+       /*}*/
 
    .blog-container{
       position:relative;

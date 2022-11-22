@@ -24,12 +24,12 @@
 	Route::get('booking-online/{id}','BuyController@payonline')->name('booking.online');
 	Route::post('payment-confirmation/','BuyController@Confirmation')->name('booking.confirmation');
 
-	Route::any('pay/payment', 'BuyController@getPayment')->name('payment-from-bank');
-	Route::any('pay/payment-response', 'BuyController@getPayment')->name('payment-from-bank-reponse');
+	Route::any('payment', 'BuyController@getPayment')->name('payment-from-bank');
+	Route::any('payment-success', 'BuyController@getPayment')->name('payment-from-bank-reponse');
 	Route::any('pay-thankyou', 'BuyController@thanku')->name('pay.thanku');
-	Route::any('failed', function(){
-		return "Payment failed";
-	});
+	Route::any('payment-failed', function(){
+		return view('frontend.failed');
+	})->name('failed');
 
 
 	Route::get('package/print/{package}','PackageController@printpackage')->name('print');

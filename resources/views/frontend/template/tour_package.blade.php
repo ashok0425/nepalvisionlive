@@ -11,9 +11,11 @@
         </div>
         <div class="owl-carousel allpackages ">
             @foreach ($packages as $package)
-            @include('frontend.template.card1',['package'=>$package])
-            @endforeach
+            <div class="mx-2">
 
+            @include('frontend.template.card1',['package'=>$package])
+            </div>
+            @endforeach
         </div>
             <div class="col-12">
                 <a class="btn btn-primary mt-4" href="{{ route('package.all') }}">
