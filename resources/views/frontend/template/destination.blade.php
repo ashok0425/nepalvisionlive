@@ -4,9 +4,9 @@
 <section class="best-place-destination mt-5">
     <div class="container">
         <div class="heading ">
-            <h2>
+            <p class="custom-fs-36">
                 Top Destination
-            </h2>
+            </p>
         </div>
       
     </div>

@@ -20,7 +20,7 @@
 .destinations  .owl-nav button{
 position: absolute;
 cursor: pointer;
-top: 73%!important;
+top: 100%!important;
 }
 
 
@@ -124,7 +124,7 @@ $destinations=DB::table('destinations')->orderBy('id','desc')->where('status',1)
         </div>
         <div class="col-md-3 order-1 order-md-2 offset-md-2" >
           <div class="py-md-5 my-md-5 py-3 text-center ">
-            <h2 class="text-lg text-uppercase text-white">Top Destinations</h2>
+            <p class="text-lg text-uppercase text-white custom-fs-36">Top Destinations</p>
               <p class="text-white  custom-fs-20">We have various amazing destinations handpicked for you. Our guide are ready for your adventures in multiple countries.</p>
            
         </div>

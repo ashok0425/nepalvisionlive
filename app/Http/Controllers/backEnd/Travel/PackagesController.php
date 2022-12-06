@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use File;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
+
 class PackagesController extends Controller
 {
    
@@ -21,11 +23,37 @@ class PackagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $packages = Package::orderBy('created_at', 'desc')->get();
+        if($request->ajax()){
+            $packages = Package::orderBy('created_at', 'desc')->get();
 
-        return view('admin.packages.index', compact('packages'));
+                return FacadesDataTables::of($packages)
+                ->editColumn('thumbnail',function($row){
+                    return '<img src="'. getimageUrl($row->banner) .'" width="80">';
+                })
+               
+                ->editColumn('status',function($row){
+                    return  $row->status=="1" ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Deactive</span>';
+                })
+                ->addColumn('action',function($row){
+                    $html='<a href="'.route('admin.categories-packages.edit',$row->id) .'" class="btn btn-primary btn-sm pull-left m-r-10"><i class="fa fa-edit"></i>
+                    </a>
+    
+                    <a href="'. route('admin.categories-packages.delete',$row->id ) .'" class="btn btn-danger btn-sm delete_row" id="" ><i class="fa fa-trash"></i>
+                    </a>';
+    
+                    if($row->status==1){
+                  $html.='<a href="'.route('admin.deactive',['id'=>$row->id,'table'=>'packages']).'" class="btn btn-primary"><i class="fas fa-thumbs-down"></i></a>';
+                           }else{
+    
+                            $html.=' <a href="'.route('admin.active',['id'=>$row->id,'table'=>'packages']).'" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></a>';
+                }
+    return $html;
+                }) ->rawColumns(['action','status','thumbnail'])
+                ->make(true);;
+            }
+        return view('admin.packages.index');
     }
 
     /**

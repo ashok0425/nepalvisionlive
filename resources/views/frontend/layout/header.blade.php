@@ -49,11 +49,14 @@ $website = DB::table('websites')->first();
                 </div>
             </div>
             <div class="col-md-2 text-right">
-                <a class="btn btn-primary btn-xs mt-1 click_to_get_quick_trip" href="#" data-bs-toggle="modal"
+                {{-- <a class="btn btn-primary btn-xs mt-1 click_to_get_quick_trip" href="#" data-bs-toggle="modal"
                     data-bs-target="#quickTrip">
                     Quick Trip
-                </a>
+                </a> --}}
 
+                <a class="btn btn-primary btn-xs mt-1 click_to_get_quick_trip" href="{{route('booking.online')}}">
+              Pay Online
+            </a>
             </div>
 
 

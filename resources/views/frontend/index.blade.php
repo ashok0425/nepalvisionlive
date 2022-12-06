@@ -2,7 +2,24 @@
 @php
     define('PAGE','home')
 @endphp
+<style>
+      .custom-fs-19{
+        font-size: 19px;
+        font-weight: 600!important;
+    }
 
+    .custom-fs-26{
+        font-size: 31px!important;
+        font-weight: 700!important;
+
+    }
+
+    .custom-fs-36{
+        font-size: 36px!important;
+        font-weight: 700!important;
+text-align: center;
+    }
+</style>
 @section('content')
 
 {{-- hero section  --}}

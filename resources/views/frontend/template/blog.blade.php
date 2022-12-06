@@ -9,7 +9,7 @@ max-width: 100%!important;
 <section class="recent-post ">
     <div class="container">
         <div class="heading my-5">
-            <h2>Recent Posts</h2>
+            <p class="custom-fs-36">Recent Posts</p>
         </div>
         @php
 
@@ -42,7 +42,7 @@ $blogs = Cache::remember('blogs', 604800, function()
                     <div class="px-2">
 
                     <div class="img-desc">
-                        <h2 class="custom-fs-19 text-dark custom-fs-700">{{ Str::limit($blog->post_title,40) }}</h2>
+                        <p class="custom-fs-19 text-dark custom-fs-700">{{ Str::limit($blog->post_title,40) }}</p>
                     </div>
                 </div>
                     </a>

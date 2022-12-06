@@ -6,6 +6,7 @@
     $activity=DB::table('frontend_section_control')->where('id',26)->first();
 
 @endphp
+
 <section class="article">
     <div class="container">
         <div class="row">
@@ -29,9 +30,9 @@
                                 </svg>
 
                             </div>
-                            <h2>
+                            <p class="custom-fs-19" >
                                 Location Manager
-                            </h2>
+                            </p>
                             <p>
                                 {{$location_mananger->details}}
                             </p>
@@ -58,9 +59,9 @@
                                 </svg>
 
                             </div>
-                            <h2>
+                            <p class="custom-fs-19" >
                                 Travel Arrangement
-                            </h2>
+                            </p>
                             <p>{{$travel_arrangement->details}}</p>
                             </a>
                         </div>
@@ -78,10 +79,9 @@
                                 </svg>
 
                             </div>
-                            <h2 class="">
-                                <div class="pt-2"></div>
+                            <p class="custom-fs-19 mt-1"  >
                                 Private Guides
-                            </h2>
+                            </p>
                             <p>{{$private_guide->details}}</p>
                             </a>
                         </div>
@@ -97,9 +97,9 @@
                                 </svg>
 
                             </div>
-                            <h2 class="">
+                            <p class="custom-fs-19"  class="">
                                 Activities
-                            </h2>
+                            </p>
                                                        <p>{{$activity->details}}</p>
                             </a>
                         </div>
@@ -108,9 +108,9 @@
             </div>
             <div class="col-lg-6 col-md-12">
                 <div class="right-artile mt-md-5 mt-4">
-                    <h2>
+                    <p class="custom-fs-26" >
                         Start your adventure with Us
-                    </h2>
+                    </p>
                     <p>
                        {{$start_adventure->details}}
                     </p>

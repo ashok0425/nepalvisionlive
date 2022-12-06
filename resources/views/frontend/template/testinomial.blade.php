@@ -106,9 +106,9 @@
 <section class="feedback ">
     <div class="container ">
         <div class="heading mt-5">
-            <h2>
+            <p class="custom-fs-36">
                 Travellers  Feedbacks
-            </h2>
+            </p>
         </div>
         <div class="owl-carousel testimonials">
             @foreach ($testimonials as $testimonial)

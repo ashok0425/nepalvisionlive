@@ -7,7 +7,7 @@
 <section class="tour-packages">
     <div class="container">
         <div class="heading mt-5">
-            <h2>Expedition Packages</h2>
+            <p class="custom-fs-36">Expedition Packages</p>
         </div>
         <div class="owl-carousel allpackages ">
             @foreach ($packages as $package)

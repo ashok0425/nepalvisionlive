@@ -21,7 +21,7 @@
 	Route::get('book-now/{url?}/{date?}','BuyController@index')->name('booknow');
 	Route::post('booking/step2','BuyController@step2')->name('booking.step2');
 	Route::post('booking/store','BuyController@store')->name('booking.step2.store');
-	Route::get('booking-online/{id}','BuyController@payonline')->name('booking.online');
+	Route::get('booking-online/{id?}','BuyController@payonline')->name('booking.online');
 	Route::post('payment-confirmation/','BuyController@Confirmation')->name('booking.confirmation');
 
 	Route::any('payment', 'BuyController@getPayment')->name('payment-from-bank');

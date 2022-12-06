@@ -13,9 +13,9 @@
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="right-artile mt-5">
-                            <h2>
+                            <p class="custom-fs-36">
                                 Why Choose us ?
-                            </h2>
+                            </p>
                             <p>
                                 
                                 {{$why_choose_us->details}}

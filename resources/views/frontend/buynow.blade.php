@@ -8,7 +8,10 @@
 @section('title')
 Book Now | Nepal Vision Treks
 @endsection
-
+@section('noindex')
+ 
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+@endsection
 @section('keyword')
 Book Now | Nepal Vision Treks
 @endsection

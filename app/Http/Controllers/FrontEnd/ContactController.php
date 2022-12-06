@@ -99,6 +99,10 @@ class ContactController extends Controller
 
       public function Enquery(Request $request)
       {
+            $request->validate([
+                  'g-recaptcha-response' => 'required|captcha',
+              ]);
+      
             $userIP = $request->ip();
             $ipdata = $this->IPtoLocation($userIP);
 

@@ -55,7 +55,7 @@
 </style>
 <div class="subscribe container-fluid mt-4 py-4">
 	<div class="row">
-	<h2 class="subscribe__title custom-text-primary col-md-4 offset-md-4 text-center">Let's keep in touch</h2>
+	<p class="subscribe__title custom-text-primary col-md-4 offset-md-4 text-center">Let's keep in touch</p>
 	<p class="subscribe__copy col-md-4 offset-md-4 text-center">Subscribe to keep up with fresh news and exciting updates. We promise not to spam you!</p>
 </div>
     <form action="{{ route('subscribe.store') }}" method="POST">

@@ -8,7 +8,7 @@
 <section class="special-packages ">
     <div class="container-fluid">
         <div class="heading mt-5">
-            <h2>Special Packages</h2>
+            <p class="custom-fs-36">Special Packages</p>
         </div>
         <div class="owl-carousel special_packages">
             @foreach ($packages as $package)

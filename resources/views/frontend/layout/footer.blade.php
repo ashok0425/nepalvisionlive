@@ -3,7 +3,7 @@
 $footer_image = Cache::remember('footer_image', 604800, function()
 {
 $data=[
-    'logo'=>getImageUrl('assets/footer-img.webp'),
+    'logo'=>getImageUrl('footer-img.webp'),
     'insta'=>getImageUrl('insta.webp'),
     'facebook'=>getImageUrl('facebook.webp'),
     'trip'=>getImageUrl('trip.webp'),

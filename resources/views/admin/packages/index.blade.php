@@ -15,52 +15,16 @@
           </div>
             <!-- /.-header -->
             <div class="-body">
-              <table id="example2" class="table table-bordered table-striped">
+              <table id="blog_table" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Details</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                 <tbody class="sortable-posts">
-                  @foreach($packages as $package)
-                    <tr id="{{ $package->id }}">
-                        <td>
-                          <a href="{{ getimageUrl($package->banner) }}"  rel="noreferrer"  target="_blank" rel="noopener noreferrer">  <img src="{{ getimageUrl($package->banner) }}" width="80"></a>
-                        </td>
-                        <td>{{ $package->name }}</td>
-                        <td>{!! Str::limit(strip_tags($package->overview),140, '...') !!}</td>
-                        <td>{!! $package->status ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Deactive</span>' !!}</td>
-                        <td>
-                           <a href="{{ route('admin.categories-packages.edit',$package->id) }}" class="btn btn-primary btn-sm pull-left m-r-10"><i class="fa fa-edit"></i>
-                           </a>
-
-                           <a href="{{ route('admin.categories-packages.delete',$package->id ) }}" class="btn btn-danger btn-sm delete_row" id="delete_row" ><i class="fa fa-trash"></i>
-                           </a>
-
-                      
-                           @if ($package->status==1)
-                           <a href="{{route('admin.deactive',['id'=>$package->id,'table'=>'packages'])}}" class="btn btn-primary"><i class="fas fa-thumbs-down"></i></a>
-                           @else
-                           <a href="{{route('admin.active',['id'=>$package->id,'table'=>'packages'])}}" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></a>
-                           @endif
-                           </a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Details</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </tfoot>
+                
               </table>
             </div>
             <!-- /.-body -->
@@ -71,10 +35,25 @@
       </div>
       <!-- /.row -->
     </section>
-
-
-
-
 @endsection
 
 
+
+@push('scripts')
+    <script>
+      $(document).ready(function(){
+        
+    var table = $('#blog_table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ url('admin/categories-packages') }}",
+        columns: [
+            {data: 'thumbnail', name: 'thumbnail'},
+            {data: 'name', name: 'name'},
+            {data: 'status', name: 'status'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    });
+      })
+    </script>
+@endpush

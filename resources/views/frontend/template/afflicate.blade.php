@@ -1,7 +1,7 @@
 <section class="partners py-5">
     <div class="container">
         <div class="heading mt-2 mb-5">
-            <h2>Our Affiliations</h2>
+            <p class="custom-fs-36 text-center">Our Affiliations</p>
         </div>
         <div class="owl-carousel afflicated">
             <div >

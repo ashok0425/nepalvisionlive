@@ -87,7 +87,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
     border: 0px!important
 }
 </style>
-
+{!! NoCaptcha::renderJs() !!}
 @section('content')
 
  <div class="container- px-0 mx-0">
@@ -185,7 +185,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
     <p class="mb-0 text-white custom-fw-500 ">Send us your queries or requests:</p>
   </div>
   <div class="card-body py-1">
-    <form action="{{ route('enquery.post') }}" method="post">
+    <form action="{{ route('enquery.post') }}" method="post" id="demo-form">
       {{ csrf_field() }}
       <input type="hidden"  value="{{ $package->id }}" name="booking">
       <input type="hidden"  value="{{ $package->name }}" name="package_name">
@@ -220,8 +220,16 @@ border-bottom: 2px solid rgb(99, 99, 99);
           </div>
         </div>
         <div class="col-12 mt-2">
+          {!! app('captcha')->display() !!}
+          @if ($errors->has('g-recaptcha-response'))
+          <span class="help-block text-danger">
+              <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+          </span>
+      @endif
           <div class="form-group mb-0 text-right">
-            <button type="submit" class="btn btn-primary  btn-sm">Enquire Now</button>
+            <button type="submit" class="btn btn-primary  btn-sm"   
+            data-callback='onSubmit' 
+            data-action='submit'>Enquire Now</button>
           </div>
         </div>
       </div>
@@ -457,11 +465,11 @@ border-bottom: 2px solid rgb(99, 99, 99);
 
                         <div class="row">
                             <div class="col-md-4">
-                               <div class="img card-body ">
+                               <div class="img card-body">
                                    @if (!empty($review->image))
-                                   <img src="{{ getimageUrl($review->image) }}" alt="{{ $review->name }}" class="w-md-75 w-100 text-md-center img-fluid img-thumbnail">
+                                   <img src="{{ getimageUrl($review->image) }}" alt="{{ $review->name }}" class="w-md-75 w-100 text-md-center img-fluid img-thumbnail bg-info">
                                        @else   
-                                   <img src="{{ getimageUrl('frontend/getimageUrls/footer-img.webp') }}" alt="{{ $review->name }}" class="w-100 bg-gray w-md-75 text-md-center img-thumbnail img-fluid">
+                                   <img src="{{ getimageUrl('footer-img.webp') }}" alt="{{ $review->name }}" class="w-100 bg-gray w-md-75 text-md-center img-thumbnail img-fluid bg-info">
 
                                    @endif
                                    <p class="mt-1 text-center py-0  mb-1">
@@ -508,7 +516,7 @@ border-bottom: 2px solid rgb(99, 99, 99);
                       </div>
 
                       <div class="routemap my-2">
-                        @if (file_exists($package->routemap))
+                        @if ($package->map_title)
                         <h3>{{$package->map_title}}</h3>
                             <img src="{{getimageUrl($package->routemap)}}" alt="{{$package->map_title}}" class="img-fluid">
                         @endif
@@ -622,7 +630,13 @@ border-bottom: 2px solid rgb(99, 99, 99);
             </div>
           </div>
           <div class="col-12 mt-2">
-            <div class="form-group mb-0 text-right">
+          {!! app('captcha')->display() !!}
+          @if ($errors->has('g-recaptcha-response'))
+          <span class="help-block text-danger">
+              <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+          </span>
+      @endif
+            <div class="form-group mb-0 text-right mt-1">
               <button type="submit" class="btn btn-primary  btn-sm">Enquire Now</button>
             </div>
           </div>
@@ -895,7 +909,7 @@ WhatsApp (24/7): <strong class="custom-text-primary">
                 @foreach ($features as $packaged)
                 <div class="col-md-3 col-sm-4">
            
-                  @include('frontend.template.card1',['package'=>$package])
+                  @include('frontend.template.card1',['package'=>$packaged])
 
             </div>
             @endforeach
@@ -1567,9 +1581,9 @@ src="https://www.viralpatel.net/demo/jquery/jquery.shorten.1.0.js"></script>
 	
 	});
 </script>
-@endpush
 
-@push('scripts')
+
+
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 $(function() {

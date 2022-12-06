@@ -49,13 +49,18 @@ $setting = DB::table('websites')->first();
     <meta property="og:image" content="@yield('img')" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+@yield('noindex')
     <meta name="keyword" content="@yield('keyword')">
     <meta name="description" content="@yield('descr')">
-    <link rel="canonical" href="{{url()->current()}}" />
+  @if(url()->current()=="https://www.nepalvisiontreks.com"||url()->current()=="https://www.nepalvisiontreks.com/index.php")
+    <link rel="canonical" href="https://www.nepalvisiontreks.com" />
+  @else
+  @endif
     <link rel="shortcut  icon" href="@yield('fev')" type="image/icon type">
     <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('frontend/main.css') }}">
+        <link rel="apple-touch-icon" href="@yield('fev')" />
+
     <title>@yield('title')</title>
     <style>
         .text-right{

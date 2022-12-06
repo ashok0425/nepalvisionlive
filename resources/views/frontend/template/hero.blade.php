@@ -389,19 +389,18 @@ $categories = Cache::remember('categories', 604800, function()
         <div class="container">
             <div class="search-box">
              
-                <h1 class="title mb-3 mt-3 mt-md-5 custom-fs-28 text-white ">
+                <h2 class="title mb-3 mt-3 mt-md-5 custom-fs-28 text-white ">
                     {{$banners->title}}
-                </h1>
+                </h2>
                 <form action="{{ route('search') }}" method="GET">
-
                     <div class="container">
                 
                            
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12 mt-4 mt-md-0">
-                                        <h3 class='my-1 py-0 '>
+                                        <strong class='my-1 py-0 '>
                                             Destination
-                                        </h3>
+                                        </strong>
                                         <select name="destination" id="destination" required>
                                             <option value="">Choose Destination</option>
                                             @foreach ($destinations as $destination)
@@ -413,9 +412,9 @@ $categories = Cache::remember('categories', 604800, function()
                                         </select>
                                     </div>
                                     <div class="col-md-6 col-sm-12 mt-4 mt-md-0">
-                                        <h3 class='my-1 py-0 '>
+                                        <strong class='my-1 py-0 '>
                                             Trip Type
-                                        </h3>
+                                        </strong>
                                         <select name="category" id="category" required>
                                             @foreach ($categories as $category)
                                             <option value="{{ $category->id }}" @if ($loop->first)
@@ -428,9 +427,9 @@ $categories = Cache::remember('categories', 604800, function()
                                 </div>
                                 <div class="row my-2">
                                     <div class="col-md-6 col-sm-12 ">
-                                        <h3 class='my-1 py-0 '>
+                                        <strong class='my-1 py-0 '>
                                             Month
-                                        </h3>
+                                        </strong>
                                         <select name="month" id="month" >
                                             <option value="select month">Select Month</option>
                                             <option value="Jan" selected>January</option>

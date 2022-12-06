@@ -152,7 +152,14 @@ class BuyController extends Controller
       public function payonline($id = null)
       {
             $package = Package::where('id', $id)->first();
-            return view('frontend.online_pay', compact('package'));
+            $packages=[];
+            if (!$package) {
+                  $packages = Package::where('status', 1)->get();
+
+            }
+       
+
+            return view('frontend.online_pay', compact('package','packages'));
       }
 
 

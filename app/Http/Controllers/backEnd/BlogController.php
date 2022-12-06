@@ -4,11 +4,12 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
-
+use Str;
 use File;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Throwable;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class BlogController extends Controller
 {
@@ -20,11 +21,40 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
         $blogs=Blog::orderBy('id','desc')->get();
-       return view('admin.blog.index',compact('blogs'));
+
+            return FacadesDataTables::of($blogs)
+            ->editColumn('guid',function($row){
+                return '<img src="'. getimageUrl($row->guid) .'" width="80">';
+            })
+           
+            ->editColumn('status',function($row){
+                return  $row->post_status=="publish" ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Deactive</span>';
+            })
+            ->addColumn('action',function($row){
+                $html='<a href="'.route('admin.blogs.edit',$row->ID) .'" class="btn btn-primary btn-sm pull-left m-r-10"><i class="fa fa-edit"></i>
+                </a>
+
+                <a href="'. route('admin.blogs.delete',$row->ID ) .'" class="btn btn-danger btn-sm delete_row" id="" ><i class="fa fa-trash"></i>
+                </a>';
+
+                if($row->status==1){
+              $html.='<a href="'.route('admin.blog.deactive',['id'=>$row->ID,'table'=>'blogs']).'" class="btn btn-primary"><i class="fas fa-thumbs-down"></i></a>';
+                       }else{
+
+                        $html.=' <a href="'.route('admin.blog.active',['id'=>$row->ID,'table'=>'blogs']).'" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></a>';
+            }
+return $html;
+            }) ->rawColumns(['action','status','guid'])
+            ->make(true);;
+        }
+       return view('admin.blog.index');
     }
+
+
 
     /**
      * Show the form for creating a new resource.
