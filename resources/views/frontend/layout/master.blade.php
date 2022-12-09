@@ -417,6 +417,11 @@ $(function() {
             }
         });
 
+
+        $('#search_icon').click(function(){
+            $('.search_box').toggleClass('d-none')
+        })
+
     })
 
        

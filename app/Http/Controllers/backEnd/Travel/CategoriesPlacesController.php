@@ -68,7 +68,8 @@ class CategoriesPlacesController extends Controller
             $file=$request->file('file');
             
             if($file){
-                $fname=rand().$request->name.$file->getClientOriginalExtension();
+                $fname=rand().$request->name.'.'.$file->getClientOriginalExtension();
+
                 $category->image='upload/category/'.$fname;
                 $file->move(public_path().'/upload/category/',$fname);
 
@@ -150,7 +151,8 @@ class CategoriesPlacesController extends Controller
             
             if($file){
                 File::delete($category->image);
-                $fname=rand().$request->name.$file->getClientOriginalExtension();
+                $fname=rand().$request->name.'.'.$file->getClientOriginalExtension();
+
                 $category->image='upload/category/'.$fname;
                 $file->move(public_path().'/upload/category/',$fname);
 

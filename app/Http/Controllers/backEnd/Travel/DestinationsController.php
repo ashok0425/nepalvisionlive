@@ -61,7 +61,7 @@ class DestinationsController extends Controller
                 $file=$request->file('file');
             
                 if($file){
-                    $fname=rand().$request->name.$file->getClientOriginalExtension();
+                    $fname=rand().$request->name.'.'.$file->getClientOriginalExtension();
                     $destination->image='upload/destination/'.$fname;
                     $file->move(public_path().'/upload/destination/',$fname);
 
@@ -138,7 +138,7 @@ class DestinationsController extends Controller
                 $file=$request->file('file');
                 if($file){
                     File::delete($destination->image);
-                    $fname=rand().$request->name.$file->getClientOriginalExtension();
+                    $fname=rand().$request->name.'.'.$file->getClientOriginalExtension();
                     $destination->image='upload/destination/'.$fname;
                     $file->move(public_path().'/upload/destination/',$fname);
 

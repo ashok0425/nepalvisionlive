@@ -43,9 +43,10 @@ text-align: center;
 {{-- Special package section  --}}
 @include('frontend.template.special_package')
 
+<div class="d-none d-md-block">
 {{-- User Testinomail section  --}}
 @include('frontend.template.testinomial')
-
+</div>
 {{-- Blog section  --}}
 @include('frontend.template.blog')
 
@@ -58,8 +59,12 @@ text-align: center;
 @endsection
 @push('scripts')
 <script>
+    $(document).ready(function(){
+
     $(window).on('load',function(){
         $('.page_loader').addClass('d-none')
     })
+})
+
 </script>
 @endpush

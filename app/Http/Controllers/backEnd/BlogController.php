@@ -24,7 +24,7 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-        $blogs=Blog::orderBy('id','desc')->get();
+        $blogs=Blog::orderBy('ID','desc')->select('guid','ID','post_title','post_status')->get();
 
             return FacadesDataTables::of($blogs)
             ->editColumn('guid',function($row){

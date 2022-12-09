@@ -2,7 +2,9 @@
   .dropend{
     /*height: 35px!important;*/
   }
-  
+  .custom-fs-22{
+    font-size: 22px
+  }
 </style>
 @if (Request()->segment(1)=='')
     <style>
@@ -15,11 +17,18 @@
     <div class="container-fluid">
  
 <div class="d-md-none d-block w-100">
-      <div class="d-flex w-100 justify-content-between  py-2">
+      <div class="d-flex w-100 justify-content-between  py-2 align-items-center">
         <a href="{{ route('/') }}" class="">
             <img src="{{ getimageUrl($website->image) }}" alt="Logo" class="img-fluid   w-50">
         </a>
   
+        @if (Request::segment(1)!=null)
+        <div class=" text-dark d-block d-md-none mx-3">
+          <a href="#" id="search_icon"><i class="fas fa-search custom-fs-22 text-dark"></i></a>
+        </div>   
+        @endif
+     
+
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
             <div class="hamburger-toggle">
               <div class="hamburger">
@@ -97,4 +106,26 @@
           
       </div>
     </div>
+    <div class="search_box py-2   d-none">
+      <form action="{{ route('search') }}" method="GET" class="desktop_search px-4 mx-2">          
+        <div class="row py-1 pt-2">
+            <div class="col-9 px-0">
+<div class="form-group">
+
+<input type="search"  id="" class="form-control btn_primary border-0 outline-none" placeholder="Enter your keyword ..." name="keyword">
+</div>
+            </div>
+       
+            <div class="col-3 text-right px-0">
+                <button class=" btn_primary btn-small rounded btn btn-primary">
+                    Search
+                </button>
+            </div>
+        
+</div>
+
+</form>
+    </div>
   </nav>
+
+  

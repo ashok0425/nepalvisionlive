@@ -37,6 +37,7 @@ public function loadRegion($data) {
 }
 
 public function search(Request $request) {
+  $keyword=$request->keyword?$request->keyword:'';
   $query="SELECT * FROM  `packages` WHERE `status`=1 ";
 
   if(isset($request->destination)&&!empty($request->destination)){
@@ -49,6 +50,11 @@ public function search(Request $request) {
 
 if(isset($request->month)&&!empty($request->month)){
   $query.=" AND `best_month` LIKE '%$request->duration%' ";
+  
+}
+
+if(isset($request->keyword)&&!empty($request->keyword)){
+  $query.=" AND `name` LIKE '%$request->keyword%' ";
   
 }
 $package_s=DB::select($query);
@@ -64,7 +70,10 @@ $package_s=DB::select($query);
     if(isset($request->category)&&!empty($request->category)){
         $query.=" AND `category_destination_id`=$request->category ";
     }
-
+    if(isset($request->keyword)&&!empty($request->keyword)){
+      $query.=" AND `name` LIKE '%$request->keyword%' ";
+      
+    }
     $packages=DB::select($query);
   }
 
@@ -75,7 +84,7 @@ $package_s=DB::select($query);
       $durations=Package::groupBy('duration')->select('duration')->where('destination_id',$request->destination)->where('duration','!=',null)->where('status',1)->get();
       $activities=Package::groupBy('activity')->select('activity')->where('destination_id',$request->destination)->where('activity','!=',null)->where('status',1)->get();
 
-      return view('frontend.search',compact('packages','data','categories','durations','activities'));
+      return view('frontend.search',compact('packages','data','categories','durations','activities','keyword'));
     }
 
 

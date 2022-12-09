@@ -26,7 +26,7 @@ class PackagesController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $packages = Package::orderBy('created_at', 'desc')->get();
+            $packages = Package::orderBy('created_at', 'desc')->select('name','id','status','banner')->get();
 
                 return FacadesDataTables::of($packages)
                 ->editColumn('thumbnail',function($row){
@@ -141,14 +141,14 @@ class PackagesController extends Controller
 
             $banner=$request->file('thumbnail');
             if($banner){
-                $fname=rand().$request->name.$banner->getClientOriginalExtension();
+                $fname=rand().$request->name.'.'.$banner->getClientOriginalExtension();
                 $package->banner='upload/package/banner/'.$fname;
                 $banner->move(public_path().'/upload/package/banner/',$fname);
             }
 
             $cover=$request->file('cover');
             if($cover){
-                $fname=rand().$request->name.$cover->getClientOriginalExtension();
+                $fname=rand().$request->name.'.'.$cover->getClientOriginalExtension();
                 $package->thumbnail='upload/package/thumbnail/'.$fname;
                 $cover->move(public_path().'/upload/package/thumbnail/',$fname);
             }
@@ -298,7 +298,8 @@ class PackagesController extends Controller
             $banner=$request->file('thumbnail');
             if($banner){
                 File::delete($package->banner);
-                $fname=rand().$request->name.$banner->getClientOriginalExtension();
+                $fname=rand().$request->name.'.'.$banner->getClientOriginalExtension();
+
                 $package->banner='upload/package/banner/'.$fname;
                 $banner->move(public_path().'/upload/package/banner/',$fname);
             }
@@ -306,7 +307,7 @@ class PackagesController extends Controller
             $cover=$request->file('cover');
             if($cover){
                 File::delete($package->thumbnail);
-                $fname=rand().$request->name.$cover->getClientOriginalExtension();
+                $fname=rand().$request->name.'.'.$cover->getClientOriginalExtension();
                 $package->thumbnail='upload/package/thumbnail/'.$fname;
                 $cover->move(public_path().'/upload/package/thumbnail/',$fname);
             }

@@ -57,8 +57,13 @@ Destination
 </style>
 
 @section('content')
+@if ($data==null)
+<x-page-header title="Trip available for  {{$keyword}} " route="#"  :img="getimageUrl('banners/'.$num.'.webp')"/>
+    @else 
 
-<x-page-header title="Trip available for {{ $data->name }}" route="#"  :img="getimageUrl('banners/'.$num.'.webp')"/>
+    <x-page-header title="Trip available for{{$data->name}} " route="#"  :img="getimageUrl('banners/'.$num.'.webp')"/>
+@endif
+
 
 
 <section class="search-desc">
@@ -76,7 +81,9 @@ Destination
                     <nav role="navigation" class="navbar-collapse">
                      
                             <div class="filter d-block d-md-none">
-                                <h3>Filter Trips</h3>
+                                <div class="d-flex justify-content-evenly align-items-center">
+                                    <h3>Filter </h3>
+<a href="#" class="text-dark " data-toggle="collapse-side" data-target=".side-collapse" data-target-2=".side-collapse-container"><i class="fas fa-times fa-2x"></i></a>                                </div>
                                 <div class="type">
                                     <p>
                                         <button class="btn" type="button" data-bs-toggle="collapse"
@@ -260,7 +267,7 @@ let obj={
     category:category,
     activity:activity,
     duration:duration,
-    destination:{{ $data->id }},
+    // destination:{{$data ? $data->id:8 }},
 }
 $('.package_data').html('')
 
