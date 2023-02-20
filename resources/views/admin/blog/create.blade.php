@@ -88,9 +88,14 @@
         <form action="{{route('admin.blogs.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
-            <div class=" col-md-12">
+            <div class=" col-md-6">
                 <label class="form-label"> Title</label>
              <input name="title"   class='form-control' value=' {{ old('title') }}' type='text' placeholder="Enter  Title">
+            </div>
+
+            <div class=" col-md-6">
+                <label class="form-label"> Url</label>
+             <input name="url"   class='form-control' value=' {{ old('url') }}' type='text' placeholder="Enter  Url">
             </div>
             <div class=" col-md-12 my-2">
                 <label class="form-label">Detail</label>

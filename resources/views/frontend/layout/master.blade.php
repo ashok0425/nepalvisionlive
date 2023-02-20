@@ -426,6 +426,7 @@ $(function() {
 
        
     </script>
+    
     @stack('scripts')
 
 </body>

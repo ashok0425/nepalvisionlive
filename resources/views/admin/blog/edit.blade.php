@@ -94,6 +94,10 @@
              <input name="title"   class='form-control' maxlength="225" value=' {{ $blog->post_title }}' type='text' placeholder="Enter  Title">
             </div>
             <div class=" col-md-6">
+                <label class="form-label"> Url</label>
+             <input name="url"   class='form-control' value=' {{ $blog->url }}' type='text' placeholder="Enter  Url">
+            </div>
+            <div class=" col-md-6">
                 <label class="form-label">
                     <input type="checkbox" name="display_homepage" id="" value="1" @if ($blog->display_homepage==1)
                         checked

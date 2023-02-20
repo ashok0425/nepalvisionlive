@@ -13,9 +13,6 @@ use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class BlogController extends Controller
 {
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -77,7 +74,7 @@ return $html;
    
     public function store(Request $request)
     {
-        $url = $this->toAscii($request->title);
+        $url = $this->toAscii($request->url);
 
         $request->validate([
             'title'=>'required|max:255',
@@ -145,7 +142,7 @@ return $html;
 
     public function update(Request $request,$id)
     {
-        $url = $this->toAscii($request->title);
+        $url = $this->toAscii($request->url);
 
         $request->validate([
             'title'=>'required|max:255',

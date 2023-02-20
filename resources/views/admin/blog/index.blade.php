@@ -49,7 +49,7 @@
     var table = $('#blog_table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ url('/admin/blogs') }}",
+        ajax: "{{ url('admin/blogs') }}",
         columns: [
             {data: 'guid', name: 'guid'},
             {data: 'post_title', name: 'post_title'},

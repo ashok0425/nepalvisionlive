@@ -213,9 +213,9 @@ return $data;
 
 
  <div class="whatsapp-link ">
-	<span>
-		<a  rel="noreferrer"  target="_blank"  href="https://api.whatsapp.com/send?phone=9779802342080"><i class="fab fa-whatsapp"></i></a>
-	</span>
+
+		<a  rel="noreferrer"  target="_blank"  href="https://api.whatsapp.com/send?phone=9779802342080"><i class="fab fa-whatsapp p-2 bg-success text-white fa-2x rounded "></i></a>
+	
 </div> 
 <style>
 	.whatsapp-link{
@@ -223,23 +223,6 @@ return $data;
 		bottom:1rem;
 		left:1rem;
 	}
-	.whatsapp-link span{
-		width:36px;
-		height:36px;
-		font-size:38px;
-		background:green;
-		border-radius:100%;
-		display: block;
-		color:white;
-		position: relative;
-	}
-	.whatsapp-link a{
-		color:white;
-		position:absolute;
-		display: block;
-		top:-10px;
-		left:3px;
-		height:100%;
-		width:100%;
-	}
+
+	
 </style>

@@ -101,7 +101,8 @@ Book Now | Nepal Vision Treks
 
                     <div class="card mt-2">
 <div class="card-body">
-                        <h3 class="custom">GUEST AGREEMENT AND DECLEAREATION</h3>
+    
+                        <h3 class="custom text-uppercase">GUEST AGREEMENT AND declaration</h3>
                         <p>
                             "Trekking  &amp; walking, climbing &amp; mountaineering in remote parts of this Himalayan  countries carries an inherent risk due to the weather cause injury and death, this  is beyond our control. Always we do our best to reduce any risks and hazards to  our capacity, still there are chances of accidents happening, and in this you  must agree
                         </p>
