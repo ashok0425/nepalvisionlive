@@ -1,37 +1,37 @@
 @php
-$setting = DB::table('websites')->first();
-     $agent = new \Jenssegers\Agent\Agent;
-
+    $setting = DB::table('websites')->first();
+    $agent = new \Jenssegers\Agent\Agent();
+    
 @endphp
 @if ($agent->isMobile())
-@section('title')
-    {{ $setting->mobile_title }}
-@endsection
-@section('descr')
-    {{ $setting->mobile_description }}
-@endsection
-@section('keyword')
-    {{ $setting->mobile_keyword }}
-@endsection
+    @section('title')
+        {{ $setting->mobile_title }}
+    @endsection
+    @section('descr')
+        {{ $setting->mobile_description }}
+    @endsection
+    @section('keyword')
+        {{ $setting->mobile_keyword }}
+    @endsection
 @else
-@section('title')
-    {{ $setting->title }}
-@endsection
-@section('descr')
-    {{ $setting->descr }}
-@endsection
-@section('keyword')
-    {{ $setting->title }}
-@endsection
+    @section('title')
+        {{ $setting->title }}
+    @endsection
+    @section('descr')
+        {{ $setting->descr }}
+    @endsection
+    @section('keyword')
+        {{ $setting->title }}
+    @endsection
 @endif
 @section('img')
-    {{ getimageUrl($setting->image) }}
+    {{ getImageurl($setting->image) }}
 @endsection
 @section('url')
     {{ Request::url() }}
 @endsection
 @section('fev')
-    {{ getimageUrl($setting->fev) }}
+    {{ getImageurl($setting->fev) }}
 @endsection
 
 <!doctype html>
@@ -49,23 +49,25 @@ $setting = DB::table('websites')->first();
     <meta property="og:image" content="@yield('img')" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-@yield('noindex')
+    @yield('noindex')
     <meta name="keyword" content="@yield('keyword')">
     <meta name="description" content="@yield('descr')">
-  @if(url()->current()=="https://www.nepalvisiontreks.com"||url()->current()=="https://www.nepalvisiontreks.com/index.php")
-    <link rel="canonical" href="https://www.nepalvisiontreks.com" />
-  @else
-  @endif
+    @if (url()->current() == 'https://www.nepalvisiontreks.com' ||
+            url()->current() == 'https://www.nepalvisiontreks.com/index.php')
+        <link rel="canonical" href="https://www.nepalvisiontreks.com" />
+    @else
+    @endif
     <link rel="shortcut  icon" href="@yield('fev')" type="image/icon type">
-    <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('frontend/main.css') }}">
-        <link rel="apple-touch-icon" href="@yield('fev')" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ getFilePath('frontend/main.css') }}">
+    <link rel="apple-touch-icon" href="@yield('fev')" />
 
     <title>@yield('title')</title>
     <style>
-        .text-right{
+        .text-right {
             text-align: right;
         }
+
         .card-style-2 img {
             height: 250px !important;
         }
@@ -124,28 +126,36 @@ $setting = DB::table('websites')->first();
         .eARkMz {
             display: none;
         }
+
         * :not(i) {
-    font-family: "Rubik", sans-serif!important;
-}
-
-
-
-
+            font-family: "Rubik", sans-serif !important;
+        }
     </style>
     @stack('style')
 
     <!--{{-- Please replace tag manager code with following --}}-->
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WB2LZGJ');</script>
-     <!--End Google Tag Manager -->
-    
-     <!--Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB2LZGJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WB2LZGJ');
+    </script>
+    <!--End Google Tag Manager -->
+
+    <!--Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB2LZGJ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 </head>
 
@@ -165,39 +175,41 @@ $setting = DB::table('websites')->first();
 
 
 
-<link defer
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-<link defer href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-<link defer rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-<!-- Owl Stylesheets -->
-<link defer rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link defer
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link defer href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link defer rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <!-- Owl Stylesheets -->
+    <link defer rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
-{{-- toastr --}}
-<link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    {{-- toastr --}}
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/62aeabb6b0d10b6f3e781366/1g5t4tgjc';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/62aeabb6b0d10b6f3e781366/1g5t4tgjc';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
     <!--End of Tawk.to Script-->
 
-<script type="application/ld+json">
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org/", 
   "@type": "Product", 
   "name": "Nepal Vision Treks",
-  "image": " {{ getimageUrl($setting->image) }}",
+  "image": " {{ getImageurl($setting->image) }}",
   "description": " {{ $setting->descr }}",
   "brand": {
     "@type": "Brand",
@@ -229,18 +241,18 @@ $setting = DB::table('websites')->first();
 }
 </script>
     {{-- script tags --}}
-    <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
     <!--Jquery-->
-    <script  src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script  href="{{ asset('frontend/app.js') }}"> </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{{ getFilePath('frontend/appp.js') }}"></script>
 
     <!--owl carousel-->
-    <script  src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
-    <script  src="{{ asset('frontend/jquery.lazy.min.js') }}"></script>
+    <script src="{{ getFilePath('frontend/jquery.lazy.min.js') }}"></script>
 
     {{-- toastr --}}
-    <script  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     {{-- toastr --}}
     <script>
@@ -265,168 +277,6 @@ $setting = DB::table('websites')->first();
 
 
 
-
-    <script>
-$(document).ready(function(){
-    
-$(function() {
-        $('.lazy').Lazy();
-    });
-
-
-    $('.quick_trips_carousel').owlCarousel({
-            autoplay: false,
-            autoplayTimeout: 2000,
-            loop: true,
-            dots: false,
-            // navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            margin: 0,
-            nav: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 2
-                },
-                1000: {
-                    items: 5
-                }
-            }
-        });
-
-
-        $('.destinations').owlCarousel({
-            autoplay: true,
-            autoplayTimeout: 6000,
-            loop: true,
-            dots: false,
-            // navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            margin: 0,
-            nav: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 2
-                },
-                1000: {
-                    items: 2
-                }
-            }
-        });
-
-
-        $('.allpackages').owlCarousel({
-            autoplay: true,
-            autoplayTimeout: 6000,
-            loop: true,
-            dots: false,
-            // navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            margin: 0,
-            nav: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 2
-                },
-                1000: {
-                    items: 4
-                }
-            }
-        });
-
-
-        $('.special_packages').owlCarousel({
-            autoplay: true,
-            autoplayTimeout: 6000,
-            loop: true,
-            dots: false,
-            // navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            margin: 0,
-            nav: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 2
-                },
-                1000: {
-                    items: 4
-                }
-            }
-        });
-
-        $('.testimonials').owlCarousel({
-            autoplay: true,
-            autoplayTimeout: 3000,
-            loop: true,
-            dots: false,
-            // navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            margin: 0,
-            nav: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 2
-                },
-                1000: {
-                    items: 3
-                }
-            }
-        });
-
-
-        $('.afflicated').owlCarousel({
-            autoplay: true,
-            autoplayTimeout: 3000,
-            loop: true,
-            dots: false,
-            nav: false,
-
-            // navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-            animateOut: 'fadeOut',
-            animateIn: 'fadeIn',
-            margin: 0,
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 3
-                },
-                1000: {
-                    items: 5
-                }
-            }
-        });
-
-
-        $('#search_icon').click(function(){
-            $('.search_box').toggleClass('d-none')
-        })
-
-    })
-
-       
-    </script>
-    
     @stack('scripts')
 
 </body>

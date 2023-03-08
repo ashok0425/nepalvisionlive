@@ -25,7 +25,7 @@ class BlogController extends Controller
 
             return FacadesDataTables::of($blogs)
             ->editColumn('guid',function($row){
-                return '<img src="'. getimageUrl($row->guid) .'" width="80">';
+                return '<img src="'. getImageurl($row->guid) .'" width="80">';
             })
            
             ->editColumn('status',function($row){
@@ -85,17 +85,13 @@ return $html;
             $file=$request->file('image');
 
             if($file){
-                $fname=rand().'blog.'.$file->getClientOriginalExtension();
-                $blog['guid']='upload/blog/'.$fname;
-                // $path=Image::make($file)->resize(200,300);
-                $file->move(public_path().'/upload/blog/',$fname);
+                $blog['guid']=$this->uploadFile('upload/blog',$file);
             }
 
             $cover_image=$request->file('cover_image');
             if($cover_image){
-                $fname=rand().'cover_image.'.$cover_image->getClientOriginalExtension();
-                $blog['cover_image']='upload/blog/'.$fname;
-                $cover_image->move(public_path().'/upload/blog/',$fname);
+                 $blog['cover_image']=$this->uploadFile('upload/blog',$cover_image);
+
             }
 
             $blog['post_title']=$request->title;
@@ -154,25 +150,13 @@ return $html;
             $file=$request->file('image');
 
             if($file){
-                $category=Blog::where('ID',$id)->first();
-                File::delete(public_path($category->image));
-                $fname=rand().'category.'.$file->getClientOriginalExtension();
-                $blog['guid']='upload/blog/'.$fname;
-                // $path=Image::make($file)->resize(200,300);
-                $file->move(public_path().'/upload/blog/',$fname);
+                $blog['guid']=$this->uploadFile('upload/blog',$file);
             }
 
-
-
             $cover_image=$request->file('cover_image');
-
             if($cover_image){
-                $category=Blog::where('ID',$id)->first();
-                File::delete(public_path($category->cover_image));
-                $fname=rand().'cover_image.'.$cover_image->getClientOriginalExtension();
-                $blog['cover_image']='upload/blog/'.$fname;
-                // $path=Image::make($file)->resize(200,300);
-                $cover_image->move(public_path().'/upload/blog/',$fname);
+                 $blog['cover_image']=$this->uploadFile('upload/blog',$cover_image);
+
             }
             $blog['post_title']=$request->title;
             $blog['display_homepage']=$request->display_homepage;

@@ -1,18 +1,17 @@
 @extends('mail.layout')
 @section('content')
-    
-@php
-        $page=DB::table('websites')->first();
-    
-@endphp
+    @php
+        $page = DB::table('websites')->first();
+        
+    @endphp
 
-       <h3>Hello, {{ $name }}</h3>
-      
-       {!! $page->contact_text !!}
-       <br>
-<a href="{{ route('/') }}">
+    <h3>Hello, {{ $name }}</h3>
 
-       <img src="{{ getimageUrl($page->contact_image) }}" alt="">
+    {!! $page->contact_text !!}
+    <br>
+    <a href="{{ route('/') }}">
 
-</a>
+        <img src="{{ getImageurl($page->contact_image) }}" alt="">
+
+    </a>
 @endsection

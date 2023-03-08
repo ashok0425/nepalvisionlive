@@ -30,7 +30,7 @@ class PackagesController extends Controller
 
                 return FacadesDataTables::of($packages)
                 ->editColumn('thumbnail',function($row){
-                    return '<img src="'. getimageUrl($row->banner) .'" width="80">';
+                    return '<img src="'. getImageurl($row->banner) .'" width="80">';
                 })
                
                 ->editColumn('status',function($row){
@@ -141,24 +141,21 @@ class PackagesController extends Controller
 
             $banner=$request->file('thumbnail');
             if($banner){
-                $fname=rand().$request->name.'.'.$banner->getClientOriginalExtension();
-                $package->banner='upload/package/banner/'.$fname;
-                $banner->move(public_path().'/upload/package/banner/',$fname);
+                $package->banner=$this->uploadFile('upload/package/banner',$banner);
+
             }
 
-            $cover=$request->file('cover');
-            if($cover){
-                $fname=rand().$request->name.'.'.$cover->getClientOriginalExtension();
-                $package->thumbnail='upload/package/thumbnail/'.$fname;
-                $cover->move(public_path().'/upload/package/thumbnail/',$fname);
+            $thumbnail=$request->file('cover');
+            if($thumbnail){
+                $package->thumbnail=$this->uploadFile('upload/package/thumbnail',$thumbnail);
+
             }
 
             
             $roadmap=$request->file('roadmap');
             if($roadmap){
-                $fname=rand().$request->name.$roadmap->getClientOriginalExtension();
-                $package->routemap='upload/package/roadmap/'.$fname;
-                $roadmap->move(public_path().'/upload/package/roadmap/',$fname);
+                $package->roadmap=$this->uploadFile('upload/package/roadmap',$roadmap);
+
             }
 
             $package->save();
@@ -297,33 +294,25 @@ class PackagesController extends Controller
            
             $banner=$request->file('thumbnail');
             if($banner){
-                File::delete($package->banner);
-                $fname=rand().$request->name.'.'.$banner->getClientOriginalExtension();
-
-                $package->banner='upload/package/banner/'.$fname;
-                $banner->move(public_path().'/upload/package/banner/',$fname);
+                $this->deleteFile($package->banner);
+                $package->banner=$this->uploadFile('upload/package/banner',$banner);
             }
 
-            $cover=$request->file('cover');
-            if($cover){
-                File::delete($package->thumbnail);
-                $fname=rand().$request->name.'.'.$cover->getClientOriginalExtension();
-                $package->thumbnail='upload/package/thumbnail/'.$fname;
-                $cover->move(public_path().'/upload/package/thumbnail/',$fname);
+            $thumbnail=$request->file('cover');
+            if($thumbnail){
+                $this->deleteFile($package->thumbnail);
+                $package->thumbnail=$this->uploadFile('upload/package/thumbnail',$thumbnail);
             }
 
 
                
             $roadmap=$request->file('roadmap');
             if($roadmap){
-                File::delete($package->routemap);
-                $fname=rand().$request->name.$roadmap->getClientOriginalExtension();
-                $package->routemap='upload/package/roadmap/'.$fname;
-                $roadmap->move(public_path().'/upload/package/roadmap/',$fname);
+                $this->deleteFile($package->routemap);
+                $package->routemap=$this->uploadFile('upload/package/roadmap',$roadmap);
             }
 
             $package->save();
-
             if (isset($request->featured_package)){
                 foreach ($request->featured_package as $value) {
                     DB::table('package_featured')->insert(['package_id' => $package->id, 'featured_id' => $value]);
@@ -364,13 +353,11 @@ class PackagesController extends Controller
             $package->routemapimages()->detach();
             $package->delete();
 
-            $this->status_message = "Successfully deleted package.";
         } catch (QueryException $e) {
-            $this->status_message = "Failed to delete package, Try again.";
-            $this->alert_type = "danger";
+           
         }
 
-        return redirect()->route('admin.packages.index')->with(['status_message' => $this->status_message, 'alert_type' => $this->alert_type]);
+        return redirect()->route('admin.packages.index');
     }
 
     // public function removeImage($id, Request $request) {

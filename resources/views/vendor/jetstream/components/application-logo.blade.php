@@ -1,1 +1,1 @@
-<img src="{{asset('kraft.png')}}" alt="">
+<img src="{{ getImageurl('kraft.png') }}" alt="">

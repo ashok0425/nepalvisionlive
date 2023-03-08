@@ -32,11 +32,7 @@ class BannerController extends Controller
         $file=$request->file('image');
 
         if($file){
-            // File::delete(__getAdmin()->profile_photo_path);
-            $fname=rand().'mainslider.'.$file->getClientOriginalExtension();
-            $main_sliders->image='upload/mainslider/'.$fname;
-            // $path=Image::make($file)->resize(200,300);
-            $file->move(public_path().'/upload/mainslider/',$fname);
+            $main_sliders->image=$this->uploadFile('upload/mainslider',$file);
                 }
         $main_sliders->title=$request->title;
         $main_sliders->details=$request->details;
@@ -76,11 +72,8 @@ class BannerController extends Controller
         $file=$request->file('image');
 
         if($file){
-            // File::delete(__getAdmin()->profile_photo_path);
-            $fname=rand().'mainslider.'.$file->getClientOriginalExtension();
-            $main_sliders->image='upload/mainslider/'.$fname;
-            // $path=Image::make($file)->resize(200,300);
-            $file->move(public_path().'/upload/mainslider/',$fname);
+            $this->deleteFile($main_sliders->image);
+            $main_sliders->image=$this->uploadFile('upload/mainslider',$file);
                 }
         $main_sliders->title=$request->title;
         $main_sliders->details=$request->details;
@@ -108,7 +101,7 @@ public function destroy($id)
 {
     try {
         $main_sliders = MainSlider::findOrFail($id);
-        File::delete($main_sliders->image);
+        $this->deleteFile($main_sliders->image);
         $main_sliders->delete();
         $notification=array(
             'alert-type'=>'success',

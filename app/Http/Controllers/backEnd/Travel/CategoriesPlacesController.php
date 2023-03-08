@@ -68,11 +68,7 @@ class CategoriesPlacesController extends Controller
             $file=$request->file('file');
             
             if($file){
-                $fname=rand().$request->name.'.'.$file->getClientOriginalExtension();
-
-                $category->image='upload/category/'.$fname;
-                $file->move(public_path().'/upload/category/',$fname);
-
+                $category->image=$this->uploadFile('upload/category',$file);
             }
             $category->save();
 
@@ -82,7 +78,7 @@ class CategoriesPlacesController extends Controller
                 'messege'=>'Successfully created category.',
                
              );
-            $this->status_message = "";
+      
         } catch (QueryException $e) {
             return $e->getMessage();
             DB::rollback();
@@ -150,12 +146,8 @@ class CategoriesPlacesController extends Controller
             $file=$request->file('file');
             
             if($file){
-                File::delete($category->image);
-                $fname=rand().$request->name.'.'.$file->getClientOriginalExtension();
-
-                $category->image='upload/category/'.$fname;
-                $file->move(public_path().'/upload/category/',$fname);
-
+                $this->deleteFile($category->image);
+                $category->image=$this->uploadFile('upload/category',$file);
             }
             $category->save();
 
@@ -187,14 +179,14 @@ class CategoriesPlacesController extends Controller
     {
         try {
             $destination = CategoryPlace::findOrFail($id);
-            File::delete($destination->image);
+            $this->deleteFile($destination->image);
             $destination->delete();
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>'Successfully deleted destinations.',
                
              );
-            $this->status_message = "Successfully deleted destinations.";
+       
         } catch (QueryException $e) {
             $notification=array(
                 'alert-type'=>'error',

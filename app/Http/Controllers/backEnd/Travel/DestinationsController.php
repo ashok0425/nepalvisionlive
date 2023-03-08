@@ -61,9 +61,7 @@ class DestinationsController extends Controller
                 $file=$request->file('file');
             
                 if($file){
-                    $fname=rand().$request->name.'.'.$file->getClientOriginalExtension();
-                    $destination->image='upload/destination/'.$fname;
-                    $file->move(public_path().'/upload/destination/',$fname);
+                    $destination->image=$this->uploadFile('upload/destination',$file);
 
                 }
              $destination->save();
@@ -137,11 +135,9 @@ class DestinationsController extends Controller
             $destination->meta_description = $request->meta_description;
                 $file=$request->file('file');
                 if($file){
-                    File::delete($destination->image);
-                    $fname=rand().$request->name.'.'.$file->getClientOriginalExtension();
-                    $destination->image='upload/destination/'.$fname;
-                    $file->move(public_path().'/upload/destination/',$fname);
-
+                  
+                    $this->deleteFile($destination->image);
+                    $destination->image=$this->uploadFile('upload/destination',$file);
                 }
              $destination->save();
             DB::commit();
@@ -153,8 +149,7 @@ class DestinationsController extends Controller
         } catch (QueryException $e) {
             DB::rollback();
             return $e->getMessage();
-            $this->status_message = "";
-            $this->alert_type = "danger";
+      
             $notification=array(
                 'alert-type'=>'error',
                 'messege'=>'Failed to create destination, Try again.',
@@ -175,14 +170,15 @@ class DestinationsController extends Controller
     {
         try {
             $destination = Destination::findOrFail($id);
-            File::delete($destination->image);
+            $this->deleteFile($destination->image);
+
             $destination->delete();
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>'Successfully deleted destinations.',
                
              );
-            $this->status_message = "Successfully deleted destinations.";
+          
         } catch (QueryException $e) {
             $notification=array(
                 'alert-type'=>'error',

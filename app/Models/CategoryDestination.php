@@ -43,7 +43,7 @@ class CategoryDestination extends Model
         if($this->newimages->count()) {
             return $this->newimages->first()->thumb_image();
         }
-        // return asset('dist/frontend/assets/images/popular1.jpg');
+        // return getImageurl('dist/frontend/assets/images/popular1.jpg');
         return "http://placehold.it/300x240";
     }
 

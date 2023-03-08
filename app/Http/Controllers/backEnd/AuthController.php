@@ -58,10 +58,8 @@ try {
     $file=$request->file('file');
    
     if($file){
-        File::delete(public_path($admin->profile_photo_path));
-        $fname=rand().'admin.'.$file->getClientOriginalExtension();
-        $admin->profile_photo_path='upload/admin/'.$fname;
-        $path=$file->move(public_path().'/upload/admin/',$fname);
+          $this->deleteFile($admin->profile_photo_path);
+        $admin->profile_photo_path=$this->uploadFile('upload/admin',$file);
 
     }
     $admin->email=$request->email;

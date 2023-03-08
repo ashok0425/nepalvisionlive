@@ -32,21 +32,15 @@ class SettingController extends Controller
         $file=$request->file('file');
 
         if($file){
-            File::delete(public_path($web->image));
-            $fname=rand().'seeting.'.$file->getClientOriginalExtension();
-            $web->image='upload/setting/logo/'.$fname;
-            // $path=Image::make($file)->resize(200,300);
-            $file->move(public_path().'/upload/setting/logo/',$fname);
+           $this->deleteFile($web->image);
+            $web->image=$this->uploadFile('upload/setting/logo',$file);           
                 }
 
                 $fev=$request->file('fev');
 
         if($fev){
-            File::delete(public_path($web->fev));
-            $fname=rand().'fev.'.$fev->getClientOriginalExtension();
-            $web->fev='upload/setting/fev/'.$fname;
-            // $path=Image::make($file)->resize(200,300);
-            $fev->move(public_path().'/upload/setting/fev/',$fname);
+            $this->deleteFile($web->fev);
+            $web->fev=$this->uploadFile('upload/setting/fev',$fev);
                 }
 
                 $web->title=$request->title;

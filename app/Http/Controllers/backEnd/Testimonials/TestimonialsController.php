@@ -61,9 +61,8 @@ class TestimonialsController extends Controller
 
             $banner = $request->file('file');
             if ($banner) {
-                $fname = rand() . $request->name . $banner->getClientOriginalExtension();
-                $testimonials->image = 'upload/testimonial/' . $fname;
-                $banner->move(public_path() . '/upload/testimonial/', $fname);
+                $testimonials->image =$this->uploadFile('upload/testimonial',$banner);
+
             }
             if ($testimonials->save()) {
                 $length = count($request->package);
@@ -144,10 +143,9 @@ DB::rollBack();
 
             $banner = $request->file('file');
             if ($banner) {
-                File::delete($testimonials->image);
-                $fname = rand() . $request->name . $banner->getClientOriginalExtension();
-                $testimonials->image = 'upload/testimonial/' . $fname;
-                $banner->move(public_path() . '/upload/testimonial/', $fname);
+               $this->deleteFile($testimonials->image);
+                $testimonials->image =$this->uploadFile('upload/testimonial',$banner);
+
             }
             if ($testimonials->save()) {
                 $length = count($request->package);
@@ -189,7 +187,8 @@ DB::commit();
 
         try {
             $testimonial = Testimonial::findOrFail($id);
-            File::delete($testimonial->image);
+            $this->deleteFile($testimonial->image);
+
             $testimonial->delete();
             $notification = array(
                 'alert-type' => 'success',

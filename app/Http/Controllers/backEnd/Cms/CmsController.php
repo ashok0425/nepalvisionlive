@@ -67,9 +67,8 @@ class CmsController extends Controller
             $cms->position = $request->position;
             $file=$request->file('file');
             if($file){
-                $fname=rand().$request->name.$file->getClientOriginalExtension();
-                $cms->image='upload/cms/'.$fname;
-                $file->move(public_path().'/upload/cms/',$fname);
+                $cms->image =$this->uploadFile('upload/cms',$file);
+
             }
             $cms->save();
             $notification=array(
@@ -145,9 +144,8 @@ class CmsController extends Controller
             $cms->position = $request->position;
             $file=$request->file('file');
             if($file){
-                $fname=rand().$request->name.$file->getClientOriginalExtension();
-                $cms->image='upload/cms/'.$fname;
-                $file->move(public_path().'/upload/cms/',$fname);
+                $cms->image =$this->uploadFile('upload/cms',$file);
+
             }
             $cms->save();
             

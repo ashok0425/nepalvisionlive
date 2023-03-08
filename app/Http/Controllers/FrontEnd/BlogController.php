@@ -53,10 +53,10 @@ if(count($blogs)<=0){
               <div class='img-container'>";
                   if ($blog->guid!=null && file_exists($blog->guid))
                   {
-                    $data.="<img src='". getimageUrl($blog->guid)."'  class='img-fluid w-100'>";
+                    $data.="<img src='". getImageurl($blog->guid)."'  class='img-fluid w-100'>";
                   }else
                   {
-                    $data.=   "<img src='". asset('frontend/assets/recent-post.png')."' alt='IMG' class='img-fluid'  >";
+                    $data.=   "<img src='". getImageurl('frontend/assets/recent-post.png')."' alt='IMG' class='img-fluid'  >";
                   }
                   $data.= "<div class='date'>
                       <span>".

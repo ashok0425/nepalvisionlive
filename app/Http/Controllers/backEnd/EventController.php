@@ -53,6 +53,8 @@ class EventController extends Controller
             'title'=>'required|max:255',
             'date'=>'required',
             'end_date'=>'required',
+            'content'=>'required',
+
 
 
 
@@ -63,19 +65,15 @@ class EventController extends Controller
             $file=$request->file('image');
 
             if($file){
-                $fname=rand().'event.'.$file->getClientOriginalExtension();
-                $blog['image']='upload/event/'.$fname;
-                // $path=Image::make($file)->resize(200,300);
-                $file->move(public_path().'/upload/event/',$fname);
+                $blog['image']=$this->uploadFile('upload/event/',$file);
             }
 
 
 
-            $file=$request->file('cover');
-            if($file){
-                $fname=rand().'event.'.$file->getClientOriginalExtension();
-                $blog['cover']='upload/event/cover/'.$fname;
-                $file->move(public_path().'/upload/event/cover/',$fname);
+            $cover=$request->file('cover');
+            if($cover){
+                $blog['cover']=$this->uploadFile('upload/event/cover',$cover);
+
             }
 
             $blog['title']=$request->title;
@@ -123,26 +121,18 @@ class EventController extends Controller
        $blog=[];
 
             $file=$request->file('image');
+            $event=Event::where('id',$id)->first();
 
             if($file){
-                $event=Event::where('id',$id)->first();
-                File::delete(public_path($event->image));
-                $fname=rand().'event.'.$file->getClientOriginalExtension();
-                $blog['image']='upload/event/'.$fname;
-                // $path=Image::make($file)->resize(200,300);
-                $file->move(public_path().'/upload/event/',$fname);
+                $this->deleteFile($event->image);
+                $blog['image']=$this->uploadFile('upload/event/',$file);
+
             }
           
-
-
-            $file=$request->file('cover');
-            if($file){
-                $event=Event::where('id',$id)->first();
-                File::delete(public_path($event->cover));
-                $fname=rand().'event.'.$file->getClientOriginalExtension();
-                $blog['cover']='upload/event/cover/'.$fname;
-                // $path=Image::make($file)->resize(200,300);
-                $file->move(public_path().'/upload/event/cover/',$fname);
+            $cover=$request->file('cover');
+            if($cover){
+                $this->deleteFile($event->cover);
+                $blog['cover']=$this->uploadFile('upload/event/cover',$cover);
             }
            
             $blog['title']=$request->title;
@@ -186,14 +176,15 @@ class EventController extends Controller
     {
         try {
             $destination = Event::findOrFail($id);
-            File::delete($destination->image);
+            $this->deleteFile($destination->image);
+            $this->deleteFile($destination->cover);
             $destination->delete();
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>'Successfully deleted .',
                
              );
-            $this->status_message = "Successfully deleted .";
+        
         } catch (Throwable $e) {
             $notification=array(
                 'alert-type'=>'error',

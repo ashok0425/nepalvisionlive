@@ -23,12 +23,25 @@ return $totalsum;
 }
 
 
-function getimageUrl($path){
+function getImageurl($path){
 
     if (env('APP_ENV')=='local') {
-      return  asset($path);
+      return  "https://d2i9o55ouvfvau.cloudfront.net/public/$path";
     }else{
-      return  asset('public/'.$path);
+      return  "https://d2i9o55ouvfvau.cloudfront.net/public/$path";
+
        
     }
+}
+
+
+function getFilePath($path){
+
+  if (env('APP_ENV')=='local') {
+    return  "https://d2i9o55ouvfvau.cloudfront.net/$path";
+  }else{
+    return  "https://d2i9o55ouvfvau.cloudfront.net/$path";
+
+     
+  }
 }

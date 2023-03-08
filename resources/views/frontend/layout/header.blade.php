@@ -1,19 +1,19 @@
 @php
-$destinations = DB::table('destinations')
-    ->where('status', 1)
-    ->get();
-
-$website = DB::table('websites')->first();
+    $destinations = DB::table('destinations')
+        ->where('status', 1)
+        ->get();
+    
+    $website = DB::table('websites')->first();
 @endphp
 <style>
-    .quick_trips_carousel .owl-prev{
-        top: 0%!important;
-        left: -1%!important;
+    .quick_trips_carousel .owl-prev {
+        top: 0% !important;
+        left: -1% !important;
     }
 
-    .quick_trips_carousel .owl-next{
-        top: 0%!important;
-        right: -1%!important;
+    .quick_trips_carousel .owl-next {
+        top: 0% !important;
+        right: -1% !important;
     }
 </style>
 
@@ -26,18 +26,20 @@ $website = DB::table('websites')->first();
                 <div class="row">
                     <div class="col-md-2 ">
                         <a href="{{ route('/') }}">
-                            <img src="{{ getimageUrl($website->image) }}" alt="Logo" class="img-fluid  " width="220" height="100">
+                            <img src="{{ getImageurl($website->image) }}" alt="Logo" class="img-fluid  " width="220"
+                                height="100">
                         </a>
 
                     </div>
                     <div class="col-md-3">
-                        <p><a  rel="noreferrer"  target="_blank" href="#" class="text-dark text-decoration-none d-flex align-items-center">
-                            <i class="fab fa-whatsapp custom-fs-25 text-success"></i>&nbsp;{{  $website->phone }}
+                        <p><a rel="noreferrer" target="_blank" href="#"
+                                class="text-dark text-decoration-none d-flex align-items-center">
+                                <i class="fab fa-whatsapp custom-fs-25 text-success"></i>&nbsp;{{ $website->phone }}
                             </a></p>
                     </div>
                     <div class="col-md-3">
                         <p>
-                        <p><a  rel="noreferrer"  target="_blank" href="#" class="text-dark text-decoration-none">
+                        <p><a rel="noreferrer" target="_blank" href="#" class="text-dark text-decoration-none">
 
                                 {{ $website->email }}
                             </a>
@@ -54,9 +56,9 @@ $website = DB::table('websites')->first();
                     Quick Trip
                 </a> --}}
 
-                <a class="btn btn-primary btn-xs mt-1 click_to_get_quick_trip" href="{{route('booking.online')}}">
-              Pay Online
-            </a>
+                <a class="btn btn-primary btn-xs mt-1 click_to_get_quick_trip" href="{{ route('booking.online') }}">
+                    Pay Online
+                </a>
             </div>
 
 
@@ -92,13 +94,13 @@ $website = DB::table('websites')->first();
                                         @endphp
 
 
-@php
-$places = DB::table('categories_places')
-    ->where('status', 1)
-    ->orderBy('id', 'asc')
-    ->where('destination_id', $destination->id)
-    ->get();
-@endphp
+                                        @php
+                                            $places = DB::table('categories_places')
+                                                ->where('status', 1)
+                                                ->orderBy('id', 'asc')
+                                                ->where('destination_id', $destination->id)
+                                                ->get();
+                                        @endphp
 
 
                                         <li class="nav-item dropdown ">
@@ -124,7 +126,7 @@ $places = DB::table('categories_places')
 
 
 
- @foreach ($places as $place)
+                                                    @foreach ($places as $place)
                                                         @php
                                                             $packages = DB::table('packages')
                                                                 ->where('status', 1)
@@ -152,9 +154,9 @@ $places = DB::table('categories_places')
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
-                                                                @endif
-                                                            </li>
-                                                        @endforeach
+                                                            @endif
+                                                        </li>
+                                                    @endforeach
 
 
 
@@ -237,22 +239,21 @@ $places = DB::table('categories_places')
 </header>
 
 @php
-use App\Models\CategoryDestination;
-use App\Models\CategoryPlace;
-
-use App\Models\Destination;
-
-$quick_trips = CategoryDestination::where('quick_trips', 1)
-    ->where('status', 1)
-    ->orderBy('order')
-    ->get();
+    use App\Models\CategoryDestination;
+    use App\Models\CategoryPlace;
     
-$categories_place = CategoryPlace::where('status', 1)
-    ->get();
-$destination_not_nepal = Destination::whereIn('id', [10, 11])
-    ->where('status', 1)
-    ->get();
-
+    use App\Models\Destination;
+    
+    $quick_trips = CategoryDestination::where('quick_trips', 1)
+        ->where('status', 1)
+        ->orderBy('order')
+        ->get();
+    
+    $categories_place = CategoryPlace::where('status', 1)->get();
+    $destination_not_nepal = Destination::whereIn('id', [10, 11])
+        ->where('status', 1)
+        ->get();
+    
 @endphp
 
 
@@ -260,7 +261,7 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
     aria-hidden="true">
     <div class="modal-dialog modal-xl " role="document">
         <div class="modal-content quick-trip-modal">
-            
+
         </div>
     </div>
 </div>
@@ -275,23 +276,21 @@ $destination_not_nepal = Destination::whereIn('id', [10, 11])
 
         }
 
-        $('.quick_trips_carousel .nav-link').click(function(){
-            let link=$('.quick_trips_carousel .nav-link');
-link.each((index,element) => {
-element.classList.remove('active')
-});
+        $('.quick_trips_carousel .nav-link').click(function() {
+            let link = $('.quick_trips_carousel .nav-link');
+            link.each((index, element) => {
+                element.classList.remove('active')
+            });
             $(this).addClass('active')
         })
 
-        $('.click_to_get_quick_trip').click(function(){
+        $('.click_to_get_quick_trip').click(function() {
             $.ajax({
-                url:'{{url('load-quick-trip')}}',
-                success:function(res){
-                  $('.quick-trip-modal').html(res)
+                url: '{{ url('load-quick-trip') }}',
+                success: function(res) {
+                    $('.quick-trip-modal').html(res)
                 }
             })
         })
     </script>
-
-    
 @endpush
