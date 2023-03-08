@@ -122,10 +122,10 @@
                     <div class="feedback-box text-center ">
                         <div>
                             @if ($testimonial->image != null)
-                                <img src="{{ getImageurl($testimonial->image) }}" alt="{{ $testimonial->name }}"
+                                <img src="{{ getFilePath($testimonial->image) }}" alt="{{ $testimonial->name }}"
                                     class="user_img img-fluid lazy" width="100" height="100">
                             @else
-                                <img src="{{ getImageurl('frontend/user.webp') }}" alt="{{ $testimonial->name }}"
+                                <img src="{{ getFilePath('frontend/user.webp') }}" alt="{{ $testimonial->name }}"
                                     class="user_no_img lazy" width="100" height="100">
                             @endif
                         </div>
@@ -179,7 +179,7 @@
 
                 </p>
                 <div class="user">
-                    <img src="{{ getImageurl('frontend/user.png') }}" alt="user" class="user-image" />
+                    <img src="{{ getFilePath('frontend/user.png') }}" alt="user" class="user-image" />
 
 
                     <div class="user-details ">
