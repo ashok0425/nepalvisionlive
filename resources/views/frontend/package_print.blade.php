@@ -438,6 +438,13 @@
                                 <td class="border-top-0">{{ $package->room }}</td>
                             </tr>
                         @endif
+
+                        <tr>
+                            <td class="border-top-0"> <span class="fa fa-bed"></span>
+                                <strong>Price:</strong>
+                            </td>
+                            <td class="border-top-0">USD:{{ $package->price }}</td>
+                        </tr>
                     </tbody>
                 </table>
                 {{ url('/') }}
