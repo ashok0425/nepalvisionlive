@@ -128,6 +128,239 @@
                                 </section>
                             </div>
 
+                            <div class="book-now mx-0 mx-md-4 card  shadow-sm bg_secondary  px-5 py-2 d-md-none d-md-block">
+                                @if (!empty($package->duration))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Duration</strong>
+                                        <p class='my-0 py-0'>{{ $package->duration }} </p>
+                                    </div>
+                                @endif
+
+
+                                @if (!empty($package->activity))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Trip Type</strong>
+                                        <p class='my-0 py-0'>{{ $package->activity }}</p>
+                                    </div>
+                                @endif
+                                @if (!empty($package->difficulty))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Difficuilty</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->difficulty }}
+                                        </p>
+                                    </div>
+                                @endif
+
+                                @if (!empty($package->meals))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Meal & Accommodation</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->meals }}
+                                        </p>
+                                    </div>
+                                @endif
+
+                                @if (!empty($package->group_size))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Group Size</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->group_size }}
+                                        </p>
+                                    </div>
+                                @endif
+
+                                @if (!empty($package->transport))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Transport</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->transport }}
+                                        </p>
+                                    </div>
+                                @endif
+
+                                @if (!empty($package->arrival))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Arrival On</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->arrival }}
+                                        </p>
+                                    </div>
+                                @endif
+
+
+                                @if (!empty($package->departure_from))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Departure From</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->departure_from }}
+                                        </p>
+                                    </div>
+                                @endif
+
+
+                                @if (!empty($package->operation))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Operation</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->operation }}
+                                        </p>
+                                    </div>
+                                @endif
+
+                                @if (!empty($package->route_detail))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Route Detail</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->route_detail }}
+                                        </p>
+                                    </div>
+                                @endif
+
+
+                                @if (!empty($package->best_month))
+                                    <div class="col-12 py-2">
+                                        <strong class='my-0 py-0'>Best Month</strong>
+                                        <p class='my-0 py-0'>
+                                            {{ $package->best_month }}
+                                        </p>
+                                    </div>
+                                @endif
+
+
+
+                                <div class="col-12 py-2">
+                                    <strong class='my-0 py-0'>Review</strong>
+                                    <p class='my-0 py-0'>
+                                    <div class="rating">
+                                        @for ($i = 1; $i <= $package->rating; $i++)
+                                            <i class="fas fa-star text-warning"></i>
+                                        @endfor
+                                        @for ($i = 1; $i <= 5 - $package->rating; $i++)
+                                            <i class="fas fa-star text-gray"></i>
+                                        @endfor
+                                    </div>
+                                    </p>
+                                </div>
+
+                                @if (!empty($package->discounted_price))
+                                    <div class="col-12 py-2">
+
+                                        <strong class='my-0 py-0'> Price</strong>
+                                        <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
+                                            US <span class="text-danger "><s>${{ $package->price }}</s> </span>
+
+                                            <span class="text-success">${{ $package->discounted_price }} </span>
+                                        </strong>
+                                    </div>
+                                @else
+                                    <div class="col-12 py-2">
+
+                                        <strong class='my-0 py-0'>Price</strong>
+
+                                        <span class="custom-text-primary">
+                                            <strong class="text-dark custom-fs-25 custom-fw-700">
+
+                                                US ${{ $package->price }}
+                                            </strong>
+                                            Per Person</span>
+
+                                    </div>
+                                @endif
+
+
+                                <div class="row">
+                                    <div class="col-md-12 col-12 py-2">
+                                        <a class="btn btn-primary w-100"
+                                            href="{{ route('booknow', ['url' => $package->url]) }}">Book Now</a>
+                                    </div>
+
+                                    {{-- <div class="col-md-6 col-5 py-2">
+    
+                                <a href="#"class=" btn btn-primary w-100 text-decoration-none " data-bs-toggle="modal" data-bs-target="#enquery">  
+                                   
+                                    Enquire</a>
+                            </div> --}}
+                                </div>
+
+                            </div>
+                            <table class="table table-bordered table-geninfo mb-0 d-none d-md-block">
+                                <tbody>
+                                    @if ($package->activity || $package->fitness_level)
+                                        <tr>
+                                            @if ($package->activity)
+                                                <td> <i class="fas fa-map"></i> <strong>Activities:</strong></td>
+                                                <td>{{ $package->activity }}</td>
+                                            @endif
+                                            @if ($package->fitness_level)
+                                                <td> <i class="fas fa-heartbeat"></i> <strong>Fitness Level:</strong></td>
+                                                <td>{{ $package->fitness_level }}</td>
+                                            @endif
+                                        </tr>
+                                    @endif
+                                    <tr>
+                                        @if ($package->max_altitude)
+                                            <td> <i class="fas fa-signal"></i> <strong>Max Elevation:</strong></td>
+                                            <td>{{ $package->max_altitude }}</td>
+                                        @endif
+                                        @if ($package->transport)
+                                            <td> <i class="fas fa-bus"></i> <strong>Transportation:</strong></td>
+                                            <td>{{ $package->transport }}</td>
+                                        @endif
+                                    </tr>
+                                    <tr>
+                                        @if ($package->best_month)
+                                            <td> <i class="fas fa-calendar"></i> <strong>Best Month:</strong></td>
+                                            <td>{{ $package->best_month }}</td>
+                                        @endif
+                                        @if ($package->group_size)
+                                            <td> <i class="fas fa-users"></i> <strong>Group Size:</strong></td>
+                                            <td>{{ $package->group_size }}</td>
+                                        @endif
+                                    </tr>
+                                    <tr>
+                                        @if ($package->arrival)
+                                            <td> <i class="fas fa-location-arrow"></i> <strong>Arrival on:</strong></td>
+                                            <td>{{ $package->arrival }}</td>
+                                        @endif
+                                        @if ($package->departure_from)
+                                            <td> <i class="fas fa-space-shuttle"></i> <strong>Departure from:</strong></td>
+                                            <td>{{ $package->departure_from }}</td>
+                                        @endif
+                                    </tr>
+                                    @if ($package->meals)
+                                        <tr>
+                                            <td class="border-top-0"> <i class="fas fa-cutlery"></i> <strong>Meal:</strong>
+                                            </td>
+                                            <td class="border-top-0">{{ $package->meals }}</td>
+
+                                            <td class="border-top-0"> <i class="fas fa-clock"></i> <strong>Duration:</strong>
+                                            </td>
+                                            <td class="border-top-0">{{ $package->duration }}</td>
+
+                                            
+                                        </tr>
+                                    @endif
+                                        <tr>
+                                    @if ($package->room)
+
+                                            <td class="border-top-0"> <i class="fas fa-bed"></i>
+                                                <strong>Accommodation:</strong>
+                                            </td>
+                                            <td class="border-top-0">{{ $package->room }}</td>
+                                    @endif
+
+                                    <td class="border-top-0"> <i class="fas fa-comments-dollar"></i>
+                                        <strong>Price:</strong>
+                                    </td>
+                                    <td class="border-top-0  "> <sub><small class="custom-fs-16">US</small> </sub> <strong class="custom-fs-22 "> ${{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                    <sub> <small class="custom-fs-16">per person</small></sub></strong></td>
+
+                                        </tr>
+            
+                                  
+                                </tbody>
+                            </table>
                             {{-- banner section End  --}}
 
 
@@ -184,10 +417,7 @@
                                     </div>
                                 </div>
                             </div>
-
                             {{-- we accept section end --}}
-
-
 
                             {{-- Enquiry form start --}}
                             <div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-block d-md-none">
@@ -249,7 +479,6 @@
                                 </div>
                             </div>
                             {{-- Enquiry form end  --}}
-
                             <div class="about-trip">
                                 <div class="head  ">
                                     <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
@@ -572,23 +801,11 @@
                                 @endif
                             </div>
                         </div>
-
                         {{-- 1st col end  --}}
 
-
-
-
-
                         {{-- 1st col staart  --}}
-
-
                         <div class="col-md-4 my-5 ">
                             <div class="mt-1"></div>
-
-
-
-
-
                             {{-- we accept section start --}}
                             <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2 d-none d-md-block">
                                 <div class="row">
@@ -601,7 +818,6 @@
 
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <img src="{{ getImageurl('best_price.png') }}" alt="Bes price"
                                             class="img-fluid">
@@ -618,21 +834,14 @@
                                             <span><i class="fas fa-users custom-text-primary"></i> Big groups are adjusted
                                                 accordingly.</span>
                                         </p>
-
                                         <p class="mt-1 mb-0 custom-fs-14">
                                             <span><i class="fas fa-tag custom-text-primary"></i> Adjust your budget
                                                 depending on your need.</span>
                                         </p>
-
-
-
                                         <p class="mt-1 mb-0 custom-fs-14">
                                             <span><i class="fas fa-calendar custom-text-primary"></i> You can schedule your
                                                 own departure dates.</span>
                                         </p>
-
-
-
                                         <div class="col-md-12 col-12 mt-3">
                                             <a class="btn btn-success w-100"
                                                 href="{{ route('booknow', ['url' => $package->url]) }}">Book Now</a>
@@ -640,13 +849,7 @@
                                     </div>
                                 </div>
                             </div>
-
                             {{-- we accept section end --}}
-
-
-
-
-
 
                             {{-- Enquiry form start --}}
                             <div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-none d-md-block">
@@ -752,162 +955,6 @@
 
 
 
-                            <div class="book-now mx-0 mx-md-4 card  shadow-sm bg_secondary  px-5 py-2">
-                                @if (!empty($package->duration))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Duration</strong>
-                                        <p class='my-0 py-0'>{{ $package->duration }} </p>
-                                    </div>
-                                @endif
-
-
-                                @if (!empty($package->activity))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Trip Type</strong>
-                                        <p class='my-0 py-0'>{{ $package->activity }}</p>
-                                    </div>
-                                @endif
-                                @if (!empty($package->difficulty))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Difficuilty</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->difficulty }}
-                                        </p>
-                                    </div>
-                                @endif
-
-                                @if (!empty($package->meals))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Meal & Accommodation</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->meals }}
-                                        </p>
-                                    </div>
-                                @endif
-
-                                @if (!empty($package->group_size))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Group Size</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->group_size }}
-                                        </p>
-                                    </div>
-                                @endif
-
-                                @if (!empty($package->transport))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Transport</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->transport }}
-                                        </p>
-                                    </div>
-                                @endif
-
-                                @if (!empty($package->arrival))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Arrival On</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->arrival }}
-                                        </p>
-                                    </div>
-                                @endif
-
-
-                                @if (!empty($package->departure_from))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Departure From</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->departure_from }}
-                                        </p>
-                                    </div>
-                                @endif
-
-
-                                @if (!empty($package->operation))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Operation</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->operation }}
-                                        </p>
-                                    </div>
-                                @endif
-
-                                @if (!empty($package->route_detail))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Route Detail</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->route_detail }}
-                                        </p>
-                                    </div>
-                                @endif
-
-
-                                @if (!empty($package->best_month))
-                                    <div class="col-12 py-2">
-                                        <strong class='my-0 py-0'>Best Month</strong>
-                                        <p class='my-0 py-0'>
-                                            {{ $package->best_month }}
-                                        </p>
-                                    </div>
-                                @endif
-
-
-
-                                <div class="col-12 py-2">
-                                    <strong class='my-0 py-0'>Review</strong>
-                                    <p class='my-0 py-0'>
-                                    <div class="rating">
-                                        @for ($i = 1; $i <= $package->rating; $i++)
-                                            <i class="fas fa-star text-warning"></i>
-                                        @endfor
-                                        @for ($i = 1; $i <= 5 - $package->rating; $i++)
-                                            <i class="fas fa-star text-gray"></i>
-                                        @endfor
-                                    </div>
-                                    </p>
-                                </div>
-
-                                @if (!empty($package->discounted_price))
-                                    <div class="col-12 py-2">
-
-                                        <strong class='my-0 py-0'> Price</strong>
-                                        <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
-                                            US <span class="text-danger "><s>${{ $package->price }}</s> </span>
-
-                                            <span class="text-success">${{ $package->discounted_price }} </span>
-                                        </strong>
-                                    </div>
-                                @else
-                                    <div class="col-12 py-2">
-
-                                        <strong class='my-0 py-0'>Price</strong>
-
-                                        <span class="custom-text-primary">
-                                            <strong class="text-dark custom-fs-25 custom-fw-700">
-
-                                                US ${{ $package->price }}
-                                            </strong>
-                                            Per Person</span>
-
-                                    </div>
-                                @endif
-
-
-                                <div class="row">
-                                    <div class="col-md-12 col-12 py-2">
-                                        <a class="btn btn-primary w-100"
-                                            href="{{ route('booknow', ['url' => $package->url]) }}">Book Now</a>
-                                    </div>
-
-                                    {{-- <div class="col-md-6 col-5 py-2">
-    
-                                <a href="#"class=" btn btn-primary w-100 text-decoration-none " data-bs-toggle="modal" data-bs-target="#enquery">  
-                                   
-                                    Enquire</a>
-                            </div> --}}
-                                </div>
-
-                            </div>
 
 
                             {{-- we accept section start --}}
