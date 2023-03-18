@@ -5,63 +5,63 @@
         </div>
         <div class="owl-carousel afflicated">
             <div>
-                <img data-src="{{ getImageurl('public/aff/webpaffiliation1.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
+                <img data-src="{{ getImageurl('aff/affiliation1.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
+                    width="100" height="100">
             </div>
 
             <div>
-                <img data-src="{{ getImageurl('public/aff/webpaffiliation2.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
+                <img data-src="{{ getImageurl('aff/affiliation2.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
+                    width="100" height="100">
             </div>
 
             <div>
-                <img data-src="{{ getImageurl('public/aff/webpaffiliation3.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
-            </div>
-
-
-            <div>
-                <img data-src="{{ getImageurl('public/aff/affiliation4.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
-            </div>
-
-
-            <div>
-                <img data-src="{{ getImageurl('public/aff/affiliation5.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
-            </div>
-
-
-            <div>
-                <img data-src="{{ getImageurl('public/aff/affiliation6.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
-            </div>
-
-
-            <div>
-                <img data-src="{{ getImageurl('public/aff/affiliation7.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
-            </div>
-
-            <div>
-                <img data-src="{{ getImageurl('public/aff/affiliation8.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
-            </div>
-
-            <div>
-                <img data-src="{{ getImageurl('public/aff/affiliation9.webp') }}" alt="affiliated"
-                    class="img-fluid lazy w-50" width="100" height="100">
-            </div>
-
-
-            <div>
-                <img data-src="{{ getImageurl('public/aff/') }}" alt="affiliated" class="img-fluid lazy w-50"
+                <img data-src="{{ getImageurl('aff/affiliation3.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
                     width="100" height="100">
             </div>
 
 
             <div>
-                <img data-src="{{ getImageurl('public/aff/affiliation10.webp') }}" alt="affiliated"
+                <img data-src="{{ getImageurl('aff/affiliation4.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
+                    width="100" height="100">
+            </div>
+
+
+            <div>
+                <img data-src="{{ getImageurl('aff/affiliation5.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
+                    width="100" height="100">
+            </div>
+
+
+            <div>
+                <img data-src="{{ getImageurl('aff/affiliation6.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
+                    width="100" height="100">
+            </div>
+
+
+            <div>
+                <img data-src="{{ getImageurl('aff/affiliation7.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
+                    width="100" height="100">
+            </div>
+
+            <div>
+                <img data-src="{{ getImageurl('aff/affiliation8.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
+                    width="100" height="100">
+            </div>
+
+            <div>
+                <img data-src="{{ getImageurl('aff/affiliation9.webp') }}" alt="affiliated" class="img-fluid lazy w-50"
+                    width="100" height="100">
+            </div>
+
+
+            <div>
+                <img data-src="{{ getImageurl('aff/') }}" alt="affiliated" class="img-fluid lazy w-50" width="100"
+                    height="100">
+            </div>
+
+
+            <div>
+                <img data-src="{{ getImageurl('aff/affiliation10.webp') }}" alt="affiliated"
                     class="img-fluid lazy w-50" width="100" height="100">
             </div>
 

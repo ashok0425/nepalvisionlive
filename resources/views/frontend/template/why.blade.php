@@ -3,7 +3,7 @@
         ->where('id', 27)
         ->first();
     $image_why = Cache::remember('image_why', 604800, function () {
-        return getImageurl('frontend/assets/whychooseus.webp');
+        return getFilePath('frontend/assets/whychooseus.webp');
     });
 @endphp
 <section class="why-choose-us mt-4">
