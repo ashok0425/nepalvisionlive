@@ -284,7 +284,7 @@
                                 </div>
 
                             </div>
-                            <table class="table table-bordered table-geninfo mb-0 d-none d-md-block">
+                            <table class="table table-bordered table-geninfo mb-0 d-none d-md-block w-100">
                                 <tbody>
                                     @if ($package->activity || $package->fitness_level)
                                         <tr>
