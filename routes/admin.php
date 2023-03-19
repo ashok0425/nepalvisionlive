@@ -122,6 +122,8 @@ Route::resource('videos','Main\VideosController', array('only' => array('update'
 Route::get('booking','Main\MainController@getBooking');
 Route::get('booking/{id}','Main\MainController@BookingDetail')->name('bookingdetail');
 
+Route::resource('/country', 'CountryController');
+
 
 Route::get('/cache',function(){
 	Artisan::call('cache:clear');
