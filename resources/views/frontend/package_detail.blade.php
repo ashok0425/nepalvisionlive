@@ -479,9 +479,9 @@
                                 </div>
                             </div>
                             {{-- Enquiry form end  --}}
-                            <div class="about-trip">
-                                <div class="head  ">
-                                    <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
+                            <div class="about-trip"  style="position: sticky!important;top:50px!important">
+                                <div class="head">
+                                    <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist" >
                                         <li class="nav-item " role="presentation">
                                             <a class="nav-link active " id="home-tab" data-bs-toggle="tab"
                                                 href="#home" role="tab" aria-controls="home" aria-selected="true">

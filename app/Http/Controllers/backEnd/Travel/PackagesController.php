@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Models\Category;
 use App\Models\CategoryDestination;
 use App\Models\CategoryPlace;
+use App\Models\Country;
 use App\Models\Destination;
 use App\Models\Package;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,6 @@ use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class PackagesController extends Controller
 {
-   
     /**
      * Display a listing of the resource.
      *
@@ -25,34 +25,47 @@ class PackagesController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax()){
-            $packages = Package::orderBy('created_at', 'desc')->select('name','id','status','banner')->get();
+        if ($request->ajax()) {
+            $packages = Package::orderBy('created_at', 'desc')
+                ->select('name', 'id', 'status', 'banner')
+                ->get();
 
-                return FacadesDataTables::of($packages)
-                ->editColumn('thumbnail',function($row){
-                    return '<img src="'. getImageurl($row->banner) .'" width="80">';
+            return FacadesDataTables::of($packages)
+                ->editColumn('thumbnail', function ($row) {
+                    return '<img src="' . getImageurl($row->banner) . '" width="80">';
                 })
-               
-                ->editColumn('status',function($row){
-                    return  $row->status=="1" ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Deactive</span>';
+
+                ->editColumn('status', function ($row) {
+                    return $row->status == '1' ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Deactive</span>';
                 })
-                ->addColumn('action',function($row){
-                    $html='<a href="'.route('admin.categories-packages.edit',$row->id) .'" class="btn btn-primary btn-sm pull-left m-r-10"><i class="fa fa-edit"></i>
+                ->addColumn('action', function ($row) {
+                    $html =
+                        '<a href="' .
+                        route('admin.categories-packages.edit', $row->id) .
+                        '" class="btn btn-primary btn-sm pull-left m-r-10"><i class="fa fa-edit"></i>
                     </a>
     
-                    <a href="'. route('admin.categories-packages.delete',$row->id ) .'" class="btn btn-danger btn-sm delete_row" id="" ><i class="fa fa-trash"></i>
+                    <a href="' .
+                        route('admin.categories-packages.delete', $row->id) .
+                        '" class="btn btn-danger btn-sm delete_row" id="" ><i class="fa fa-trash"></i>
+                    </a>
+                    
+
+                    <a href="' .
+                        route('admin.package.country', ['package_id' => $row->id]) .
+                        '" class="btn btn-success btn-sm " id="" ><i class="fa fa-plus"></i>
                     </a>';
-    
-                    if($row->status==1){
-                  $html.='<a href="'.route('admin.deactive',['id'=>$row->id,'table'=>'packages']).'" class="btn btn-primary"><i class="fas fa-thumbs-down"></i></a>';
-                           }else{
-    
-                            $html.=' <a href="'.route('admin.active',['id'=>$row->id,'table'=>'packages']).'" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></a>';
-                }
-    return $html;
-                }) ->rawColumns(['action','status','thumbnail'])
-                ->make(true);;
-            }
+
+                    if ($row->status == 1) {
+                        $html .= '<a href="' . route('admin.deactive', ['id' => $row->id, 'table' => 'packages']) . '" class="btn btn-primary"><i class="fas fa-thumbs-down"></i></a>';
+                    } else {
+                        $html .= ' <a href="' . route('admin.active', ['id' => $row->id, 'table' => 'packages']) . '" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></a>';
+                    }
+                    return $html;
+                })
+                ->rawColumns(['action', 'status', 'thumbnail'])
+                ->make(true);
+        }
         return view('admin.packages.index');
     }
 
@@ -63,11 +76,13 @@ class PackagesController extends Controller
      */
     public function create()
     {
-        $featured_package = Package::where('status',1)->orderBy('name')->get();
-        $destinations= Destination::orderBy('name')->get();
+        $featured_package = Package::where('status', 1)
+            ->orderBy('name')
+            ->get();
+        $destinations = Destination::orderBy('name')->get();
         $categories_destinations = CategoryDestination::all();
-        $places= CategoryPlace::orderBy('name')->get();
-        return view('admin.packages.create', compact('destinations','categories_destinations','featured_package','places'));
+        $places = CategoryPlace::orderBy('name')->get();
+        return view('admin.packages.create', compact('destinations', 'categories_destinations', 'featured_package', 'places'));
     }
 
     /**
@@ -78,32 +93,30 @@ class PackagesController extends Controller
      */
     public function store(Request $request)
     {
-        
         $url = $this->toAscii($request->name);
         $this->validate($request, [
             'name' => 'required|min:3|max:255|unique:packages',
-            'destination_id' =>'required',
-            'category_destination_id' =>'required'
-
+            'destination_id' => 'required',
+            'category_destination_id' => 'required',
         ]);
 
         try {
             DB::beginTransaction();
 
-            $package = new Package;
+            $package = new Package();
             $package->name = $request->name;
             $package->trip_id = $request->trip_id;
-            
+
             // $package->category_id = ($request->category_id == "")? null : $request->category;;
             $package->destination_id = $request->destination_id;
-            $package->category_place_id = ($request->category_place_id)?$request->category_place_id:null;
+            $package->category_place_id = $request->category_place_id ? $request->category_place_id : null;
             $package->category_destination_id = $request->category_destination_id;
             $package->status = 1;
             $package->duration = $request->duration;
             $package->difficulty = $request->difficulty;
             $package->max_altitude = $request->max_altitude;
             // $package->min_people_required = $request->min_people_required;
-            $package->url = ($request->url)?$request->url:$url;
+            $package->url = $request->url ? $request->url : $url;
             $package->outline_itinerary = $request->outline_itinerary;
             $package->detailed_itinerary = $request->detailed_itinerary;
             $package->include_exclude = $request->include_exclude;
@@ -118,9 +131,13 @@ class PackagesController extends Controller
             $package->best_month = $request->best_month;
             $package->group_size = $request->group_size;
             $package->faq = $request->faq;
-            if($request->price)$package->price = $request->price;
+            if ($request->price) {
+                $package->price = $request->price;
+            }
             $package->rating = $request->rating;
-            if($request->discounted_price)$package->discounted_price = $request->discounted_price;
+            if ($request->discounted_price) {
+                $package->discounted_price = $request->discounted_price;
+            }
             $package->overview = $request->overview;
             $package->important_notes = $request->important_notes;
             $package->physical_condition = $request->physical_condition;
@@ -139,56 +156,46 @@ class PackagesController extends Controller
             $package->mobile_meta_description = $request->mobile_meta_description;
             $package->map_title = $request->map_title;
 
-            $banner=$request->file('thumbnail');
-            if($banner){
-                $package->banner=$this->uploadFile('upload/package/banner',$banner);
-
+            $banner = $request->file('thumbnail');
+            if ($banner) {
+                $package->banner = $this->uploadFile('upload/package/banner', $banner);
             }
 
-            $thumbnail=$request->file('cover');
-            if($thumbnail){
-                $package->thumbnail=$this->uploadFile('upload/package/thumbnail',$thumbnail);
-
+            $thumbnail = $request->file('cover');
+            if ($thumbnail) {
+                $package->thumbnail = $this->uploadFile('upload/package/thumbnail', $thumbnail);
             }
 
-            
-            $roadmap=$request->file('roadmap');
-            if($roadmap){
-                $package->roadmap=$this->uploadFile('upload/package/roadmap',$roadmap);
-
+            $roadmap = $request->file('roadmap');
+            if ($roadmap) {
+                $package->roadmap = $this->uploadFile('upload/package/roadmap', $roadmap);
             }
 
             $package->save();
-           
-            
-          
 
-            if (isset($request->featured_package)){
+            if (isset($request->featured_package)) {
                 foreach ($request->featured_package as $value) {
                     DB::table('package_featured')->insert(['package_id' => $package->id, 'featured_id' => $value]);
                 }
             }
 
-          
-
             DB::commit();
-            $notification=array(
-                'alert-type'=>'success',
-                'messege'=>'Successfully Added package.',
-               
-             );
+            $notification = [
+                'alert-type' => 'success',
+                'messege' => 'Successfully Added package.',
+            ];
         } catch (QueryException $e) {
             return $e->getMessage();
             DB::rollback();
-            $notification=array(
-                'alert-type'=>'error',
-                'messege'=>'Failed to Add package, Try again.',
-               
-             );
-
+            $notification = [
+                'alert-type' => 'error',
+                'messege' => 'Failed to Add package, Try again.',
+            ];
         }
 
-        return redirect()->route('admin.categories-packages.index')->with($notification);
+        return redirect()
+            ->route('admin.categories-packages.index')
+            ->with($notification);
     }
 
     /**
@@ -210,13 +217,15 @@ class PackagesController extends Controller
      */
     public function edit($id)
     {
-        $featured_package = Package::where('status',1)->orderBy('name')->get();
+        $featured_package = Package::where('status', 1)
+            ->orderBy('name')
+            ->get();
         $package = Package::findOrFail($id);
         $destinations = Destination::orderBy('name')->get();
-        $places= CategoryPlace::orderBy('name')->get();
+        $places = CategoryPlace::orderBy('name')->get();
 
         $categories_destinations = CategoryDestination::orderBy('name')->get();
-        return view('admin.packages.edit',compact('featured_package','package','destinations','categories_destinations','places'));
+        return view('admin.packages.edit', compact('featured_package', 'package', 'destinations', 'categories_destinations', 'places'));
     }
 
     /**
@@ -233,28 +242,29 @@ class PackagesController extends Controller
         // dd($request->all());
 
         $this->validate($request, [
-            'name' => 'required|min:3|max:255|unique:packages,name,'. $id,
-            'destination_id' =>'required',
-            'category_destination_id' =>'required'
+            'name' => 'required|min:3|max:255|unique:packages,name,' . $id,
+            'destination_id' => 'required',
+            'category_destination_id' => 'required',
         ]);
 
-         try {
+        try {
             DB::beginTransaction();
 
             $package = Package::findOrFail($id);
             $package->name = $request->name;
             $package->trip_id = $request->trip_id;
-            
+
             // $package->category_id = ($request->category_id == "")? null : $request->category;;
             $package->destination_id = $request->destination_id;
-            $package->category_place_id = ($request->category_place_id)?$request->category_place_id:null;
+            $package->category_place_id = $request->category_place_id ? $request->category_place_id : null;
             $package->category_destination_id = $request->category_destination_id;
             $package->status = 1;
             $package->duration = $request->duration;
             $package->difficulty = $request->difficulty;
             $package->max_altitude = $request->max_altitude;
             // $package->min_people_required = $request->min_people_required;
-            $package->url = ($request->url)?$request->url:$url;
+            $package->url = $request->url ? $request->url : $url;
+            $package->overview = $request->overview;
             $package->outline_itinerary = $request->outline_itinerary;
             $package->detailed_itinerary = $request->detailed_itinerary;
             $package->include_exclude = $request->include_exclude;
@@ -269,9 +279,13 @@ class PackagesController extends Controller
             $package->best_month = $request->best_month;
             $package->group_size = $request->group_size;
             $package->faq = $request->faq;
-            if($request->price)$package->price = $request->price;
+            if ($request->price) {
+                $package->price = $request->price;
+            }
             $package->rating = $request->rating;
-            if($request->discounted_price)$package->discounted_price = $request->discounted_price;
+            if ($request->discounted_price) {
+                $package->discounted_price = $request->discounted_price;
+            }
             $package->overview = $request->overview;
             $package->important_notes = $request->important_notes;
             $package->physical_condition = $request->physical_condition;
@@ -280,62 +294,57 @@ class PackagesController extends Controller
             $package->arrival = $request->arrival;
             $package->departure_from = $request->departure_from;
             $package->fitness_level = $request->fitness_level;
+            $package->video = $request->video;
             $package->page_title = $request->page_title;
             $package->meta_keywords = $request->meta_keywords;
             $package->meta_author = $request->meta_author;
             $package->meta_description = $request->meta_description;
-            $package->video = $request->video;
             $package->mobile_meta_keyword = $request->mobile_meta_keyword;
             $package->mobile_meta_title = $request->mobile_meta_title;
             $package->mobile_meta_description = $request->mobile_meta_description;
             $package->map_title = $request->map_title;
 
-
-           
-            $banner=$request->file('thumbnail');
-            if($banner){
+            $banner = $request->file('thumbnail');
+            if ($banner) {
                 $this->deleteFile($package->banner);
-                $package->banner=$this->uploadFile('upload/package/banner',$banner);
+                $package->banner = $this->uploadFile('upload/package/banner', $banner);
             }
 
-            $thumbnail=$request->file('cover');
-            if($thumbnail){
+            $thumbnail = $request->file('cover');
+            if ($thumbnail) {
                 $this->deleteFile($package->thumbnail);
-                $package->thumbnail=$this->uploadFile('upload/package/thumbnail',$thumbnail);
+                $package->thumbnail = $this->uploadFile('upload/package/thumbnail', $thumbnail);
             }
 
-
-               
-            $roadmap=$request->file('roadmap');
-            if($roadmap){
+            $roadmap = $request->file('roadmap');
+            if ($roadmap) {
                 $this->deleteFile($package->routemap);
-                $package->routemap=$this->uploadFile('upload/package/roadmap',$roadmap);
+                $package->routemap = $this->uploadFile('upload/package/roadmap', $roadmap);
             }
 
             $package->save();
-            if (isset($request->featured_package)){
+            if (isset($request->featured_package)) {
                 foreach ($request->featured_package as $value) {
                     DB::table('package_featured')->insert(['package_id' => $package->id, 'featured_id' => $value]);
                 }
             }
             DB::commit();
-            $notification=array(
-                'alert-type'=>'success',
-                'messege'=>'Successfully updated package.',
-               
-             );
+            $notification = [
+                'alert-type' => 'success',
+                'messege' => 'Successfully updated package.',
+            ];
         } catch (QueryException $e) {
             return $e->getMessage();
             DB::rollback();
-            $notification=array(
-                'alert-type'=>'error',
-                'messege'=>'Failed to updated package, Try again.',
-               
-             );
-
+            $notification = [
+                'alert-type' => 'error',
+                'messege' => 'Failed to updated package, Try again.',
+            ];
         }
 
-        return redirect()->route('admin.categories-packages.index')->with($notification);
+        return redirect()
+            ->route('admin.categories-packages.index')
+            ->with($notification);
     }
 
     /**
@@ -352,9 +361,7 @@ class PackagesController extends Controller
             $package->homeimages()->detach();
             $package->routemapimages()->detach();
             $package->delete();
-
         } catch (QueryException $e) {
-           
         }
 
         return redirect()->route('admin.packages.index');
@@ -368,10 +375,91 @@ class PackagesController extends Controller
     //     return response()->json(['status' => 'success']);
     // }
 
-    private function toAscii($str) {
+    private function toAscii($str)
+    {
         $clean = preg_replace('~[^\\pL\d]+~u', '-', $str);
         $clean = strtolower(trim($clean, '-'));
 
         return $clean;
     }
+
+    public function countryPackage(Request $request)
+    {
+        $packages = DB::table('country_package')
+            ->join('countries', 'country_package.country_id', 'countries.id')
+            ->join('packages', 'packages.id', 'country_package.package_id')
+            ->select('country_package.*', 'packages.name as pname', 'countries.name as cname')
+            ->get();
+        $package_id = $request->package_id;
+        return view('admin.packages.country_package.index', compact('package_id', 'packages'));
+    }
+
+    public function countryPackagecreate(Request $request)
+    {
+        $package_id = $request->package_id;
+        $countries = Country::all();
+
+        return view('admin.packages.country_package.create', compact('package_id', 'countries'));
+    }
+
+
+    public function countryPackageStore(Request $request)
+    {
+        $package_id = $request->package_id;
+        $insert = [
+            'package_id' => $package_id,
+            'country_id' => $request->country,
+            'overview' => $request->overview,
+            'faq' => $request->faq,
+            'outline_itinerary' => $request->outline_itinerary,
+            'detailed_itinerary' => $request->detailed_itinerary,
+            'include_exclude' => $request->include_exclude,
+            'trip_excludes' => $request->trip_excludes,
+            'useful_info' => $request->useful_info,
+            'page_title' => $request->page_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_author' => $request->meta_author,
+            'meta_description' => $request->meta_description,
+            'mobile_meta_keyword' => $request->mobile_meta_keyword,
+            'mobile_meta_title' => $request->mobile_meta_title,
+            'mobile_meta_description' => $request->mobile_meta_description,
+        ];
+        DB::table('country_package')->insert($insert);
+        return redirect()->route('admin.package.country');
+    }
+
+
+    public function countryPackageEdit($id)
+    {
+      $package=  DB::table('country_package')->where('id',$id)->first();
+      $countries = Country::all();
+        return view('admin.packages.country_package.edit', compact('package', 'countries'));
+    }
+
+
+    public function countryPackagupdate(Request $request)
+    {
+        $id=$request->id;
+        $insert = [
+            'country_id' => $request->country,
+            'overview' => $request->overview,
+            'faq' => $request->faq,
+            'outline_itinerary' => $request->outline_itinerary,
+            'detailed_itinerary' => $request->detailed_itinerary,
+            'include_exclude' => $request->include_exclude,
+            'trip_excludes' => $request->trip_excludes,
+            'useful_info' => $request->useful_info,
+            'page_title' => $request->page_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_author' => $request->meta_author,
+            'meta_description' => $request->meta_description,
+            'mobile_meta_keyword' => $request->mobile_meta_keyword,
+            'mobile_meta_title' => $request->mobile_meta_title,
+            'mobile_meta_description' => $request->mobile_meta_description,
+        ];
+        DB::table('country_package')->where('id',$id)->update($insert);
+        return redirect()->route('admin.package.country');
+    }
+
+
 }
