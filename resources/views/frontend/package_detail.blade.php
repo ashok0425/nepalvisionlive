@@ -2,26 +2,24 @@
     $agent = new \Jenssegers\Agent\Agent();
 @endphp
 @if ($agent->isMobile())
-
-
     @section('title')
-        {{ $package->mobile_meta_title }}
+        {{ $package->country($country)!=null ? $package->country($country)->pivot->mobile_meta_title : $package->mobile_meta_title }}
     @endsection
     @section('descr')
-        {{ $package->mobile_meta_description }}
+        {{ $package->country($country)!=null ? $package->country($country)->pivot->mobile_meta_description : $package->mobile_meta_description }}
     @endsection
     @section('keyword')
-        {{ $package->mobile_meta_keyword }}
+        {{ $package->country($country)!=null ? $package->country($country)->pivot->mobile_meta_keyword : $package->mobile_meta_keyword }}
     @endsection
 @else
     @section('title')
-        {{ $package->page_title }}
+        {{ $package->country($country)!=null ? $package->country($country)->pivot->page_title : $package->page_title }}
     @endsection
     @section('descr')
-        {{ $package->meta_description }}
+        {{ $package->country($country)!=null ? $package->country($country)->pivot->meta_description : $package->meta_description }}
     @endsection
     @section('keyword')
-        {{ $package->meta_keywords }}
+        {{ $package->country($country)!=null ? $package->country($country)->pivot->meta_keywords : $package->meta_keywords }}
     @endsection
 
 @endif
@@ -91,27 +89,18 @@
 </style>
 {!! NoCaptcha::renderJs() !!}
 @section('content')
-
     <div class="container- px-0 mx-0">
-
-
-
         <main>
-
             <section class="trip-desc my-3 my-md-0">
                 <div class="container">
                     <div class="row">
                         {{-- 1st col staart  --}}
-
                         <div class="col-md-8 my-1">
-
-
                             @php
                                 $packages_id = $package->id;
                                 $arr = trim($package->name);
                                 // return isset() ? $arr[0] : $string;
                             @endphp
-
                             {{-- banner section start  --}}
                             <div class="my-2">
                                 <h1 class="custom-text-primary custom-fs-25 mb-2">{{ $package->name }}</h1>
@@ -274,13 +263,6 @@
                                         <a class="btn btn-primary w-100"
                                             href="{{ route('booknow', ['url' => $package->url]) }}">Book Now</a>
                                     </div>
-
-                                    {{-- <div class="col-md-6 col-5 py-2">
-    
-                                <a href="#"class=" btn btn-primary w-100 text-decoration-none " data-bs-toggle="modal" data-bs-target="#enquery">  
-                                   
-                                    Enquire</a>
-                            </div> --}}
                                 </div>
 
                             </div>
@@ -330,39 +312,41 @@
                                     </tr>
                                     @if ($package->meals)
                                         <tr>
-                                            <td class="border-top-0"> <i class="fas fa-cutlery"></i> <strong>Meal:</strong>
+                                            <td class="border-top-0"> <i class="fas fa-utensils"></i> <strong>Meal:</strong>
                                             </td>
                                             <td class="border-top-0">{{ $package->meals }}</td>
 
-                                            <td class="border-top-0"> <i class="fas fa-clock"></i> <strong>Duration:</strong>
+                                            <td class="border-top-0"> <i class="fas fa-clock"></i>
+                                                <strong>Duration:</strong>
                                             </td>
                                             <td class="border-top-0">{{ $package->duration }}</td>
 
-                                            
+
                                         </tr>
                                     @endif
-                                        <tr>
-                                    @if ($package->room)
-
+                                    <tr>
+                                        @if ($package->room)
                                             <td class="border-top-0"> <i class="fas fa-bed"></i>
                                                 <strong>Accommodation:</strong>
                                             </td>
                                             <td class="border-top-0">{{ $package->room }}</td>
-                                    @endif
+                                        @endif
 
-                                    <td class="border-top-0"> <i class="fas fa-comments-dollar"></i>
-                                        <strong>Price:</strong>
-                                    </td>
-                                    <td class="border-top-0  "> <sub><small class="custom-fs-16">US</small> </sub> <strong class="custom-fs-22 "> ${{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
-                                    <sub> <small class="custom-fs-16">per person</small></sub></strong></td>
+                                        <td class="border-top-0"> <i class="fas fa-comments-dollar"></i>
+                                            <strong>Price:</strong>
+                                        </td>
+                                        <td class="border-top-0  "> <sub><small class="custom-fs-16">US</small> </sub>
+                                            <strong class="custom-fs-22 ">
+                                                ${{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                            <sub> <small class="custom-fs-16">per person</small></sub></strong>
+                                        </td>
 
-                                        </tr>
-            
-                                  
+                                    </tr>
+
+
                                 </tbody>
                             </table>
                             {{-- banner section End  --}}
-
 
                             {{-- we accept section start --}}
                             <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2 d-block d-md-none">
@@ -378,7 +362,8 @@
                                     </div>
 
                                     <div class="col-md-4">
-                                        <img src="{{ getImageurl('best_price.png') }}" alt="Bes price" class="img-fluid">
+                                        <img src="{{ getImageurl('best_price.png') }}" alt="Bes price"
+                                            class="img-fluid">
 
                                     </div>
                                     <div class="col-12 mt-3">
@@ -387,7 +372,8 @@
 
 
                                         <p class="mt-2 mb-0 custom-fs-14">
-                                            <span><i class="fas fa-edit custom-text-primary"></i> Customize this trip as per
+                                            <span><i class="fas fa-edit custom-text-primary"></i> Customize this trip as
+                                                per
                                                 your need.</span>
                                         </p>
                                         <p class="mt-1 mb-0 custom-fs-14">
@@ -438,8 +424,8 @@
                                         <div class="row">
                                             <div class="col-12 my-2">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Enter Full Name"
-                                                        name="name" required />
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter Full Name" name="name" required />
                                                 </div>
                                             </div>
                                             <div class="col-12 my-2">
@@ -479,9 +465,9 @@
                                 </div>
                             </div>
                             {{-- Enquiry form end  --}}
-                            <div class="about-trip"  style="position: sticky!important;top:50px!important">
+                            <div class="about-trip" style="position: sticky!important;top:50px!important">
                                 <div class="head">
-                                    <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist" >
+                                    <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
                                         <li class="nav-item " role="presentation">
                                             <a class="nav-link active " id="home-tab" data-bs-toggle="tab"
                                                 href="#home" role="tab" aria-controls="home" aria-selected="true">
@@ -559,46 +545,43 @@
                             <div class="tab-content card" id="myTabContent">
                                 <div class="tab-pane card-body fade show active" id="home" role="tabpanel"
                                     aria-labelledby="home-tab">
-                                    {!! $package->overview !!}
-                                    {!! $package->outline_itinerary !!}
-                                    {!! $package->include_exclude !!}
-                                    {!! $package->trip_excludes !!}
-
-
-
+                                    {!! $package->country($country)!=null ? $package->country($country)->pivot->overview : $package->overview !!}
+                                    {!! $package->country($country)!=null
+                                        ? $package->country($country)->pivot->outline_itinerary
+                                        : $package->outline_itinerary !!}
+                                    {!! $package->country($country)!=null
+                                        ? $package->country($country)->pivot->include_exclude
+                                        : $package->include_exclude !!}
+                                    {!! $package->country($country)!=null
+                                        ? $package->country($country)->pivot->trip_excludes
+                                        : $package->trip_excludes !!}
                                 </div>
                                 <div class="tab-pane card-body fade" id="profile" role="tabpanel"
                                     aria-labelledby="profile-tab">
-                                    {!! $package->detailed_itinerary !!}
-
+                                    {!! $package->country($country)!=null 
+                                        ? $package->country($country)->pivot->detailed_itinerary
+                                        : $package->detailed_itinerary !!}
                                 </div>
 
                                 @if (!empty($package->faq))
                                     <div class="tab-pane card-body fade" id="faq" role="tabpanel"
                                         aria-labelledby="faq-tab">
-                                        {!! $package->faq !!}
+                                        {!! $package->country($country)!=null ? $package->country($country)->pivot->faq : $package->faq !!}
                                     </div>
                                 @endif
 
                                 <div class="tab-pane card-body fade" id="useful" role="tabpanel"
                                     aria-labelledby="useful-tab">
-                                    {!! $package->useful_info !!}
+                                    {!! $package->country($country)!=null ? $package->country($country)->pivot->useful_info : $package->useful_info !!}
                                 </div>
 
                                 <div class="tab-pane card-body fade" id="equiment" role="tabpanel"
                                     aria-labelledby="equiment-tab">
                                     {!! $package->equiment !!}
                                 </div>
-
-
-
-
-
                                 <div class="tab-pane fade card-body" id="datePrice" role="tabpanel"
                                     aria-labelledby="datePrice-tab">
-
-                                    <strong class="mt-2">Departure dates for {{ $package->name }}</strong>
-
+                                    <strong class="mt-2">Departure dates for {!! $package->name !!}</strong>
                                     <p>We provide a series of fixed departure trek, tour and expeditions in Nepal, Bhutan,
                                         Tibet and India. If you are single and wishing to be with a group, you can join our
                                         fixed departure schedule. If the schedule dates are not convenient for you, contact
@@ -607,33 +590,20 @@
                                         operate as per your wish and requirement. We are ground operator of these Himalayan
                                         destination and able to arrange your trip as per your interested date and choice.
                                     </p>
-
                                     <form>
-
                                         <div class="row">
-
                                             <div class="col-12">
-
                                                 <p>Check out all the available dates</p>
-
                                             </div>
-
                                             <div class="col-12">
-
                                                 <div class="row">
-
                                                     <div class="col-6 col-lg-4">
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">
                                                                 <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
-
                                                             </span>
-
-
                                                             <select class="form-control select-year"
                                                                 aria-describedby="basic-addon1">
-
-                                                                {{--    <option disabled selected>Select Year</option> --}}
                                                                 <option value="{{ date('Y') }}">Select Dates</option>
                                                                 <option value="{{ date('Y') }}">{{ date('Y') }}
                                                                 </option>
@@ -641,27 +611,17 @@
                                                                 </option>
                                                                 <option value="{{ date('Y') + 2 }}">{{ date('Y') + 2 }}
                                                                 </option>
-                                                                {{--   <option value="{{ date('Y')+2 }}">{{ date('Y')+2 }}</option>
-                                                       <option value="{{ date('Y')+3 }}">{{ date('Y')+3 }}</option> --}}
-
                                                             </select>
-
-
                                                         </div>
-
                                                     </div>
 
                                                     <div class="col-6 col-lg-4">
-
                                                         <div class="input-group">
                                                             <span class="input-group-text" id="basic-addon2">
                                                                 <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
-
                                                             </span>
-
                                                             <select class="form-control" id="select-month"
                                                                 aria-describedby="basic-addon2">
-                                                                {{-- <option disabled selected>Select Month</option> --}}
                                                                 <option value="1">Jan</option>
                                                                 <option value="2">Feb</option>
                                                                 <option value="3">Mar</option>
@@ -675,51 +635,27 @@
                                                                 <option value="11">Nov</option>
                                                                 <option value="12">Dec</option>
                                                             </select>
-
-
-
                                                         </div>
-
                                                     </div>
-
-
-
                                                 </div>
-
                                             </div>
-
                                         </div>
-
                                     </form>
 
                                     <table class="table table-bordered text-center">
-
                                         <thead>
-
                                             <tr>
-
                                                 <th scope="col">Start Date</th>
-
                                                 <th scope="col">Finish Date</th>
-
                                                 <th scope="col">Availability</th>
-
                                                 <th scope="col">Price</th>
-
                                                 <th scope="col">Action</th>
-
                                             </tr>
-
                                         </thead>
-
                                         <tbody class="ajaxloadmoredeparture">
                                         </tbody>
-
                                     </table>
-
                                 </div>
-
-
 
                                 <div class="tab-pane card-body fade" id="review" role="tabpanel"
                                     aria-labelledby="review-tab">
@@ -729,15 +665,12 @@
                                             </strong>
                                         </div>
                                         <div class="col-md-3 offset-md-3 text-right">
-
                                             <a class="btn btn-primary" href="{{ route('testimonials') }}">Write
                                                 Review</a>
                                         </div>
-
                                     </div>
                                     @foreach ($reviews as $review)
                                         <div class="card">
-
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="img card-body">
@@ -764,8 +697,6 @@
                                                                 @for ($i = 1; $i <= 5 - $review->rating; $i++)
                                                                     <i class="fas fa-star text-gray"></i>
                                                                 @endfor
-
-
                                                             </div>
                                                             <div class="mt-2">
                                                                 <strong
@@ -773,16 +704,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                                 <div class="col-md-8 ">
                                                     <div class="card-body">
                                                         <h3 class="custom-text-primary custom-fs-18">{{ $review->title }}
                                                         </h3>
                                                         <div class="comment">
-
                                                             {!! strip_tags($review->content) !!}
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -790,7 +718,6 @@
                                         </div>
                                     @endforeach
                                 </div>
-
                             </div>
 
                             <div class="routemap my-2">
@@ -815,7 +742,6 @@
                                                 {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
                                             <sub>per person</sub></strong>
                                         <div>
-
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -825,7 +751,6 @@
                                     <div class="col-12 mt-3">
                                         <p class="border_bottom text-center custom-fs-16  custom-fw-700 w-75 m-auto">We
                                             support online payment</p>
-
                                         <p class="mt-2 mb-0 custom-fs-14">
                                             <span><i class="fas fa-edit custom-text-primary"></i> Customize this trip as
                                                 per your need.</span>
@@ -864,8 +789,6 @@
                                         <input type="hidden" value="1" name="no_participants">
                                         <input type="hidden" value="1" name="agent">
                                         <input type="hidden" value="{{ date('d-m-Y') }}" name="expected_date">
-
-
                                         <div class="row">
                                             <div class="col-12 my-2">
                                                 <div class="form-group">
@@ -914,49 +837,25 @@
 
                             <div class="card  shadow-sm bg_secondary    my-2 mx-md-4">
                                 <div class="card-body ">
-
                                     <div class="d-flex justify-content-around flex-md-row flex-column">
-
-                                        {{-- @if ($package->video)
-<div class="my-1 mx-1">
-<a href="#"class=" custom-bg-primary  text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#video"><i class="fa fa-play-circle"></i>  
-   &nbsp;
-    Video</a>
-</div>
-@endif --}}
-
                                         <div class="my-1 mx-1 ">
                                             <a href="#"class=" btn btn-primary  text-decoration-none text-light  d-flex align-items-center justify-content-center"
                                                 data-bs-toggle="modal" data-bs-target="#customize">
-
                                                 Customize</a>
                                         </div>
                                         <div class="my-1 mx-1">
                                             <a href="{{ route('print', $package->id) }}"
                                                 class=" btn btn-primary   text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center">
-                                                {{-- <i class="fa fa-print"></i>  
-                   &nbsp; --}}
                                                 Print </a>
                                         </div>
-
-
                                         <div class="my-1 mx-1">
                                             <a href=""
                                                 class=" btn btn-primary   text-decoration-none text-light  d-flex align-items-center justify-content-center copy_link">
-                                                {{-- <i class="fa fa-copy"></i>  
-                   &nbsp; --}}
                                                 Copy </a>
                                         </div>
-
                                     </div>
                                 </div>
-
                             </div>
-
-
-
-
-
                             {{-- we accept section start --}}
                             <div class="my-2 mx-md-4 card">
                                 <strong class="custom-bg-primary text-white custom-fs-19 py-2 px-2"> We Accept</strong>
@@ -964,14 +863,10 @@
                                     <img src="{{ getImageurl('weaccept.webp') }}" alt="we accept" class="img-fluid">
                                 </div>
                             </div>
-
                             {{-- we accept section end --}}
 
-
                             {{--  Trip advesior start --}}
-
                             <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3">
-
                                 <div class="">
                                     <img src="{{ getImageurl('trip2.webp') }}" alt="Trip advisor" class="img-fluid">
                                 </div>
@@ -990,14 +885,12 @@
                                         </strong>
 
                                     </p>
-
                                 </div>
                             </div>
                             {{--  Trip advesior End --}}
 
                         </div>
                         {{-- 2nd col end  --}}
-
                     </div>
                 </div>
             </section>
@@ -1010,9 +903,7 @@
                         <div class="row">
                             @foreach ($features as $packaged)
                                 <div class="col-md-3 col-sm-4">
-
                                     @include('frontend.template.card1', ['package' => $packaged])
-
                                 </div>
                             @endforeach
 
@@ -1020,13 +911,7 @@
                     </div>
                 </section>
             @endif
-
         </main>
-
-
-
-
-
 
         {{-- video Model  --}}
         <!-- Modal -->
@@ -1034,7 +919,6 @@
             <div class="modal-dialog modal-md border-0">
                 <div class="modal-content bg-transparent border-0">
                     <div class="modal-header bg-transparent border-0">
-
                         <button type="button" class="btn-close text-light  text-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -1044,16 +928,9 @@
                             {!! $package->video !!}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
-
-
-
-
-
 
         {{-- Enquery Model  --}}
         <!-- Modal -->
@@ -1079,11 +956,7 @@
                         <div class="card-body">
                             <form action="{{ route('enquery.post') }}" method="POST">
                                 @csrf
-
-
                                 <input type="hidden" value="{{ $package->id }}" name="booking">
-
-
                                 <div class="form-group row my-3">
                                     <div for="tripName" class="col-md-4  custom-text-primary custom-fs-18 custom-fw-500">
                                         Full Name<span class="text-danger">*</span>: </div>
@@ -1100,7 +973,6 @@
                                             placeholder="Enter your email address" required>
                                     </div>
                                 </div>
-
                                 <div class="form-group row my-3">
                                     <div for="tripName" class="col-md-4  custom-text-primary custom-fs-18 custom-fw-500">
                                         Phone: </div>
@@ -1109,8 +981,6 @@
                                             placeholder="Mobile Number">
                                     </div>
                                 </div>
-
-
                                 <div class="form-group row my-3">
                                     <div for="tripdate" class="col-md-4  custom-text-primary custom-fs-18 custom-fw-500">
                                         Expected Date:</div>
@@ -1136,8 +1006,6 @@
 
                                     </div>
                                 </div>
-
-
                                 <div class="form-group row my-3">
                                     <div for="travellers"
                                         class="col-md-4  custom-text-primary custom-fs-18 custom-fw-500">How did you find
@@ -1148,9 +1016,7 @@
                                             @foreach ($agents as $agent)
                                                 <option value="{{ $agent->id }}">{{ $agent->name }}</option>
                                             @endforeach
-
                                         </select>
-
                                     </div>
                                 </div>
                                 <div class="form-group row my-3">
@@ -1160,8 +1026,6 @@
                                     <div class="col-md-8">
 
                                         <textarea name="comment" class="form-control" placeholder="Enter your message" id="message" required></textarea>
-
-
                                     </div>
                                 </div>
 
@@ -1175,8 +1039,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
         {{-- Customization  Model  --}}
@@ -1206,10 +1068,6 @@
                                 {{ csrf_field() }}
 
                                 <div class="row">
-
-
-
-
                                     <div class="col-12 col-sm-6 col-md-12 col-lg-6 my-2">
 
                                         <div class="form-group">
@@ -1222,18 +1080,12 @@
                                         </div>
 
                                     </div>
-
                                     <div class="col-12 col-sm-6 col-md-12 col-lg-6 my-2">
-
                                         <div class="form-group">
-
                                             <label for="email">Email<span class="text-danger">*</span></label>
-
                                             <input type="text" name="email" class="form-control"
                                                 placeholder="Enter your email address" id="email" required>
-
                                         </div>
-
                                     </div>
 
                                     @if ($package)
@@ -1243,317 +1095,162 @@
                                             placeholder="Enter your subject" id="subject"
                                             value="{{ $package->name }}">
                                         <div class="col-12 col-sm-6 col-md-12 col-lg-6 my-2 {{-- swapped-element --}}">
-
                                             <div class="form-group">
-
                                                 <label for="country">Select Country<span
                                                         class="text-danger">*</span></label>
-
                                                 <select class="form-control" id="country" name="country" required>
-
                                                     <option disabled="disabled" selected="selected"> Select your country
                                                     </option>
-
                                                     <option value="Afghanistan">Afghanistan</option>
-
                                                     <option value="Albania">Albania</option>
-
                                                     <option value="Algeria">Algeria</option>
-
                                                     <option value="Argentina">Argentina</option>
-
                                                     <option value="Australia">Australia</option>
-
                                                     <option value="Austria">Austria</option>
-
                                                     <option value="Azerbaijan">Azerbaijan</option>
-
                                                     <option value="Bahamas">Bahamas</option>
-
                                                     <option value="Bahrain">Bahrain</option>
-
                                                     <option value="Bangladesh">Bangladesh</option>
-
                                                     <option value="Belarus">Belarus</option>
-
                                                     <option value="Belgium">Belgium</option>
-
                                                     <option value="Belize">Belize</option>
-
                                                     <option value="Benin">Benin</option>
-
                                                     <option value="Bermuda">Bermuda</option>
-
                                                     <option value="Bhutan">Bhutan</option>
-
                                                     <option value="Bolivia">Bolivia</option>
-
                                                     <option value="Botswana">Botswana</option>
-
                                                     <option value="Brazil">Brazil</option>
-
                                                     <option value="Bulgaria">Bulgaria</option>
-
                                                     <option value="Burkina Faso">Burkina Faso</option>
-
                                                     <option value="Burundi">Burundi</option>
-
                                                     <option value="Cambodia">Cambodia</option>
-
                                                     <option value="Cameroon">Cameroon</option>
-
                                                     <option value="Canada">Canada</option>
-
                                                     <option value="Chad">Chad</option>
-
                                                     <option value="Chile">Chile</option>
-
                                                     <option value="China">China</option>
-
                                                     <option value="Colombia">Colombia</option>
-
                                                     <option value="Comoros">Comoros</option>
-
                                                     <option value="Costa Rica">Costa Rica</option>
-
                                                     <option value="Cote D'Ivoire">Cote D'Ivoire</option>
-
                                                     <option value="Cyprus">Cyprus</option>
-
                                                     <option value="Czech Republic">Czech Republic</option>
-
                                                     <option value="Denmark">Denmark</option>
-
                                                     <option value="Djibouti">Djibouti</option>
-
                                                     <option value="Dominican Republic">Dominican Republic</option>
-
                                                     <option value="Ecuador">Ecuador</option>
-
                                                     <option value="Egypt">Egypt</option>
-
                                                     <option value="El Salvador">El Salvador</option>
-
                                                     <option value="Estonia">Estonia</option>
-
                                                     <option value="Fiji">Fiji</option>
-
                                                     <option value="Finland">Finland</option>
-
                                                     <option value="France">France</option>
-
                                                     <option value="Gabon">Gabon</option>
-
                                                     <option value="Gambia">Gambia</option>
-
                                                     <option value="Georgia">Georgia</option>
-
                                                     <option value="Germany">Germany</option>
-
                                                     <option value="Ghana">Ghana</option>
-
                                                     <option value="Gibraltar">Gibraltar</option>
-
                                                     <option value="Greece">Greece</option>
-
                                                     <option value="Greenland">Greenland</option>
-
                                                     <option value="Grenada">Grenada</option>
-
                                                     <option value="Guatemala">Guatemala</option>
-
                                                     <option value="Guinea">Guinea</option>
-
                                                     <option value="Guinea-Bissau">Guinea-Bissau</option>
-
                                                     <option value="Guyana">Guyana</option>
-
                                                     <option value="Haiti">Haiti</option>
-
                                                     <option value="Honduras">Honduras</option>
-
                                                     <option value="Hong Kong">Hong Kong</option>
-
                                                     <option value="Hungary">Hungary</option>
-
                                                     <option value="Iceland">Iceland</option>
-
                                                     <option value="India">India</option>
-
                                                     <option value="Indonesia">Indonesia</option>
-
-                                                    <option value="Iran (Islamic Republi">Iran (Islamic Republi</option>
-
+                                                    <option value="Iran (Islamic Republic)">Iran (Islamic Republic)</option>
                                                     <option value="Iraq">Iraq</option>
-
                                                     <option value="Ireland">Ireland</option>
-
                                                     <option value="Israel">Israel</option>
-
                                                     <option value="Italy">Italy</option>
-
                                                     <option value="Jamaica">Jamaica</option>
-
                                                     <option value="Japan">Japan</option>
-
                                                     <option value="Jordan">Jordan</option>
-
                                                     <option value="Kazakhstan">Kazakhstan</option>
-
                                                     <option value="Kenya">Kenya</option>
-
                                                     <option value="Korea (South)">Korea (South)</option>
-
                                                     <option value="Kuwait">Kuwait</option>
-
                                                     <option value="Latvia">Latvia</option>
-
                                                     <option value="Lebanon">Lebanon</option>
-
                                                     <option value="Lesotho">Lesotho</option>
-
                                                     <option value="Liberia">Liberia</option>
-
                                                     <option value="Libyan Arab Jamahiriy">Libyan Arab Jamahiriy</option>
-
                                                     <option value="Lithuania">Lithuania</option>
-
                                                     <option value="Luxembourg">Luxembourg</option>
-
                                                     <option value="Madagascar">Madagascar</option>
-
                                                     <option value="Malawi">Malawi</option>
-
                                                     <option value="Malaysia">Malaysia</option>
-
                                                     <option value="Mali">Mali</option>
-
                                                     <option value="Mauritania">Mauritania</option>
-
                                                     <option value="Mauritius">Mauritius</option>
-
                                                     <option value="Mexico">Mexico</option>
-
                                                     <option value="Mongolia">Mongolia</option>
-
                                                     <option value="Morocco">Morocco</option>
-
                                                     <option value="Mozambique">Mozambique</option>
-
                                                     <option value="Myanmar">Myanmar</option>
-
                                                     <option value="Namibia">Namibia</option>
-
                                                     <option value="Nauru">Nauru</option>
-
                                                     <option value="Nepal">Nepal</option>
-
                                                     <option value="Netherlands">Netherlands</option>
-
                                                     <option value="New Zealand">New Zealand</option>
-
                                                     <option value="Nicaragua">Nicaragua</option>
-
                                                     <option value="Niger">Niger</option>
-
                                                     <option value="Nigeria">Nigeria</option>
-
                                                     <option value="Norway">Norway</option>
-
                                                     <option value="Oman">Oman</option>
-
                                                     <option value="Pakistan">Pakistan</option>
-
                                                     <option value="Panama">Panama</option>
-
                                                     <option value="Papua New Guinea">Papua New Guinea</option>
-
                                                     <option value="Paraguay">Paraguay</option>
-
                                                     <option value="Peru">Peru</option>
-
                                                     <option value="Philippines">Philippines</option>
-
                                                     <option value="Poland">Poland</option>
-
                                                     <option value="Portugal">Portugal</option>
-
                                                     <option value="Qatar">Qatar</option>
-
                                                     <option value="Saudi Arabia">Saudi Arabia</option>
-
                                                     <option value="Senegal">Senegal</option>
-
                                                     <option value="Sierra Leone">Sierra Leone</option>
-
                                                     <option value="Singapore">Singapore</option>
-
                                                     <option value="Somalia">Somalia</option>
-
                                                     <option value="South Africa">South Africa</option>
-
                                                     <option value="Spain">Spain</option>
-
                                                     <option value="Sri Lanka">Sri Lanka</option>
-
                                                     <option value="Sudan">Sudan</option>
-
                                                     <option value="Suriname">Suriname</option>
-
                                                     <option value="Swaziland">Swaziland</option>
-
                                                     <option value="Sweden">Sweden</option>
-
                                                     <option value="Switzerland">Switzerland</option>
-
                                                     <option value="Syrian Arab Republic">Syrian Arab Republic</option>
-
                                                     <option value="Taiwan">Taiwan</option>
-
                                                     <option value="Tajikistan">Tajikistan</option>
-
                                                     <option value="Thailand">Thailand</option>
-
                                                     <option value="Togo">Togo</option>
-
                                                     <option value="Trinidad And Tobago">Trinidad And Tobago</option>
-
                                                     <option value="Tunisia">Tunisia</option>
-
                                                     <option value="Turkey">Turkey</option>
-
                                                     <option value="Turkmenistan">Turkmenistan</option>
-
                                                     <option value="Uganda">Uganda</option>
-
                                                     <option value="Ukraine">Ukraine</option>
-
                                                     <option value="United Arab Emirates">United Arab Emirates</option>
-
                                                     <option value="United Kingdom">United Kingdom</option>
-
                                                     <option value="United States">United States</option>
-
                                                     <option value="Uruguay">Uruguay</option>
-
                                                     <option value="Uzbekistan">Uzbekistan</option>
-
                                                     <option value="Venezuela">Venezuela</option>
-
                                                     <option value="VietNam">VietNam</option>
-
                                                     <option value="Yemen">Yemen</option>
-
                                                     <option value="Yugoslavia">Yugoslavia</option>
-
                                                     <option value="Zambia">Zambia</option>
-
                                                     <option value="Zimbabwe">Zimbabwe</option>
-
                                                 </select>
-
                                             </div>
-
                                         </div>
 
                                         <div class="col-12 col-sm-6 col-md-12 col-lg-6 my-2 {{-- swapped-element --}}">

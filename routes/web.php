@@ -12,18 +12,16 @@
 	Route::get('destination/{url}','DestinationController@index')->name('destination');
 	Route::get('package-all/','PackageController@all')->name('package.all');
 	Route::get('filter_package}','PackageController@Filter_Package')->name('filter_package');
-
 	Route::get('package-destination/{url}','PackageController@destination')->name('package.destination');
 	Route::get('package-category/{url}','PackageController@category')->name('package.category');
 	Route::get('package-place/{url}','PackageController@place')->name('package.place');
-
 	Route::get('package-detail/{country?}/{url?}','PackageController@show')->name('package.detail');
+	Route::get('package-detail/{url?}','PackageController@show')->name('package.detail');
 	Route::get('book-now/{url?}/{date?}','BuyController@index')->name('booknow');
 	Route::post('booking/step2','BuyController@step2')->name('booking.step2');
 	Route::post('booking/store','BuyController@store')->name('booking.step2.store');
 	Route::get('booking-online/{id?}','BuyController@payonline')->name('booking.online');
 	Route::post('payment-confirmation/','BuyController@Confirmation')->name('booking.confirmation');
-
 	Route::any('payment', 'BuyController@getPayment')->name('payment-from-bank');
 	Route::any('payment-success', 'BuyController@getPayment')->name('payment-from-bank-reponse');
 	Route::any('pay-thankyou', 'BuyController@thanku')->name('pay.thanku');

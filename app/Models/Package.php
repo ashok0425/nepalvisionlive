@@ -11,7 +11,6 @@ class Package extends Model
 	'overview',
 							'outline_itinerary',
 							'detailed_itinerary',
-
 							'include_exclude',
 							'useful_info',
 							'route_map',
@@ -80,7 +79,9 @@ class Package extends Model
 	public function testimonials() {
 		return $this->belongsToMany('App\Models\Testimonial', 'package_testimonial', 'package_id', 'testimonial_id');
     }
-
 	
+	public function Country($country_id) {
+		return $this->belongsToMany('App\Models\Country', 'country_package', 'package_id', 'country_id')->withPivot('overview','faq','outline_itinerary','detailed_itinerary','include_exclude','trip_excludes','useful_info','page_title','meta_keywords','meta_author','meta_description','mobile_meta_keyword','mobile_meta_title','mobile_meta_description')->where('country_id',$country_id)->first();
+    }
 
 }

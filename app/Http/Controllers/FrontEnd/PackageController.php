@@ -8,6 +8,7 @@ use App\Models\CategoryPlace;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Models\Contact ;
+use App\Models\Country;
 use App\Models\Departure;
 use App\Models\Destination;
 use App\Models\Testimonial;
@@ -46,7 +47,17 @@ if(!$data){
       return view('frontend.package',compact('packages','data'));
  }
 
-public function show($url) {
+public function show() {
+    $s2=request()->segment(2);
+    $s3=request()->segment(3);
+if ($s3) {
+    $url=$s3;
+    $country=$s2;
+}else{
+    $url=$s2;
+    $country='npee';
+}
+   
 	$package = Package::where('status',1)->where('url',$url)->orwhere('id',$url)->first();  
 	if(!$package){
         abort(404);
@@ -54,8 +65,8 @@ public function show($url) {
       $reviews=DB::table('testimonials')->join('package_testimonial','package_testimonial.testimonial_id','testimonials.id')->where('testimonials.status',1)->where('package_testimonial.package_id',$package->id)->orderBy('testimonials.id','desc')->limit(20)->get();
       $features=DB::table('packages')->join('package_featured','packages.id','package_featured.featured_id')->where('package_featured.package_id',$package->id)->select('packages.*')->where('status',1)->get();
       $before=Destination::find($package->destination_id);
- 
-      return view('frontend.package_detail',compact('package','reviews','features','before'));
+      $country=Country::where('slug',$country)->value('id');
+      return view('frontend.package_detail',compact('package','reviews','features','before','country'));
 }
 
 public function printpackage($id){
