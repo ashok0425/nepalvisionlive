@@ -385,12 +385,14 @@ class PackagesController extends Controller
 
     public function countryPackage(Request $request)
     {
+        $package_id = $request->package_id;
+
         $packages = DB::table('country_package')
             ->join('countries', 'country_package.country_id', 'countries.id')
             ->join('packages', 'packages.id', 'country_package.package_id')
             ->select('country_package.*', 'packages.name as pname', 'countries.name as cname')
+            ->where('package_id',$package_id)
             ->get();
-        $package_id = $request->package_id;
         return view('admin.packages.country_package.index', compact('package_id', 'packages'));
     }
 

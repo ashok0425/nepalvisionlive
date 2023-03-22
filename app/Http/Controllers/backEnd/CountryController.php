@@ -39,6 +39,7 @@ class CountryController extends Controller
     {
         $country=new Country;
         $country->name=$request->name;
+        $country->slug=$request->slug;
         $country->save();
         $notification=array(
             'alert-type'=>'success',
@@ -82,6 +83,7 @@ class CountryController extends Controller
     public function update(Request $request, Country $country)
     {
         $country->name=$request->name;
+        $country->slug=$request->slug;
         $country->save();
         $notification=array(
             'alert-type'=>'success',

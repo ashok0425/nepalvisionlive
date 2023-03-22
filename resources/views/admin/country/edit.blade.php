@@ -13,11 +13,15 @@
             @method('PATCH')
             @csrf
             <div class="row">
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
                 <label >Country</label>
            <input type="text" class="form-control" name="name" placeholder="Enter name here" required value="{{ $country->name }}">
             </div>
 
+            <div class="form-group col-md-6">
+                <label >Slug</label>
+           <input type="text" class="form-control" name="slug" placeholder="Enter Short form of country" required value="{{ $country->slug }}">
+            </div>
             <div class="form-group col-md-12">
                 <input type="submit" class="btn btn-info btn-block">
             </div>
