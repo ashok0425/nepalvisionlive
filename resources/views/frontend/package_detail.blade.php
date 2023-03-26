@@ -468,84 +468,85 @@
                                 </div>
                             </div>
                             {{-- Enquiry form end  --}}
-                            <div class="about-trip" style="position: sticky!important;top:50px!important">
-                                <div class="head">
-                                    <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
-                                        <li class="nav-item " role="presentation">
-                                            <a class="nav-link active " id="home-tab" data-bs-toggle="tab"
-                                                href="#home" role="tab" aria-controls="home" aria-selected="true">
-                                                Overview
-
-                                                <i class="fas fa-binoculars"></i>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item " role="presentation">
-                                            <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab"
-                                                href="#profile" role="tab" aria-controls="profile"
-                                                aria-selected="false"> Itinerary
-
-                                                <i class="fas fa-map-marker"></i>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item " role="presentation">
-                                            <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab"
-                                                href="#dateprice" role="tab" aria-controls="dateprice"
-                                                aria-selected="false">
-
-                                                Departure Date
-                                                <i class="fas fa-calendar"></i>
-                                            </a>
-                                        </li>
-
-                                        @if (!empty($package->faq))
-                                            <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700 " id="faq-tab" data-bs-toggle="tab"
-                                                    href="#faq" role="tab" aria-controls="faq"
-                                                    aria-selected="false">
-                                                    Faq
-                                                    <i class="fas fa-question"></i>
-                                                </a>
-                                            </li>
-                                        @endif
-
-
-
-                                        @if (!empty($package->useful_info))
-                                            <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700 " id="useful-tab"
-                                                    data-bs-toggle="tab" href="#useful" role="tab"
-                                                    aria-controls="useful" aria-selected="false">
-                                                    Useful Info
-                                                    <i class="fas fa-info-circle"></i>
-                                                </a>
-                                            </li>
-                                        @endif
-
-
-                                        @if (!empty($package->equiment))
-                                            <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700 " id="equiment-tab"
-                                                    data-bs-toggle="tab" href="#equiment" role="tab"
-                                                    aria-controls="equiment" aria-selected="false">Equiment
-
-                                                    <i class="fab fa-wrench"></i>
-                                                </a>
-                                            </li>
-                                        @endif
-
-                                        <li class="nav-item " role="presentation">
-                                            <a class="nav-link  font-weight-700 " id="review-tab" data-bs-toggle="tab"
-                                                href="#review" role="tab" aria-controls="review"
-                                                aria-selected="false"> Review
-                                                <i class="fas fa-comment"></i>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
+                           
                             <div class="tab-content card" id="myTabContent">
+                                <div class="about-trip" style="position: sticky!important;top:50px!important">
+                                    <div class="head">
+                                        <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
+                                            <li class="nav-item " role="presentation">
+                                                <a class="nav-link active " id="home-tab" data-bs-toggle="tab"
+                                                    href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                                    Overview
+    
+                                                    <i class="fas fa-binoculars"></i>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item " role="presentation">
+                                                <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab"
+                                                    href="#profile" role="tab" aria-controls="profile"
+                                                    aria-selected="false"> Itinerary
+    
+                                                    <i class="fas fa-map-marker"></i>
+                                                </a>
+                                            </li>
+    
+                                            <li class="nav-item " role="presentation">
+                                                <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab"
+                                                    href="#dateprice" role="tab" aria-controls="dateprice"
+                                                    aria-selected="false">
+    
+                                                    Departure Date
+                                                    <i class="fas fa-calendar"></i>
+                                                </a>
+                                            </li>
+    
+                                            @if (!empty($package->faq))
+                                                <li class="nav-item " role="presentation">
+                                                    <a class="nav-link  font-weight-700 " id="faq-tab" data-bs-toggle="tab"
+                                                        href="#faq" role="tab" aria-controls="faq"
+                                                        aria-selected="false">
+                                                        Faq
+                                                        <i class="fas fa-question"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+    
+    
+    
+                                            @if (!empty($package->useful_info))
+                                                <li class="nav-item " role="presentation">
+                                                    <a class="nav-link  font-weight-700 " id="useful-tab"
+                                                        data-bs-toggle="tab" href="#useful" role="tab"
+                                                        aria-controls="useful" aria-selected="false">
+                                                        Useful Info
+                                                        <i class="fas fa-info-circle"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+    
+    
+                                            @if (!empty($package->equiment))
+                                                <li class="nav-item " role="presentation">
+                                                    <a class="nav-link  font-weight-700 " id="equiment-tab"
+                                                        data-bs-toggle="tab" href="#equiment" role="tab"
+                                                        aria-controls="equiment" aria-selected="false">Equiment
+    
+                                                        <i class="fab fa-wrench"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
+    
+                                            <li class="nav-item " role="presentation">
+                                                <a class="nav-link  font-weight-700 " id="review-tab" data-bs-toggle="tab"
+                                                    href="#review" role="tab" aria-controls="review"
+                                                    aria-selected="false"> Review
+                                                    <i class="fas fa-comment"></i>
+                                                </a>
+                                            </li>
+    
+                                        </ul>
+                                    </div>
+                                </div>
                                 <div class="tab-pane card-body fade show active" id="home" role="tabpanel"
                                     aria-labelledby="home-tab">
                                     {!! $package->country($country)!=null ? $package->country($country)->pivot->overview : $package->overview !!}

@@ -400,7 +400,6 @@ class PackagesController extends Controller
     {
         $package_id = $request->package_id;
         $countries = Country::all();
-
         return view('admin.packages.country_package.create', compact('package_id', 'countries'));
     }
 
@@ -410,6 +409,7 @@ class PackagesController extends Controller
         $package_id = $request->package_id;
         $insert = [
             'package_id' => $package_id,
+            'name' => $request->name,
             'country_id' => $request->country,
             'overview' => $request->overview,
             'faq' => $request->faq,
@@ -427,7 +427,7 @@ class PackagesController extends Controller
             'mobile_meta_description' => $request->mobile_meta_description,
         ];
         DB::table('country_package')->insert($insert);
-        return redirect()->route('admin.package.country');
+        return redirect()->route('admin.package.country',['package_id'=>$package_id]);
     }
 
 
@@ -443,6 +443,7 @@ class PackagesController extends Controller
     {
         $id=$request->id;
         $insert = [
+            'name' => $request->name,
             'country_id' => $request->country,
             'overview' => $request->overview,
             'faq' => $request->faq,
@@ -460,7 +461,8 @@ class PackagesController extends Controller
             'mobile_meta_description' => $request->mobile_meta_description,
         ];
         DB::table('country_package')->where('id',$id)->update($insert);
-        return redirect()->route('admin.package.country');
+        return redirect()->route('admin.package.country',['package_id'=>$package_id]);
+
     }
 
 

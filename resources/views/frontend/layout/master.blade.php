@@ -55,7 +55,7 @@
     @if (url()->current() == 'https://www.nepalvisiontreks.com' ||
             url()->current() == 'https://www.nepalvisiontreks.com/index.php')
         <link rel="canonical" href="https://www.nepalvisiontreks.com" />
-    @elseif(url()->current() == 'https://www.nepalvisiontreks.com/package-detail/{country?}/{url?}')
+    @elseif(url()->current() == 'https://www.nepalvisiontreks.com/{country?}/package-detail/{url?}')
     <link rel="canonical" href="https://www.nepalvisiontreks.com/package-detail/{url?}" />
     @endif
     <link rel="shortcut  icon" href="@yield('fev')" type="image/icon type">

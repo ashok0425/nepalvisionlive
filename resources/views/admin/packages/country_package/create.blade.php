@@ -16,7 +16,7 @@
                             <div class="tab-content">
                                 <div role="tabcard" >
                                     <div class="row">
-                                        <div class="col-md-8 offset-md-2 mb-2">
+                                        <div class="col-md-6 mb-2">
                                             <label for="">Select Country</label>
                                             <select name="country" id="" class="form-select form-control" required>
                                                 <option value="">select country</option>
@@ -25,6 +25,10 @@
                                                     
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>Package Name:</label>
+                                            <input type="text" name="name" id="" class="form-control">
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <label>Trip Introduction:</label>
