@@ -184,7 +184,7 @@
                                     Trip Type <i class="fas fa-sort-down"></i>
                                 </button>
                             </p>
-                            <div class="collapse show" id="collapse1">
+                            <div class="collapse" id="collapse1">
                                 <div class="card card-body">
                                     @foreach ($categories as $category)
                                         <div class="row">
@@ -209,7 +209,7 @@
                                     Trip Length <i class="fas fa-sort-down"></i>
                                 </button>
                             </p>
-                            <div class="collapse show" id="collapse2">
+                            <div class="collapse" id="collapse2">
                                 <div class="card card-body">
                                     @foreach ($durations as $duration)
                                         <div class="row">
@@ -232,7 +232,7 @@
                                     Activity Type <i class="fas fa-sort-down"></i>
                                 </button>
                             </p>
-                            <div class="collapse show" id="collapse3">
+                            <div class="collapse" id="collapse3">
                                 <div class="card card-body">
                                     @foreach ($activities as $activity)
                                         <div class="row">
