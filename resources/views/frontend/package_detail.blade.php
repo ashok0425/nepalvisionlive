@@ -455,7 +455,10 @@
                                                         <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                                                     </span>
                                                 @endif
-                                                <div class="form-group mb-0 text-right">
+                                                <p>
+                                                    <i>Your information will never be shared with anyone  outside our company. </i>
+                                                </p>
+                                                <div class="form-group mb-0 text-left">
                                                     <button type="submit" class="btn btn-primary  btn-sm"
                                                         data-callback='onSubmit' data-action='submit'>Enquire Now</button>
                                                 </div>
@@ -605,7 +608,7 @@
                                                             <select class="form-control select-year"
                                                                 aria-describedby="basic-addon1">
                                                                 <option value="{{ date('Y') }}">Select Dates</option>
-                                                                <option value="{{ date('Y') }}">{{ date('Y') }}
+                                                                <option value="{{ date('Y') }}" selected>{{ date('Y') }}
                                                                 </option>
                                                                 <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}
                                                                 </option>
@@ -823,7 +826,11 @@
                                                         <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                                                     </span>
                                                 @endif
-                                                <div class="form-group mb-0 text-right mt-1">
+                                                <p>
+                                                    <i>Your information will never be shared with anyone  outside our company. </i>
+
+                                                </p>
+                                                <div class="form-group mb-0 text-left mt-1">
                                                     <button type="submit" class="btn btn-primary  btn-sm">Enquire
                                                         Now</button>
                                                 </div>

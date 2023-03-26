@@ -112,95 +112,16 @@
                                     <div align="left"><strong>Phone:</strong></div>
                                 </td>
                                 <td align="left">{!! $phone_day[$i] !!}</td>
-                               {{--  <td align="left">
-                                    <div align="left"><strong>Phone(Evening): </strong></div>
-                                </td>
-                                <td align="left">{!! $phone_evening[$i] !!}</td> --}}
                                
-                            </tr>
-                            <tr>
-                                <td align="right">
-                                    <div align="left"><strong>Date of Birth:</strong> </div>
-                                </td>
-                                <td align="left">{!! $dob[$i] !!}</td>
-                               {{--  <td align="left">
-                                    <div align="left"><strong>Occupation: </strong></div>
-                                </td>
-                                <td align="left">{!! $occupation[$i] !!}</td>
-                                <td align="left">&nbsp;</td> --}}
-                            </tr>
-                            <tr>
-                                <td align="right">
-                                    <div align="left"><strong>Passport No: </strong></div>
-                                </td>
-                                <td align="left">{!! $passport_no[$i] !!}</td>
-                               {{--  <td align="left">
-                                    <div align="left"><strong>Place of Issue: </strong></div>
-                                </td>
-                                <td align="left">{!! $passport_place_issue[$i] !!}</td>
-                                <td align="left">&nbsp;</td> --}}
-                            {{-- </tr>
-                            <tr> --}}
-                                {{-- <td align="right">
-                                    <div align="left"><strong>Issue Date:</strong></div>
-                                </td>
-                                <td align="left">{!! $issue_date[$i] !!}</td> --}}
-                                <td align="left">
-                                    <div align="left"><strong>Expiry Date:</strong></div>
-                                </td>
-                                <td align="left">{!! $expiry_date[$i] !!}</td>
-                               
-                            </tr>
-                            <tr>
-                                <td align="right">
-                                    <div align="left"><strong>Emergency contact:</strong></div>
-                                </td>
-                                <td colspan="4" align="left">{!! $expiry_date[$i] !!}</td>
-                            </tr>
-                            {{-- <tr>
-                                <td align="right">
-                                    <div align="left">Insurance Coverage</div>
-                                </td>
-                                <td colspan="4" align="left">{!! $insurance[$i] !!}</td>
-                            </tr> --}}
+                            </tr>                           
                         </tbody>
                     </table>
                      @endfor
                 </td>
             </tr>
-            {{-- <tr>
-                <td>
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tbody>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td width="21%">Insurance Coverage: {!! $insurance !!}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr> --}}
+            
         </tbody>
     </table>
-   
-    {{-- <div class="row">
-        @for ($i = 0; $i < $no_traveller ; $i++) <div class="col-md-6 col-sm-12 col-xs-12">
-            <h2>Traveller info {{ $i+1 }}</h2>
-            <p class="text-center"><label>First Name: </label> {!! $f_name[$i] !!}</p>
-            <p class="text-center"><label>middle Name: </label> {!! $middleName[$i] !!}</p>
-            <p class="text-center"><label>last Name: </label> {!! $l_name[$i] !!}</p>
-            <p class="text-center"><label>Address: </label>{!! $mailing_address[$i] !!}</p>
-            <p class="text-center"><label>Email: </label>{!! $myemail12[$i] !!}</p>
-            <p class="text-center"><label>Country: </label>{!! $country[$i] !!}</p>
-            <p class="text-center"><label>Passport number: </label>{!! $passport_no[$i] !!}</p>
-            <p class="text-center"><label>Passport_place_issue: </label>{!! $passport_place_issue[$i] !!}</p>
-            <p class="text-center"><label>insurance: </label>{!! $insurance[$i] !!}</p>
-    </div>
-    @endfor
-    </div> --}}
 </body>
 
 </html>

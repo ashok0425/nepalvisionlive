@@ -103,7 +103,7 @@
                     </div>
                     <ul>
                         <li>
-                            Bhagwan Bahal, Thamel
+                            Keshar Mahal, Thamel
 
                         </li>
                         <li>
