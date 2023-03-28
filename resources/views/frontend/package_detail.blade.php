@@ -39,13 +39,12 @@
         font-weight: 500;
         font-size: 18px;
         color: #fff !important;
-
     }
-
+#about_trip{
+    position: sticky!important;top:50px!important;z-index:999999999999;
+}
     .about-trip .head .nav-link i {
         font-size: 17px;
-
-
     }
 
     .border_bottom {
@@ -54,7 +53,6 @@
 
     .about-trip .head .nav-link.active {
         color: rgb(42, 135, 183) !important;
-
     }
 
     .about-trip .head {
@@ -86,6 +84,11 @@
     .boder-0 {
         border: 0px !important
     }
+    @media only screen and (max-width: 600px) {
+        #about_trip{
+    top:0px!important;
+}
+    }
 </style>
 {!! NoCaptcha::renderJs() !!}
 @section('content')
@@ -98,12 +101,12 @@
                         <div class="col-md-8 my-1">
                             @php
                                 $packages_id = $package->id;
-                                $arr = trim($package->name);
+                                $arr = trim( $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name);
                                 // return isset() ? $arr[0] : $string;
                             @endphp
                             {{-- banner section start  --}}
                             <div class="my-2">
-                                <h1 class="custom-text-primary custom-fs-25 mb-2">{{ $package->name }}</h1>
+                                <h1 class="custom-text-primary custom-fs-25 mb-2">{{  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name }}</h1>
 
                                 <section class="hero2">
                                     @if (empty($package->thumbnail))
@@ -414,7 +417,7 @@
                                     <form action="{{ route('enquery.post') }}" method="post" id="demo-form">
                                         {{ csrf_field() }}
                                         <input type="hidden" value="{{ $package->id }}" name="booking">
-                                        <input type="hidden" value="{{ $package->name }}" name="package_name">
+                                        <input type="hidden" value="{{  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name }}" name="package_name">
 
                                         <input type="hidden" value="1" name="no_participants">
                                         <input type="hidden" value="1" name="agent">
@@ -470,7 +473,7 @@
                             {{-- Enquiry form end  --}}
                            
                             <div class="tab-content card" id="myTabContent">
-                                <div class="about-trip" style="position: sticky!important;top:50px!important">
+                                <div class="about-trip" id="about_trip">
                                     <div class="head">
                                         <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
                                             <li class="nav-item " role="presentation">
@@ -585,7 +588,7 @@
                                 </div>
                                 <div class="tab-pane fade card-body" id="datePrice" role="tabpanel"
                                     aria-labelledby="datePrice-tab">
-                                    <strong class="mt-2">Departure dates for {!! $package->name !!}</strong>
+                                    <strong class="mt-2">Departure dates for {!!  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name !!}</strong>
                                     <p>We provide a series of fixed departure trek, tour and expeditions in Nepal, Bhutan,
                                         Tibet and India. If you are single and wishing to be with a group, you can join our
                                         fixed departure schedule. If the schedule dates are not convenient for you, contact
@@ -789,7 +792,7 @@
                                     <form action="{{ route('enquery.post') }}" method="post">
                                         {{ csrf_field() }}
                                         <input type="hidden" value="{{ $package->id }}" name="booking">
-                                        <input type="hidden" value="{{ $package->name }}" name="package_name">
+                                        <input type="hidden" value="{{  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name }}" name="package_name">
                                         <input type="hidden" value="1" name="no_participants">
                                         <input type="hidden" value="1" name="agent">
                                         <input type="hidden" value="{{ date('d-m-Y') }}" name="expected_date">
@@ -932,9 +935,9 @@
                     </div>
                     <div class="modal-body bg-transparent">
 
-                        <div style="width:200px!important;">
+                        {{-- <div style="width:200px!important;">
                             {!! $package->video !!}
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -1101,7 +1104,7 @@
                                             placeholder="Enter your subject" id="subject" value="Customize Trip">
                                         <input type="hidden" name="package_name" class="form-control"
                                             placeholder="Enter your subject" id="subject"
-                                            value="{{ $package->name }}">
+                                            value="{{  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name }}">
                                         <div class="col-12 col-sm-6 col-md-12 col-lg-6 my-2 {{-- swapped-element --}}">
                                             <div class="form-group">
                                                 <label for="country">Select Country<span
@@ -1372,7 +1375,7 @@
     "description": " {{ $package->descr }}",
     "brand": {
       "@type": "Brand",
-      "name": "{{$package->name}}"
+      "name": "{{ $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name}}"
     },
     "offers": {
       "@type": "Offer",
