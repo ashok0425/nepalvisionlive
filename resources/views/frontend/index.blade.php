@@ -47,6 +47,11 @@ text-align: center;
 {{-- User Testinomail section  --}}
 @include('frontend.template.testinomial')
 </div>
+
+<div class="d-none d-md-block">
+    {{-- Popular section  --}}
+@include('frontend.template.popular')
+</div>
 {{-- Blog section  --}}
 @include('frontend.template.blog')
 

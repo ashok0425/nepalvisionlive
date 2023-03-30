@@ -92,8 +92,6 @@
                                                 ->where('destination_id', $destination->id)
                                                 ->get();
                                         @endphp
-
-
                                         @php
                                             $places = DB::table('categories_places')
                                                 ->where('status', 1)
@@ -101,8 +99,6 @@
                                                 ->where('destination_id', $destination->id)
                                                 ->get();
                                         @endphp
-
-
                                         <li class="nav-item dropdown ">
 
                                             <span class="d-flex align-items-center text-md-white ">
@@ -123,8 +119,6 @@
                                             @if (count($categories) > 0)
                                                 <ul class="dropdown-menu first_drop"
                                                     aria-h3ledby="navbarDropdownMenuLink">
-
-
 
                                                     @foreach ($places as $place)
                                                         @php
@@ -157,13 +151,6 @@
                                                             @endif
                                                         </li>
                                                     @endforeach
-
-
-
-
-
-
-
 
                                                     @foreach ($categories as $category)
                                                         @php

@@ -75,7 +75,7 @@ class BuyController extends Controller
 
 
             ]);
-            for ($i = 1; $i < $request->no_traveller; ++$i) {
+            for ($i = 0; $i < $request->no_traveller-1; ++$i) {
                   // print_r($request['itenerary_outline'][$i]);
                   $customer_detail = new Customer;
                   $customer_detail->fname = $request['f_name'][$i];
@@ -155,10 +155,8 @@ class BuyController extends Controller
             $packages=[];
             if (!$package) {
                   $packages = Package::where('status', 1)->get();
-
             }
        
-
             return view('frontend.online_pay', compact('package','packages'));
       }
 

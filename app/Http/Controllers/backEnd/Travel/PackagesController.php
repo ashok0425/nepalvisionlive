@@ -131,6 +131,8 @@ class PackagesController extends Controller
             $package->best_month = $request->best_month;
             $package->group_size = $request->group_size;
             $package->faq = $request->faq;
+            $package->popular = $request->popular==1?1:0;
+
             if ($request->price) {
                 $package->price = $request->price;
             }
@@ -279,6 +281,8 @@ class PackagesController extends Controller
             $package->best_month = $request->best_month;
             $package->group_size = $request->group_size;
             $package->faq = $request->faq;
+            $package->popular = $request->popular==1?1:0;
+
             if ($request->price) {
                 $package->price = $request->price;
             }
@@ -427,7 +431,11 @@ class PackagesController extends Controller
             'mobile_meta_description' => $request->mobile_meta_description,
         ];
         DB::table('country_package')->insert($insert);
-        return redirect()->route('admin.package.country',['package_id'=>$package_id]);
+        $notification = [
+            'alert-type' => 'success',
+            'messege' => 'updated succesfully',
+        ];
+        return redirect()->back()->with($notification);
     }
 
 
@@ -461,7 +469,11 @@ class PackagesController extends Controller
             'mobile_meta_description' => $request->mobile_meta_description,
         ];
         DB::table('country_package')->where('id',$id)->update($insert);
-        return redirect()->route('admin.package.country',['package_id'=>$package_id]);
+        $notification = [
+            'alert-type' => 'success',
+            'messege' => 'updated succesfully',
+        ];
+        return redirect()->back()->with($notification);
 
     }
 
