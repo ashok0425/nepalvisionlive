@@ -131,7 +131,6 @@ class PackagesController extends Controller
             $package->best_month = $request->best_month;
             $package->group_size = $request->group_size;
             $package->faq = $request->faq;
-            $package->popular = $request->popular==1?1:0;
 
             if ($request->price) {
                 $package->price = $request->price;
@@ -281,7 +280,6 @@ class PackagesController extends Controller
             $package->best_month = $request->best_month;
             $package->group_size = $request->group_size;
             $package->faq = $request->faq;
-            $package->popular = $request->popular==1?1:0;
 
             if ($request->price) {
                 $package->price = $request->price;

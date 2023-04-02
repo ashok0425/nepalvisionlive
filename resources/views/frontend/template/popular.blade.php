@@ -12,6 +12,7 @@
             grid-template-columns: 1fr 1fr 1fr 2fr;
             grid-template-rows: 1fr 1fr;
             width: 100%;
+            
         }
 
         .popular_location a {
@@ -23,7 +24,7 @@
             box-shadow: 0 0 0px rgba(0, 0, 0, 1);
             position: relative;
             background-blend-mode: multiply;
-            height: 150px;
+            height: 250px;
             object-fit: cover;
             position: relative;
         }
@@ -31,17 +32,26 @@
         .popular_location a span {
             position: absolute;
             right: 0px;
-            top: 0px;
-            padding: .7rem 1.4rem;
-            background: #198754;
-            border-top-right-radius: 10px;
-            color: #fff;
-            font-size: 24px;
-            font-weight: 700
+            top: 40%;
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            background: linear-gradient(103.86deg,#00c6ff -22.01%,#0183e7 117.6%);
+    width: 180px;
+    height: 60px;
+    font-weight: 500;
+    font-size: 25px;
+    color:#fff;
+    text-decoration: none;
+    display: flex;
+align-items: center;
+justify-content: center;
         }
         .popular_location a span small{
             font-size: 13px;
             font-weight: 500;
+        }
+        .popular_location a span div{
+            margin-left: .4rem;
         }
         .popular_location a p {
             position: absolute;
@@ -82,12 +92,6 @@
     <div class="heading mt-5">
         <p class="custom-fs-36">Popular Locations</p>
     </div>
-
-    <p>
-        We have selected some best locations around the world for you.
-    </p>
-    <br>
-
     <div class="popular_location">
         <a class="one" href="{{ route('package.place', ['url' => $city[0]->url]) }}">
             <span>
