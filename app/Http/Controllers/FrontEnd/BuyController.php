@@ -78,15 +78,15 @@ class BuyController extends Controller
             for ($i = 0; $i < $request->no_traveller-1; ++$i) {
                   // print_r($request['itenerary_outline'][$i]);
                   $customer_detail = new Customer;
-                  $customer_detail->fname = $request['f_name'][$i];
-                  $customer_detail->lname = $request['l_name'][$i];
-                  $customer_detail->detail_mail_address = $request['mailing_address'][$i];
-                  $customer_detail->email = $request['email'][$i];
+                  $customer_detail->fname = $request['f_name'][$i]?$request['f_name'][$i]:'secondary customer';
+                  $customer_detail->lname = $request['l_name'][$i]?$request['l_name'][$i]:'secondary customer laste';
+                  $customer_detail->detail_mail_address = $request['mailing_address'][$i]?$request['mailing_address'][$i]:'secondary mailing user';
+                  $customer_detail->email = $request['email'][$i]?$request['email'][$i]:'example@gmail.com';
                   $customer_detail->phone = $request['phone_day'][$i];
-                  $customer_detail->phone_evening = $request['phone_evening'][$i];
-                  $customer_detail->dob = $request['dob'][$i];
-                  $customer_detail->passport_no = $request['passport_no'][$i];
-                  $customer_detail->expiry = $request['expiry_date'][$i];
+                  // $customer_detail->phone_evening = $request['phone_evening'][$i];
+                  // $customer_detail->dob = $request['dob'][$i];
+                  $customer_detail->passport_no = '3434';
+                  $customer_detail->expiry = '12123';
                   $customer_detail->emergency_contact = $request['emergency_contact'][$i];
                   $customer_detail->country = $request['country'][$i];
                   $customer_detail->booking_id = $booking1->id;
@@ -102,10 +102,11 @@ class BuyController extends Controller
                   'phone_day' => $request->phone_day,
                   'phone_evening' => $request->phone_evening,
                   'no_traveller' => $request->no_traveller,
-                  // 'title' => $request->title,
-                  'f_name' => $request['f_name'][0],
-                  // 'middleName' => $request->middleName,
-                  'l_name' => $request['l_name'][0],
+                  'title' => $request->title,
+                  'name' => $request['f_name'][0],
+                  'cast' => $request['l_name'][0],
+                  'f_name' => $request->f_name,
+                  'l_name' => $request->l_name,
                   'mailing_address' => $request->mailing_address,
                   'myemail12' => $request->email,
                   'country' => $request->country,
@@ -119,7 +120,6 @@ class BuyController extends Controller
                   'emergency_contact' => $request->emergency_contact,
                   'booking' => $booking,
                   'departure_date' => $request->departure_date,
-                  // 'no_traveller'=>$request->no_traveller,	
                   'insurance' => $request->insurance,
                   'source' => $agent
             ];
@@ -127,7 +127,7 @@ class BuyController extends Controller
                   $message->from('noreply@nepalvisiontreks.com');
                   $message->to('sales@nepalvisiontreks.com');
                   $message->to('inquiry@nepalvisiontreks.com');
-                  // $message->to($data['email']);
+                  $message->to($data['email']);
                   $message->subject('booking a package');
             });
 

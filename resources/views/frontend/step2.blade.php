@@ -27,7 +27,6 @@
                                     Information Traveller {{ 1 }}</h3>
                             </div>
                             <div class="card-body">
-                                {{-- <form action="#"> --}}
                                 <div class="form-group row my-2">
                                     <label for="title"
                                         class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Title<span
@@ -233,15 +232,7 @@
                                             placeholder="youremail@email.com" required>
                                     </div>
                                 </div>
-                                {{-- <div class="form-group row my-2">
-                                    <label for="occupation"
-                                        class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Occupation:
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="occupation[]" class="form-control" id="occupation"
-                                            placeholder="Eg: Manager">
-                                    </div>
-                                </div> --}}
+                             
                                 <div class="form-group row my-2">
                                     <label for="phoned"
                                         class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Phone
@@ -251,49 +242,7 @@
                                             required>
                                     </div>
                                 </div>
-                                {{-- <div class="form-group row my-2">
-                                    <label for="phonee"
-                                        class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Phone
-                                        (Evening): </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="phone_evening[]" class="form-control" id="phonee"
-                                            required>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="form-group row my-2">
-                                    <label for="dob"
-                                        class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Date
-                                        of Birth<span class="text-danger">*</span>: </label>
-                                    <div class="col-md-8">
-                                        <input type="date" name="dob[]" class="form-control " id="dob"
-                                            required>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="form-group row my-2">
-                                    <label for="passport"
-                                        class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Passport
-                                        Number: </label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="passport_no[]" class="form-control" id="passport">
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="form-group row my-2">
-                                    <label for="issuePlace"
-                                        class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Place
-                                        of Issue: </label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" id="issuePlace"
-                                            name="passport_place_issue[]">
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="form-group row my-2">
-                                    <label for="expiryDate"
-                                        class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label ">Expiry
-                                        date: </label>
-                                    <div class="col-md-8">
-                                        <input type="date" class="form-control" id="expiryDate" name="expiry_date[]">
-                                    </div>
-                                </div> --}}
+                                
                                 <div class="form-group row my-2">
                                     <label for="econtact"
                                         class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Emergency
@@ -324,8 +273,7 @@
                                 </div>
                             </div>
 
-                            @if ($no_traveller>1)
-                                
+                            @if ($no_traveller>1)   
                             <div class="card-body">
                                 <div class="want_tofill">
                                     <input type="checkbox" name="" id="other_info"> <label for="other_info"
@@ -333,19 +281,13 @@
                                 </div>
                             </div>
                             @endif
-
-
-                            <div class="d-none " id="other_detail">
-
-
+                            <div class="d-none" id="other_detail">
                                 @for ($i = 0; $i < $no_traveller - 1; $i++)
                                     <div class="my-2 card-header custom-bg-primary text-light d-flex align-items-center">
                                         <h3 class="custom-fs-18 custom-fw-600 d-flex align-items-center card-title">
                                             Personal Information Traveller {{ $i + 1 }}</h3>
                                     </div>
                                     <div class="card-body">
-
-                                        {{-- <form action="#"> --}}
                                         <div class="form-group row my-2">
                                             <label for="title"
                                                 class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Title<span
@@ -364,7 +306,7 @@
                                                 Name<span class="text-danger">*</span>: </label>
                                             <div class="col-md-8">
                                                 <input type="text" class="form-control" id="fname[]"
-                                                    placeholder="John" required name="f_name[]" required>
+                                                    placeholder="John"  name="f_name[]">
                                             </div>
                                         </div>
                                         <div class="form-group row my-2">
@@ -381,8 +323,8 @@
                                                 class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Country<span
                                                     class="text-danger">*</span>: </label>
                                             <div class="col-md-8">
-                                                <select name="country[]" class="form-control" id="country" required>
-                                                    <option value="0" selected="selected">--Select Country--</option>
+                                                <select name="country[]" class="form-control" id="country">
+                                                    <option value="0">--Select Country--</option>
                                                     <option value="Afghanistan">Afghanistan</option>
                                                     <option value="Albania">Albania</option>
                                                     <option value="Algeria">Algeria</option>
@@ -539,7 +481,7 @@
                                                 class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Detail
                                                 Mailing Address<span class="text-danger">*</span>: </label>
                                             <div class="col-md-8">
-                                                <textarea class="form-control" id="mail" rows="3" name="mailing_address[]" required></textarea>
+                                                <textarea class="form-control" id="mail" rows="3" name="mailing_address[]"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row my-2">
@@ -548,78 +490,26 @@
                                                     class="text-danger">*</span>: </label>
                                             <div class="col-md-8">
                                                 <input type="email" name="email[]" class="form-control" id="email"
-                                                    placeholder="youremail@email.com" required>
+                                                    placeholder="youremail@email.com">
                                             </div>
                                         </div>
-                                        <div class="form-group row my-2">
-                                            <label for="occupation"
-                                                class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Occupation:
-                                            </label>
-                                            <div class="col-md-8">
-                                                <input type="text" name="occupation[]" class="form-control"
-                                                    id="occupation" placeholder="Eg: Manager">
-                                            </div>
-                                        </div>
+                                       
                                         <div class="form-group row my-2">
                                             <label for="phoned"
                                                 class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Phone
                                                 (Day)<span class="text-danger">*</span>: </label>
                                             <div class="col-md-8">
                                                 <input type="text" name="phone_day[]" class="form-control"
-                                                    id="phoned" required>
+                                                    id="phoned">
                                             </div>
                                         </div>
-                                        <div class="form-group row my-2">
-                                            <label for="phonee"
-                                                class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Phone
-                                                (Evening): </label>
-                                            <div class="col-md-8">
-                                                <input type="text" name="phone_evening[]" class="form-control"
-                                                    id="phonee" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row my-2">
-                                            <label for="dob"
-                                                class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Date
-                                                of Birth<span class="text-danger">*</span>: </label>
-                                            <div class="col-md-8">
-                                                <input type="date" name="dob[]" class="form-control "
-                                                    id="dob" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row my-2">
-                                            <label for="passport"
-                                                class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Passport
-                                                Number: </label>
-                                            <div class="col-md-8">
-                                                <input type="text" name="passport_no[]" class="form-control"
-                                                    id="passport">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row my-2">
-                                            <label for="issuePlace"
-                                                class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Place
-                                                of Issue: </label>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" id="issuePlace"
-                                                    name="passport_place_issue[]">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row my-2">
-                                            <label for="expiryDate"
-                                                class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label ">Expiry
-                                                date: </label>
-                                            <div class="col-md-8">
-                                                <input type="date" class="form-control" id="expiryDate"
-                                                    name="expiry_date[]">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group row my-2">
                                             <label for="econtact"
                                                 class="col-md-4 custom-text-primary custom-fw-600 custom-fs-16 col-form-label">Emergency
                                                 Contact<span class="text-danger">*</span>: </label>
                                             <div class="col-md-8">
-                                                <textarea class="form-control" id="econtact" rows="3" name="emergency_contact[]" required></textarea>
+                                                <textarea class="form-control" id="econtact" rows="3" name="emergency_contact[]" ></textarea>
                                             </div>
                                         </div>
                                         {{-- </form> --}}
@@ -633,7 +523,7 @@
                                             <label class="custom-text-primary custom-fs-16 line-height-0">
                                                 <input class="" type="radio"
                                                     name="insurance[{{ $i }}]" id="exampleRadios1"
-                                                    value="I have full coverage of Insurance" checked required> I have full
+                                                    value="I have full coverage of Insurance" checked > I have full
                                                 coverage of Insurance (Copy must be provided up on your arrival in
                                                 Kathmandu)
                                             </label>
@@ -642,7 +532,7 @@
                                             <label class="custom-text-primary custom-fs-16 line-height-0">
                                                 <input class="" type="radio"
                                                     name="insurance[{{ $i }}]" id="exampleRadios2"
-                                                    value="Not yet bought" required> Not yet bought (I will Choose
+                                                    value="Not yet bought" > Not yet bought (I will Choose
                                                 insurance later)
                                             </label>
                                         </div>
@@ -651,7 +541,6 @@
                             </div>
                             <input type="hidden" name="booking" value="{{ $booking }}">
                             <input type="hidden" name="agent" value="{{ $agent }}">
-
                             <input type="hidden" name="departure_date" value="{{ $departure_date }}">
                             <input type="hidden" name="no_traveller" value="{{ $no_traveller }}">
                             <div class="card-body border-top">
@@ -682,7 +571,6 @@
 @push('scripts')
     <script>
         $(document).on('click', '#other_info', function(e) {
-            console.log('first')
             $('#other_detail').toggleClass("d-none")
         })
     </script>

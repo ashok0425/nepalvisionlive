@@ -30,7 +30,7 @@
                                 <td width="21%" align="right">
                                     <div align="left"><strong>Full Name: </strong></div>
                                 </td>
-                                <td width="79%" align="left" valign="top"> {{ $f_name.' '.$l_name }} </td>
+                                <td width="79%" align="left" valign="top"> {{ $name.' '.$cast }} </td>
                             </tr>
                             <tr>
                                 <td width="21%" align="right">
