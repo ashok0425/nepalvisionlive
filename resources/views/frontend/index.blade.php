@@ -32,10 +32,15 @@ text-align: center;
 @include('frontend.template.top_package')
 {{-- why choose section  --}}
 @include('frontend.template.why')
+<div class="d-none d-md-block">
+    {{-- Popular section  --}}
+@include('frontend.template.popular')
+</div>
 
 
 {{-- Destination section  --}}
 @include('frontend.template.test')
+
 
 {{-- Tour package section  --}}
 @include('frontend.template.tour_package')
@@ -48,10 +53,7 @@ text-align: center;
 @include('frontend.template.testinomial')
 </div>
 
-<div class="d-none d-md-block">
-    {{-- Popular section  --}}
-@include('frontend.template.popular')
-</div>
+
 {{-- Blog section  --}}
 @include('frontend.template.blog')
 

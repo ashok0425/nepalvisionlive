@@ -132,9 +132,17 @@
             font-family: "Rubik", sans-serif !important;
         }
     </style>
-    @stack('style')
 
-    <!--{{-- Please replace tag manager code with following --}}-->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL26XYFBYY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VL26XYFBYY');
+</script>
+    @stack('style')
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
