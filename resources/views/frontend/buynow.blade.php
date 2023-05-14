@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <form action="{{ route('booking.step2') }}" method="POST">
                                 @csrf
-                                @csrf
+                                <input type="hidden" name="currency" value="{{$currency}}">
                                 <div class="form-group row my-3">
                                     <div for="tripName" class="col-md-4  custom-text-primary custom-fs-18 custom-fw-500">
                                         Trip Name<span class="text-danger">*</span>: </div>

@@ -30,6 +30,20 @@
                                             <label>Package Name:</label>
                                             <input type="text" name="name" id="" class="form-control">
                                         </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>Currency:</label>
+                                            <input type="text" name="currency" id="" class="form-control" placeholder="USD,EUR">
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label>Price:</label>
+                                            <input type="number" name="price" id="" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label>Offer Price:</label>
+                                            <input type="number" name="offer_price" id="" class="form-control">
+                                        </div>
                                         <div class="col-md-12 mb-3">
                                             <label>Trip Introduction:</label>
                                             <textarea name="overview" cols="30" rows="10" id="summernote"></textarea>

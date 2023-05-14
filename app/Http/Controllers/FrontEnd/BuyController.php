@@ -23,7 +23,8 @@ class BuyController extends Controller
             if ($url != null) {
                   $package = Package::where('url',$url)->orwhere('id',$url)->first();
             }
-            return view('frontend.buynow', compact('package', 'date', 'packages', 'agents'));
+            $currency=request()->query('cu')?request()->query('cu'):'USD';
+            return view('frontend.buynow', compact('package', 'date', 'packages', 'agents','currency'));
       }
 
 
@@ -37,7 +38,9 @@ class BuyController extends Controller
             $agent = $request->agent;
 
             $departure_date = $request->departure_date;
-            return view('frontend.step2', compact('package', 'no_traveller', 'booking', 'departure_date', 'agent'));
+            $currency = $request->currency;
+
+            return view('frontend.step2', compact('package', 'no_traveller', 'booking', 'departure_date', 'agent','currency'));
       }
 
 
@@ -123,16 +126,17 @@ class BuyController extends Controller
                   'insurance' => $request->insurance,
                   'source' => $agent
             ];
-            Mail::send('email.book', $data, function ($message) use ($data) {
-                  $message->from('noreply@nepalvisiontreks.com');
-                  $message->to('sales@nepalvisiontreks.com');
-                  $message->to('inquiry@nepalvisiontreks.com');
-                  $message->to($data['email']);
-                  $message->subject('booking a package');
-            });
+            // Mail::send('email.book', $data, function ($message) use ($data) {
+            //       $message->from('noreply@nepalvisiontreks.com');
+            //       $message->to('sales@nepalvisiontreks.com');
+            //       $message->to('inquiry@nepalvisiontreks.com');
+            //       $message->to($data['email']);
+            //       $message->subject('booking a package');
+            // });
 
+            $currency=$request->currency;
             if ($request->bookandpay) {
-                  return redirect()->route('booking.online', ['id' => $request->booking]);
+                  return redirect()->route('booking.online', ['id' => $request->booking,'cu'=>$currency]);
             }
 
             $notification = array(

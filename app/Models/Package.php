@@ -81,7 +81,7 @@ class Package extends Model
     }
 	
 	public function Country($country_id) {
-		return $this->belongsToMany('App\Models\Country', 'country_package', 'package_id', 'country_id')->withPivot('overview','faq','outline_itinerary','detailed_itinerary','include_exclude','trip_excludes','useful_info','page_title','meta_keywords','meta_author','meta_description','mobile_meta_keyword','mobile_meta_title','mobile_meta_description','name')->where('country_id',$country_id)->first();
+		return $this->belongsToMany('App\Models\Country', 'country_package', 'package_id', 'country_id')->withPivot('overview','faq','outline_itinerary','detailed_itinerary','include_exclude','trip_excludes','useful_info','page_title','meta_keywords','meta_author','meta_description','mobile_meta_keyword','mobile_meta_title','mobile_meta_description','name','currency','price','offer_price')->where('country_id',$country_id)->first();
     }
 
 }

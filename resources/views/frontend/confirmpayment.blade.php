@@ -27,7 +27,7 @@
 									$discount=number_format((float)($request->amount*4)/100,2)
 								@endphp
 						        <th>Amount <i class="fa fa-caret-right"></i> </th>
-						        <th>USD {{ $request->amount+$discount }} (including 4% service charge)</th>
+						        <th>{{$request->currency}} {{ $request->amount+$discount }} (including 4% service charge)</th>
 						      </tr>
 						    </thead>
 						</table>
@@ -39,9 +39,11 @@
                             $term=DB::table('cms')->where('id',38)->first();
 					
 				@endphp
-				<form method="post" action="https://www.pay.nepalvisiontreks.com/hbldemo2/">
+				<form method="POST" action="https://www.pay.nepalvisiontreks.com/hbldemo2/">
 					
 					<input type="hidden" name="productName" value="{{ $request->productName }}" />
+					<input type="hidden" name="currency" value="{{ $request->currency }}" />
+
 					<input type="hidden" name="amount" value="{{ $request->amount+$discount }}" />
 				<input type="checkbox" name="agree"  class="agree" checked="checked" value="I have agreed" required /> &nbsp; I have agreed <a href="{{ route('cms.page', ['page' => $term->url]) }}"  rel="noreferrer"  target="_blank">terms & condition </a>
 					<div class="form-group text-center">

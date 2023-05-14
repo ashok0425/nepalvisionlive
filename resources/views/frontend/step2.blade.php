@@ -22,6 +22,8 @@
 
                         <form action="{{ route('booking.step2.store') }}" method="POST">
                             {{ csrf_field() }}
+                            <input type="hidden" name="currency" value="{{$currency}}">
+
                             <div class="my-2 card-header custom-bg-primary text-light d-flex align-items-center">
                                 <h3 class="custom-fs-18 custom-fw-600 d-flex align-items-center card-title">Personal
                                     Information Traveller {{ 1 }}</h3>

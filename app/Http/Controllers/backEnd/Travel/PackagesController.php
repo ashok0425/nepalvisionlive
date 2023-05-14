@@ -427,6 +427,10 @@ class PackagesController extends Controller
             'mobile_meta_keyword' => $request->mobile_meta_keyword,
             'mobile_meta_title' => $request->mobile_meta_title,
             'mobile_meta_description' => $request->mobile_meta_description,
+            'currency' => $request->currency,
+            'price' => $request->price,
+            'offer_price' => $request->offer_price,
+
         ];
         DB::table('country_package')->insert($insert);
         $notification = [
@@ -462,9 +466,9 @@ class PackagesController extends Controller
             'meta_keywords' => $request->meta_keywords,
             'meta_author' => $request->meta_author,
             'meta_description' => $request->meta_description,
-            'mobile_meta_keyword' => $request->mobile_meta_keyword,
-            'mobile_meta_title' => $request->mobile_meta_title,
-            'mobile_meta_description' => $request->mobile_meta_description,
+            'currency' => $request->currency,
+            'price' => $request->price,
+            'offer_price' => $request->offer_price,
         ];
         DB::table('country_package')->where('id',$id)->update($insert);
         $notification = [

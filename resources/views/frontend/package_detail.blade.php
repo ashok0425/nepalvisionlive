@@ -240,6 +240,35 @@
                                     </p>
                                 </div>
 
+                                @if ($package->country($country)!==null&&$package->country($country)->pivot->price!=null)
+                                @if (!empty($package->discounted_price))
+                                    <div class="col-12 py-2">
+
+                                        <strong class='my-0 py-0'> Price</strong>
+                                        <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
+                                            {{$package->country($country)->pivot->currency}}<span class="text-danger "><s> {{ $package->country($country)->pivot->price }}</s> </span>
+
+                                            <span class="text-success">
+                                                 {{ $package->country($country)->pivot->offer_price }}
+                                            </span>
+                                        </strong>
+                                    </div>
+                                @else
+                                    <div class="col-12 py-2">
+
+                                        <strong class='my-0 py-0'>Price</strong>
+
+                                        <span class="custom-text-primary">
+                                            <strong class="text-dark custom-fs-25 custom-fw-700">
+
+                                                {{$package->country($country)->pivot->currency}} {{ $package->country($country)->pivot->price }}
+                                            </strong>
+                                            Per Person</span>
+
+                                    </div>
+                                @endif
+                                @else 
+
                                 @if (!empty($package->discounted_price))
                                     <div class="col-12 py-2">
 
@@ -258,18 +287,20 @@
                                         <span class="custom-text-primary">
                                             <strong class="text-dark custom-fs-25 custom-fw-700">
 
-                                                US ${{ $package->price }}
+                                                USD ${{ $package->price }}
                                             </strong>
                                             Per Person</span>
 
                                     </div>
                                 @endif
+                                @endif
+                                
 
 
                                 <div class="row">
                                     <div class="col-md-12 col-12 py-2">
                                         <a class="btn btn-primary w-100"
-                                            href="{{ route('booknow', ['url' => $package->url]) }}">Book Now</a>
+                                            href="{{ route('booknow', ['url' => $package->url,'cu'=> $package->country($country)!=null?$package->country($country)->pivot->currency:'USD']) }}">Book Now</a>
                                     </div>
                                 </div>
 
@@ -343,9 +374,17 @@
                                         <td class="border-top-0"> <i class="fas fa-comments-dollar"></i>
                                             <strong>Price:</strong>
                                         </td>
-                                        <td class="border-top-0  "> <sub><small class="custom-fs-16">US</small> </sub>
+                                        <td class="border-top-0  "> 
+                                                @if ($package->country($country)!=null && $package->country($country)->pivot->price!=null)
+                                                <sub><small class="custom-fs-16"> {{ $package->country($country)->pivot->currency}}</small> </sub>
                                             <strong class="custom-fs-22 ">
-                                                ${{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                                {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
+                                                    @else 
+                                                    <sub><small class="custom-fs-16">USD</small> </sub>
+                                                 <strong class="custom-fs-22 ">
+                                                    {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                                @endif
+                                               
                                             <sub> <small class="custom-fs-16">per person</small></sub></strong>
                                         </td>
 
@@ -361,9 +400,16 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <strong class="custom-fs-18">All inclusive cost</strong>
+                                        @if ($package->country($country)!==null&&$package->country($country)->pivot->price!=null)
+                                        <strong class="custom-fs-19"><sub>{{$package->country($country)->pivot->currency}}</sub> <strong class="custom-fs-25">
+                                            {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
+                                        <sub>per person</sub></strong>
+                                        @else   
                                         <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
-                                                {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
-                                            <sub>per person</sub></strong>
+                                            {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                        <sub>per person</sub></strong>
+                                        @endif
+
                                         <div>
 
                                         </div>
@@ -405,8 +451,8 @@
 
 
                                         <div class="col-md-12 col-12 mt-3">
-                                            <a class="btn btn-success w-100"
-                                                href="{{ route('booknow', ['url' => $package->url]) }}">Book Now</a>
+                                            <a class="btn btn-primary w-100"
+                                            href="{{ route('booknow', ['url' => $package->url,'cu'=> $package->country($country)!=null?$package->country($country)->pivot->currency:'USD']) }}">Book Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -750,9 +796,15 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <strong class="custom-fs-18">All inclusive cost</strong>
+                                        @if ($package->country($country)!==null&&$package->country($country)->pivot->price!=null)
+                                        <strong class="custom-fs-19"><sub>{{$package->country($country)->pivot->currency}}</sub> <strong class="custom-fs-25">
+                                            {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
+                                        <sub>per person</sub></strong>
+                                        @else   
                                         <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
-                                                {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
-                                            <sub>per person</sub></strong>
+                                            {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                        <sub>per person</sub></strong>
+                                        @endif
                                         <div>
                                         </div>
                                     </div>
@@ -780,8 +832,8 @@
                                                 own departure dates.</span>
                                         </p>
                                         <div class="col-md-12 col-12 mt-3">
-                                            <a class="btn btn-success w-100"
-                                                href="{{ route('booknow', ['url' => $package->url]) }}">Book Now</a>
+                                            <a class="btn btn-primary w-100"
+                                            href="{{ route('booknow', ['url' => $package->url,'cu'=> $package->country($country)!=null?$package->country($country)->pivot->currency:'USD']) }}">Book Now</a>
                                         </div>
                                     </div>
                                 </div>

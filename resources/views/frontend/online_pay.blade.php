@@ -68,7 +68,8 @@
                     <form action="{{route('booking.confirmation')}}" method="post" id="submit_form">
                         {!! csrf_field() !!}
                         <div class="row">
-                            
+							<input type="hidden" name="currency" value="{{request()->query('cu')!=null?request()->query('cu'):'USD'}}">
+
                                 <div class="col-md-6 my-3">
                                             <label class="custom-fs-18 custom-text-primary" for="productName">Product Name</label>
                                            
@@ -101,6 +102,7 @@
                                 <div class="col-md-6 my-3">
                                             <label class="custom-fs-18 custom-text-primary" for="amountToPay">Amount You Would Like To Pay</label>
                                             <input type="number" placeholder="Enter Amount You Want To Pay" id="amountToPay" class="form-control" name="amount" min="1" required>
+										
                                 </div>
 
                         <div class="col-md-12">	
