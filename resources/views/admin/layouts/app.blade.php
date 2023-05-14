@@ -1,30 +1,3 @@
-{{-- @php
-	$setting=DB::table('websites')->first();
-
-@endphp
-
-@section('title')
-{{ $setting->title }}
-@endsection
-@section('descr')
-{{ $setting->descr }}
-@endsection
-@section('keyword')
-{{ $setting->title }}
-@endsection
-@section('title')
-{{ $setting->title }}
-@endsection
-@section('img')
-{{ getFilePath($setting->image) }}
-@endsection
-@section('url')
-{{Request::url()}}
-@endsection
-@section('fev')
-{{ getFilePath($setting->fev) }} --}}
-
-{{-- @endsection --}}
 <!DOCTYPE HTML>
 <html lang="en">
 
@@ -55,28 +28,13 @@
 
 
     {{-- bootstrap --}}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <!-- Google Font:  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;500;600;800;900&display=swap"
-        rel="stylesheet">
-    <!-- Font Awesome -->
-
+    <link rel="preload stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0-8/css/all.css"
         integrity="sha512-FoiDc40LwNkhzC9yHQU/yOEHV2+SvUvN4/XZEkcGvlPr14tfocjIM63TD9kmoLkPG3YGrwZL/NglmdKM5+hCnA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ getFilePath('admin/dist/css/adminlte.min.css') }}">
-    {{-- toastr --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    {{-- datatables  --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" />
-    <link href='//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css' rel="stylesheet" />
-    {{-- sommernotes  --}}
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="preload stylesheet" href="{{ getFilePath('admin/dist/css/adminlte.min.css') }}" as="style">
+
     @stack('style')
     <style>
         label {
@@ -133,71 +91,38 @@
         <!-- /.content-wrapper -->
 
 
-
-
-
-        <footer class="main-footer">
-            {{-- <strong>Copyright &copy; {{date('Y') }} <a href="https://baratodeal.com"> {{ $setting->copy_right }}</a>.</strong> --}}
-            All rights reserved.
-
-        </footer>
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script defer src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {{-- boostrap --}}
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <!-- AdminLTE App -->
-    <script src="{{ getFilePath('admin/dist/js/adminlte.js') }}"></script>
+    <script defer src="{{ getFilePath('admin/dist/js/adminlte.js') }}"></script>
 
-    {{-- toastr  --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    {{-- datatables --}}
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-    <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
-    {{-- sommernotes --}}
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    {{-- toastr  --}}
+    
+    @if(!str_contains(url()->current(),'edit')&&!str_contains(url()->current(),'create'))
+  {{-- datatables  --}}
+  <link rel="preload stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" as="style">
+  <link rel="preload stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css" as="style"/>
+  <link rel="preload stylesheet" href='https//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css' as="style" />
+    <script defer src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script defer src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <script defer src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+    <script defer src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
+    <script defer src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script defer src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
+     {{-- datatables iniziing --}}
     <script>
-        @if (Session::has('messege')) //toatser
-            var type = "{{ Session::get('alert-type', 'info') }}"
-            switch (type) {
-                case 'info':
-                    toastr.info("{{ Session::get('messege') }}");
-                    break;
-                case 'success':
-                    toastr.success("{{ Session::get('messege') }}");
-                    break;
-                case 'warning':
-                    toastr.warning("{{ Session::get('messege') }}");
-                    break;
-                case 'error':
-                    toastr.error("{{ Session::get('messege') }}");
-                    break;
-            }
-        @endif
-    </script>
-    {{-- datatables iniziing --}}
-    <script>
+     setTimeout(() => {
         if (window.innerWidth <= 700) {
             var table = $('#example2').DataTable({
                 "scrollX": true,
@@ -282,10 +207,40 @@
             });
 
         }
+     }, 2000);
     </script>
+    
+    @endif
+    
+    @if (Session::has('messege'))
+ {{-- toastr --}}
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @endif
+    {{-- toastr  --}}
+    <script>
+        @if (Session::has('messege')) //toatser
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info("{{ Session::get('messege') }}");
+                    break;
+                case 'success':
+                    toastr.success("{{ Session::get('messege') }}");
+                    break;
+                case 'warning':
+                    toastr.warning("{{ Session::get('messege') }}");
+                    break;
+                case 'error':
+                    toastr.error("{{ Session::get('messege') }}");
+                    break;
+            }
+        @endif
+    </script>
+   
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/super-build/ckeditor.js"></script>
-    <script src="{{ getFilePath('public/ckeditor.js') }}"></script>
+    <script rel="preload script" src="https://cdn.ckeditor.com/ckeditor5/35.1.0/super-build/ckeditor.js" as="script"></script>
+    <script rel="preload script" src="{{ getFilePath('public/ckeditor.js') }}"as="script"></script>
 
     <script>
         $('#delete_row').click(function(e) {

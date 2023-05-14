@@ -41,7 +41,7 @@
         color: #fff !important;
     }
 #about_trip{
-    position: sticky!important;top:50px!important;z-index:999999999999;
+    position: sticky!important;top:50px!important;z-index:99;
 }
     .about-trip .head .nav-link i {
         font-size: 17px;
@@ -127,8 +127,6 @@
                                         <p class='my-0 py-0'>{{ $package->duration }} </p>
                                     </div>
                                 @endif
-
-
                                 @if (!empty($package->activity))
                                     <div class="col-12 py-2">
                                         <strong class='my-0 py-0'>Trip Type</strong>
