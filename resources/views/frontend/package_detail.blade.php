@@ -90,8 +90,15 @@
 }
     }
 </style>
+
 {!! NoCaptcha::renderJs() !!}
 @section('content')
+<link rel="alternate" hreflang="en-np" href="{{url("package-detail/$url")}}" />
+
+@foreach ($countries as $item)
+<link rel="alternate" hreflang="en-{{$item->slug}}" href="{{url("$item->slug/package-detail/$url")}}" />
+
+@endforeach
     <div class="container- px-0 mx-0">
         <main>
             <section class="trip-desc my-3 my-md-0">

@@ -65,7 +65,9 @@ if ($s3) {
       $features=DB::table('packages')->join('package_featured','packages.id','package_featured.featured_id')->where('package_featured.package_id',$package->id)->select('packages.*')->where('status',1)->get();
       $before=Destination::find($package->destination_id);
       $country=Country::where('slug',$country_id)->value('id');
-      return view('frontend.package_detail',compact('package','reviews','features','before','country'));
+      $countries=Country::where('slug','!=','np')->select('slug')->get();
+
+      return view('frontend.package_detail',compact('package','reviews','features','before','country','countries','url'));
 }
 
 public function printpackage($id){
