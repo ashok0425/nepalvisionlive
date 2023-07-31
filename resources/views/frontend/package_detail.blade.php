@@ -267,7 +267,7 @@
 
                                     </div>
                                 @endif
-                                @else 
+                                @else
 
                                 @if (!empty($package->discounted_price))
                                     <div class="col-12 py-2">
@@ -294,7 +294,7 @@
                                     </div>
                                 @endif
                                 @endif
-                                
+
 
 
                                 <div class="row">
@@ -374,17 +374,17 @@
                                         <td class="border-top-0"> <i class="fas fa-comments-dollar"></i>
                                             <strong>Price:</strong>
                                         </td>
-                                        <td class="border-top-0  "> 
+                                        <td class="border-top-0  ">
                                                 @if ($package->country($country)!=null && $package->country($country)->pivot->price!=null)
                                                 <sub><small class="custom-fs-16"> {{ $package->country($country)->pivot->currency}}</small> </sub>
                                             <strong class="custom-fs-22 ">
                                                 {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
-                                                    @else 
+                                                    @else
                                                     <sub><small class="custom-fs-16">USD</small> </sub>
                                                  <strong class="custom-fs-22 ">
                                                     {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
                                                 @endif
-                                               
+
                                             <sub> <small class="custom-fs-16">per person</small></sub></strong>
                                         </td>
 
@@ -404,7 +404,7 @@
                                         <strong class="custom-fs-19"><sub>{{$package->country($country)->pivot->currency}}</sub> <strong class="custom-fs-25">
                                             {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
                                         <sub>per person</sub></strong>
-                                        @else   
+                                        @else
                                         <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
                                             {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
                                         <sub>per person</sub></strong>
@@ -522,7 +522,7 @@
                                 </div>
                             </div>
                             {{-- Enquiry form end  --}}
-                           
+
                             <div class="tab-content card" id="myTabContent">
                                 <div class="about-trip" id="about_trip">
                                     <div class="head">
@@ -531,7 +531,7 @@
                                                 <a class="nav-link active " id="home-tab" data-bs-toggle="tab"
                                                     href="#home" role="tab" aria-controls="home" aria-selected="true">
                                                     Overview
-    
+
                                                     <i class="fas fa-binoculars"></i>
                                                 </a>
                                             </li>
@@ -539,21 +539,21 @@
                                                 <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab"
                                                     href="#profile" role="tab" aria-controls="profile"
                                                     aria-selected="false"> Itinerary
-    
+
                                                     <i class="fas fa-map-marker"></i>
                                                 </a>
                                             </li>
-    
+
                                             <li class="nav-item " role="presentation">
                                                 <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab"
                                                     href="#dateprice" role="tab" aria-controls="dateprice"
                                                     aria-selected="false">
-    
+
                                                     Departure Date
                                                     <i class="fas fa-calendar"></i>
                                                 </a>
                                             </li>
-    
+
                                             @if (!empty($package->faq))
                                                 <li class="nav-item " role="presentation">
                                                     <a class="nav-link  font-weight-700 " id="faq-tab" data-bs-toggle="tab"
@@ -564,9 +564,9 @@
                                                     </a>
                                                 </li>
                                             @endif
-    
-    
-    
+
+
+{{--
                                             @if (!empty($package->useful_info))
                                                 <li class="nav-item " role="presentation">
                                                     <a class="nav-link  font-weight-700 " id="useful-tab"
@@ -576,20 +576,20 @@
                                                         <i class="fas fa-info-circle"></i>
                                                     </a>
                                                 </li>
-                                            @endif
-    
-    
+                                            @endif --}}
+
+
                                             @if (!empty($package->equiment))
                                                 <li class="nav-item " role="presentation">
                                                     <a class="nav-link  font-weight-700 " id="equiment-tab"
                                                         data-bs-toggle="tab" href="#equiment" role="tab"
                                                         aria-controls="equiment" aria-selected="false">Equiment
-    
+
                                                         <i class="fab fa-wrench"></i>
                                                     </a>
                                                 </li>
                                             @endif
-    
+
                                             <li class="nav-item " role="presentation">
                                                 <a class="nav-link  font-weight-700 " id="review-tab" data-bs-toggle="tab"
                                                     href="#review" role="tab" aria-controls="review"
@@ -597,7 +597,7 @@
                                                     <i class="fas fa-comment"></i>
                                                 </a>
                                             </li>
-    
+
                                         </ul>
                                     </div>
                                 </div>
@@ -616,7 +616,7 @@
                                 </div>
                                 <div class="tab-pane card-body fade" id="profile" role="tabpanel"
                                     aria-labelledby="profile-tab">
-                                    {!! $package->country($country)!=null 
+                                    {!! $package->country($country)!=null
                                         ? $package->country($country)->pivot->detailed_itinerary
                                         : $package->detailed_itinerary !!}
                                 </div>
@@ -627,11 +627,11 @@
                                         {!! $package->country($country)!=null ? $package->country($country)->pivot->faq : $package->faq !!}
                                     </div>
                                 @endif
-
+{{--
                                 <div class="tab-pane card-body fade" id="useful" role="tabpanel"
                                     aria-labelledby="useful-tab">
                                     {!! $package->country($country)!=null ? $package->country($country)->pivot->useful_info : $package->useful_info !!}
-                                </div>
+                                </div> --}}
 
                                 <div class="tab-pane card-body fade" id="equiment" role="tabpanel"
                                     aria-labelledby="equiment-tab">
@@ -729,25 +729,17 @@
                                     </div>
                                     @foreach ($reviews as $review)
                                         <div class="card">
-                                            <div class="row">
-                                                <div class="col-md-4">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4 ">
                                                     <div class="img card-body">
-                                                        @if (!empty($review->image))
-                                                            <img src="{{ getImageurl($review->image) }}"
-                                                                alt="{{ $review->name }}"
-                                                                class="w-md-75 w-100 text-md-center img-fluid img-thumbnail bg-info">
-                                                        @else
-                                                            <img src="{{ getImageurl('footer-img.webp') }}"
-                                                                alt="{{ $review->name }}"
-                                                                class="w-100 bg-gray w-md-75 text-md-center img-thumbnail img-fluid bg-info">
-                                                        @endif
-                                                        <p class="mt-1 text-center py-0  mb-1">
+
+                                                        <p class="mt-3 text-center py-0  mb-1">
                                                             <strong class="custom-text-primary">
                                                                 {{ $review->name }}
                                                             </strong>
                                                         </p>
                                                         <div
-                                                            class="d-flex justify-content-between flex-row align-items-center">
+                                                            class="text-center">
                                                             <div class="rating mt-2">
                                                                 @for ($i = 1; $i <= $review->rating; $i++)
                                                                     <i class="fas fa-star text-warning"></i>
@@ -800,7 +792,7 @@
                                         <strong class="custom-fs-19"><sub>{{$package->country($country)->pivot->currency}}</sub> <strong class="custom-fs-25">
                                             {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
                                         <sub>per person</sub></strong>
-                                        @else   
+                                        @else
                                         <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
                                             {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
                                         <sub>per person</sub></strong>
@@ -1425,8 +1417,8 @@
     @push('scripts')
         <script type="application/ld+json">
   {
-    "@context": "https://schema.org/", 
-    "@type": "Product", 
+    "@context": "https://schema.org/",
+    "@type": "Product",
     "name": "Nepal Vision Treks",
     "image": " {{ getImageurl($package->image) }}",
     "description": " {{ $package->descr }}",
@@ -1591,6 +1583,11 @@
                 cb.writeText(copyText).then(() => alert('Link copied'));
 
 
+            })
+            $('.nav-tabs .nav-item').click(function(){
+                $([document.documentElement, document.body]).animate({
+        scrollTop: $("#myTabContent").offset().top-100
+    }, 100);
             })
         </script>
     @endpush
