@@ -21,7 +21,7 @@ class BuyController extends Controller
             $package = null;
             $agents = DB::connection('mysql2')->table('users')->where('email_verified_at', '!=', null)->get();
             if ($url != null) {
-                  $package = Package::where('url',$url)->orwhere('id',$url)->first();
+                  $package = Package::where('url',$url)->first();
             }
             $currency=request()->query('cu')?request()->query('cu'):'USD';
             return view('frontend.buynow', compact('package', 'date', 'packages', 'agents','currency'));

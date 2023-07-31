@@ -57,7 +57,7 @@ if ($s3) {
     $url=request()->segment(2);
     $country_id='npee';
 }
-	$package = Package::where('status',1)->where('url',$url)->orwhere('id',$url)->first();  
+	$package = Package::where('status',1)->where('url',$url)->first();  
 	if(!$package){
         abort(404);
    }
