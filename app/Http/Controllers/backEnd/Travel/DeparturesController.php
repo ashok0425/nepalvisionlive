@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class DeparturesController extends Controller
 {
-  
+
     /**
      * Display a listing of the resource.
      *
@@ -42,26 +42,34 @@ class DeparturesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'package_id'=>'required',
+            'start_date'=>'required',
+
+        ]);
             //code...
         try {
-            $Departure = new Departure;
-            $Departure->start_date=$request->start_date;
-            $Departure->package_id=$request->package_id;
-            $Departure->status=1;
-            $Departure->save();
-          
+            foreach ($request->start_date as $key => $date) {
+                $Departure = new Departure;
+                $Departure->start_date=$date;
+                $Departure->package_id=$request->package_id;
+                $Departure->status=1;
+                $Departure->save();
+            }
+
+
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>'Departure Added Successfully',
-               
+
              );
             } catch (\Throwable $th) {
                 //throw $th;
-            
+
             $notification=array(
                 'alert-type'=>'error',
                 'messege'=>'Failed to Add Departure, Try again.',
-               
+
              );
         }
 
@@ -101,7 +109,7 @@ class DeparturesController extends Controller
      */
     public function update(Request $request, $id)
     {
-   
+
         try {
             $Departure = Departure::findOrFail($id);
             $Departure->start_date=$request->start_date;
@@ -109,13 +117,13 @@ class DeparturesController extends Controller
             $Departure->save();
             $notification=array(
                 'alert-type'=>'success',
-                'messege'=>'Departure updated',               
+                'messege'=>'Departure updated',
              );
         } catch(\Throwable $e) {
             $notification=array(
                 'alert-type'=>'error',
                 'messege'=>'Failed to update Departure, Try again.',
-               
+
              );
         }
 
@@ -138,7 +146,7 @@ class DeparturesController extends Controller
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>' Departure Deleted',
-               
+
              );
         } catch (\Throwable $e) {
             $notification=array(
