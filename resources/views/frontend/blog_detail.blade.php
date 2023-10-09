@@ -130,9 +130,29 @@
                 </div>
 
 
+<div class="mt-3">
+    @php
+      $features=DB::table('packages')->join('package_featured','packages.id','package_featured.featured_id')->select('packages.*')->where('status',1)->limit(4)->get();
 
+    @endphp
+    <section class="packages">
+        <div class="container">
+            <div class="heading my-5">
+                <h2 class='my-0 py-0 custom-fs-22'>Featured Packages</h2>
+            </div>
+            <div class="row">
+                @foreach ($features as $packaged)
+                    <div class="col-md-3 col-sm-4">
+                        @include('frontend.template.card1', ['package' => $packaged])
+                    </div>
+                @endforeach
 
-                <div class=" mt-3 ">
+            </div>
+        </div>
+    </section>
+</div>
+
+                {{-- <div class=" mt-3 ">
 
                     <h2 class="text-center">Related Blogs</h4>
 
@@ -172,7 +192,7 @@
 
                         </div>
 
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -180,7 +200,7 @@
 
 
 @push('script')
-    {{-- 
+    {{--
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",

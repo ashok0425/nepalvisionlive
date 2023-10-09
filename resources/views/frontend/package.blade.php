@@ -1,12 +1,14 @@
 @extends('frontend.layout.master')
 @section('title')
-    {{ $data->name }} | Nepal Vision Treks & Expedition
-@endsection
+    {{ $data->meta_title }}
+    @endsection
 @section('descr')
-    Visit the beautiful destinations in Nepal, the home of the Himalayas, culture, and natural beauties.
+{{ $data->meta_description }}
+
 @endsection
 @section('keyword')
-    Destination
+{{ $data->meta_keyword }}
+
 @endsection
 
 @section('url')
