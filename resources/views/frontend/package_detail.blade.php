@@ -35,6 +35,10 @@
     define('PAGE', 'destination');
 @endphp
 <style>
+    .sticky-position{
+        position: sticky;
+        top: 50px;
+    }
     .about-trip .head .nav-link {
         font-weight: 500;
         font-size: 18px;
@@ -523,31 +527,29 @@
                             </div>
                             {{-- Enquiry form end  --}}
 
-                            <div class="tab-content card" id="myTabContent">
+                            <div>
                                 <div class="about-trip" id="about_trip">
                                     <div class="head">
-                                        <ul class="nav nav-tabs d-flex justify-content-around" id="myTab" role="tablist">
-                                            <li class="nav-item " role="presentation">
-                                                <a class="nav-link active " id="home-tab" data-bs-toggle="tab"
-                                                    href="#home" role="tab" aria-controls="home" aria-selected="true">
+                                        <ul class="nav nav-tabs d-flex justify-content-around">
+                                            <li class="nav-item">
+                                                <a class="nav-link "
+                                                    href="#home">
                                                     Overview
 
                                                     <i class="fas fa-binoculars"></i>
                                                 </a>
                                             </li>
                                             <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab"
-                                                    href="#profile" role="tab" aria-controls="profile"
-                                                    aria-selected="false"> Itinerary
+                                                <a class="nav-link  font-weight-700 "
+                                                    href="#profile" role="tab" > Itinerary
 
                                                     <i class="fas fa-map-marker"></i>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700 " id="profile-tab" data-bs-toggle="tab"
-                                                    href="#dateprice" role="tab" aria-controls="dateprice"
-                                                    aria-selected="false">
+                                                <a class="nav-link  font-weight-700"
+                                                    href="#datePrice">
 
                                                     Departure Date
                                                     <i class="fas fa-calendar"></i>
@@ -556,9 +558,8 @@
 
                                             @if (!empty($package->faq))
                                                 <li class="nav-item " role="presentation">
-                                                    <a class="nav-link  font-weight-700 " id="faq-tab" data-bs-toggle="tab"
-                                                        href="#faq" role="tab" aria-controls="faq"
-                                                        aria-selected="false">
+                                                    <a class="nav-link  font-weight-700"
+                                                        href="#faq" >
                                                         Faq
                                                         <i class="fas fa-question"></i>
                                                     </a>
@@ -566,24 +567,11 @@
                                             @endif
 
 
-{{--
-                                            @if (!empty($package->useful_info))
-                                                <li class="nav-item " role="presentation">
-                                                    <a class="nav-link  font-weight-700 " id="useful-tab"
-                                                        data-bs-toggle="tab" href="#useful" role="tab"
-                                                        aria-controls="useful" aria-selected="false">
-                                                        Useful Info
-                                                        <i class="fas fa-info-circle"></i>
-                                                    </a>
-                                                </li>
-                                            @endif --}}
-
 
                                             @if (!empty($package->equiment))
                                                 <li class="nav-item " role="presentation">
-                                                    <a class="nav-link  font-weight-700 " id="equiment-tab"
-                                                        data-bs-toggle="tab" href="#equiment" role="tab"
-                                                        aria-controls="equiment" aria-selected="false">Equiment
+                                                    <a class="nav-link  font-weight-700 "
+                                                        data-bs-toggle="tab" href="#equiment">Equiment
 
                                                         <i class="fab fa-wrench"></i>
                                                     </a>
@@ -591,9 +579,8 @@
                                             @endif
 
                                             <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700 " id="review-tab" data-bs-toggle="tab"
-                                                    href="#review" role="tab" aria-controls="review"
-                                                    aria-selected="false"> Review
+                                                <a class="nav-link  font-weight-700"
+                                                    href="#review"> Review
                                                     <i class="fas fa-comment"></i>
                                                 </a>
                                             </li>
@@ -601,8 +588,10 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="tab-pane card-body fade show active" id="home" role="tabpanel"
-                                    aria-labelledby="home-tab">
+                                <div  id="home">
+                                    <h2 class="custom-text-primary mt-5">Overview
+                                    </h2>
+                                  <div class="mt-2">
                                     {!! $package->country($country)!=null ? $package->country($country)->pivot->overview : $package->overview !!}
                                     {!! $package->country($country)!=null
                                         ? $package->country($country)->pivot->outline_itinerary
@@ -613,32 +602,40 @@
                                     {!! $package->country($country)!=null
                                         ? $package->country($country)->pivot->trip_excludes
                                         : $package->trip_excludes !!}
+                                  </div>
                                 </div>
-                                <div class="tab-pane card-body fade" id="profile" role="tabpanel"
-                                    aria-labelledby="profile-tab">
+                                <div id="profile">
+                                    <h2 class="custom-text-primary mt-5">Itinerary
+                                    </h2>
+                                   <div class="mt-2">
                                     {!! $package->country($country)!=null
                                         ? $package->country($country)->pivot->detailed_itinerary
                                         : $package->detailed_itinerary !!}
+                                   </div>
                                 </div>
 
                                 @if (!empty($package->faq))
-                                    <div class="tab-pane card-body fade" id="faq" role="tabpanel"
-                                        aria-labelledby="faq-tab">
+                                    <div id="faq">
+                                        <h2 class="custom-text-primary mt-5">FAQ
+                                        </h2>
+                                      <div class="mt-2">
                                         {!! $package->country($country)!=null ? $package->country($country)->pivot->faq : $package->faq !!}
+                                      </div>
                                     </div>
                                 @endif
-{{--
-                                <div class="tab-pane card-body fade" id="useful" role="tabpanel"
-                                    aria-labelledby="useful-tab">
-                                    {!! $package->country($country)!=null ? $package->country($country)->pivot->useful_info : $package->useful_info !!}
-                                </div> --}}
 
-                                <div class="tab-pane card-body fade" id="equiment" role="tabpanel"
-                                    aria-labelledby="equiment-tab">
-                                    {!! $package->equiment !!}
+                                @if ($package->equiment)
+                                <div  id="equiment">
+                                    <h2 class="custom-text-primary mt-5">Equiment
+                                    </h2>
+                                    <div class="mt-2">
+                                        {!! $package->equiment !!}
+                                    </div>
                                 </div>
-                                <div class="tab-pane fade card-body" id="datePrice" role="tabpanel"
-                                    aria-labelledby="datePrice-tab">
+                                @endif
+                                <div id="datePrice">
+                                    <h2 class="custom-text-primary mt-5">Departure Date
+                                    </h2>
                                     <strong class="mt-2">Departure dates for {!!  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name !!}</strong>
                                     <p>We provide a series of fixed departure trek, tour and expeditions in Nepal, Bhutan,
                                         Tibet and India. If you are single and wishing to be with a group, you can join our
@@ -715,58 +712,18 @@
                                     </table>
                                 </div>
 
-                                <div class="tab-pane card-body fade" id="review" role="tabpanel"
-                                    aria-labelledby="review-tab">
-                                    <div class="row mb-3">
+                                <div id="review">
+                                    <div class="row mb-3 align-items-center">
                                         <div class="col-md-6">
-                                            <strong class="custom-text-primary custom-fs-20">Traveller's Reviews
-                                            </strong>
+                                            <h2 class="custom-text-primary mt-5">Traveller's Reviews
+                                            </h2>
                                         </div>
                                         <div class="col-md-3 offset-md-3 text-right">
                                             <a class="btn btn-primary" href="{{ route('testimonials') }}">Write
                                                 Review</a>
                                         </div>
                                     </div>
-                                    @foreach ($reviews as $review)
-                                        <div class="card">
-                                            <div class="row align-items-center">
-                                                <div class="col-md-4 ">
-                                                    <div class="img card-body">
-
-                                                        <p class="mt-3 text-center py-0  mb-1">
-                                                            <strong class="custom-text-primary">
-                                                                {{ $review->name }}
-                                                            </strong>
-                                                        </p>
-                                                        <div
-                                                            class="text-center">
-                                                            <div class="rating mt-2">
-                                                                @for ($i = 1; $i <= $review->rating; $i++)
-                                                                    <i class="fas fa-star text-warning"></i>
-                                                                @endfor
-                                                                @for ($i = 1; $i <= 5 - $review->rating; $i++)
-                                                                    <i class="fas fa-star text-gray"></i>
-                                                                @endfor
-                                                            </div>
-                                                            <div class="mt-2">
-                                                                <strong
-                                                                    class="custom-text-primary">{{ carbon\carbon::parse($review->date)->format('d M Y') }}</strong>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8 ">
-                                                    <div class="card-body">
-                                                        <h3 class="custom-text-primary custom-fs-18">{{ $review->title }}
-                                                        </h3>
-                                                        <div class="comment">
-                                                            {!! strip_tags($review->content) !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                 @include('frontend.template.package_detail_testimonial')
                                 </div>
                             </div>
 
@@ -832,6 +789,7 @@
                             </div>
                             {{-- we accept section end --}}
 
+                            <div class="sticky-position">
                             {{-- Enquiry form start --}}
                             <div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-none d-md-block">
                                 <div class="card-header border-white custom-bg-primary">
@@ -948,7 +906,7 @@
                                 </div>
                             </div>
                             {{--  Trip advesior End --}}
-
+                        </div>
                         </div>
                         {{-- 2nd col end  --}}
                     </div>
@@ -1584,10 +1542,13 @@
 
 
             })
-            $('.nav-tabs .nav-item').click(function(){
-                $([document.documentElement, document.body]).animate({
-        scrollTop: $("#myTabContent").offset().top-100
-    }, 100);
-            })
+    //         $('.nav-tabs .nav-item').click(function(){
+    //             console.log($("#myTabContent").offset());
+    //             $([document.documentElement, document.body]).animate({
+    //     scrollTop: $("#myTabContent").offset().top
+    // }, 100);
+    //         })
+
+
         </script>
     @endpush

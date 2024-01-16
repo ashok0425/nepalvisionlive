@@ -103,10 +103,16 @@
                 <li><a class="dropdown-item" href="{{ route('blog') }}">Blog</a></li>
 
                 <li><a class="dropdown-item" href="{{ route('contactus') }}">Contact</a></li>
+                <li>
+                    <a class=" mx-3 btn btn-primary btn-xs mt-1 click_to_get_quick_trip" href="{{ route('booking.online') }}">
+                        Pay Online
+                    </a>
+                </li>
             </ul>
 
 
         </div>
+
     </div>
     <div class="search_box py-2   d-none">
         <form action="{{ route('search') }}" method="GET" class="desktop_search px-4 mx-2">
