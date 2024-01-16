@@ -41,7 +41,7 @@
 				@endphp
 				<form method="POST" action="https://www.pay.nepalvisiontreks.com/hbldemo2/">
 					
-					<input type="hidden" name="productName" value="{{ $request->productName }}" />
+					<input type="hidden" name="productName" value="{{ Str::limit($request->productName,30) }}" />
 					<input type="hidden" name="currency" value="{{ $request->currency }}" />
 
 					<input type="hidden" name="amount" value="{{ $request->amount+$discount }}" />

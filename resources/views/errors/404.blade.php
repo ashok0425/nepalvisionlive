@@ -4,6 +4,8 @@
 @endphp
 
 @section('content')
+
+
 <style>
     @import url('https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans+Narrow');
  body {

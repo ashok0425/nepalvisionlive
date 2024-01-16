@@ -3,7 +3,7 @@
    use Illuminate\Support\Facades\Route;
 
 
-// index page
+// index page 
     Route::get('/','HomeController@getIndex')->name('/');
 	Route::get('cms/{page?}','HomeController@Page')->name('cms.page');
 	Route::get('cms-page/{page}/{id?}','HomeController@PageDetail')->name('cms.detail');
@@ -45,7 +45,7 @@
 
 
 	Route::get('events','EventController@index')->name('events');
-	Route::get('useful-info','EventController@UsefulInfo')->name('usefulinfo');
+		Route::get('useful-info','EventController@UsefulInfo')->name('usefulinfo');
 
 	Route::get('event-detail/{id}','EventController@show')->name('event.detail');
 
@@ -62,7 +62,7 @@
 	Route::post('subscribe/store','ContactController@subscribeStore')->name('subscribe.store');
 
 // 	Route::get('sitemap.xml','SiteMapController@siteMap');
-
+	
 		Route::get('itinerary/{id?}/{d?}',function(){
 		    return redirect('https://nepalvisiontreks.com/package-category/trekking');
 		});
@@ -70,7 +70,7 @@
 		Route::get('load-quick-trip',function(){
 		   return view('frontend.template.quick_trip');
 		});
-
+		
 
 		Route::get('blog/{assa}',function(){
 		    return redirect()->route('blog');

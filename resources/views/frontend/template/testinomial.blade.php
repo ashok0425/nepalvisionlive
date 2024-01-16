@@ -129,7 +129,7 @@
                                     class="user_no_img lazy" width="100" height="100">
                             @endif
                         </div>
-                        <p class="comment">{!! strip_tags(Str::limit($testimonial->content, 100)) !!}
+                        <p class="comment">{!! Str::limit(strip_tags($testimonial->content),100) !!}
                             @if (Str::length($testimonial->content) > 102)
                                 <span class='see_more custom-text-primary' data-bs-toggle="modal"
                                     data-bs-target="#seemore_modal" data-content="{!! strip_tags($testimonial->content) !!}"

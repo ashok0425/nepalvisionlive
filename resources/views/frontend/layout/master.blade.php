@@ -52,11 +52,13 @@
     @yield('noindex')
     <meta name="keyword" content="@yield('keyword')">
     <meta name="description" content="@yield('descr')">
-    @if (url()->current() == 'https://www.nepalvisiontreks.com' ||
+   @if (url()->current() == 'https://www.nepalvisiontreks.com' ||
             url()->current() == 'https://www.nepalvisiontreks.com/index.php')
         <link rel="canonical" href="https://www.nepalvisiontreks.com" />
     @elseif(url()->current() == 'https://www.nepalvisiontreks.com/{country?}/package-detail/{url?}')
     <link rel="canonical" href="https://www.nepalvisiontreks.com/package-detail/{url?}" />
+    @else
+    <link rel="canonical" href="{{url()->current()}}" />
     @endif
     <link rel="shortcut  icon" href="@yield('fev')" type="image/icon type">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">

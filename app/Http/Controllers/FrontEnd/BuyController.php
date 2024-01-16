@@ -126,13 +126,13 @@ class BuyController extends Controller
                   'insurance' => $request->insurance,
                   'source' => $agent
             ];
-            // Mail::send('email.book', $data, function ($message) use ($data) {
-            //       $message->from('noreply@nepalvisiontreks.com');
-            //       $message->to('sales@nepalvisiontreks.com');
-            //       $message->to('inquiry@nepalvisiontreks.com');
-            //       $message->to($data['email']);
-            //       $message->subject('booking a package');
-            // });
+            Mail::send('email.book', $data, function ($message) use ($data) {
+                  $message->from('noreply@nepalvisiontreks.com');
+                  $message->to('sales@nepalvisiontreks.com');
+                  $message->to('inquiry@nepalvisiontreks.com');
+                  $message->to($data['email']);
+                  $message->subject('booking a package');
+            });
 
             $currency=$request->currency;
             if ($request->bookandpay) {

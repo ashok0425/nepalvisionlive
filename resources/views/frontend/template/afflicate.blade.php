@@ -55,7 +55,7 @@
 
 
             <div>
-                <img data-src="{{ getImageurl('aff/') }}" alt="affiliated" class="img-fluid lazy w-50" width="100"
+                <img data-src="{{ asset('public/afflication22.png') }}" alt="affiliated" class="img-fluid lazy w-50" width="100"
                     height="100">
             </div>
 

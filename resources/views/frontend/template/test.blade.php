@@ -36,6 +36,7 @@
 
         .destinations>.owl-nav>.owl-next {
             left: 163% !important;
+
             color: #fff !important;
             border: 2px solid rgb(42, 135, 183) !important;
             width: 40px;

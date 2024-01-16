@@ -61,7 +61,7 @@ if ($s3) {
 	if(!$package){
         abort(404);
    }
-      $reviews=DB::table('testimonials')->join('package_testimonial','package_testimonial.testimonial_id','testimonials.id')->where('testimonials.status',1)->where('package_testimonial.package_id',$package->id)->orderBy('testimonials.id','desc')->limit(20)->get();
+      $reviews=DB::table('testimonials')->join('package_testimonial','package_testimonial.testimonial_id','testimonials.id')->where('testimonials.status',1)->where('package_testimonial.package_id',$package->id)->orderBy('testimonials.date','desc')->limit(20)->get();
       $features=DB::table('packages')->join('package_featured','packages.id','package_featured.featured_id')->where('package_featured.package_id',$package->id)->select('packages.*')->where('status',1)->get();
       $before=Destination::find($package->destination_id);
       $country=Country::where('slug',$country_id)->value('id');

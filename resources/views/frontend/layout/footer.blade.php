@@ -245,7 +245,7 @@
 
 <div class="whatsapp-link ">
 
-    <a rel="noreferrer" target="_blank" href="https://api.whatsapp.com/send?phone=9779802342080"><i
+    <a rel="noreferrer" target="_blank" href="https://api.whatsapp.com/send?phone=9779802342081"><i
             class="fab fa-whatsapp p-2 bg-success text-white fa-2x rounded "></i></a>
 
 </div>

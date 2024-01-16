@@ -15,7 +15,7 @@ use App\Models\Newsletter;
 use App\Models\Website;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-
+use Str;
 class ContactController extends Controller
 {
 
@@ -29,6 +29,10 @@ class ContactController extends Controller
 
       public function Store(Request $request)
       {
+          if (Str::contains($request->email,  ".godaddy")) {
+                abort(403);
+            
+              }
            $request->validate([
                   'fname' => 'required',
                   'email' => 'required|email',
@@ -99,6 +103,10 @@ class ContactController extends Controller
 
       public function Enquery(Request $request)
       {
+          if (Str::contains($request->email,  ".godaddy")) {
+                abort(403);
+            
+              }
             $request->validate([
                   'g-recaptcha-response' => 'required|captcha',
               ]);
@@ -189,7 +197,10 @@ class ContactController extends Controller
 
       public function subscribeStore(Request $request)
       {
-
+if (Str::contains($request->email,  ".godaddy")) {
+                abort(403);
+            
+              }
 
             try {
                   //code...

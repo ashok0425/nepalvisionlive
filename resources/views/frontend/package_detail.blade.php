@@ -941,7 +941,7 @@
                                     </p>
                                     <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
                                         WhatsApp (24/7): <strong class="custom-text-primary">
-                                            +977-9802342082
+                                            +977-9802342081
                                         </strong>
 
                                     </p>

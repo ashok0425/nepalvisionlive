@@ -113,7 +113,7 @@
                     </div>
                     <div class=" col-md-12 my-2">
                         <label class="form-label">Detail</label>
-                       <div id="blog_detail"></div>
+                        <textarea name="content" id="summernote" cols="30" rows="10">{{ $blog->post_content }}</textarea>
                     </div>
 
 
@@ -223,11 +223,5 @@
                 $('.change-image').css('display', 'block');
             }
         });
-
-        $(document).ready(function(){
-            setTimeout(() => {
-                $('#blog_detail').html(` <textarea name="content" id="summernote" cols="30" rows="10">{{ $blog->post_content }}</textarea>`)
-            }, 1000);
-        })
     </script>
 @endpush

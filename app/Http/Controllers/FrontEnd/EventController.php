@@ -16,7 +16,7 @@ public function index(){
 
 
 
-
+         
 public function show($id){
      $event=Event::orderBy('id','desc')->where('status',1)->where('id',$id)->first();
      $mores=Event::where('status',1)->inRandomOrder()->where('title','!=',null)->limit(5)->get();
@@ -26,9 +26,14 @@ public function show($id){
      return view('frontend.event_view',compact('event','mores','next','prev'));
 }
 
+
+
 public function UsefulInfo(){
 $UsefulInfo=Package::where('useful_info','!=',null)->value('useful_info');
 return view('frontend.usefulinfo',compact('UsefulInfo'));
 }
+
+
+
 
 }
