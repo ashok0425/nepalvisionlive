@@ -44,12 +44,12 @@ class PackagesController extends Controller
                         route('admin.categories-packages.edit', $row->id) .
                         '" class="btn btn-primary btn-sm pull-left m-r-10"><i class="fa fa-edit"></i>
                     </a>
-    
+
                     <a href="' .
                         route('admin.categories-packages.delete', $row->id) .
                         '" class="btn btn-danger btn-sm delete_row" id="" ><i class="fa fa-trash"></i>
                     </a>
-                    
+
 
                     <a href="' .
                         route('admin.package.country', ['package_id' => $row->id]) .
@@ -170,6 +170,11 @@ class PackagesController extends Controller
             $roadmap = $request->file('roadmap');
             if ($roadmap) {
                 $package->roadmap = $this->uploadFile('upload/package/roadmap', $roadmap);
+            }
+
+            $circuit_image = $request->file('circuit_image');
+            if ($circuit_image) {
+                $package->circuit_image = $this->uploadFile('upload/package/circuit_image', $circuit_image);
             }
 
             $package->save();
@@ -322,6 +327,11 @@ class PackagesController extends Controller
             if ($roadmap) {
                 $this->deleteFile($package->routemap);
                 $package->routemap = $this->uploadFile('upload/package/roadmap', $roadmap);
+            }
+            $circuit_image = $request->file('circuit_image');
+            if ($circuit_image) {
+                $this->deleteFile($package->circuit_image);
+                $package->circuit_image = $this->uploadFile('upload/package/circuit_image', $circuit_image);
             }
 
             $package->save();

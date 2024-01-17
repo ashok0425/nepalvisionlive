@@ -236,7 +236,7 @@
                                                         <div class="form-group" id="region_display"
                                                             style="display: none;">
                                                             {{-- {{ Form::label('category_place_id', 'Select Region(optional)') }} {{ Form::select('category_place_id', $places,null, ['class' => 'form-control', 'placeholder' => 'Select Region']) }} --}}
-                                                            {{-- 
+                                                            {{--
                                             <label >Price</label>
                                             <input type="number" name="price" class="form-control" required placeholder="Enter Price"> --}}
                                                         </div>
@@ -385,6 +385,18 @@
                                             </div>
 
                                             <div class="col-md-6">
+                                                <label >Ciruit Image</label>
+                                                <div class="image-input">
+                                                    <input type="file" accept="image/*" id="imageInput4" name="circuit_image" >
+                                                    <label for="imageInput4" class="image-button"><i class="far fa-image"></i> Choose image</label>
+                                                    <img src="" class="image-preview4">
+
+                                                  </div>
+                                                  <img src="{{ getImageurl($package->circuit_image) }}" class="image-fluid"
+                                                  width="100">
+                                            </div>
+
+                                            <div class="col-md-6">
                                                 <label>Map Title</label>
                                                 <input type="text" name="map_title" id=""
                                                     class="form-control" value="{{ $package->map_title }}">
@@ -398,10 +410,10 @@
                                     <input type="file" accept="image/*" id="imageInput3" name="gallery" >
                                     <label for="imageInput3" class="image-button"><i class="far fa-image"></i> Choose image</label>
                                     <img src="" class="image-preview3">
-    
+
                                   </div>
                                 </div>
-                              
+
                             </div> --}}
 
                                         <div class="row">
@@ -445,7 +457,7 @@
                                             <div class="col-md-12">
                                                 <label>Detailed itinerary:</label>
                                                 <textarea name="detailed_itinerary" cols="30" rows="10" id="summernote1">
-                                    
+
                                   {{ $package->detailed_itinerary }}
 
                                  </textarea>
@@ -647,6 +659,21 @@
 
         })
 
+// Add the following code if you want the name of the file appear on select
+$('#imageInput4').on('change', function() {
+$input = $(this);
+
+if($input.val().length > 0) {
+  fileReader = new FileReader();
+  fileReader.onload = function (data) {
+  $('.image-preview4').attr('src', data.target.result);
+  }
+  fileReader.readAsDataURL($input.prop('files')[0]);
+//   $('.image-button').css('display', 'none');
+  $('.image-preview4').css('display', 'block');
+  $('.change-image').css('display', 'block');
+}
+});
 
         function ajaxCategory() {
             category_destination = $('#all_category_destination').val();
