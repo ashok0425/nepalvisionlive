@@ -103,6 +103,8 @@
                 <li><a class="dropdown-item" href="{{ route('blog') }}">Blog</a></li>
 
                 <li><a class="dropdown-item" href="{{ route('contactus') }}">Contact</a></li>
+                <li><a class="dropdown-item" href="{{ route('deals') }}">Deals</a></li>
+
                 <li>
                     <a class=" mx-3 btn btn-primary btn-xs mt-1 click_to_get_quick_trip" href="{{ route('booking.online') }}">
                         Pay Online

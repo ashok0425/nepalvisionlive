@@ -2,7 +2,7 @@
     $destinations = DB::table('destinations')
         ->where('status', 1)
         ->get();
-    
+
     $website = DB::table('websites')->first();
 @endphp
 <style>
@@ -138,7 +138,7 @@
                                                         @endphp
 
                                                         <li class="dropdown_menu"><a
-                                                                class="dropdown-item d-flex justify-content-between align-items-center 
+                                                                class="dropdown-item d-flex justify-content-between align-items-center
                                                         "
                                                                 href="{{ route('package.place', ['url' => $place->url]) }}">{{ $place->name }}
                                                                 @if (count($packages) > 0)
@@ -177,7 +177,7 @@
                                                         @endphp
 
                                                         <li class="dropdown_menu"><a
-                                                                class="dropdown-item d-flex justify-content-between align-items-center 
+                                                                class="dropdown-item d-flex justify-content-between align-items-center
                                                         "
                                                                 href="{{ route('package.category', ['url' => $category->url]) }}">{{ $category->name }}
                                                                 @if (count($packages) > 0)
@@ -223,6 +223,10 @@
                                     <a class="nav-link text-md-white text-dark @if (PAGE == 'contact') active @endif"
                                         href="{{ route('contactus') }}">Contact</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-md-white text-dark @if (PAGE == 'deals') active @endif"
+                                        href="{{ route('deals') }}">Deals</a>
+                                </li>
                             </ul>
 
                         </div>
@@ -241,19 +245,19 @@
 @php
     use App\Models\CategoryDestination;
     use App\Models\CategoryPlace;
-    
+
     use App\Models\Destination;
-    
+
     $quick_trips = CategoryDestination::where('quick_trips', 1)
         ->where('status', 1)
         ->orderBy('order')
         ->get();
-    
+
     $categories_place = CategoryPlace::where('status', 1)->get();
     $destination_not_nepal = Destination::whereIn('id', [10, 11])
         ->where('status', 1)
         ->get();
-    
+
 @endphp
 
 

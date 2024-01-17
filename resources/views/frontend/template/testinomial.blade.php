@@ -122,7 +122,7 @@
                     <div class="feedback-box text-center ">
                         <div>
                             @if ($testimonial->image != null)
-                                <img src="{{ getFilePath($testimonial->image) }}" alt="{{ $testimonial->name }}"
+                                <img src="{{ getImageurl($testimonial->image) }}" alt="{{ $testimonial->name }}"
                                     class="user_img img-fluid lazy" width="100" height="100">
                             @else
                                 <img src="{{ getFilePath('frontend/user.webp') }}" alt="{{ $testimonial->name }}"
@@ -204,21 +204,15 @@
 
 
 @push('scripts')
-    <script type="text/javascript" src="https://www.viralpatel.net/demo/jquery/jquery.shorten.1.0.js"></script>
 
     <script>
         $(document).ready(function() {
-
-
-
-
             $('.see_more').click(function() {
                 $('.see_more_data').html('')
 
                 let content = $(this).data('content');
                 let name = $(this).data('name');
                 let rating = $(this).data('rating');
-
 
                 $('.see_more_data').html(content)
                 $('.username').html(name)

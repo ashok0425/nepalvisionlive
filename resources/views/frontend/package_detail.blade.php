@@ -712,17 +712,8 @@
                                     </table>
                                 </div>
 
-                                <div id="review">
-                                    <div class="row mb-3 align-items-center">
-                                        <div class="col-md-6">
-                                            <h2 class="custom-text-primary mt-5">Traveller's Reviews
-                                            </h2>
-                                        </div>
-                                        <div class="col-md-3 offset-md-3 text-right">
-                                            <a class="btn btn-primary" href="{{ route('testimonials') }}">Write
-                                                Review</a>
-                                        </div>
-                                    </div>
+                                <div id="review" class="mt-5">
+
                                  @include('frontend.template.package_detail_testimonial')
                                 </div>
                             </div>

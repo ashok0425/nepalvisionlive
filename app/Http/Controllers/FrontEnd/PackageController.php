@@ -13,6 +13,7 @@ use App\Models\Departure;
 use App\Models\Destination;
 use App\Models\Testimonial;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB ;
 use Str;
 class PackageController extends Controller
@@ -29,6 +30,21 @@ class PackageController extends Controller
      return view('frontend.package',compact('packages','data'));
 }
 
+public function Deals() {
+    $packages = Cache::remember('packages', 604800, function () {
+        return DB::table('packages')
+            ->orderBy('id', 'desc')
+            ->where('status', 1)
+            ->where('duration', '!=', null)
+            ->where('activity', '!=', null)
+            ->where('discounted_price', '!=', null)
+            ->limit(8)
+            ->paginate(24);
+    });
+
+    return view('frontend.deal',compact('packages'));
+}
+
  public function category($url) {
   $data = CategoryDestination::where('url',$url)->orwhere('id',$url)->first();
 if(!$data){
@@ -38,7 +54,7 @@ if(!$data){
       return view('frontend.package',compact('packages','data'));
  }
 
- 
+
  public function place($url) {
 
     $data = CategoryPlace::where('url',$url)->orwhere('id',$url)->first();
@@ -57,7 +73,7 @@ if ($s3) {
     $url=request()->segment(2);
     $country_id='npee';
 }
-	$package = Package::where('status',1)->where('url',$url)->first();  
+	$package = Package::where('status',1)->where('url',$url)->first();
 	if(!$package){
         abort(404);
    }
@@ -87,7 +103,7 @@ public function Departure(Request $request){
 
 
 
-         
+
 
 public function Testimonial(Request $request){
      $packages=Package::where('status',1)->get();
@@ -95,11 +111,11 @@ public function Testimonial(Request $request){
      if($request->package){
              $packagefinder=Package::find($request->package);
              $testimonials=$packagefinder->testimonials()->paginate(20);
-            
+
      }
      else{
           $testimonials = Testimonial::where('status',1)->orderBy('id','desc')->paginate(20);
-      
+
      }
      return view('frontend.testimonial',compact('testimonials','packages'));
 }
@@ -164,20 +180,20 @@ public function filter_package(Request $request) {
    if(!isset($request->to)&&empty($request->to)){
     $request->to=10000000;
    }
-   
-   
+
+
     if(!isset($request->from)&&empty($request->from)){
         $request->from=1;
     }
 
      $query.=" AND `price` between  $request->from AND $request->to ";
-     
-   
-
-  
 
 
-   
+
+
+
+
+
    $packages=DB::select($query);
 $data='';
 foreach($packages as $package){
@@ -193,7 +209,7 @@ foreach($packages as $package){
         else {
          $data.="<img src='". getImageurl($package->banner)."' alt='".$package->name."' class='img-fluid w-100'>";
          }
-           
+
          $data.=" </div>
         <div class='img-desc'>
             <div class='about-img row'>
@@ -205,15 +221,15 @@ foreach($packages as $package){
                      $data.= $package->duration ."|";
 
                     }
-                    
+
                     if (!empty($package->activity))
                     {
                      $data.= Str::limit($package->activity,20) ;
 
                     }
-                        
-                    
-                    $data.=  " </p> 
+
+
+                    $data.=  " </p>
 
             </div>
             <div class='col-6 '>
@@ -222,29 +238,29 @@ foreach($packages as $package){
                     for ($i=1;$i<=$package->rating;$i++)
                     {
 
-                    
+
                      $data.="<i class='fas fa-star'></i> ";
                      }
                     for ($i=1;$i<=5-$package->rating;$i++)
                     {
                      $data.=   "<i class='far fa-star'></i> ";
-                    
+
                    }
-                 
+
                    $data.=   "</div>
             </div>
 
             <div class='col-6 custom-fw-600 custom-text-primary'>
             US  \$".$package->price ."
 
-        
+
     </div>
             </div>
             <div class='title mt-1'>";
             $data.=$package->name;
-            
+
             $data.=" </div>
-           
+
         </div>
 </a>
 

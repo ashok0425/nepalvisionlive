@@ -3,7 +3,7 @@
    use Illuminate\Support\Facades\Route;
 
 
-// index page 
+// index page
     Route::get('/','HomeController@getIndex')->name('/');
 	Route::get('cms/{page?}','HomeController@Page')->name('cms.page');
 	Route::get('cms-page/{page}/{id?}','HomeController@PageDetail')->name('cms.detail');
@@ -14,6 +14,7 @@
 	Route::get('filter_package}','PackageController@Filter_Package')->name('filter_package');
 	Route::get('package-destination/{url}','PackageController@destination')->name('package.destination');
 	Route::get('package-category/{url}','PackageController@category')->name('package.category');
+	Route::get('deals','PackageController@Deals')->name('deals');
 	Route::get('package-place/{url}','PackageController@place')->name('package.place');
 	Route::get('{country?}/package-detail/{url?}','PackageController@show')->name('package.detail');
 	Route::get('package-detail/{url?}','PackageController@show')->name('package.detail');
@@ -62,7 +63,7 @@
 	Route::post('subscribe/store','ContactController@subscribeStore')->name('subscribe.store');
 
 // 	Route::get('sitemap.xml','SiteMapController@siteMap');
-	
+
 		Route::get('itinerary/{id?}/{d?}',function(){
 		    return redirect('https://nepalvisiontreks.com/package-category/trekking');
 		});
@@ -70,7 +71,7 @@
 		Route::get('load-quick-trip',function(){
 		   return view('frontend.template.quick_trip');
 		});
-		
+
 
 		Route::get('blog/{assa}',function(){
 		    return redirect()->route('blog');
