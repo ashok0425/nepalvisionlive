@@ -718,10 +718,18 @@
                                 </div>
                             </div>
 
-                            <div class="routemap my-2">
+                            <div class="routemap my-4">
                                 @if ($package->map_title)
                                     <h3>{{ $package->map_title }}</h3>
                                     <img src="{{ getImageurl($package->routemap) }}" alt="{{ $package->map_title }}"
+                                        class="img-fluid">
+                                @endif
+                            </div>
+
+                            <div class="routemap my-4">
+                                @if ($package->circuit_image)
+                                    <h3>{{ $package->map_title }}</h3>
+                                    <img src="{{ getImageurl($package->circuit_image) }}" alt="{{ $package->map_title }}"
                                         class="img-fluid">
                                 @endif
                             </div>
