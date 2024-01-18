@@ -54,12 +54,17 @@ class PackagesController extends Controller
                     <a href="' .
                         route('admin.package.country', ['package_id' => $row->id]) .
                         '" class="btn btn-success btn-sm " id="" ><i class="fa fa-plus"></i>
-                    </a>';
+                    </a>
+                    <a href="' .
+                    route('admin.package.gallery', ['package_id' => $row->id]) .
+                    '" class="btn btn-info btn-sm " id="" ><i class="fa fa-images"></i>
+                </a>'
+                    ;
 
                     if ($row->status == 1) {
-                        $html .= '<a href="' . route('admin.deactive', ['id' => $row->id, 'table' => 'packages']) . '" class="btn btn-primary"><i class="fas fa-thumbs-down"></i></a>';
+                        $html .= '<a href="' . route('admin.deactive', ['id' => $row->id, 'table' => 'packages']) . '" class="btn btn-primary btn-sm"><i class="fas fa-thumbs-down"></i></a>';
                     } else {
-                        $html .= ' <a href="' . route('admin.active', ['id' => $row->id, 'table' => 'packages']) . '" class="btn btn-primary"><i class="fas fa-thumbs-up"></i></a>';
+                        $html .= ' <a href="' . route('admin.active', ['id' => $row->id, 'table' => 'packages']) . '" class="btn btn-primary btn-sm"><i class="fas fa-thumbs-up"></i></a>';
                     }
                     return $html;
                 })

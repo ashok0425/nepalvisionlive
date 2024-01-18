@@ -16,11 +16,11 @@ Route::get('profile/change-password', 'AuthController@getpassword')->name('passw
 Route::post('profile/logout', 'AuthController@destory')->name('logout');
 Route::get('profile/logout/admin', 'AuthController@destory')->name('logout');
 
-//   destination 
+//   destination
 Route::resource('/destinations', 'Travel\DestinationsController');
 Route::get('/destinations/delete/{id}', 'Travel\DestinationsController@destroy')->name('destination.delete');
 
-//   destination category 
+//   destination category
 Route::resource('/categories-destinations', 'Travel\CategoriesDestinationsController');
 Route::get('/categoriesdestinations/delete/{id}', 'Travel\CategoriesDestinationsController@destroy')->name('categories-destinations.delete');
 
@@ -29,7 +29,7 @@ Route::get('/categoriesdestinations/delete/{id}', 'Travel\CategoriesDestinations
 Route::resource('/categories-places', 'Travel\CategoriesPlacesController');
 Route::get('/categories-places/delete/{id}', 'Travel\CategoriesPlacesController@destroy')->name('categories-places.delete');
 
-//   packages 
+//   packages
 Route::resource('/categories-packages', 'Travel\PackagesController');
 Route::get('categories-package/delete/{id}', 'Travel\CategoriesPlacesController@destroy')->name('categories-packages.delete');
 Route::get('/country-packages', 'Travel\PackagesController@countryPackage')->name('package.country');
@@ -38,12 +38,20 @@ Route::post('/country-packages/store', 'Travel\PackagesController@countryPackage
 Route::get('/country-packages/edit/{id}', 'Travel\PackagesController@countryPackageEdit')->name('package.country.edit');
 Route::post('/country-packages/update', 'Travel\PackagesController@countryPackagupdate')->name('package.country.update');
 
+Route::get('/package-gallery', 'Travel\PackagesGalleryController@index')->name('package.gallery');
+Route::get('/package-gallery/create', 'Travel\PackagesGalleryController@create')->name('package.gallery.create');
+Route::post('/package-gallery/store', 'Travel\PackagesGalleryController@store')->name('package.gallery.store');
+Route::get('/package-gallery/edit/{id}', 'Travel\PackagesGalleryController@edit')->name('package.gallery.edit');
+Route::post('/package-gallery/update', 'Travel\PackagesGalleryController@update')->name('package.gallery.update');
+Route::get('/package-gallery/{id}/destroy', 'Travel\PackagesGalleryController@destroy')->name('package.gallery.delete');
+
+
 
 // testimonials
 Route::resource('/testimonials', 'Testimonials\TestimonialsController');
 Route::get('/testimonials/delete/{id}', 'Testimonials\TestimonialsController@destroy')->name('testimonials.delete');
 
-// Faq 
+// Faq
 Route::resource('faqs', 'Travel\FaqsController');
 Route::get('faq/delete/{id}', 'Travel\FaqsController@destroy')->name('faqs.delete');
 
@@ -51,15 +59,15 @@ Route::get('faq/delete/{id}', 'Travel\FaqsController@destroy')->name('faqs.delet
 Route::resource('/departures', 'Travel\DeparturesController');
 Route::get('/departures/delete/{id}', 'Travel\DeparturesController@destroy')->name('departures.delete');
 
-//blog 
+//blog
 Route::resource('/blogs', 'BlogController');
 Route::get('/blogs/delete/{id}', 'BlogController@destroy')->name('blogs.delete');
 
-//Event 
+//Event
 Route::resource('/events', 'EventController');
 Route::get('/events/delete/{id}', 'EventController@destroy')->name('events.delete');
 
-// cms 
+// cms
 Route::resource('/cms', 'Cms\CmsController');
 Route::get('/cms/delete/{id}', 'Cms\CmsController@destroy')->name('cms.delete');
 
@@ -79,12 +87,12 @@ Route::get('contacts-history', 'ContactController@emailHistory')->name('contact.
 
 
 
-// Banner 
+// Banner
 Route::resource('/banners', 'BannerController');
 Route::get('banners/delete/{id}', 'BannerController@destroy')->name('banners.delete');
 
 
-// Setting 
+// Setting
 Route::resource('/websites', 'SettingController');
 Route::resource('section-control', 'Main\SectionControlController');
 
