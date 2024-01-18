@@ -400,7 +400,12 @@
                                                 <label>Map Title</label>
                                                 <input type="text" name="map_title" id=""
                                                     class="form-control" value="{{ $package->map_title }}">
+                                            </div>
 
+                                            <div class="col-md-6">
+                                                <label>Circuit Title</label>
+                                                <input type="text" name="circuit_title" id=""
+                                                    class="form-control" value="{{ $package->circuit_title }}">
                                             </div>
                                         </div>
                                         {{-- <div class="row">

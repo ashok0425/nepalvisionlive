@@ -728,7 +728,7 @@
 
                             <div class="routemap my-4">
                                 @if ($package->circuit_image)
-                                    <h3>{{ $package->map_title }}</h3>
+                                    <h3>{{ $package->circuit_title }}</h3>
                                     <img src="{{ getImageurl($package->circuit_image) }}" alt="{{ $package->map_title }}"
                                         class="img-fluid">
                                 @endif
