@@ -3,23 +3,23 @@
 @endphp
 @if ($agent->isMobile())
     @section('title')
-        {{ $package->country($country)!=null ? $package->country($country)->pivot->mobile_meta_title : $package->mobile_meta_title }}
+        {{ $package->country($country) != null ? $package->country($country)->pivot->mobile_meta_title : $package->mobile_meta_title }}
     @endsection
     @section('descr')
-        {{ $package->country($country)!=null ? $package->country($country)->pivot->mobile_meta_description : $package->mobile_meta_description }}
+        {{ $package->country($country) != null ? $package->country($country)->pivot->mobile_meta_description : $package->mobile_meta_description }}
     @endsection
     @section('keyword')
-        {{ $package->country($country)!=null ? $package->country($country)->pivot->mobile_meta_keyword : $package->mobile_meta_keyword }}
+        {{ $package->country($country) != null ? $package->country($country)->pivot->mobile_meta_keyword : $package->mobile_meta_keyword }}
     @endsection
 @else
     @section('title')
-        {{ $package->country($country)!=null ? $package->country($country)->pivot->page_title : $package->page_title }}
+        {{ $package->country($country) != null ? $package->country($country)->pivot->page_title : $package->page_title }}
     @endsection
     @section('descr')
-        {{ $package->country($country)!=null ? $package->country($country)->pivot->meta_description : $package->meta_description }}
+        {{ $package->country($country) != null ? $package->country($country)->pivot->meta_description : $package->meta_description }}
     @endsection
     @section('keyword')
-        {{ $package->country($country)!=null ? $package->country($country)->pivot->meta_keywords : $package->meta_keywords }}
+        {{ $package->country($country) != null ? $package->country($country)->pivot->meta_keywords : $package->meta_keywords }}
     @endsection
 
 @endif
@@ -35,18 +35,23 @@
     define('PAGE', 'destination');
 @endphp
 <style>
-    .sticky-position{
+    .sticky-position {
         position: sticky;
         top: 50px;
     }
+
     .about-trip .head .nav-link {
         font-weight: 500;
         font-size: 18px;
         color: #fff !important;
     }
-#about_trip{
-    position: sticky!important;top:50px!important;z-index:99;
-}
+
+    #about_trip {
+        position: sticky !important;
+        top: 50px !important;
+        z-index: 99;
+    }
+
     .about-trip .head .nav-link i {
         font-size: 17px;
     }
@@ -88,41 +93,104 @@
     .boder-0 {
         border: 0px !important
     }
-    @media only screen and (max-width: 600px) {
-        #about_trip{
-    top:0px!important;
-}
+
+
+    .custom-row {
+        display: flex;
+        justify-content: space-between
     }
+
+    .custom-col-md-8 {
+        max-width: 73%;
+    }
+
+    .custom-col-md-4 {
+        max-width: 26%;
+    }
+
+
+    @media only screen and (max-width: 1000px) {
+        .custom-row {
+            display: flex;
+            justify-content: space-between
+        }
+
+        .custom-col-md-8 {
+            max-width: 64%;
+        }
+
+        .custom-col-md-4 {
+            max-width: 35%;
+        }
+    }
+
+
+    @media only screen and (max-width: 800px) {
+        .custom-row {
+            display: flex;
+            justify-content: space-between
+        }
+
+        .custom-col-md-8 {
+            max-width: 58%;
+        }
+
+        .custom-col-md-4 {
+            max-width: 40%;
+        }
+    }
+
+
+    @media only screen and (max-width: 600px) {
+        #about_trip {
+            top: 0px !important;
+        }
+
+
+        .custom-row {
+            display: block
+        }
+
+        .custom-col-md-8 {
+            max-width: 100%;
+        }
+
+        .custom-col-md-4 {
+            max-width: 100%;
+        }
+    }
+
 </style>
 
 {!! NoCaptcha::renderJs() !!}
 @section('content')
-<link rel="alternate" hreflang="en-np" href="{{url("package-detail/$url")}}" />
+    <link rel="alternate" hreflang="en-np" href="{{ url("package-detail/$url") }}" />
 
-@foreach ($countries as $item)
-<link rel="alternate" hreflang="en-{{$item->slug}}" href="{{url("$item->slug/package-detail/$url")}}" />
-
-@endforeach
-    <div class="container- px-0 mx-0">
+    @foreach ($countries as $item)
+        <link rel="alternate" hreflang="en-{{ $item->slug }}" href="{{ url("$item->slug/package-detail/$url") }}" />
+    @endforeach
+    <div class=" px-0 mx-0">
         <main>
             <section class="trip-desc my-3 my-md-0">
-                <div class="container">
-                    <div class="row">
+                <div class="container-fluid">
+                    <div class="custom-row">
                         {{-- 1st col staart  --}}
-                        <div class="col-md-8 my-1">
+                        <div class="custom-col-md-8 my-1">
                             @php
                                 $packages_id = $package->id;
-                                $arr = trim( $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name);
+                                $arr = trim($package->country($country) != null ? $package->country($country)->pivot->name : $package->name);
                                 // return isset() ? $arr[0] : $string;
                             @endphp
                             {{-- banner section start  --}}
                             <div class="my-2">
-                                <h1 class="custom-text-primary custom-fs-25 mb-2">{{  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name }}</h1>
+                                <h1 class="custom-text-primary custom-fs-25 mb-2">
+                                    {{ $package->country($country) != null ? $package->country($country)->pivot->name : $package->name }}
+                                </h1>
 
                                 <section class="hero2">
                                     @if (empty($package->thumbnail))
-                                        <img data-src="{{ getImageurl('frontend/getImageurl(s/hero4.webp') }}" class="lazy"
-                                            alt="cover image" width="2000" height="300">
+                                        <img data-src="{{ getImageurl('frontend/getImageurl(s/hero4.webp') }}"
+                                            class="lazy" alt="cover image" width="2000" height="300">
                                     @else
                                         <img data-src="{{ getImageurl($package->thumbnail) }}" alt="cover image"
                                             class="lazy" width="2000" height="300">
@@ -131,7 +199,7 @@
                                 </section>
                             </div>
 
-                            <div class="book-now mx-0 mx-md-4 card  shadow-sm bg_secondary  px-5 py-2 d-md-none d-md-block">
+                            <div class="book-now mx-0 card  shadow-sm bg_secondary  px-5 py-2 d-md-none d-md-block">
                                 @if (!empty($package->duration))
                                     <div class="col-12 py-2">
                                         <strong class='my-0 py-0'>Duration</strong>
@@ -244,59 +312,61 @@
                                     </p>
                                 </div>
 
-                                @if ($package->country($country)!==null&&$package->country($country)->pivot->price!=null)
-                                @if (!empty($package->discounted_price))
-                                    <div class="col-12 py-2">
+                                @if ($package->country($country) !== null && $package->country($country)->pivot->price != null)
+                                    @if (!empty($package->discounted_price))
+                                        <div class="col-12 py-2">
 
-                                        <strong class='my-0 py-0'> Price</strong>
-                                        <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
-                                            {{$package->country($country)->pivot->currency}}<span class="text-danger "><s> {{ $package->country($country)->pivot->price }}</s> </span>
+                                            <strong class='my-0 py-0'> Price</strong>
+                                            <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
+                                                {{ $package->country($country)->pivot->currency }}<span
+                                                    class="text-danger "><s>
+                                                        {{ $package->country($country)->pivot->price }}</s> </span>
 
-                                            <span class="text-success">
-                                                 {{ $package->country($country)->pivot->offer_price }}
-                                            </span>
-                                        </strong>
-                                    </div>
-                                @else
-                                    <div class="col-12 py-2">
-
-                                        <strong class='my-0 py-0'>Price</strong>
-
-                                        <span class="custom-text-primary">
-                                            <strong class="text-dark custom-fs-25 custom-fw-700">
-
-                                                {{$package->country($country)->pivot->currency}} {{ $package->country($country)->pivot->price }}
+                                                <span class="text-success">
+                                                    {{ $package->country($country)->pivot->offer_price }}
+                                                </span>
                                             </strong>
-                                            Per Person</span>
+                                        </div>
+                                    @else
+                                        <div class="col-12 py-2">
 
-                                    </div>
-                                @endif
+                                            <strong class='my-0 py-0'>Price</strong>
+
+                                            <span class="custom-text-primary">
+                                                <strong class="text-dark custom-fs-25 custom-fw-700">
+
+                                                    {{ $package->country($country)->pivot->currency }}
+                                                    {{ $package->country($country)->pivot->price }}
+                                                </strong>
+                                                Per Person</span>
+
+                                        </div>
+                                    @endif
                                 @else
+                                    @if (!empty($package->discounted_price))
+                                        <div class="col-12 py-2">
 
-                                @if (!empty($package->discounted_price))
-                                    <div class="col-12 py-2">
+                                            <strong class='my-0 py-0'> Price</strong>
+                                            <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
+                                                US <span class="text-danger "><s>${{ $package->price }}</s> </span>
 
-                                        <strong class='my-0 py-0'> Price</strong>
-                                        <strong class='my-0 py-0 custom-fs-25 custom-fw-700'>
-                                            US <span class="text-danger "><s>${{ $package->price }}</s> </span>
-
-                                            <span class="text-success">${{ $package->discounted_price }} </span>
-                                        </strong>
-                                    </div>
-                                @else
-                                    <div class="col-12 py-2">
-
-                                        <strong class='my-0 py-0'>Price</strong>
-
-                                        <span class="custom-text-primary">
-                                            <strong class="text-dark custom-fs-25 custom-fw-700">
-
-                                                USD ${{ $package->price }}
+                                                <span class="text-success">${{ $package->discounted_price }} </span>
                                             </strong>
-                                            Per Person</span>
+                                        </div>
+                                    @else
+                                        <div class="col-12 py-2">
 
-                                    </div>
-                                @endif
+                                            <strong class='my-0 py-0'>Price</strong>
+
+                                            <span class="custom-text-primary">
+                                                <strong class="text-dark custom-fs-25 custom-fw-700">
+
+                                                    USD ${{ $package->price }}
+                                                </strong>
+                                                Per Person</span>
+
+                                        </div>
+                                    @endif
                                 @endif
 
 
@@ -304,12 +374,15 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12 py-2">
                                         <a class="btn btn-primary w-100"
-                                            href="{{ route('booknow', ['url' => $package->url,'cu'=> $package->country($country)!=null?$package->country($country)->pivot->currency:'USD']) }}">Book Now</a>
+                                            href="{{ route('booknow', ['url' => $package->url, 'cu' => $package->country($country) != null ? $package->country($country)->pivot->currency : 'USD']) }}">Book
+                                            Now</a>
                                     </div>
                                 </div>
 
                             </div>
-                            <table class="table table-bordered table-geninfo mb-0 d-none d-md-block w-100">
+                            <div class="d-none d-md-block">
+
+                            <table class="table table-bordered table-geninfo mb-0  w-100">
                                 <tbody>
                                     @if ($package->activity || $package->fitness_level)
                                         <tr>
@@ -379,15 +452,16 @@
                                             <strong>Price:</strong>
                                         </td>
                                         <td class="border-top-0  ">
-                                                @if ($package->country($country)!=null && $package->country($country)->pivot->price!=null)
-                                                <sub><small class="custom-fs-16"> {{ $package->country($country)->pivot->currency}}</small> </sub>
-                                            <strong class="custom-fs-22 ">
-                                                {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
-                                                    @else
-                                                    <sub><small class="custom-fs-16">USD</small> </sub>
-                                                 <strong class="custom-fs-22 ">
+                                            @if ($package->country($country) != null && $package->country($country)->pivot->price != null)
+                                                <sub><small class="custom-fs-16">
+                                                        {{ $package->country($country)->pivot->currency }}</small> </sub>
+                                                <strong class="custom-fs-22 ">
+                                                    {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
+                                            @else
+                                                <sub><small class="custom-fs-16">USD</small> </sub>
+                                                <strong class="custom-fs-22 ">
                                                     {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
-                                                @endif
+                                            @endif
 
                                             <sub> <small class="custom-fs-16">per person</small></sub></strong>
                                         </td>
@@ -397,21 +471,25 @@
 
                                 </tbody>
                             </table>
+                        </div>
+
                             {{-- banner section End  --}}
 
                             {{-- we accept section start --}}
-                            <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2 d-block d-md-none">
+                            <div class="my-2 card  shadow-sm bg_secondary  p-3 pb-2 d-block d-md-none">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <strong class="custom-fs-18">All inclusive cost</strong>
-                                        @if ($package->country($country)!==null&&$package->country($country)->pivot->price!=null)
-                                        <strong class="custom-fs-19"><sub>{{$package->country($country)->pivot->currency}}</sub> <strong class="custom-fs-25">
-                                            {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
-                                        <sub>per person</sub></strong>
+                                        @if ($package->country($country) !== null && $package->country($country)->pivot->price != null)
+                                            <strong
+                                                class="custom-fs-19"><sub>{{ $package->country($country)->pivot->currency }}</sub>
+                                                <strong class="custom-fs-25">
+                                                    {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
+                                                <sub>per person</sub></strong>
                                         @else
-                                        <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
-                                            {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
-                                        <sub>per person</sub></strong>
+                                            <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
+                                                    {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                                <sub>per person</sub></strong>
                                         @endif
 
                                         <div>
@@ -456,7 +534,8 @@
 
                                         <div class="col-md-12 col-12 mt-3">
                                             <a class="btn btn-primary w-100"
-                                            href="{{ route('booknow', ['url' => $package->url,'cu'=> $package->country($country)!=null?$package->country($country)->pivot->currency:'USD']) }}">Book Now</a>
+                                                href="{{ route('booknow', ['url' => $package->url, 'cu' => $package->country($country) != null ? $package->country($country)->pivot->currency : 'USD']) }}">Book
+                                                Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -464,7 +543,7 @@
                             {{-- we accept section end --}}
 
                             {{-- Enquiry form start --}}
-                            <div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-block d-md-none">
+                            <div class="card  shadow-sm bg_secondary  sticky-div   py-0 d-block d-md-none">
                                 <div class="card-header border-white custom-bg-primary">
                                     <p class="mb-0 text-white custom-fw-500 ">Send us your queries or requests:</p>
                                 </div>
@@ -472,7 +551,9 @@
                                     <form action="{{ route('enquery.post') }}" method="post" id="demo-form">
                                         {{ csrf_field() }}
                                         <input type="hidden" value="{{ $package->id }}" name="booking">
-                                        <input type="hidden" value="{{  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name }}" name="package_name">
+                                        <input type="hidden"
+                                            value="{{ $package->country($country) != null ? $package->country($country)->pivot->name : $package->name }}"
+                                            name="package_name">
 
                                         <input type="hidden" value="1" name="no_participants">
                                         <input type="hidden" value="1" name="agent">
@@ -514,7 +595,8 @@
                                                     </span>
                                                 @endif
                                                 <p>
-                                                    <i>Your information will never be shared with anyone  outside our company. </i>
+                                                    <i>Your information will never be shared with anyone outside our
+                                                        company. </i>
                                                 </p>
                                                 <div class="form-group mb-0 text-left">
                                                     <button type="submit" class="btn btn-primary  btn-sm"
@@ -532,24 +614,22 @@
                                     <div class="head">
                                         <ul class="nav nav-tabs d-flex justify-content-around">
                                             <li class="nav-item">
-                                                <a class="nav-link "
-                                                    href="#home">
+                                                <a class="nav-link " href="#home">
                                                     Overview
 
                                                     <i class="fas fa-binoculars"></i>
                                                 </a>
                                             </li>
                                             <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700 "
-                                                    href="#profile" role="tab" > Itinerary
+                                                <a class="nav-link  font-weight-700 " href="#profile" role="tab">
+                                                    Itinerary
 
                                                     <i class="fas fa-map-marker"></i>
                                                 </a>
                                             </li>
 
                                             <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700"
-                                                    href="#datePrice">
+                                                <a class="nav-link  font-weight-700" href="#datePrice">
 
                                                     Departure Date
                                                     <i class="fas fa-calendar"></i>
@@ -558,8 +638,7 @@
 
                                             @if (!empty($package->faq))
                                                 <li class="nav-item " role="presentation">
-                                                    <a class="nav-link  font-weight-700"
-                                                        href="#faq" >
+                                                    <a class="nav-link  font-weight-700" href="#faq">
                                                         Faq
                                                         <i class="fas fa-question"></i>
                                                     </a>
@@ -570,8 +649,8 @@
 
                                             @if (!empty($package->equiment))
                                                 <li class="nav-item " role="presentation">
-                                                    <a class="nav-link  font-weight-700 "
-                                                        data-bs-toggle="tab" href="#equiment">Equiment
+                                                    <a class="nav-link  font-weight-700 " data-bs-toggle="tab"
+                                                        href="#equiment">Equiment
 
                                                         <i class="fab fa-wrench"></i>
                                                     </a>
@@ -579,8 +658,7 @@
                                             @endif
 
                                             <li class="nav-item " role="presentation">
-                                                <a class="nav-link  font-weight-700"
-                                                    href="#review"> Review
+                                                <a class="nav-link  font-weight-700" href="#review"> Review
                                                     <i class="fas fa-comment"></i>
                                                 </a>
                                             </li>
@@ -588,170 +666,178 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div  id="home">
+                                <div id="home">
                                     <h2 class="custom-text-primary mt-5">Overview
                                     </h2>
-                                  <div class="mt-2">
-                                    {!! $package->country($country)!=null ? $package->country($country)->pivot->overview : $package->overview !!}
-                                    {!! $package->country($country)!=null
-                                        ? $package->country($country)->pivot->outline_itinerary
-                                        : $package->outline_itinerary !!}
-                                    {!! $package->country($country)!=null
-                                        ? $package->country($country)->pivot->include_exclude
-                                        : $package->include_exclude !!}
-                                    {!! $package->country($country)!=null
-                                        ? $package->country($country)->pivot->trip_excludes
-                                        : $package->trip_excludes !!}
-                                  </div>
+                                    <div class="mt-2">
+                                        {!! $package->country($country) != null ? $package->country($country)->pivot->overview : $package->overview !!}
+                                        {!! $package->country($country) != null
+                                            ? $package->country($country)->pivot->outline_itinerary
+                                            : $package->outline_itinerary !!}
+                                        {!! $package->country($country) != null
+                                            ? $package->country($country)->pivot->include_exclude
+                                            : $package->include_exclude !!}
+                                        {!! $package->country($country) != null
+                                            ? $package->country($country)->pivot->trip_excludes
+                                            : $package->trip_excludes !!}
+                                    </div>
                                 </div>
+
+                                <div class="routemap my-4">
+                                    @if ($package->map_title)
+                                        <h3 class="custom-text-primary">{{ $package->map_title }}</h3>
+                                        <img src="{{ getImageurl($package->routemap) }}" alt="{{ $package->map_title }}"
+                                            class="img-fluid">
+                                    @endif
+                                </div>
+
                                 <div id="profile">
                                     <h2 class="custom-text-primary mt-5">Itinerary
                                     </h2>
-                                   <div class="mt-2">
-                                    {!! $package->country($country)!=null
-                                        ? $package->country($country)->pivot->detailed_itinerary
-                                        : $package->detailed_itinerary !!}
-                                   </div>
+                                    <div class="mt-2">
+                                        {!! $package->country($country) != null
+                                            ? $package->country($country)->pivot->detailed_itinerary
+                                            : $package->detailed_itinerary !!}
+                                    </div>
                                 </div>
 
-                                @if (!empty($package->faq))
-                                    <div id="faq">
-                                        <h2 class="custom-text-primary mt-5">FAQ
-                                        </h2>
-                                      <div class="mt-2">
-                                        {!! $package->country($country)!=null ? $package->country($country)->pivot->faq : $package->faq !!}
-                                      </div>
-                                    </div>
-                                @endif
+                                <div class="routemap my-4">
+                                    @if ($package->circuit_image)
+                                        <h3 class="custom-text-primary"> {{ $package->circuit_title }}</h3>
+                                        <img src="{{ getImageurl($package->circuit_image) }}"
+                                            alt="{{ $package->circuit_title }}" class="img-fluid">
+                                    @endif
+                                </div>
+                            </div>
 
-                                @if ($package->equiment)
-                                <div  id="equiment">
+                            @if (!empty($package->faq))
+                                <div id="faq">
+                                    <h2 class="custom-text-primary mt-5">FAQ
+                                    </h2>
+                                    <div class="mt-2">
+                                        {!! $package->country($country) != null ? $package->country($country)->pivot->faq : $package->faq !!}
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($package->equiment)
+                                <div id="equiment">
                                     <h2 class="custom-text-primary mt-5">Equiment
                                     </h2>
                                     <div class="mt-2">
                                         {!! $package->equiment !!}
                                     </div>
                                 </div>
-                                @endif
-                                <div id="datePrice">
-                                    <h2 class="custom-text-primary mt-5">Departure Date
-                                    </h2>
-                                    <strong class="mt-2">Departure dates for {!!  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name !!}</strong>
-                                    <p>We provide a series of fixed departure trek, tour and expeditions in Nepal, Bhutan,
-                                        Tibet and India. If you are single and wishing to be with a group, you can join our
-                                        fixed departure schedule. If the schedule dates are not convenient for you, contact
-                                        us & let us know; we are more than happy to customize our trips to suit your needs.
-                                        If any individuals or group doesn’t want to join with our other group, we can
-                                        operate as per your wish and requirement. We are ground operator of these Himalayan
-                                        destination and able to arrange your trip as per your interested date and choice.
-                                    </p>
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <p>Check out all the available dates</p>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-6 col-lg-4">
-                                                        <div class="input-group mb-3">
-                                                            <span class="input-group-text" id="basic-addon1">
-                                                                <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
-                                                            </span>
-                                                            <select class="form-control select-year"
-                                                                aria-describedby="basic-addon1">
-                                                                <option value="{{ date('Y') }}">Select Dates</option>
-                                                                <option value="{{ date('Y') }}" selected>{{ date('Y') }}
-                                                                </option>
-                                                                <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}
-                                                                </option>
-                                                                <option value="{{ date('Y') + 2 }}">{{ date('Y') + 2 }}
-                                                                </option>
-                                                            </select>
-                                                        </div>
+                            @endif
+                            <div id="datePrice">
+                                <h2 class="custom-text-primary mt-5">Departure Date
+                                </h2>
+                                <strong class="mt-2">Departure dates for {!! $package->country($country) != null ? $package->country($country)->pivot->name : $package->name !!}</strong>
+                                <p>We provide a series of fixed departure trek, tour and expeditions in Nepal, Bhutan,
+                                    Tibet and India. If you are single and wishing to be with a group, you can join our
+                                    fixed departure schedule. If the schedule dates are not convenient for you, contact
+                                    us & let us know; we are more than happy to customize our trips to suit your needs.
+                                    If any individuals or group doesn’t want to join with our other group, we can
+                                    operate as per your wish and requirement. We are ground operator of these Himalayan
+                                    destination and able to arrange your trip as per your interested date and choice.
+                                </p>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p>Check out all the available dates</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-6 col-lg-4">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="basic-addon1">
+                                                            <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
+                                                        </span>
+                                                        <select class="form-control select-year"
+                                                            aria-describedby="basic-addon1">
+                                                            <option value="{{ date('Y') }}">Select Dates</option>
+                                                            <option value="{{ date('Y') }}" selected>
+                                                                {{ date('Y') }}
+                                                            </option>
+                                                            <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}
+                                                            </option>
+                                                            <option value="{{ date('Y') + 2 }}">{{ date('Y') + 2 }}
+                                                            </option>
+                                                        </select>
                                                     </div>
+                                                </div>
 
-                                                    <div class="col-6 col-lg-4">
-                                                        <div class="input-group">
-                                                            <span class="input-group-text" id="basic-addon2">
-                                                                <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
-                                                            </span>
-                                                            <select class="form-control" id="select-month"
-                                                                aria-describedby="basic-addon2">
-                                                                <option value="1">Jan</option>
-                                                                <option value="2">Feb</option>
-                                                                <option value="3">Mar</option>
-                                                                <option value="4">Apr</option>
-                                                                <option value="5">May</option>
-                                                                <option value="6">June</option>
-                                                                <option value="7">July</option>
-                                                                <option value="8">Aug</option>
-                                                                <option value="9">Sep</option>
-                                                                <option value="10">Oct</option>
-                                                                <option value="11">Nov</option>
-                                                                <option value="12">Dec</option>
-                                                            </select>
-                                                        </div>
+                                                <div class="col-6 col-lg-4">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" id="basic-addon2">
+                                                            <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
+                                                        </span>
+                                                        <select class="form-control" id="select-month"
+                                                            aria-describedby="basic-addon2">
+                                                            <option value="1">Jan</option>
+                                                            <option value="2">Feb</option>
+                                                            <option value="3">Mar</option>
+                                                            <option value="4">Apr</option>
+                                                            <option value="5">May</option>
+                                                            <option value="6">June</option>
+                                                            <option value="7">July</option>
+                                                            <option value="8">Aug</option>
+                                                            <option value="9">Sep</option>
+                                                            <option value="10">Oct</option>
+                                                            <option value="11">Nov</option>
+                                                            <option value="12">Dec</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </div>
+                                </form>
 
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Start Date</th>
-                                                <th scope="col">Finish Date</th>
-                                                <th scope="col">Availability</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="ajaxloadmoredeparture">
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div id="review" class="mt-5">
-
-                                 @include('frontend.template.package_detail_testimonial')
-                                </div>
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Start Date</th>
+                                            <th scope="col">Finish Date</th>
+                                            <th scope="col">Availability</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="ajaxloadmoredeparture">
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <div class="routemap my-4">
-                                @if ($package->map_title)
-                                    <h3>{{ $package->map_title }}</h3>
-                                    <img src="{{ getImageurl($package->routemap) }}" alt="{{ $package->map_title }}"
-                                        class="img-fluid">
-                                @endif
-                            </div>
+                            <div id="review" class="mt-5">
 
-                            <div class="routemap my-4">
-                                @if ($package->circuit_image)
-                                    <h3>{{ $package->circuit_title }}</h3>
-                                    <img src="{{ getImageurl($package->circuit_image) }}" alt="{{ $package->map_title }}"
-                                        class="img-fluid">
-                                @endif
+                                @include('frontend.template.package_detail_testimonial')
                             </div>
                         </div>
+
+
+
+
                         {{-- 1st col end  --}}
 
                         {{-- 1st col staart  --}}
-                        <div class="col-md-4 my-5 ">
+                        <div class="custom-col-md-4 my-5 ">
                             <div class="mt-1"></div>
                             {{-- we accept section start --}}
-                            <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3 pb-2 d-none d-md-block">
+                            <div class="my-2  card  shadow-sm bg_secondary  p-3 pb-2 d-none d-md-block">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <strong class="custom-fs-18">All inclusive cost</strong>
-                                        @if ($package->country($country)!==null&&$package->country($country)->pivot->price!=null)
-                                        <strong class="custom-fs-19"><sub>{{$package->country($country)->pivot->currency}}</sub> <strong class="custom-fs-25">
-                                            {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
-                                        <sub>per person</sub></strong>
+                                        @if ($package->country($country) !== null && $package->country($country)->pivot->price != null)
+                                            <strong
+                                                class="custom-fs-19"><sub>{{ $package->country($country)->pivot->currency }}</sub>
+                                                <strong class="custom-fs-25">
+                                                    {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
+                                                <sub>per person</sub></strong>
                                         @else
-                                        <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
-                                            {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
-                                        <sub>per person</sub></strong>
+                                            <strong class="custom-fs-19"><sub>USD</sub> <strong class="custom-fs-25">
+                                                    {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                                <sub>per person</sub></strong>
                                         @endif
                                         <div>
                                         </div>
@@ -781,7 +867,8 @@
                                         </p>
                                         <div class="col-md-12 col-12 mt-3">
                                             <a class="btn btn-primary w-100"
-                                            href="{{ route('booknow', ['url' => $package->url,'cu'=> $package->country($country)!=null?$package->country($country)->pivot->currency:'USD']) }}">Book Now</a>
+                                                href="{{ route('booknow', ['url' => $package->url, 'cu' => $package->country($country) != null ? $package->country($country)->pivot->currency : 'USD']) }}">Book
+                                                Now</a>
                                         </div>
                                     </div>
                                 </div>
@@ -789,123 +876,126 @@
                             {{-- we accept section end --}}
 
                             <div class="sticky-position">
-                            {{-- Enquiry form start --}}
-                            <div class="card  shadow-sm bg_secondary  sticky-div  mx-md-4  py-0 d-none d-md-block">
-                                <div class="card-header border-white custom-bg-primary">
-                                    <p class="mb-0 text-white custom-fw-500 ">Send us your queries or requests:</p>
+                                {{-- Enquiry form start --}}
+                                <div class="card  shadow-sm bg_secondary  sticky-div   py-0 d-none d-md-block">
+                                    <div class="card-header border-white custom-bg-primary">
+                                        <p class="mb-0 text-white custom-fw-500 ">Send us your queries or requests:</p>
+                                    </div>
+                                    <div class="card-body py-1">
+                                        <form action="{{ route('enquery.post') }}" method="post">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" value="{{ $package->id }}" name="booking">
+                                            <input type="hidden"
+                                                value="{{ $package->country($country) != null ? $package->country($country)->pivot->name : $package->name }}"
+                                                name="package_name">
+                                            <input type="hidden" value="1" name="no_participants">
+                                            <input type="hidden" value="1" name="agent">
+                                            <input type="hidden" value="{{ date('d-m-Y') }}" name="expected_date">
+                                            <div class="row">
+                                                <div class="col-12 my-2">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Enter Full Name" name="name" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 my-2">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control"
+                                                            placeholder="Enter Email Address" name="email" required />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 my-2">
+                                                    <div class="form-group">
+                                                        <input type="number" class="form-control"
+                                                            placeholder="Enter Phone Number" name="phone" required />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 my-2">
+                                                    <div class="form-group">
+                                                        <textarea name="comment" class="form-control" placeholder="Enter your message" id="message" required></textarea>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    {!! app('captcha')->display() !!}
+                                                    @if ($errors->has('g-recaptcha-response'))
+                                                        <span class="help-block text-danger">
+                                                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                    <p>
+                                                        <i>Your information will never be shared with anyone outside our
+                                                            company. </i>
+
+                                                    </p>
+                                                    <div class="form-group mb-0 text-left mt-1">
+                                                        <button type="submit" class="btn btn-primary  btn-sm">Enquire
+                                                            Now</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="card-body py-1">
-                                    <form action="{{ route('enquery.post') }}" method="post">
-                                        {{ csrf_field() }}
-                                        <input type="hidden" value="{{ $package->id }}" name="booking">
-                                        <input type="hidden" value="{{  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name }}" name="package_name">
-                                        <input type="hidden" value="1" name="no_participants">
-                                        <input type="hidden" value="1" name="agent">
-                                        <input type="hidden" value="{{ date('d-m-Y') }}" name="expected_date">
-                                        <div class="row">
-                                            <div class="col-12 my-2">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Enter Full Name" name="name" required />
-                                                </div>
+                                {{-- Enquiry form end  --}}
+
+
+                                <div class="card  shadow-sm bg_secondary    my-2 ">
+                                    <div class="card-body ">
+                                        <div class="d-flex justify-content-around flex-md-row flex-column">
+                                            <div class="my-1 mx-1 ">
+                                                <a href="#"class=" btn btn-primary  text-decoration-none text-light  d-flex align-items-center justify-content-center"
+                                                    data-bs-toggle="modal" data-bs-target="#customize">
+                                                    Customize</a>
                                             </div>
-                                            <div class="col-12 my-2">
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control"
-                                                        placeholder="Enter Email Address" name="email" required />
-                                                </div>
+                                            <div class="my-1 mx-1">
+                                                <a href="{{ route('print', $package->id) }}"
+                                                    class=" btn btn-primary   text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center">
+                                                    Print </a>
                                             </div>
-
-                                            <div class="col-12 my-2">
-                                                <div class="form-group">
-                                                    <input type="number" class="form-control"
-                                                        placeholder="Enter Phone Number" name="phone" required />
-                                                </div>
+                                            <div class="my-1 mx-1">
+                                                <a href=""
+                                                    class=" btn btn-primary   text-decoration-none text-light  d-flex align-items-center justify-content-center copy_link">
+                                                    Copy </a>
                                             </div>
-
-                                            <div class="col-12 my-2">
-                                                <div class="form-group">
-                                                    <textarea name="comment" class="form-control" placeholder="Enter your message" id="message" required></textarea>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                {!! app('captcha')->display() !!}
-                                                @if ($errors->has('g-recaptcha-response'))
-                                                    <span class="help-block text-danger">
-                                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                                    </span>
-                                                @endif
-                                                <p>
-                                                    <i>Your information will never be shared with anyone  outside our company. </i>
-
-                                                </p>
-                                                <div class="form-group mb-0 text-left mt-1">
-                                                    <button type="submit" class="btn btn-primary  btn-sm">Enquire
-                                                        Now</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            {{-- Enquiry form end  --}}
-
-
-                            <div class="card  shadow-sm bg_secondary    my-2 mx-md-4">
-                                <div class="card-body ">
-                                    <div class="d-flex justify-content-around flex-md-row flex-column">
-                                        <div class="my-1 mx-1 ">
-                                            <a href="#"class=" btn btn-primary  text-decoration-none text-light  d-flex align-items-center justify-content-center"
-                                                data-bs-toggle="modal" data-bs-target="#customize">
-                                                Customize</a>
-                                        </div>
-                                        <div class="my-1 mx-1">
-                                            <a href="{{ route('print', $package->id) }}"
-                                                class=" btn btn-primary   text-decoration-none text-light btn_sm d-flex align-items-center justify-content-center">
-                                                Print </a>
-                                        </div>
-                                        <div class="my-1 mx-1">
-                                            <a href=""
-                                                class=" btn btn-primary   text-decoration-none text-light  d-flex align-items-center justify-content-center copy_link">
-                                                Copy </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            {{-- we accept section start --}}
-                            <div class="my-2 mx-md-4 card">
-                                <strong class="custom-bg-primary text-white custom-fs-19 py-2 px-2"> We Accept</strong>
-                                <div class="p-2">
-                                    <img src="{{ getImageurl('weaccept.webp') }}" alt="we accept" class="img-fluid">
+                                {{-- we accept section start --}}
+                                <div class="my-2  card">
+                                    <strong class="custom-bg-primary text-white custom-fs-19 py-2 px-2"> We Accept</strong>
+                                    <div class="p-2">
+                                        <img src="{{ getImageurl('weaccept.webp') }}" alt="we accept" class="img-fluid">
+                                    </div>
                                 </div>
-                            </div>
-                            {{-- we accept section end --}}
+                                {{-- we accept section end --}}
 
-                            {{--  Trip advesior start --}}
-                            <div class="my-2 mx-md-4 card  shadow-sm bg_secondary  p-3">
-                                <div class="">
-                                    <img src="{{ getImageurl('trip2.webp') }}" alt="Trip advisor" class="img-fluid">
-                                </div>
-                                <div class="text">
-                                    <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
-                                        Speak to one of our travel consultants:
-                                    </p>
-                                    <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
-                                        Call Us (24/7): <strong class="custom-text-primary">
-                                            +977-9802342080
-                                        </strong>
-                                    </p>
-                                    <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
-                                        WhatsApp (24/7): <strong class="custom-text-primary">
-                                            +977-9802342081
-                                        </strong>
+                                {{--  Trip advesior start --}}
+                                <div class="my-2  card  shadow-sm bg_secondary  p-3">
+                                    <div class="">
+                                        <img src="{{ getImageurl('trip2.webp') }}" alt="Trip advisor" class="img-fluid">
+                                    </div>
+                                    <div class="text">
+                                        <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
+                                            Speak to one of our travel consultants:
+                                        </p>
+                                        <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
+                                            Call Us (24/7): <strong class="custom-text-primary">
+                                                +977-9802342080
+                                            </strong>
+                                        </p>
+                                        <p class="mt-2 mb-1 font-weight-400 custom-fs-16">
+                                            WhatsApp (24/7): <strong class="custom-text-primary">
+                                                +977-9802342081
+                                            </strong>
 
-                                    </p>
+                                        </p>
+                                    </div>
                                 </div>
+                                {{--  Trip advesior End --}}
                             </div>
-                            {{--  Trip advesior End --}}
-                        </div>
                         </div>
                         {{-- 2nd col end  --}}
                     </div>
@@ -1110,7 +1200,7 @@
                                             placeholder="Enter your subject" id="subject" value="Customize Trip">
                                         <input type="hidden" name="package_name" class="form-control"
                                             placeholder="Enter your subject" id="subject"
-                                            value="{{  $package->country($country)!=null ? $package->country($country)->pivot->name: $package->name }}">
+                                            value="{{ $package->country($country) != null ? $package->country($country)->pivot->name : $package->name }}">
                                         <div class="col-12 col-sm-6 col-md-12 col-lg-6 my-2 {{-- swapped-element --}}">
                                             <div class="form-group">
                                                 <label for="country">Select Country<span
@@ -1182,7 +1272,8 @@
                                                     <option value="Iceland">Iceland</option>
                                                     <option value="India">India</option>
                                                     <option value="Indonesia">Indonesia</option>
-                                                    <option value="Iran (Islamic Republic)">Iran (Islamic Republic)</option>
+                                                    <option value="Iran (Islamic Republic)">Iran (Islamic Republic)
+                                                    </option>
                                                     <option value="Iraq">Iraq</option>
                                                     <option value="Ireland">Ireland</option>
                                                     <option value="Israel">Israel</option>
@@ -1541,13 +1632,11 @@
 
 
             })
-    //         $('.nav-tabs .nav-item').click(function(){
-    //             console.log($("#myTabContent").offset());
-    //             $([document.documentElement, document.body]).animate({
-    //     scrollTop: $("#myTabContent").offset().top
-    // }, 100);
-    //         })
-
-
+            //         $('.nav-tabs .nav-item').click(function(){
+            //             console.log($("#myTabContent").offset());
+            //             $([document.documentElement, document.body]).animate({
+            //     scrollTop: $("#myTabContent").offset().top
+            // }, 100);
+            //         })
         </script>
     @endpush

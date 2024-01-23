@@ -21,7 +21,7 @@ class PackagesGalleryController extends Controller
      */
     public function index()
     {
-        $galleries = PackageImage::orderBy('created_at', 'desc')->get();
+        $galleries = PackageImage::orderBy('created_at', 'desc')->where('package_id',request()->query('package_id'))->get();
         return view('admin.gallery.index',compact('galleries'));
     }
 
