@@ -385,7 +385,7 @@
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label >Ciruit Image</label>
+                                                <label >Altitude Image</label>
                                                 <div class="image-input">
                                                     <input type="file" accept="image/*" id="imageInput4" name="circuit_image" >
                                                     <label for="imageInput4" class="image-button"><i class="far fa-image"></i> Choose image</label>
@@ -403,7 +403,7 @@
                                             </div>
 
                                             <div class="col-md-6">
-                                                <label>Circuit Title</label>
+                                                <label>Altitude Title</label>
                                                 <input type="text" name="circuit_title" id=""
                                                     class="form-control" value="{{ $package->circuit_title }}">
                                             </div>
