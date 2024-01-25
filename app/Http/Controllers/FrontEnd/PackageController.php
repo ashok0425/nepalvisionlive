@@ -31,7 +31,7 @@ class PackageController extends Controller
 }
 
 public function Deals() {
-    $packages = Cache::remember('packages', 604800, function () {
+    $packages = Cache::remember('dealpackages', 604800, function () {
         return DB::table('packages')
             ->orderBy('id', 'desc')
             ->where('status', 1)

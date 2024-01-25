@@ -31,7 +31,7 @@ class ContactController extends Controller
       {
           if (Str::contains($request->email,  ".godaddy")) {
                 abort(403);
-            
+
               }
            $request->validate([
                   'fname' => 'required',
@@ -70,12 +70,12 @@ class ContactController extends Controller
                         'user_info' => " IP:<a href='https://www.ip-tracker.org/locator/ip-lookup.php?ip={$userIP}'>Click here to view more info :{$userIP}</a>",
                         'source' => $agent
                   ];
-      
+
                   // return view('emails.contactus',$data);
                   $result = Mail::send('email.enquiry', $data, function ($message) use ($data) {
                         $message->from('noreply@nepalvisiontreks.com', 'Nepal Vision');
                         $message->subject($data['subject']);
-                        $message->to('inquiry@nepalvisiontreks.com');
+                        $message->to('reservation@nepalvisiontreks.com');
                         // $message->bcc('yubraj.misfit@gmail.com');
                   });
 
@@ -105,12 +105,12 @@ class ContactController extends Controller
       {
           if (Str::contains($request->email,  ".godaddy")) {
                 abort(403);
-            
+
               }
             $request->validate([
                   'g-recaptcha-response' => 'required|captcha',
               ]);
-      
+
             $userIP = $request->ip();
             $ipdata = $this->IPtoLocation($userIP);
 
@@ -178,17 +178,17 @@ class ContactController extends Controller
       {
             $apiURL = 'https://api.geoapify.com/v1/ipinfo?apiKey=ba7648986b064e67a1418a20662a6dba';
 
-            // Make HTTP GET request using cURL 
+            // Make HTTP GET request using cURL
             $ch = curl_init($apiURL);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $apiResponse = curl_exec($ch);
 
             curl_close($ch);
 
-            // Retrieve IP data from API response 
+            // Retrieve IP data from API response
             $ipData = json_decode($apiResponse, true);
 
-            // Return geolocation data 
+            // Return geolocation data
             return !empty($ipData) ? $ipData : false;
       }
 
@@ -199,7 +199,7 @@ class ContactController extends Controller
       {
 if (Str::contains($request->email,  ".godaddy")) {
                 abort(403);
-            
+
               }
 
             try {

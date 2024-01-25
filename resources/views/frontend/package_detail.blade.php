@@ -708,7 +708,6 @@
                                             alt="{{ $package->circuit_title }}" class="img-fluid">
                                     @endif
                                 </div>
-                            </div>
 
                             @if (!empty($package->faq))
                                 <div id="faq">
@@ -813,9 +812,13 @@
 
                                 @include('frontend.template.package_detail_testimonial')
                             </div>
+
+                            <div class="mt-5">
+
+                                @include('frontend.template.gallery')
+                            </div>
                         </div>
-
-
+                    </div>
 
 
                         {{-- 1st col end  --}}

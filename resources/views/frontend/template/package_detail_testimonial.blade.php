@@ -105,27 +105,6 @@
     }
 </style>
 <div class="bg-white px-2">
-
-    {{-- //gallery image  --}}
-    @if (count($package->gallery))
-
-    <div class="row">
-        @if (isset($package->gallery[0]))
-        <div class="col-md-12">
-          <img src="{{getImageUrl($package->gallery[0]->image)}}" alt="{{$package->name}}" class="image-fluid">
-        </div>
-        @endif
-
-        @foreach ($package->gallery as $gallery)
-      <div class="col-md-4">
-        <img src="{{getImageUrl($gallery->image)}}" alt="{{$package->name}}" class="image-fluid">
-      </div>
-        @endforeach
-
-    </div>
-    @endif
-
-
     <div class="row mb-3 align-items-center">
         <div class="col-md-6">
             <h2 class="custom-text-primary mt-5">Traveller's Reviews

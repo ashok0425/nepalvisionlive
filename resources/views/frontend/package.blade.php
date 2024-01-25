@@ -16,7 +16,7 @@
 @endsection
 @php
     define('PAGE', 'destination');
-    $num = rand(1, 7);
+    $num = rand(1, 8);
 @endphp
 @section('content')
     <main>
