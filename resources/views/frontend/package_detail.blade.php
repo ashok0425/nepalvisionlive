@@ -95,50 +95,6 @@
     }
 
 
-    .custom-row {
-        display: flex;
-        justify-content: space-between
-    }
-
-    .custom-col-md-8 {
-        max-width: 73%;
-    }
-
-    .custom-col-md-4 {
-        max-width: 26%;
-    }
-
-
-    @media only screen and (max-width: 1000px) {
-        .custom-row {
-            display: flex;
-            justify-content: space-between
-        }
-
-        .custom-col-md-8 {
-            max-width: 64%;
-        }
-
-        .custom-col-md-4 {
-            max-width: 35%;
-        }
-    }
-
-
-    @media only screen and (max-width: 800px) {
-        .custom-row {
-            display: flex;
-            justify-content: space-between
-        }
-
-        .custom-col-md-8 {
-            max-width: 58%;
-        }
-
-        .custom-col-md-4 {
-            max-width: 40%;
-        }
-    }
 
 
     @media only screen and (max-width: 600px) {
@@ -146,18 +102,6 @@
             top: 0px !important;
         }
 
-
-        .custom-row {
-            display: block
-        }
-
-        .custom-col-md-8 {
-            max-width: 100%;
-        }
-
-        .custom-col-md-4 {
-            max-width: 100%;
-        }
     }
 </style>
 
@@ -171,10 +115,10 @@
     <div class=" px-0 mx-0">
         <main>
             <section class="trip-desc my-3 my-md-0">
-                <div class="container-fluid">
-                    <div class="custom-row">
+                <div class="container">
+                    <div class="row">
                         {{-- 1st col staart  --}}
-                        <div class="custom-col-md-8 my-1">
+                        <div class="col-md-9 my-1">
                             @php
                                 $packages_id = $package->id;
                                 $arr = trim($package->country($country) != null ? $package->country($country)->pivot->name : $package->name);
@@ -862,7 +806,7 @@
                         {{-- 1st col end  --}}
 
                         {{-- 1st col staart  --}}
-                        <div class="custom-col-md-4 my-5 ">
+                        <div class="col-md-3 my-5 ">
                             <div class="mt-1"></div>
                             {{-- we accept section start --}}
                             <div class="my-2  card  shadow-sm bg_secondary  p-3 pb-2 d-none d-md-block">
