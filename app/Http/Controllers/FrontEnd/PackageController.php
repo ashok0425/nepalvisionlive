@@ -38,7 +38,6 @@ public function Deals() {
             ->where('duration', '!=', null)
             ->where('activity', '!=', null)
             ->where('discounted_price', '!=', null)
-            ->limit(8)
             ->paginate(24);
     });
 

@@ -159,7 +159,6 @@
             max-width: 100%;
         }
     }
-
 </style>
 
 {!! NoCaptcha::renderJs() !!}
@@ -382,96 +381,100 @@
                             </div>
                             <div class="d-none d-md-block">
 
-                            <table class="table table-bordered table-geninfo mb-0  w-100">
-                                <tbody>
-                                    @if ($package->activity || $package->fitness_level)
+                                <table class="table table-bordered table-geninfo mb-0  w-100">
+                                    <tbody>
+                                        @if ($package->activity || $package->fitness_level)
+                                            <tr>
+                                                @if ($package->activity)
+                                                    <td> <i class="fas fa-map"></i> <strong>Activities:</strong></td>
+                                                    <td>{{ $package->activity }}</td>
+                                                @endif
+                                                @if ($package->fitness_level)
+                                                    <td> <i class="fas fa-heartbeat"></i> <strong>Fitness Level:</strong>
+                                                    </td>
+                                                    <td>{{ $package->fitness_level }}</td>
+                                                @endif
+                                            </tr>
+                                        @endif
                                         <tr>
-                                            @if ($package->activity)
-                                                <td> <i class="fas fa-map"></i> <strong>Activities:</strong></td>
-                                                <td>{{ $package->activity }}</td>
+                                            @if ($package->max_altitude)
+                                                <td> <i class="fas fa-signal"></i> <strong>Max Elevation:</strong></td>
+                                                <td>{{ $package->max_altitude }}</td>
                                             @endif
-                                            @if ($package->fitness_level)
-                                                <td> <i class="fas fa-heartbeat"></i> <strong>Fitness Level:</strong></td>
-                                                <td>{{ $package->fitness_level }}</td>
+                                            @if ($package->transport)
+                                                <td> <i class="fas fa-bus"></i> <strong>Transportation:</strong></td>
+                                                <td>{{ $package->transport }}</td>
                                             @endif
                                         </tr>
-                                    @endif
-                                    <tr>
-                                        @if ($package->max_altitude)
-                                            <td> <i class="fas fa-signal"></i> <strong>Max Elevation:</strong></td>
-                                            <td>{{ $package->max_altitude }}</td>
-                                        @endif
-                                        @if ($package->transport)
-                                            <td> <i class="fas fa-bus"></i> <strong>Transportation:</strong></td>
-                                            <td>{{ $package->transport }}</td>
-                                        @endif
-                                    </tr>
-                                    <tr>
-                                        @if ($package->best_month)
-                                            <td> <i class="fas fa-calendar"></i> <strong>Best Month:</strong></td>
-                                            <td>{{ $package->best_month }}</td>
-                                        @endif
-                                        @if ($package->group_size)
-                                            <td> <i class="fas fa-users"></i> <strong>Group Size:</strong></td>
-                                            <td>{{ $package->group_size }}</td>
-                                        @endif
-                                    </tr>
-                                    <tr>
-                                        @if ($package->arrival)
-                                            <td> <i class="fas fa-location-arrow"></i> <strong>Arrival on:</strong></td>
-                                            <td>{{ $package->arrival }}</td>
-                                        @endif
-                                        @if ($package->departure_from)
-                                            <td> <i class="fas fa-space-shuttle"></i> <strong>Departure from:</strong></td>
-                                            <td>{{ $package->departure_from }}</td>
-                                        @endif
-                                    </tr>
-                                    @if ($package->meals)
                                         <tr>
-                                            <td class="border-top-0"> <i class="fas fa-utensils"></i> <strong>Meal:</strong>
-                                            </td>
-                                            <td class="border-top-0">{{ $package->meals }}</td>
-
-                                            <td class="border-top-0"> <i class="fas fa-clock"></i>
-                                                <strong>Duration:</strong>
-                                            </td>
-                                            <td class="border-top-0">{{ $package->duration }}</td>
-
-
+                                            @if ($package->best_month)
+                                                <td> <i class="fas fa-calendar"></i> <strong>Best Month:</strong></td>
+                                                <td>{{ $package->best_month }}</td>
+                                            @endif
+                                            @if ($package->group_size)
+                                                <td> <i class="fas fa-users"></i> <strong>Group Size:</strong></td>
+                                                <td>{{ $package->group_size }}</td>
+                                            @endif
                                         </tr>
-                                    @endif
-                                    <tr>
-                                        @if ($package->room)
-                                            <td class="border-top-0"> <i class="fas fa-bed"></i>
-                                                <strong>Accommodation:</strong>
-                                            </td>
-                                            <td class="border-top-0">{{ $package->room }}</td>
-                                        @endif
+                                        <tr>
+                                            @if ($package->arrival)
+                                                <td> <i class="fas fa-location-arrow"></i> <strong>Arrival on:</strong></td>
+                                                <td>{{ $package->arrival }}</td>
+                                            @endif
+                                            @if ($package->departure_from)
+                                                <td> <i class="fas fa-space-shuttle"></i> <strong>Departure from:</strong>
+                                                </td>
+                                                <td>{{ $package->departure_from }}</td>
+                                            @endif
+                                        </tr>
+                                        @if ($package->meals)
+                                            <tr>
+                                                <td class="border-top-0"> <i class="fas fa-utensils"></i>
+                                                    <strong>Meal:</strong>
+                                                </td>
+                                                <td class="border-top-0">{{ $package->meals }}</td>
 
-                                        <td class="border-top-0"> <i class="fas fa-comments-dollar"></i>
-                                            <strong>Price:</strong>
-                                        </td>
-                                        <td class="border-top-0  ">
-                                            @if ($package->country($country) != null && $package->country($country)->pivot->price != null)
-                                                <sub><small class="custom-fs-16">
-                                                        {{ $package->country($country)->pivot->currency }}</small> </sub>
-                                                <strong class="custom-fs-22 ">
-                                                    {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
-                                            @else
-                                                <sub><small class="custom-fs-16">USD</small> </sub>
-                                                <strong class="custom-fs-22 ">
-                                                    {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                                <td class="border-top-0"> <i class="fas fa-clock"></i>
+                                                    <strong>Duration:</strong>
+                                                </td>
+                                                <td class="border-top-0">{{ $package->duration }}</td>
+
+
+                                            </tr>
+                                        @endif
+                                        <tr>
+                                            @if ($package->room)
+                                                <td class="border-top-0"> <i class="fas fa-bed"></i>
+                                                    <strong>Accommodation:</strong>
+                                                </td>
+                                                <td class="border-top-0">{{ $package->room }}</td>
                                             @endif
 
-                                            <sub> <small class="custom-fs-16">per person</small></sub></strong>
-                                        </td>
+                                            <td class="border-top-0"> <i class="fas fa-comments-dollar"></i>
+                                                <strong>Price:</strong>
+                                            </td>
+                                            <td class="border-top-0  ">
+                                                @if ($package->country($country) != null && $package->country($country)->pivot->price != null)
+                                                    <sub><small class="custom-fs-16">
+                                                            {{ $package->country($country)->pivot->currency }}</small>
+                                                    </sub>
+                                                    <strong class="custom-fs-22 ">
+                                                        {{ $package->country($country)->pivot->offer_price ? $package->country($country)->pivot->offer_price : $package->country($country)->pivot->price }}</strong>
+                                                @else
+                                                    <sub><small class="custom-fs-16">USD</small> </sub>
+                                                    <strong class="custom-fs-22 ">
+                                                        {{ $package->discounted_price ? $package->discounted_price : $package->price }}</strong>
+                                                @endif
 
-                                    </tr>
+                                                <sub> <small class="custom-fs-16">per person</small></sub></strong>
+                                            </td>
+
+                                        </tr>
 
 
-                                </tbody>
-                            </table>
-                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             {{-- banner section End  --}}
 
@@ -709,116 +712,151 @@
                                     @endif
                                 </div>
 
-                            @if (!empty($package->faq))
-                                <div id="faq">
-                                    <h2 class="custom-text-primary mt-5">FAQ
-                                    </h2>
-                                    <div class="mt-2">
-                                        {!! $package->country($country) != null ? $package->country($country)->pivot->faq : $package->faq !!}
-                                    </div>
-                                </div>
-                            @endif
+                                @if (!empty($package->faq))
+                                    <div id="faq">
+                                        <h2 class="custom-text-primary mt-5">FAQ
+                                        </h2>
+                                        <div class="mt-2">
+                                            @php
+                                                $faq=$package->faq;
+                                            @endphp
+                                            @if ($package->country($country) != null)
+                                                $faq=$package->country($country)->pivot->faq;
+                                            @endif
 
-                            @if ($package->equiment)
-                                <div id="equiment">
-                                    <h2 class="custom-text-primary mt-5">Equiment
-                                    </h2>
-                                    <div class="mt-2">
-                                        {!! $package->equiment !!}
-                                    </div>
-                                </div>
-                            @endif
-                            <div id="datePrice">
-                                <h2 class="custom-text-primary mt-5">Departure Date
-                                </h2>
-                                <strong class="mt-2">Departure dates for {!! $package->country($country) != null ? $package->country($country)->pivot->name : $package->name !!}</strong>
-                                <p>We provide a series of fixed departure trek, tour and expeditions in Nepal, Bhutan,
-                                    Tibet and India. If you are single and wishing to be with a group, you can join our
-                                    fixed departure schedule. If the schedule dates are not convenient for you, contact
-                                    us & let us know; we are more than happy to customize our trips to suit your needs.
-                                    If any individuals or group doesn’t want to join with our other group, we can
-                                    operate as per your wish and requirement. We are ground operator of these Himalayan
-                                    destination and able to arrange your trip as per your interested date and choice.
-                                </p>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <p>Check out all the available dates</p>
+                                            @php
+                                                $faqs = explode('#', $faq);
+                                                $i=1;
+                                                @endphp
+<div class="">
+
+    <div class="accordion bg-transparent" id="accordionExample">
+        @foreach ($faqs as $key => $faq)
+        @if ($key!=0)
+        <div class="accordion-item mb-1">
+        @if ($key % 2 != 0)
+        <h2 class="accordion-header" id="heading{{$key+1}}">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$key+1}}" aria-expanded="true" aria-controls="collapse{{$key+1}}">
+             {!! strip_tags($faq)!!}
+            </button>
+          </h2>
+        @else
+        <div id="collapse{{$key}}" class="accordion-collapse collapse" aria-labelledby="heading{{$key}}" data-bs-parent="#accordionExample">
+            <div class="accordion-body m-0  bg-transparent">
+                {!! strip_tags($faq)!!}
+            </div>
+          </div>
+        @endif
+    </div>
+    @endif
+
+        @endforeach
+          </div>
+</div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="row">
-                                                <div class="col-6 col-lg-4">
-                                                    <div class="input-group mb-3">
-                                                        <span class="input-group-text" id="basic-addon1">
-                                                            <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
-                                                        </span>
-                                                        <select class="form-control select-year"
-                                                            aria-describedby="basic-addon1">
-                                                            <option value="{{ date('Y') }}">Select Dates</option>
-                                                            <option value="{{ date('Y') }}" selected>
-                                                                {{ date('Y') }}
-                                                            </option>
-                                                            <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}
-                                                            </option>
-                                                            <option value="{{ date('Y') + 2 }}">{{ date('Y') + 2 }}
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                    </div>
+                                @endif
 
-                                                <div class="col-6 col-lg-4">
-                                                    <div class="input-group">
-                                                        <span class="input-group-text" id="basic-addon2">
-                                                            <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
-                                                        </span>
-                                                        <select class="form-control" id="select-month"
-                                                            aria-describedby="basic-addon2">
-                                                            <option value="1">Jan</option>
-                                                            <option value="2">Feb</option>
-                                                            <option value="3">Mar</option>
-                                                            <option value="4">Apr</option>
-                                                            <option value="5">May</option>
-                                                            <option value="6">June</option>
-                                                            <option value="7">July</option>
-                                                            <option value="8">Aug</option>
-                                                            <option value="9">Sep</option>
-                                                            <option value="10">Oct</option>
-                                                            <option value="11">Nov</option>
-                                                            <option value="12">Dec</option>
-                                                        </select>
+                                @if ($package->equiment)
+                                    <div id="equiment">
+                                        <h2 class="custom-text-primary mt-5">Equiment
+                                        </h2>
+                                        <div class="mt-2">
+                                            {!! $package->equiment !!}
+                                        </div>
+                                    </div>
+                                @endif
+                                <div id="datePrice">
+                                    <h2 class="custom-text-primary mt-5">Departure Date
+                                    </h2>
+                                    <strong class="mt-2">Departure dates for {!! $package->country($country) != null ? $package->country($country)->pivot->name : $package->name !!}</strong>
+                                    <p>We provide a series of fixed departure trek, tour and expeditions in Nepal, Bhutan,
+                                        Tibet and India. If you are single and wishing to be with a group, you can join our
+                                        fixed departure schedule. If the schedule dates are not convenient for you, contact
+                                        us & let us know; we are more than happy to customize our trips to suit your needs.
+                                        If any individuals or group doesn’t want to join with our other group, we can
+                                        operate as per your wish and requirement. We are ground operator of these Himalayan
+                                        destination and able to arrange your trip as per your interested date and choice.
+                                    </p>
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>Check out all the available dates</p>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-6 col-lg-4">
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text" id="basic-addon1">
+                                                                <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
+                                                            </span>
+                                                            <select class="form-control select-year"
+                                                                aria-describedby="basic-addon1">
+                                                                <option value="{{ date('Y') }}">Select Dates</option>
+                                                                <option value="{{ date('Y') }}" selected>
+                                                                    {{ date('Y') }}
+                                                                </option>
+                                                                <option value="{{ date('Y') + 1 }}">{{ date('Y') + 1 }}
+                                                                </option>
+                                                                <option value="{{ date('Y') + 2 }}">{{ date('Y') + 2 }}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6 col-lg-4">
+                                                        <div class="input-group">
+                                                            <span class="input-group-text" id="basic-addon2">
+                                                                <i class="fa mx-1 fa-calendar  custom-text-primary"></i>
+                                                            </span>
+                                                            <select class="form-control" id="select-month"
+                                                                aria-describedby="basic-addon2">
+                                                                <option value="1">Jan</option>
+                                                                <option value="2">Feb</option>
+                                                                <option value="3">Mar</option>
+                                                                <option value="4">Apr</option>
+                                                                <option value="5">May</option>
+                                                                <option value="6">June</option>
+                                                                <option value="7">July</option>
+                                                                <option value="8">Aug</option>
+                                                                <option value="9">Sep</option>
+                                                                <option value="10">Oct</option>
+                                                                <option value="11">Nov</option>
+                                                                <option value="12">Dec</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
 
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Start Date</th>
-                                            <th scope="col">Finish Date</th>
-                                            <th scope="col">Availability</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="ajaxloadmoredeparture">
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Start Date</th>
+                                                <th scope="col">Finish Date</th>
+                                                <th scope="col">Availability</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="ajaxloadmoredeparture">
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                            <div id="review" class="mt-5">
+                                <div id="review" class="mt-5">
 
-                                @include('frontend.template.package_detail_testimonial')
-                            </div>
+                                    @include('frontend.template.package_detail_testimonial')
+                                </div>
 
-                            <div class="mt-5">
+                                <div class="mt-5">
 
-                                @include('frontend.template.gallery')
+                                    @include('frontend.template.gallery')
+                                </div>
                             </div>
                         </div>
-                    </div>
 
 
                         {{-- 1st col end  --}}
