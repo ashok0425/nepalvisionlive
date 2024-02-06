@@ -642,9 +642,50 @@
                                     <h2 class="custom-text-primary mt-5">Itinerary
                                     </h2>
                                     <div class="mt-2">
-                                        {!! $package->country($country) != null
-                                            ? $package->country($country)->pivot->detailed_itinerary
-                                            : $package->detailed_itinerary !!}
+
+                                        @php
+                                            $itenary = $package->detailed_itinerary;
+                                        @endphp
+                                        @if ($package->country($country) != null)
+                                            $itenary=$package->country($country)->pivot->detailed_itinerary;
+                                        @endif
+
+                                        @php
+                                            $itenaries = explode('#', $itenary);
+                                            $i = 1;
+                                        @endphp
+                                        <div class="">
+
+                                            <div class="accordion bg-transparent" id="accordionExample">
+                                                @foreach ($itenaries as $key => $itenary)
+                                                    @if ($key != 0)
+                                                        <div class="accordion-item mb-1">
+                                                            @if ($key % 2 != 0)
+                                                                <h2 class="accordion-header"
+                                                                    id="heading{{ $key + 1 }}">
+                                                                    <button class="accordion-button" type="button"
+                                                                        data-bs-toggle="collapse"
+                                                                        data-bs-target="#collapse{{ $key + 1 }}"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="collapse{{ $key + 1 }}">
+                                                                        {!! strip_tags($itenary) !!}
+                                                                    </button>
+                                                                </h2>
+                                                            @else
+                                                                <div id="collapse{{ $key }}"
+                                                                    class="accordion-collapse collapse"
+                                                                    aria-labelledby="heading{{ $key }}"
+                                                                    data-bs-parent="#accordionExample">
+                                                                    <div class="accordion-body m-0  bg-transparent">
+                                                                        {!! strip_tags($itenary) !!}
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -662,7 +703,7 @@
                                         </h2>
                                         <div class="mt-2">
                                             @php
-                                                $faq=$package->faq;
+                                                $faq = $package->faq;
                                             @endphp
                                             @if ($package->country($country) != null)
                                                 $faq=$package->country($country)->pivot->faq;
@@ -670,33 +711,40 @@
 
                                             @php
                                                 $faqs = explode('#', $faq);
-                                                $i=1;
-                                                @endphp
-<div class="">
+                                                $i = 1;
+                                            @endphp
+                                            <div class="">
 
-    <div class="accordion bg-transparent" id="accordionExample">
-        @foreach ($faqs as $key => $faq)
-        @if ($key!=0)
-        <div class="accordion-item mb-1">
-        @if ($key % 2 != 0)
-        <h2 class="accordion-header" id="heading{{$key+1}}">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$key+1}}" aria-expanded="true" aria-controls="collapse{{$key+1}}">
-             {!! strip_tags($faq)!!}
-            </button>
-          </h2>
-        @else
-        <div id="collapse{{$key}}" class="accordion-collapse collapse" aria-labelledby="heading{{$key}}" data-bs-parent="#accordionExample">
-            <div class="accordion-body m-0  bg-transparent">
-                {!! strip_tags($faq)!!}
-            </div>
-          </div>
-        @endif
-    </div>
-    @endif
-
-        @endforeach
-          </div>
-</div>
+                                                <div class="accordion bg-transparent" id="accordionExample">
+                                                    @foreach ($faqs as $key => $faq)
+                                                        @if ($key != 0)
+                                                            <div class="accordion-item mb-1">
+                                                                @if ($key % 2 != 0)
+                                                                    <h2 class="accordion-header"
+                                                                        id="heading{{ $key + 1 }}">
+                                                                        <button class="accordion-button" type="button"
+                                                                            data-bs-toggle="collapse"
+                                                                            data-bs-target="#collapse{{ $key + 1 }}"
+                                                                            aria-expanded="true"
+                                                                            aria-controls="collapse{{ $key + 1 }}">
+                                                                            {!! strip_tags($faq) !!}
+                                                                        </button>
+                                                                    </h2>
+                                                                @else
+                                                                    <div id="collapse{{ $key }}"
+                                                                        class="accordion-collapse collapse"
+                                                                        aria-labelledby="heading{{ $key }}"
+                                                                        data-bs-parent="#accordionExample">
+                                                                        <div class="accordion-body m-0  bg-transparent">
+                                                                            {!! strip_tags($faq) !!}
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 @endif
@@ -795,10 +843,11 @@
                                     @include('frontend.template.package_detail_testimonial')
                                 </div>
 
+                                @if(count($package->gallery))
                                 <div class="mt-5">
-
                                     @include('frontend.template.gallery')
                                 </div>
+                                @endif
                             </div>
                         </div>
 
@@ -1397,7 +1446,8 @@
                 <option value="Search Engine">Search Engine</option> --}}
                                                     {{-- <option value="Agent">Agent</option> --}}
                                                     @foreach ($agents as $agent)
-                                                        <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+                                                        <option value="{{ $agent->id }}">{{ $agent->name }}
+                                                        </option>
                                                     @endforeach
                                                     {{-- <option value="Anjan Shrestha">Anjan Shrestha</option> --}}
                                                 </select>
