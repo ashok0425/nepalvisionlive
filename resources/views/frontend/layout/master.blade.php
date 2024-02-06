@@ -1,7 +1,7 @@
 @php
     $setting = DB::table('websites')->first();
     $agent = new \Jenssegers\Agent\Agent();
-    
+
 @endphp
 @if ($agent->isMobile())
     @section('title')
@@ -217,8 +217,8 @@
 
     <script type="application/ld+json">
 {
-  "@context": "https://schema.org/", 
-  "@type": "Product", 
+  "@context": "https://schema.org/",
+  "@type": "Product",
   "name": "Nepal Vision Treks",
   "image": " {{ getImageurl($setting->image) }}",
   "description": " {{ $setting->descr }}",
@@ -226,7 +226,7 @@
     "@type": "Brand",
     "name": "Nepal Vision Treks"
   },
-  
+
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5",

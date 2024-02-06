@@ -45,27 +45,29 @@ class FaqsController extends Controller
     public function store(Request $request)
     {
             //code...
-       
+
         try {
             $faq = new Faq;
             $faq->question=$request->question;
             $faq->answer=$request->answer;
             $faq->package_id=$request->package_id;
             $faq->status=1;
+            $faq->show_on_home_page=$request->show_on_home_page??0;
+
             $faq->save();
-          
+
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>'FAQ Added Successfully',
-               
+
              );
             } catch (\Throwable $th) {
                 //throw $th;
-            
+
             $notification=array(
                 'alert-type'=>'error',
                 'messege'=>'Failed to Add FAQ, Try again.',
-               
+
              );
         }
 
@@ -105,24 +107,25 @@ class FaqsController extends Controller
      */
     public function update(Request $request, $id)
     {
-   
+
         try {
             $faq = Faq::findOrFail($id);
             $faq->question=$request->question;
             $faq->answer=$request->answer;
             $faq->package_id=$request->package_id;
             $faq->status=1;
+            $faq->show_on_home_page=$request->show_on_home_page??0;
             $faq->save();
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>'Faq updated',
-               
+
              );
         } catch(\Throwable $e) {
             $notification=array(
                 'alert-type'=>'error',
                 'messege'=>'Failed to pdate FAQ, Try again.',
-               
+
              );
         }
 
@@ -145,13 +148,13 @@ class FaqsController extends Controller
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>' FAQ Deleted',
-               
+
              );
         } catch (\Throwable $e) {
             $notification=array(
                 'alert-type'=>'error',
                 'messege'=>'Failed to delete FAQ, Try again.',
-               
+
              );
 
     }
