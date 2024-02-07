@@ -57,6 +57,8 @@ text-align: center;
 {{-- Blog section  --}}
 @include('frontend.template.blog')
 
+@include('frontend.template.faq')
+
 
 {{-- Afflicate section  --}}
 @include('frontend.template.afflicate')

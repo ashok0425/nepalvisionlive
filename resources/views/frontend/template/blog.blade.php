@@ -12,7 +12,7 @@
             <p class="custom-fs-36">Recent Posts</p>
         </div>
         @php
-            
+
             $blogs = Cache::remember('blogs', 604800, function () {
                 return DB::table('blogs')
                     ->orderBy('id', 'desc')
