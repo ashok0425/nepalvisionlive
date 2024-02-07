@@ -651,7 +651,7 @@
                                         @endif
 
                                         @php
-                                            $itenaries = explode('#', $itenary);
+                                            $itenaries = explode('#@#', $itenary);
                                             $i = 1;
                                         @endphp
                                         <div class="">
@@ -710,7 +710,7 @@
                                             @endif
 
                                             @php
-                                                $faqs = explode('#', $faq);
+                                                $faqs = explode('#@#', $faq);
                                                 $i = 1;
                                             @endphp
                                             <div class="">
