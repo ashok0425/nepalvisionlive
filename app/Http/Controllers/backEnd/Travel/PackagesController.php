@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use File;
+use Illuminate\Support\Facades\Cache;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class PackagesController extends Controller
@@ -196,6 +197,17 @@ class PackagesController extends Controller
                 'alert-type' => 'success',
                 'messege' => 'Successfully Added package.',
             ];
+
+            Cache::forget('dealpackages');
+            Cache::get('dealpackages', 604800, function () {
+                return DB::table('packages')
+                    ->orderBy('id', 'desc')
+                    ->where('status', 1)
+                    ->where('duration', '!=', null)
+                    ->where('activity', '!=', null)
+                    ->where('discounted_price', '!=', null)
+                    ->paginate(24);
+            });
         } catch (QueryException $e) {
             return $e->getMessage();
             DB::rollback();
@@ -353,6 +365,16 @@ class PackagesController extends Controller
                 'alert-type' => 'success',
                 'messege' => 'Successfully updated package.',
             ];
+            Cache::forget('dealpackages');
+            Cache::get('dealpackages', 604800, function () {
+                return DB::table('packages')
+                    ->orderBy('id', 'desc')
+                    ->where('status', 1)
+                    ->where('duration', '!=', null)
+                    ->where('activity', '!=', null)
+                    ->where('discounted_price', '!=', null)
+                    ->paginate(24);
+            });
         } catch (QueryException $e) {
             return $e->getMessage();
             DB::rollback();
