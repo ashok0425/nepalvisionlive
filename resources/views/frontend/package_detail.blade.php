@@ -860,7 +860,7 @@
                         {{-- 1st col end  --}}
 
                         {{-- 1st col staart  --}}
-                        <div class="col-md-3 my-5 ">
+                        <div class="col-md-3 px-md-0 mx-md-0 my-5 ">
                             <div class="mt-1"></div>
                             {{-- we accept section start --}}
                             <div class="my-2  card  shadow-sm bg_secondary  p-3 pb-2 d-none d-md-block">

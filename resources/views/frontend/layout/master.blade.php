@@ -64,7 +64,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ getFilePath('frontend/main.css') }}">
     <link rel="apple-touch-icon" href="@yield('fev')" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
     <style>
         .text-right {
@@ -131,7 +133,8 @@
         }
 
         * :not(i) {
-            font-family: "Rubik", sans-serif !important;
+            font-family: "Work Sans", sans-serif;
+
         }
     </style>
 
