@@ -39,6 +39,11 @@
         position: sticky;
         top: 50px;
     }
+    .accordion-button:not(.collapsed){
+        background: #fff!important;
+        color: #000!important;
+
+    }
 
     .about-trip .head .nav-link {
         font-weight: 500;
@@ -663,7 +668,7 @@
                                                             @if ($key % 2 != 0)
                                                                 <h2 class="accordion-header"
                                                                     id="heading{{ $key + 1 }}">
-                                                                    <button class="accordion-button" type="button"
+                                                                    <button class="accordion-button collapsed" type="button"
                                                                         data-bs-toggle="collapse"
                                                                         data-bs-target="#collapse{{ $key + 1 }}"
                                                                         aria-expanded="true"
@@ -722,7 +727,7 @@
                                                                 @if ($key % 2 != 0)
                                                                     <h2 class="accordion-header"
                                                                         id="heading{{ $key + 1 }}">
-                                                                        <button class="accordion-button" type="button"
+                                                                        <button class="accordion-button collapsed" type="button"
                                                                             data-bs-toggle="collapse"
                                                                             data-bs-target="#collapse{{ $key + 1 }}"
                                                                             aria-expanded="true"

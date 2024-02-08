@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-md-5 offset-md-7">
+                <div class="text-center">
                     {{ $blogs->links() }}
                 </div>
             </div>
