@@ -42,7 +42,7 @@
 
 
         .blog-img{
-            height: 80vh !important;
+            height: 85vh !important;
             background:url("{{ getImageurl($blog->cover_image) }}") center center no-repeat rgba(0, 0, 0, .3);
             background-size: cover;
             background-blend-mode: multiply;
@@ -55,7 +55,7 @@
             transform: translate(-50%,-50%);
             color:#fff;
             font-weight: 700;
-            font-size: 30px;
+            font-size: 35px;
         }
 
         /*.blog_content_image img{*/
@@ -149,7 +149,7 @@ margin-top: -3px;
                             </div>
                             <div class="col-md-4">
                                 @php
-                                    $blogs=App\Models\Blog::latest('post_date')->limit(4)->get();
+                                    $blogs=App\Models\Blog::latest('post_date')->where('id','!=',$blog->ID)->limit(4)->get();
                                 @endphp
                            <div class="card border-0 rounded-0 bg-gray  mx-md-2 mx-0 right_card">
                             <div class="card-body">
@@ -160,7 +160,7 @@ margin-top: -3px;
                                    <div class="mb-3">
                                     <img src="{{getImageurl($item->guid)}}" alt="" class="img-fluid">
                                     <p class="mt-3 text-center recent_text">
-                                        <a href="{{ route('blog.detail', ['url' => $item->url]) }}" class="text-dark">{{$item->post_title}}</a></p>
+                                        <a href="{{ route('blog.detail', ['url' => $item->url]) }}" class="text-dark text-decoration-none">{{$item->post_title}}</a></p>
                                    </div>
                                 @endforeach
                             <div>
