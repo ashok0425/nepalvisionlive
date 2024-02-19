@@ -1,5 +1,5 @@
 <section class="partners py-5">
-    <div class="container">
+    <div class="container-fluid">
         <div class="heading mt-2 mb-5">
             <p class="custom-fs-36 text-center">Our Affiliations</p>
         </div>

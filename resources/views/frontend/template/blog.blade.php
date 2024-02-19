@@ -7,7 +7,7 @@
     }
 </style>
 <section class="recent-post ">
-    <div class="container">
+    <div class="container-fluid">
         <div class="heading my-5">
             <p class="custom-fs-36">Recent Posts</p>
         </div>

@@ -1,7 +1,7 @@
 @php
     $faqs=App\Models\Faq::with('package')->where('show_on_home_page',1)->latest()->get();
 @endphp
-<div class="container">
+<div class="container-fluid">
     <div class="heading my-5">
         <p class="custom-fs-36">Frequently Asked Questions</p>
     </div>

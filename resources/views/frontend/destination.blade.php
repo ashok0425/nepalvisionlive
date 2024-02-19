@@ -25,7 +25,7 @@
 
 
         <section class="best-place-destination">
-            <div class="container">
+            <div class="container-fluid">
                 {{-- <div class="col-12">
                 <p>
                     {!! $data->details!!}
@@ -62,7 +62,7 @@
                                                     ->where('status', 1)
                                                     ->get()
                                                     ->count();
-                                                
+
                                             @endphp
                                             {{ $place }} Places
                                         </div>
@@ -84,7 +84,7 @@
         </section>
 
         <section class="tour-packages ">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="heading mt-md-5 mt-2">
                     <h2>Tour Packages</h2>
                 </div>
@@ -103,8 +103,8 @@
 
 
     </main>
-    
-    <div class="container my-4">
+
+    <div class="container-fluid my-4">
         <div class="card shadow-sm border-0">
             <div class="card-body">
                 {!! $data->details !!}

@@ -22,7 +22,7 @@
     <main>
         <x-page-header :title="$data->name" :route="route('package.category', ['url' => $data->url, 'url' => $data->url])" :img="getImageurl('banners/' . $num . '.webp')" />
         <section class="tour-packages ">
-            <div class="container">
+            <div class="container-fluid">
 
                 {{-- search  --}}
 

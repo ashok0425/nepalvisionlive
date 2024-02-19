@@ -5,7 +5,7 @@
 })
 @endphp
 <section class="tour-packages">
-    <div class="container">
+    <div class="container-fluid">
         <div class="heading mt-5">
             <p class="custom-fs-36">Expedition Packages</p>
         </div>

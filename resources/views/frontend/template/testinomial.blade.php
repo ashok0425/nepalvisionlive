@@ -110,7 +110,7 @@
     }
 </style>
 <section class="feedback ">
-    <div class="container ">
+    <div class="container-fluid ">
         <div class="heading mt-5">
             <p class="custom-fs-36">
                 Travellers Feedbacks
