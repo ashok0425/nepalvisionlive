@@ -42,7 +42,7 @@
 
 
         .blog-img{
-            height: 100vh !important;
+            height: 80vh !important;
             background:url("{{ getImageurl($blog->cover_image) }}") center center no-repeat rgba(0, 0, 0, .3);
             background-size: cover;
             background-blend-mode: multiply;
@@ -55,6 +55,7 @@
             transform: translate(-50%,-50%);
             color:#fff;
             font-weight: 700;
+            font-size: 30px;
         }
 
         /*.blog_content_image img{*/
@@ -158,7 +159,8 @@ margin-top: -3px;
                                 @foreach ($blogs as $item)
                                    <div class="mb-3">
                                     <img src="{{getImageurl($item->guid)}}" alt="" class="img-fluid">
-                                    <p class="mt-3 text-center recent_text">{{$item->post_title}}</p>
+                                    <p class="mt-3 text-center recent_text">
+                                        <a href="{{ route('blog.detail', ['url' => $item->url]) }}" class="text-dark">{{$item->post_title}}</a></p>
                                    </div>
                                 @endforeach
                             <div>
