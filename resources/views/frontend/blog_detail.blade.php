@@ -42,7 +42,7 @@
 
 
         .blog-img{
-            height: 85vh !important;
+            height: 82vh !important;
             background:url("{{ getImageurl($blog->cover_image) }}") center center no-repeat rgba(0, 0, 0, .3);
             background-size: cover;
             background-blend-mode: multiply;
