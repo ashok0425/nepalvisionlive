@@ -175,10 +175,13 @@ if ($startPos !== false) {
     // If no start marker found, set content to an empty string
     $content = '';
 }
-
                                 $faqs = explode('#@#', $content);
-                                $html = "<div><div class='accordion bg-transparent' id='accordionExample'>";
-                            @endphp
+                                @endphp
+
+                                @if (count($faqs))
+                                    @php
+                                $html = "<div class='accordion bg-transparent' id='accordionExample'>";
+                                    @endphp
 
                             @foreach ($faqs as $key => $itenary)
                                 @if ($key != 0)
@@ -212,7 +215,10 @@ if ($startPos !== false) {
                                     @endphp
                                 @endif
                             @endforeach
+@php
+                            $html .= "</div>";
 
+@endphp
                             @php
                                 $pattern = '/#faq.*?#faq/';
                                 $newText = preg_replace($pattern, $html, $blog->post_content);
@@ -220,10 +226,12 @@ if ($startPos !== false) {
 
                             {!! $newText !!}
 
-                                </div>
-                            </div>
 
-                               </div>
+                               @else
+                               {!!$blog->post_content!!}
+                            @endif
+                        </div>
+
                             </div>
                             <div class="col-md-4">
                                 @php
