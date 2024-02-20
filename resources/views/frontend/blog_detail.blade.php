@@ -113,7 +113,7 @@ margin-top: -3px;
     </style>
     <section class="blog-img">
 
-        <div class="blog_title text-center">
+        <div class="blog_title text-center text-uppercase">
             <h1>{!! $blog->post_title !!}</h1>
 
         </div>
