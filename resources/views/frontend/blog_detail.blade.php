@@ -95,7 +95,10 @@ color: #0a66c2;
         #social-links ul li .twitter{
 margin-top: -3px;
         }
-
+        @media screen and (max-width: 600px){
+table.rg-table td {
+text-align: left!important;
+}}
 .right_card{
     position: sticky;
     top: 100px;
