@@ -42,7 +42,7 @@
 
 
         .blog-img{
-            height: 82vh !important;
+            height: 83vh !important;
             background:url("{{ getImageurl($blog->cover_image) }}") center center no-repeat rgba(0, 0, 0, .3);
             background-size: cover;
             background-blend-mode: multiply;
@@ -143,7 +143,7 @@ margin-top: -3px;
 </div>
                                </div>
 
-                               <div class="mt-5">
+                               <div class="mt-5" id="ckeditor_content">
                                 {!! $blog->post_content !!}
                                </div>
                             </div>
@@ -151,7 +151,7 @@ margin-top: -3px;
                                 @php
                                     $blogs=App\Models\Blog::latest('post_date')->where('id','!=',$blog->ID)->limit(4)->get();
                                 @endphp
-                           <div class="card border-0 rounded-0 bg-gray  mx-md-2 mx-0 right_card">
+                           <div class="card border-0 rounded-0 bg-gray  mx-md-5 mx-0 right_card">
                             <div class="card-body">
                                 <div class="mb-3 recent_title">
                                    Recent Blogs
@@ -227,6 +227,38 @@ margin-top: -3px;
 
 
 @push('script')
+
+<script>
+    // Parse CKEditor content
+const editorContent = document.getElementById('ckeditor_content');
+const imagesToLazyLoad = editorContent.querySelectorAll('img');
+
+// Lazy load images
+const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+function lazyLoadImage(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            observer.unobserve(img);
+        }
+    });
+}
+
+const observer = new IntersectionObserver(lazyLoadImage, options);
+
+imagesToLazyLoad.forEach(img => {
+    img.src = placeholderImageURL; // Set placeholder image initially
+    observer.observe(img);
+});
+
+</script>
+
     {{--
 <script type="application/ld+json">
     {

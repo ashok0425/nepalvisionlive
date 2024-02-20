@@ -190,6 +190,8 @@
 
 
 @push('scripts')
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('ckeditor.js') }}"></script>
     {{-- custom input fielsd file  --}}
     <script>
         // Add the following code if you want the name of the file appear on select

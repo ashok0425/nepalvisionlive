@@ -104,7 +104,7 @@
     <!-- AdminLTE App -->
     <script defer src="{{ getFilePath('admin/dist/js/adminlte.js') }}"></script>
 
-    
+
     @if(!str_contains(url()->current(),'edit')&&!str_contains(url()->current(),'create'))
   {{-- datatables  --}}
   <link rel="preload stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" as="style">
@@ -209,9 +209,9 @@
         }
      }, 2000);
     </script>
-    
+
     @endif
-    
+
     @if (Session::has('messege'))
  {{-- toastr --}}
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -237,10 +237,10 @@
             }
         @endif
     </script>
-   
 
-    <script rel="preload script" src="https://cdn.ckeditor.com/ckeditor5/35.1.0/super-build/ckeditor.js" as="script"></script>
-    <script rel="preload script" src="{{ getFilePath('public/ckeditor.js') }}"as="script"></script>
+
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('ckeditor.js') }}"></script>
 
     <script>
         $('#delete_row').click(function(e) {

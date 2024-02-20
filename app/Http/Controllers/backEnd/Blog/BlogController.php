@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
 class BlogController extends Controller
-{ 
+{
     private $status_message = NULL;
     private $alert_type = "success";
     private $blogs_image_path = "uploads/blogs";
@@ -20,7 +20,7 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $blogs = Blog::orderBy('created_at', 'desc')->where('status',1)->paginate(10);
-       
+
         return view('admin.blog.index', compact('blogs'));
     }
 
@@ -45,7 +45,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         try {
             if($request->hasFile('image')) {
                 // Uplaod Image
@@ -65,7 +65,7 @@ class BlogController extends Controller
             $this->alertMessage = "Failed to add blog, Try again.";
             $this->alertType = "danger";
         }
-            
+
             return redirect()->route('admin.blog.index')->with(['status_message' => $this->status_message, 'alert_type' => $this->alert_type]);
 
     }
@@ -89,7 +89,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        
+
         $blog = Blog::findOrFail($id);
         return view('admin.blog.edit', compact('blog'));
     }
@@ -124,7 +124,7 @@ class BlogController extends Controller
         }
 
         return redirect()->route('admin.blog.index')->with(['status_message' => $this->status_message, 'alert_type' => $this->alert_type]);
-        
+
     }
 
     /**
@@ -140,7 +140,7 @@ class BlogController extends Controller
             $blog = Blog::findOrFail($id);
             $blog->delete();
             $blog->delete_old_image();
-            
+
 
             $this->alertMessage = "Successfully deleted blog.";
         } catch (QueryException $e) {
@@ -149,6 +149,17 @@ class BlogController extends Controller
         }
 
         return redirect()->route('admin.blog.index')->with(['status_message' => $this->status_message, 'alert_type' => $this->alert_type]);
+    }
+
+
+    public function uploadimage(Request $request){
+        $request->validate([
+            'upload' => 'required|image'
+        ]);
+
+        $path = $request->file('upload')->store('uploads', ['disk' => 's3']);
+
+        return ["url" => asset('storage/' . $path)];
     }
 
 }

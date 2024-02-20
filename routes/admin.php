@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackEnd\Blog\BlogController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -132,8 +133,10 @@ Route::get('booking/{id}', 'Main\MainController@BookingDetail')->name('bookingde
 
 Route::resource('/country', 'CountryController');
 
+Route::post('/blog-posts/upload',[BlogController::class,'uploadimage']);
 
 Route::get('/cache', function () {
-	Artisan::call('cache:clear');
-	Artisan::call('config:clear');
+	Artisan::call('cache:synblog');
+	// Artisan::call('cache:clear');
+	// Artisan::call('config:clear');
 });
