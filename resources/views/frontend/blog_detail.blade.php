@@ -98,7 +98,15 @@ margin-top: -3px;
         @media screen and (max-width: 600px){
 table.rg-table td {
 text-align: left!important;
-}}
+}
+.blog-img{
+    height: 40vh!important;
+}
+.blog_title{
+    font-weight: 600;
+    font-size: 24px;
+}
+}
 .right_card{
     position: sticky;
     top: 100px;
@@ -117,7 +125,7 @@ text-align: left!important;
     <section class="blog-img">
 
         <div class="blog_title text-center text-uppercase">
-            <h1>{!! $blog->post_title !!}</h1>
+            <p> {{$blog->post_title}} </p>
 
         </div>
     </section>
@@ -131,11 +139,11 @@ text-align: left!important;
                                 <span><i class="fas fa-calendar"></i> <strong>Last updated:</strong>  {{ carbon\carbon::parse($blog->post_date)->format('d M Y') }}</span>
                                </div>
                                <div>
-                                {{-- {!!Share::page(url()->current())
+                                {{-- Share::page(url()->current())
                                 ->facebook()
                                 ->twitter()
                                 ->linkedin()
-                                ->whatsapp()!!} --}}
+                                ->whatsapp() --}}
 <div id="social-links">
 <ul><li><a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" class="social-button " id="" title="" rel=""><span class="fab fa-facebook-square"></span></a></li>
     <li><a href="https://twitter.com/intent/tweet?text=Default+share+text&amp;url={{url()->current()}}" class="social-button twitter" id="" title="" rel=""><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="41" height="41" viewBox="0 0 55 55">
@@ -147,7 +155,74 @@ text-align: left!important;
                                </div>
 
                                <div class="mt-5" id="ckeditor_content">
-                                {!! $blog->post_content !!}
+                                @php
+
+// Find the position of the first occurrence of '#@#'
+$startPos = strpos($blog->post_content, '#faq');
+
+if ($startPos !== false) {
+    // Find the position of the second occurrence of '#@#' after the first one
+    $endPos = strpos($blog->post_content, '#faq', $startPos + 3);
+
+    if ($endPos !== false) {
+        // Extract the substring between the two markers
+        $content = substr($blog->post_content, $startPos + 3, $endPos - $startPos - 3);
+    } else {
+        // If no second marker found, consider until the end of the content
+        $content = substr($blog->post_content, $startPos + 3);
+    }
+} else {
+    // If no start marker found, set content to an empty string
+    $content = '';
+}
+
+                                $faqs = explode('#@#', $content);
+                                $html = "<div><div class='accordion bg-transparent' id='accordionExample'>";
+                            @endphp
+
+                            @foreach ($faqs as $key => $itenary)
+                                @if ($key != 0)
+                                    @php
+                                        $html .= "<div class='accordion-item mb-1'>";
+                                    @endphp
+
+                                    @if ($key % 2 != 0)
+                                        @php
+                                            $html .= "<h2 class='accordion-header' id='heading" . ($key + 1) . "'>
+                                                        <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse'
+                                                            data-bs-target='#collapse" . ($key + 1) . "' aria-expanded='true'
+                                                            aria-controls='collapse" . ($key + 1) . "'>
+                                                            " . strip_tags($itenary) . "
+                                                        </button>
+                                                    </h2>";
+                                        @endphp
+                                    @else
+                                        @php
+                                            $html .= "<div id='collapse" . $key . "' class='accordion-collapse collapse'
+                                                        aria-labelledby='heading" . $key . "' data-bs-parent='#accordionExample'>
+                                                        <div class='accordion-body m-0  bg-transparent'>
+                                                            " . strip_tags($itenary) . "
+                                                        </div>
+                                                    </div>";
+                                        @endphp
+                                    @endif
+
+                                    @php
+                                        $html .= "</div>";
+                                    @endphp
+                                @endif
+                            @endforeach
+
+                            @php
+                                $pattern = '/#faq.*?#faq/';
+                                $newText = preg_replace($pattern, $html, $blog->post_content);
+                            @endphp
+
+                            {!! $newText !!}
+
+                                </div>
+                            </div>
+
                                </div>
                             </div>
                             <div class="col-md-4">
