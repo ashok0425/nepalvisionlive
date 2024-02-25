@@ -133,7 +133,7 @@ Route::get('booking/{id}', 'Main\MainController@BookingDetail')->name('bookingde
 
 Route::resource('/country', 'CountryController');
 
-Route::post('/blog-posts/upload',[BlogController::class,'uploadimage']);
+Route::post('/blog-posts/upload','Blog\BlogController@uploadimage');
 
 Route::get('/cache', function () {
 	Artisan::call('cache:synblog');

@@ -27,7 +27,7 @@ class BlogController extends Controller
             ->editColumn('guid',function($row){
                 return '<img src="'. getImageurl($row->guid) .'" width="80">';
             })
-           
+
             ->editColumn('status',function($row){
                 return  $row->post_status=="publish" ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Deactive</span>';
             })
@@ -71,7 +71,7 @@ return $html;
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-   
+
     public function store(Request $request)
     {
         $url = $this->toAscii($request->url);
@@ -114,7 +114,7 @@ return $html;
 
                  );
                  return redirect()->route('admin.blogs.index')->with($notification);
-            
+
 
 
         // } catch (\Throwable $th) {
@@ -170,14 +170,14 @@ return $html;
             $blog['post_content']=$request->content;
            DB::table('blogs')->where('ID',$id)->update($blog);
            Cache::forget('blogs');
-          
+
                 $notification=array(
                     'alert-type'=>'success',
                     'messege'=>'Blog  updated',
 
                  );
                  return redirect()->route('admin.blogs.index')->with($notification);
-            
+
 
 
         // } catch (\Throwable $th) {
@@ -199,13 +199,13 @@ return $html;
             $notification=array(
                 'alert-type'=>'success',
                 'messege'=>'Successfully deleted .',
-               
+
              );
         } catch (Throwable $e) {
             $notification=array(
                 'alert-type'=>'error',
                 'messege'=>'Failed to delete , Try again.',
-               
+
              );
         }
 
@@ -247,12 +247,22 @@ return $html;
     }
 
 
-    
+
     private function toAscii($str) {
         $clean = preg_replace('~[^\\pL\d]+~u', '-', $str);
         $clean = strtolower(trim($clean, '-'));
 
         return $clean;
+    }
+
+    public function uploadimage(Request $request){
+        $request->validate([
+            'upload' => 'required|image'
+        ]);
+
+        $path = $request->file('upload')->store('uploads', ['disk' => 's3']);
+
+        return ["url" => asset('storage/' . $path)];
     }
 
 }
