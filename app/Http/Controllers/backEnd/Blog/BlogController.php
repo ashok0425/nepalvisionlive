@@ -157,9 +157,9 @@ class BlogController extends Controller
             'upload' => 'required|image'
         ]);
 
-        $path = $request->file('upload')->store('public/uploads', ['disk' => 's3']);
+        $path = $request->file('upload')->store('uploads', ['disk' => 's3']);
 
-        return ["url" => getImageurl($path)];
+        return ["url" => getFilePath($path)];
 
     }
 
