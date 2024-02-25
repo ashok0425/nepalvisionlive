@@ -262,7 +262,7 @@ return $html;
 
         $path = $request->file('upload')->store('uploads', ['disk' => 's3']);
 
-        return ["url" => asset('storage/' . $path)];
+        return ["url" => getImageurl($path)];
     }
 
 }
