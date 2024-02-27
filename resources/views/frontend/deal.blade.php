@@ -22,7 +22,7 @@ Special Deals|Nepalvision Treaks
     <main>
         <x-page-header title="Special Deals" :route="route('deals')" :img="getImageurl('banners/' . $num . '.webp')" />
         <section class="tour-packages ">
-            <div class="container">
+            <div class="container-fluid">
 
                 {{-- search  --}}
 

@@ -211,18 +211,18 @@
                                     <a class="nav-link text-md-white text-dark @if (PAGE == 'usefulinfo') active @endif"
                                         href="{{ route('usefulinfo') }}">Useful Info</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link text-md-white text-dark @if (PAGE == 'about') active @endif"
                                         href="{{ route('cms.page', ['page' => 'about-us']) }}">About</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link text-md-white text-dark @if (PAGE == 'blog') active @endif"
                                         href="{{ route('blog') }}">Blog</a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link text-md-white text-dark @if (PAGE == 'contact') active @endif"
                                         href="{{ route('contactus') }}">Contact</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link text-md-white text-dark @if (PAGE == 'deals') active @endif"
                                         href="{{ route('deals') }}">Deals</a>
